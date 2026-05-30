@@ -7,6 +7,9 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    STORAGE_BACKEND: str = "local"
+    UPLOAD_DIR: str = "/app/uploads"
+    MAX_UPLOAD_MB: int = 10
 
     class Config:
         env_file = ".env"

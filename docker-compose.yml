@@ -8,6 +8,7 @@ services:
       - ./app:/app/app
       - ./alembic:/app/alembic
       - ./alembic.ini:/app/alembic.ini
+      - uploads:/app/uploads
     depends_on:
       db:
         condition: service_healthy
@@ -48,3 +49,4 @@ services:
 volumes:
   postgres_data:
   redis_data:
+  uploads:

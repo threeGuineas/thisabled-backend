@@ -6,6 +6,8 @@ services:
     env_file: .env
     volumes:
       - ./app:/app/app
+      - ./alembic:/app/alembic
+      - ./alembic.ini:/app/alembic.ini
     depends_on:
       db:
         condition: service_healthy

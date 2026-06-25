@@ -34,6 +34,28 @@ async def test_signup_sets_refresh_cookie(client):
     assert "refresh_token" in resp.cookies
 
 
+async def test_refresh_cookie_samesite_lax_when_not_secure(client, monkeypatch):
+    from app.api.v1 import auth as auth_module
+
+    monkeypatch.setattr(auth_module.settings, "COOKIE_SECURE", False)
+    resp = await client.post(
+        "/api/v1/auth/signup", json={"nickname": "cookielax", "password": "pass1234"}
+    )
+    set_cookie = resp.headers.get_list("set-cookie")[0]
+    assert "samesite=lax" in set_cookie.lower()
+
+
+async def test_refresh_cookie_samesite_none_when_secure(client, monkeypatch):
+    from app.api.v1 import auth as auth_module
+
+    monkeypatch.setattr(auth_module.settings, "COOKIE_SECURE", True)
+    resp = await client.post(
+        "/api/v1/auth/signup", json={"nickname": "cookienone", "password": "pass1234"}
+    )
+    set_cookie = resp.headers.get_list("set-cookie")[0]
+    assert "samesite=none" in set_cookie.lower()
+
+
 async def test_signup_weak_password_rejected(client):
     resp = await client.post(
         "/api/v1/auth/signup", json={"nickname": "weakpw", "password": "onlyletters"}

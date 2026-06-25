@@ -25,7 +25,13 @@ ALLOWED_AUDIO_TYPES = {
 # 음성 댓글은 보통 1회성 고유 오디오 → 캐싱 미적용(필요 시 내용 해시 캐싱 추가 가능)
 
 
-@router.post("/transcribe", response_model=STTResponse)
+@router.post(
+    "/transcribe",
+    response_model=STTResponse,
+    summary="음성 → 텍스트 전사",
+    description="오디오 파일(multipart `file`)을 한국어로 전사(Whisper). 음성 댓글·실시간 자막 입력용. "
+    f"지원 형식: mp3·wav·webm·m4a·ogg 등 / 최대 {settings.MAX_AUDIO_MB}MB.",
+)
 async def transcribe(
     file: UploadFile,
     current_user: User = Depends(get_current_user),

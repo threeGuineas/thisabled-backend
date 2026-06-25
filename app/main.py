@@ -4,7 +4,7 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
-from app.api.v1 import auth, health, posts, upload, users
+from app.api.v1 import auth, health, posts, upload, users, vision
 from app.core.config import settings
 
 
@@ -23,3 +23,4 @@ app.include_router(auth.router, prefix="/api/v1")
 app.include_router(users.router, prefix="/api/v1")
 app.include_router(posts.router, prefix="/api/v1")
 app.include_router(upload.router, prefix="/api/v1")
+app.include_router(vision.router, prefix="/api/v1")

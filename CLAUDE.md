@@ -45,17 +45,24 @@ thisabled-backend/
 └── alembic/                # DB 마이그레이션
 ```
 
-## DB 스키마 (v1 목표)
-핵심 테이블 4개:
+## DB 스키마 (v2 — 구현 기준, F01·F02 명세 정합)
+PK·FK는 전부 **UUID**. 마이그레이션: `alembic/versions/*_schema_v2_auth_mode.py`
 
 ```sql
-users       -- id, nickname, password_hash, disability_type, created_at
-posts       -- id, user_id(FK), content, image_url, created_at
-messages    -- id, sender_id(FK), receiver_id(FK), content, is_flagged, created_at
-reports     -- id, reporter_id(FK), target_id(FK), reason, status, created_at
+users               -- id(uuid), nickname(12), password_hash, recovery_code_hash,
+                    --   disability_mode(null=온보딩前), mode_settings(jsonb),
+                    --   trust_score(=1.0), created_at, last_login_at
+forbidden_nicknames -- id(serial), word(unique)   ← check-nickname 금칙어 사전(시드 22개)
+user_mode_history   -- id(uuid), user_id(FK), from_mode, to_mode, changed_at
+posts               -- id(uuid), user_id(FK), content, image_url, created_at
+messages            -- id(uuid), sender_id(FK), receiver_id(FK), content, is_flagged, created_at
+reports             -- id(uuid), reporter_id(FK), target_id(FK), reason, status, created_at
 ```
 
-`disability_type`: `visual` | `developmental` | `hearing` | `none`
+`disability_mode`: `visual` | `hearing` | `developmental` | `default` (NULL = 온보딩 미완료)
+
+> 참고: `reports`는 F03 명세상 message 단위로 재설계 예정(M1). messages 안전감시 컬럼도 M1.
+> ERD 산출물: `docs/erd.dbml` (dbdiagram.io)
 
 ## 현재 스프린트: S1 (5/30 ~ 6/12)
 ### Sprint Goal
@@ -99,11 +106,33 @@ reports     -- id, reporter_id(FK), target_id(FK), reason, status, created_at
 - **복지카드 OCR**: 후순위 (9/5까지 미동작 시 컷)
 
 ## 협업 규칙
-- 브랜치 전략: `main` / `develop` / `feature/*`
-- PR은 24시간 내 리뷰 응답
 - 블로커는 디스코드 #blockers에 즉시 공유
-- main 브랜치는 CI 통과 후 머지
+- PR은 24시간 내 리뷰 응답
 - 결정사항은 ADR(Architecture Decision Record)로 노션에 기록
+
+## 개발 워크플로우 (Claude Code)
+
+### 브랜치 전략 — 워크트리 모델 (Superpowers)
+`main` 단일 통합 브랜치. feature는 **격리된 git worktree**에서 작업한다.
+- **기능 착수 시**: `using-git-worktrees` 스킬로 격리 워크스페이스 생성
+  (현재 작업트리를 더럽히지 않고 병렬 작업 가능)
+- **완료 시**: `finishing-a-development-branch` 스킬로 테스트 통과 검증 →
+  main 병합 또는 PR 생성 → 워크트리 정리
+- 단, **셋업·문서·설정 변경처럼 작은 단일 작업은 main에서 직접** 진행 가능
+- main은 항상 `pytest` 그린 상태 유지
+
+### 커밋 시점·단위
+- **1 논리 변경 = 1 커밋** (기능/수정/리팩터를 한 커밋에 섞지 않는다)
+- **테스트가 통과한 뒤에만 커밋** (`docker compose exec -T app pytest -q` 그린)
+- **Ralph 루프 모드에서는 1 태스크 = 1 커밋** (태스크 완료마다 커밋)
+- 커밋 메시지는 아래 `커밋 메시지 규칙` 준수
+
+### 테스트 실행
+```bash
+docker compose exec -T app pytest -q       # 전체
+docker compose exec -T app pytest tests/test_auth.py -q   # 파일 단위
+```
+신규 엔드포인트·스키마 변경 시 대응 테스트를 같은 커밋에 포함한다.
 
 ## 커밋 메시지 규칙
 

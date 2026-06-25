@@ -1,0 +1,112 @@
+<mxfile host="app.diagrams.net" version="24.0.0">
+  <diagram name="기능 처리도 (S2)" id="thisabled-funcflow">
+    <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="ThisAbled — 기능 처리도 (S2): 인증·온보딩 / 이미지 해설 / 음성 전사" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="10" width="780" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ===== Flow A: 가입·온보딩 ===== -->
+        <mxCell id="aT" value="① 회원가입 · 온보딩 (F01·F02)" style="text;html=1;align=center;fontStyle=1;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="50" width="300" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="a0" value="시작" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="회원가입&#10;POST /auth/signup&#10;(닉네임·비밀번호)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="140" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="닉네임 사용 가능?&#10;(중복·금칙어·형식)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="55" y="215" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="aErr" value="오류 반환&#10;(409/422)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="255" y="235" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="복구코드 발급 + JWT&#10;(access 24h / refresh 30일)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="330" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="온보딩: 모드 선택&#10;PUT /users/me/mode&#10;(이력 기록)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="405" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" value="메인 피드&#10;(모드 settings 적용)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="70" y="485" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ae0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a0" target="a1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ae1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a1" target="a2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ae2" value="아니오" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a2" target="aErr"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ae3" value="예" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a2" target="a3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ae4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a3" target="a4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ae5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a4" target="a5"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- ===== Flow B: 이미지 해설 ===== -->
+        <mxCell id="bT" value="② 시각장애 이미지 해설 (F02_S04, GPT-4o Vision)" style="text;html=1;align=center;fontStyle=1;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="400" y="50" width="360" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="b0" value="이미지 해설 요청" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="440" y="80" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" value="POST /vision/describe&#10;(image_url, 인증 필수)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="415" y="140" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" value="이미지 로드 + sha256 해시" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="415" y="205" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" value="Redis 캐시 HIT?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="445" y="260" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bCache" value="캐시 텍스트 반환&#10;(GPT 호출 0)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="630" y="270" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" value="GPT-4o Vision 호출&#10;한국어 50~150자 해설" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="415" y="360" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" value="Redis 24h 캐싱&#10;(동일 이미지 재호출 방지)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="415" y="425" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b6" value="해설 텍스트 반환&#10;→ TTS (프론트 Web Speech)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="430" y="500" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="be0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b0" target="b1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="be1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b1" target="b2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="be2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b2" target="b3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="be3" value="예" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b3" target="bCache"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="be4" value="아니오" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b3" target="b4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="be5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b4" target="b5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="be6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b5" target="b6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="be7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="bCache" target="b6"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- ===== Flow C: 음성 전사 ===== -->
+        <mxCell id="cT" value="③ 음성 댓글 전사 (F02_S05, Whisper)" style="text;html=1;align=center;fontStyle=1;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="790" y="50" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="c0" value="음성 녹음" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="830" y="80" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" value="POST /stt/transcribe&#10;(오디오 multipart, 인증)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="800" y="140" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" value="형식·크기 OK?&#10;(mp3/wav/webm…, ≤25MB)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="810" y="210" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="cErr" value="오류 반환&#10;(415 / 413)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="230" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="Whisper-1 전사&#10;(language=ko)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="800" y="325" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="댓글 텍스트 반환" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="830" y="400" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ce0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c0" target="c1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ce1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c1" target="c2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ce2" value="아니오" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c2" target="cErr"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ce3" value="예" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c2" target="c3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ce4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c3" target="c4"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

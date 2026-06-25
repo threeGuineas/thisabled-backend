@@ -38,7 +38,13 @@ def _resolve_upload_path(image_url: str) -> Path:
     return path
 
 
-@router.post("/describe", response_model=VisionResponse)
+@router.post(
+    "/describe",
+    response_model=VisionResponse,
+    summary="이미지 음성 해설 생성",
+    description="업로드 이미지(`/uploads/...`)의 한국어 설명을 GPT-4o Vision으로 생성. "
+    "동일 이미지는 24h 캐싱 → `cached:true` 시 `duration_ms:0`. 시각장애 모드 화면낭독용.",
+)
 async def describe_image(
     body: VisionRequest,
     redis: aioredis.Redis = Depends(get_redis),

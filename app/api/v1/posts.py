@@ -13,7 +13,13 @@ from app.schemas.post import PostCreate, PostResponse
 router = APIRouter(prefix="/posts", tags=["posts"])
 
 
-@router.post("", response_model=PostResponse, status_code=status.HTTP_201_CREATED)
+@router.post(
+    "",
+    response_model=PostResponse,
+    status_code=status.HTTP_201_CREATED,
+    summary="게시글 작성",
+    description="`image_url`은 선택. 넣을 경우 `POST /upload` 응답 `url`(/uploads/...)을 그대로 사용.",
+)
 async def create_post(
     body: PostCreate,
     db: AsyncSession = Depends(get_db),
@@ -26,7 +32,12 @@ async def create_post(
     return post
 
 
-@router.get("", response_model=list[PostResponse])
+@router.get(
+    "",
+    response_model=list[PostResponse],
+    summary="피드 목록",
+    description="최신순. `offset`/`limit`(기본 0/20)로 페이지네이션. 인증 불필요(공개 피드).",
+)
 async def list_posts(
     offset: int = 0,
     limit: int = 20,
@@ -38,7 +49,7 @@ async def list_posts(
     return result.scalars().all()
 
 
-@router.get("/{post_id}", response_model=PostResponse)
+@router.get("/{post_id}", response_model=PostResponse, summary="게시글 단건 조회")
 async def get_post(post_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     post = await db.get(Post, post_id)
     if post is None:
@@ -46,7 +57,12 @@ async def get_post(post_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     return post
 
 
-@router.delete("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete(
+    "/{post_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+    summary="게시글 삭제",
+    description="작성자 본인만 삭제 가능(타인 글은 403).",
+)
 async def delete_post(
     post_id: uuid.UUID,
     db: AsyncSession = Depends(get_db),

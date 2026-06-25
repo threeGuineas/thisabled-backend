@@ -15,7 +15,14 @@ class UploadResponse(BaseModel):
     url: str
 
 
-@router.post("", response_model=UploadResponse, status_code=status.HTTP_201_CREATED)
+@router.post(
+    "",
+    response_model=UploadResponse,
+    status_code=status.HTTP_201_CREATED,
+    summary="이미지 업로드",
+    description=f"multipart `file`. 최대 {settings.MAX_UPLOAD_MB}MB, jpg·png·gif·webp. "
+    "응답 `url`을 게시글 `image_url` 또는 Vision `image_url`에 그대로 사용.",
+)
 async def upload_image(
     file: UploadFile,
     current_user: User = Depends(get_current_user),

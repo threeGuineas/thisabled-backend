@@ -6,6 +6,8 @@ services:
     env_file: .env
     volumes:
       - ./app:/app/app
+      - ./tests:/app/tests
+      - ./pyproject.toml:/app/pyproject.toml
       - ./alembic:/app/alembic
       - ./alembic.ini:/app/alembic.ini
       - uploads:/app/uploads

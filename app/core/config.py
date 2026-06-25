@@ -1,7 +1,9 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env")
+
     DATABASE_URL: str
     REDIS_URL: str
     SECRET_KEY: str
@@ -13,9 +15,6 @@ class Settings(BaseSettings):
     STORAGE_BACKEND: str = "local"
     UPLOAD_DIR: str = "/app/uploads"
     MAX_UPLOAD_MB: int = 10
-
-    class Config:
-        env_file = ".env"
 
 
 settings = Settings()

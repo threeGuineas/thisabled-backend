@@ -20,6 +20,9 @@ class Settings(BaseSettings):
     VISION_MODEL: str = "gpt-4o"
     VISION_MAX_TOKENS: int = 300
     VISION_CACHE_TTL_SECONDS: int = 60 * 60 * 24  # 동일 이미지 24h 캐싱(비용 방어)
+    # F02_S05 — Whisper STT (음성 댓글 / 자막)
+    STT_MODEL: str = "whisper-1"
+    MAX_AUDIO_MB: int = 25  # Whisper API 업로드 상한
 
 
 settings = Settings()

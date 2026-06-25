@@ -157,6 +157,18 @@ F01~F05 검토에서 실제로 발견된 결함 유형. 명세를 읽을 때 아
 발견한 명세 결함은 **임의로 코드에서 우회하지 말고** Notion 명세를 고치거나(권한 있으면)
 팀 결정 안건으로 올린다. 코드가 명세를 앞서가면 추적성이 깨진다.
 
+## 자율 반복 루프 (Ralph)
+
+`ralph-loop` 플러그인이 이 레포에 활성화돼 있다(`.claude/settings.json`).
+잘 정의된 단일 기능을 "구현→테스트→커밋"으로 자율 반복 구현할 때 사용한다.
+
+- 태스크 파일은 `docs/ralph/<task>.md`에 작성 (양식: `docs/ralph/README.md`)
+- 실행: `/ralph-loop "<프롬프트>" --completion-promise "RALPH_DONE" --max-iterations 10`
+- **`--max-iterations` 필수** (미지정 시 무제한 → 비용 폭주). 보통 5~10.
+- **완료 판정 = pytest 그린.** 테스트 없는 작업엔 쓰지 않는다.
+- 1 태스크 = 1 커밋. 중단은 `/cancel-ralph`.
+- Stop hook은 `/ralph-loop` 실행 중에만 동작하며 평소 세션엔 영향 없다.
+
 ## 커밋 메시지 규칙
 
 Conventional Commits 기반. 형식: `<type>(<scope>): <subject>`

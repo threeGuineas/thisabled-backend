@@ -7,3 +7,7 @@ __pycache__/
 .ruff_cache/
 dist/
 *.egg-info/
+
+# Claude Code — 로컬 전용 (settings.json은 팀 공유로 커밋)
+.claude/settings.local.json
+.claude/ralph-loop.local.md

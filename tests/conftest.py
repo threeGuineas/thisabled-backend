@@ -7,13 +7,21 @@
 """
 
 import pytest_asyncio
+import redis.asyncio as aioredis
 from httpx import ASGITransport, AsyncClient
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 import app.models  # noqa: F401 — ORM 모델 등록
 from app.core.config import settings
+from app.db.redis import get_redis
 from app.db.session import get_db
 from app.main import app
+
+
+def _test_redis_url() -> str:
+    # 운영 db(0) 대신 테스트용 db(1) 사용
+    base = settings.REDIS_URL.rsplit("/", 1)[0]
+    return f"{base}/1"
 
 
 @pytest_asyncio.fixture
@@ -32,11 +40,19 @@ async def client():
         async with TestSession() as session:
             yield session
 
+    test_redis = aioredis.from_url(_test_redis_url(), decode_responses=True)
+    await test_redis.flushdb()
+
+    async def override_get_redis():
+        return test_redis
+
     app.dependency_overrides[get_db] = override_get_db
+    app.dependency_overrides[get_redis] = override_get_redis
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as c:
         yield c
     app.dependency_overrides.clear()
 
+    await test_redis.aclose()
     await trans.rollback()
     await connection.close()
     await engine.dispose()

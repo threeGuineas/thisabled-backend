@@ -38,7 +38,9 @@ def _set_refresh_cookie(response: Response, user_id) -> None:
         value=create_refresh_token(str(user_id)),
         httponly=True,
         secure=settings.COOKIE_SECURE,
-        samesite="lax",
+        # HTTPS 터널(Cloudflare/Tailscale Funnel 등)로 프론트와 크로스오리진일 때는
+        # SameSite=None(+Secure)이어야 브라우저가 refresh 쿠키를 실어 보낸다.
+        samesite="none" if settings.COOKIE_SECURE else "lax",
         max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 3600,
         path="/api/v1/auth",
     )

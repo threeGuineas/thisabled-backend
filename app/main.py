@@ -4,7 +4,7 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
-from app.api.v1 import auth, health, posts, upload
+from app.api.v1 import auth, health, posts, upload, users
 from app.core.config import settings
 
 
@@ -20,5 +20,6 @@ app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads"
 
 app.include_router(health.router, prefix="/api/v1", tags=["health"])
 app.include_router(auth.router, prefix="/api/v1")
+app.include_router(users.router, prefix="/api/v1")
 app.include_router(posts.router, prefix="/api/v1")
 app.include_router(upload.router, prefix="/api/v1")

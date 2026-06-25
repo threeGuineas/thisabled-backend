@@ -1,23 +1,28 @@
+import uuid
+
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import JWTError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.security import decode_access_token
+from app.core.security import decode_token
 from app.db.session import get_db
 from app.models.user import User
 
-bearer_scheme = HTTPBearer()
+# auto_error=False: 토큰 부재 시 403 대신 아래에서 401로 통일
+bearer_scheme = HTTPBearer(auto_error=False)
 
 
 async def get_current_user(
-    credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
+    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
     db: AsyncSession = Depends(get_db),
 ) -> User:
-    token = credentials.credentials
+    if credentials is None:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
     try:
-        user_id = decode_access_token(token)
-    except JWTError:
+        payload = decode_token(credentials.credentials, expected_type="access")
+        user_id = uuid.UUID(payload["sub"])
+    except (JWTError, KeyError, ValueError):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
 
     user = await db.get(User, user_id)

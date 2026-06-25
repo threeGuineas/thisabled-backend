@@ -1,3 +1,5 @@
+import uuid
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -37,7 +39,7 @@ async def list_posts(
 
 
 @router.get("/{post_id}", response_model=PostResponse)
-async def get_post(post_id: int, db: AsyncSession = Depends(get_db)):
+async def get_post(post_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     post = await db.get(Post, post_id)
     if post is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Post not found")
@@ -46,7 +48,7 @@ async def get_post(post_id: int, db: AsyncSession = Depends(get_db)):
 
 @router.delete("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_post(
-    post_id: int,
+    post_id: uuid.UUID,
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):

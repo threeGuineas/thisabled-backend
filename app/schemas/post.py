@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime
 
 from pydantic import BaseModel
@@ -9,8 +10,8 @@ class PostCreate(BaseModel):
 
 
 class PostResponse(BaseModel):
-    id: int
-    user_id: int
+    id: uuid.UUID
+    user_id: uuid.UUID
     content: str
     image_url: str | None
     created_at: datetime

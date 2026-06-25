@@ -1,62 +1,76 @@
-// ThisAbled — ERD v1
+// ThisAbled — ERD v2 (인증·모드 정합)
 // dbdiagram.io 에서 https://dbdiagram.io/d 에 붙여넣기하면 시각화됩니다.
 
 Project ThisAbled {
   database_type: 'PostgreSQL'
-  Note: '장애 유형별 적응형 UI 소셜 플랫폼 — S1 스키마'
+  Note: '장애 유형별 적응형 UI 소셜 플랫폼 — F01 회원가입 / F02 적응형 UI 엔진 정합'
 }
 
-Enum disability_type {
-  visual       [note: '시각장애']
+Enum disability_mode {
+  visual        [note: '시각장애']
+  hearing       [note: '청각장애']
   developmental [note: '발달장애']
-  hearing      [note: '청각장애']
-  none
-}
-
-Enum report_status {
-  pending
-  reviewed
-  dismissed
+  default       [note: '기본 모드']
 }
 
 Table users {
-  id            int           [pk, increment]
-  nickname      varchar(50)   [not null, unique]
-  password_hash varchar(255)  [not null]
-  disability_type disability_type [not null, default: 'none']
-  created_at    timestamptz   [not null, default: `now()`]
+  id                 uuid        [pk, default: `gen_random_uuid()`]
+  nickname           varchar(12) [not null, unique, note: '2~12자 한글·영문·숫자']
+  password_hash      varchar(60) [not null, note: 'bcrypt']
+  recovery_code_hash varchar(60) [not null, note: 'F01_S08 12자리 복구코드 해시']
+  disability_mode    varchar(20) [null, note: 'null=온보딩 전 → needs_onboarding']
+  mode_settings      jsonb       [not null, default: `'{}'`, note: '사용자별 미세조정']
+  trust_score        float       [not null, default: 1, note: 'F03 안전감시에서 사용']
+  created_at         timestamptz [not null, default: `now()`]
+  last_login_at      timestamptz [null]
 
-  Note: '서비스 사용자. disability_type 에 따라 프론트 UI 모드가 결정됨'
+  Note: '서비스 사용자. disability_mode 에 따라 프론트 UI 모드 결정'
+}
+
+Table forbidden_nicknames {
+  id         int         [pk, increment]
+  word       varchar(50) [not null, unique]
+  created_at timestamptz [not null, default: `now()`]
+
+  Note: '운영자 관리 금칙어 사전. check-nickname 의 forbidden_word 판정 근거'
+}
+
+Table user_mode_history {
+  id         uuid        [pk, default: `gen_random_uuid()`]
+  user_id    uuid        [not null, ref: > users.id]
+  from_mode  varchar(20) [null]
+  to_mode    varchar(20) [not null]
+  changed_at timestamptz [not null, default: `now()`]
+
+  Note: 'F02_S08 모드 변경 이력 (베타테스트 분석용)'
 }
 
 Table posts {
-  id         int         [pk, increment]
-  user_id    int         [not null, ref: > users.id]
+  id         uuid        [pk, default: `gen_random_uuid()`]
+  user_id    uuid        [not null, ref: > users.id]
   content    text        [not null]
   image_url  text        [null, note: '/uploads/<uuid>.ext 또는 S3 URL']
   created_at timestamptz [not null, default: `now()`]
-
-  Note: '게시글. image_url 은 업로드 API 결과값'
 }
 
 Table messages {
-  id          int         [pk, increment]
-  sender_id   int         [not null, ref: > users.id]
-  receiver_id int         [not null, ref: > users.id]
+  id          uuid        [pk, default: `gen_random_uuid()`]
+  sender_id   uuid        [not null, ref: > users.id]
+  receiver_id uuid        [not null, ref: > users.id]
   content     text        [not null]
   is_flagged  bool        [not null, default: false, note: 'KoBERT 그루밍 탐지 결과']
   created_at  timestamptz [not null, default: `now()`]
 
-  Note: 'DM. is_flagged=true 시 신고 UI 표시 (발달장애 모드)'
+  Note: 'DM. F03 안전감시(M1)에서 safety_status 등 컬럼 추가 예정'
 }
 
 Table reports {
-  id          int           [pk, increment]
-  reporter_id int           [not null, ref: > users.id]
-  target_id   int           [not null, ref: > users.id]
-  reason      text          [not null]
-  status      report_status [not null, default: 'pending']
-  created_at  timestamptz   [not null, default: `now()`]
+  id          uuid        [pk, default: `gen_random_uuid()`]
+  reporter_id uuid        [not null, ref: > users.id]
+  target_id   uuid        [not null, ref: > users.id]
+  reason      text        [not null]
+  status      varchar(20) [not null, default: 'pending']
+  created_at  timestamptz [not null, default: `now()`]
 
-  Note: '신고. status 는 관리자가 처리 후 갱신'
+  Note: 'v1 사용자 단위 신고. F03 명세는 message 단위로 재설계 예정 (M1)'
 }

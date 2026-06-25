@@ -200,5 +200,4 @@ refactor(db): async session 팩토리 단일화
 ```
 
 ## 관련 링크
-- 노션 프로젝트: https://www.notion.so/61acd58764108252bcfb8111ff879042
-- 실행 계획서: https://www.notion.so/761cd5876410837c91c1019dba320034
+- 노션 프로젝트: https://app.notion.com/p/2026-89bcd5876410821fa56c010112bf543c

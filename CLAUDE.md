@@ -112,14 +112,16 @@ reports             -- id(uuid), reporter_id(FK), target_id(FK), reason, status,
 
 ## 개발 워크플로우 (Claude Code)
 
-### 브랜치 전략 — 워크트리 모델 (Superpowers)
-`main` 단일 통합 브랜치. feature는 **격리된 git worktree**에서 작업한다.
-- **기능 착수 시**: `using-git-worktrees` 스킬로 격리 워크스페이스 생성
-  (현재 작업트리를 더럽히지 않고 병렬 작업 가능)
+### 브랜치 전략 — feature 브랜치 모델
+`main` 단일 통합 브랜치. feature는 **같은 체크아웃에서 `feature/*` 브랜치**로 작업한다.
+- **기능 착수 시**: `git switch -c feature/<이름>` 으로 분기
 - **완료 시**: `finishing-a-development-branch` 스킬로 테스트 통과 검증 →
-  main 병합 또는 PR 생성 → 워크트리 정리
-- 단, **셋업·문서·설정 변경처럼 작은 단일 작업은 main에서 직접** 진행 가능
+  PR 생성 → main 병합 → 브랜치 삭제
+- **문서·설정·셋업처럼 작은 단일 작업만 main 직접** 진행 가능 (그 외 feature는 반드시 분기)
 - main은 항상 `pytest` 그린 상태 유지
+
+> ⚠️ 워크트리 모델은 쓰지 않는다: `docker-compose`가 포트(8000/5432/6379)를 고정해
+> 워크트리별 병렬 스택이 포트 충돌한다. 진짜 병렬이 필요하면 포트 변수화부터 선행.
 
 ### 커밋 시점·단위
 - **1 논리 변경 = 1 커밋** (기능/수정/리팩터를 한 커밋에 섞지 않는다)

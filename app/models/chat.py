@@ -1,5 +1,9 @@
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
+
+
+def _utcnow() -> datetime:
+    return datetime.now(timezone.utc)
 
 from sqlalchemy import (
     Boolean,
@@ -74,8 +78,10 @@ class ChatMessage(Base):
     safety_status: Mapped[str] = mapped_column(String(20), nullable=False, index=True)
     # SAFE-03 '내용 보기' 실행 시각. 실행해도 SAFE-05 집계에는 포함(§SAFE-05-6)
     revealed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    # python default: SAFE-05 누적 경계 비교에 실제 시각 필요 —
+    # server_default(now())는 트랜잭션 시작 시각으로 고정되어 released_at 경계와 어긋난다
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), server_default=func.now(), nullable=False
+        DateTime(timezone=True), default=_utcnow, server_default=func.now(), nullable=False
     )
 
 

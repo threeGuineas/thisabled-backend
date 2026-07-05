@@ -15,7 +15,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from app.core.config import settings
 from app.core.enums import AiStatus
-from app.models import AiResultCache, PostMedia
+from app.models import AiResultCache, ChatMessage, PostMedia
 from app.services import stt, vision
 from app.services.quota import caption_key, refund, try_consume, vision_keys
 
@@ -158,6 +158,59 @@ async def describe_post_media_job(
         media.description_status = (
             AiStatus.done.value if description is not None else AiStatus.failed.value
         )
+        await db.commit()
+
+
+async def describe_chat_message_job(
+    session_factory: async_sessionmaker, redis: aioredis.Redis, message_id, media_hash, user_id, caller
+) -> None:
+    """채팅 사진: 즉시 전달 후 설명을 비동기 부착 (VISION-01 채팅 사진 처리)."""
+    async with session_factory() as db:
+        msg = await db.get(ChatMessage, message_id)
+        if msg is None or msg.media_url is None:
+            return
+        path = file_path_from_url(msg.media_url)
+        try:
+            data = path.read_bytes()
+        except OSError:
+            msg.description_status = AiStatus.failed.value
+            await db.commit()
+            return
+        description = await describe_image(
+            db, redis,
+            user_id=user_id, media_hash=media_hash,
+            image_bytes=data, content_type=f"image/{path.suffix.lstrip('.') or 'png'}",
+            caller=caller,
+        )
+        msg.description = description
+        msg.description_status = (
+            AiStatus.done.value if description is not None else AiStatus.failed.value
+        )
+        await db.commit()
+
+
+async def caption_chat_message_job(
+    session_factory: async_sessionmaker, redis: aioredis.Redis, message_id, media_hash, user_id, caller
+) -> None:
+    """채팅 영상: 즉시 전달 후 자막을 비동기 부착 (CAPTION-01 채팅 영상 처리)."""
+    async with session_factory() as db:
+        msg = await db.get(ChatMessage, message_id)
+        if msg is None or msg.media_url is None:
+            return
+        path = file_path_from_url(msg.media_url)
+        try:
+            data = path.read_bytes()
+        except OSError:
+            msg.caption_status = AiStatus.failed.value
+            await db.commit()
+            return
+        segments = await generate_caption(
+            db, redis,
+            user_id=user_id, media_hash=media_hash,
+            media_bytes=data, filename=path.name, caller=caller,
+        )
+        msg.caption = segments
+        msg.caption_status = AiStatus.done.value if segments is not None else AiStatus.failed.value
         await db.commit()
 
 

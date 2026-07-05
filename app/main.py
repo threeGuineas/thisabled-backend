@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from app.api.v1 import auth, blocks, friends, health, media, posts, users
+from app.api.v1 import auth, blocks, chat, friends, health, media, posts, users
 from app.core.config import settings
 
 # v2.1 리팩토링 진행 중 — 라우터는 도메인 태스크마다 재등록한다.
@@ -71,3 +71,4 @@ app.include_router(posts.router, prefix="/api/v1")
 app.include_router(media.router, prefix="/api/v1")
 app.include_router(friends.router, prefix="/api/v1")
 app.include_router(blocks.router, prefix="/api/v1")
+app.include_router(chat.router, prefix="/api/v1")

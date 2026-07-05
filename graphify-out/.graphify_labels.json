@@ -65,6 +65,13 @@
   "63": "test_quota.py",
   "64": "test_age.py",
   "65": "friends.py",
+  "66": "test_ws.py",
   "67": "0. 문서 정보",
-  "71": "test_friends.py"
+  "68": "stt.py",
+  "69": "nickname.py",
+  "70": "async_sessionmaker",
+  "71": "test_friends.py",
+  "72": "AsyncSession",
+  "73": "User",
+  "74": "UUID"
 }

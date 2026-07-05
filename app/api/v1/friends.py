@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime, timezone
 from typing import Literal
 
+import redis.asyncio as aioredis
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import delete, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -11,7 +12,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.deps import get_current_user
 from app.core.enums import RequestStatus
 from app.core.pairs import normalize_pair
+from app.db.redis import get_redis
 from app.db.session import get_db
+from app.services import notify as noti
 from app.models import FriendRequest, Friendship, User
 from app.schemas.post import AuthorOut
 from app.schemas.social import (
@@ -47,6 +50,7 @@ async def send_request(
     body: FriendRequestIn,
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
 ):
     if body.receiver_id == user.id:
         raise HTTPException(status_code=400, detail="자기 자신에게는 요청할 수 없습니다")
@@ -74,6 +78,10 @@ async def send_request(
     req = FriendRequest(id=uuid.uuid4(), sender_id=user.id, receiver_id=body.receiver_id)
     db.add(req)
     await db.commit()
+    await noti.notify(
+        db, redis, body.receiver_id, noti.FRIEND_REQUEST,
+        {"request_id": str(req.id), "sender_nickname": user.nickname},
+    )
     return await _request_out(db, req)
 
 
@@ -110,6 +118,7 @@ async def accept_request(
     request_id: uuid.UUID,
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
 ):
     req = await _get_pending(db, request_id)
     if req.receiver_id != user.id:
@@ -120,6 +129,10 @@ async def accept_request(
     if not await are_friends(db, ua, ub):
         db.add(Friendship(user_a=ua, user_b=ub))
     await db.commit()
+    await noti.notify(
+        db, redis, req.sender_id, noti.FRIEND_ACCEPTED,
+        {"request_id": str(req.id), "receiver_nickname": user.nickname},
+    )
     return await _request_out(db, req)
 
 

@@ -1,16 +1,16 @@
 # Graph Report - thisabled-backend  (2026-07-06)
 
 ## Corpus Check
-- 74 files · ~31,037 words
+- 77 files · ~31,554 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 806 nodes · 1559 edges · 68 communities (48 shown, 20 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 30 edges (avg confidence: 0.73)
+- 832 nodes · 1568 edges · 75 communities (54 shown, 21 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.71)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `90dd6764`
+- Built from commit: `50bf6669`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -73,32 +73,39 @@
 - [[_COMMUNITY_test_quota.py|test_quota.py]]
 - [[_COMMUNITY_test_age.py|test_age.py]]
 - [[_COMMUNITY_friends.py|friends.py]]
+- [[_COMMUNITY_test_ws.py|test_ws.py]]
 - [[_COMMUNITY_0. 문서 정보|0. 문서 정보]]
+- [[_COMMUNITY_stt.py|stt.py]]
+- [[_COMMUNITY_nickname.py|nickname.py]]
+- [[_COMMUNITY_async_sessionmaker|async_sessionmaker]]
 - [[_COMMUNITY_test_friends.py|test_friends.py]]
+- [[_COMMUNITY_AsyncSession|AsyncSession]]
+- [[_COMMUNITY_User|User]]
+- [[_COMMUNITY_UUID|UUID]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `ThisAbled 기능 명세서 v2.1` - 23 edges
 2. `Global Constraints` - 18 edges
 3. `register()` - 17 edges
-4. `send_text()` - 15 edges
-5. `send_media()` - 14 edges
-6. `ChatMessage` - 13 edges
-7. `_get_visible_post()` - 13 edges
-8. `auth_header()` - 13 edges
-9. `_room_out()` - 12 edges
-10. `ChatRoom` - 12 edges
+4. `send_media()` - 13 edges
+5. `send_text()` - 13 edges
+6. `_get_visible_post()` - 13 edges
+7. `auth_header()` - 13 edges
+8. `ThisAbled — Backend` - 12 edges
+9. `SafetyUnavailable` - 11 edges
+10. `_serialize_posts()` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `test_chat_send_publishes_event()` --calls--> `user_channel()`  [EXTRACTED]
+  tests/test_ws.py → app/services/events.py
 - `FakeSafety` --uses--> `SafetyUnavailable`  [INFERRED]
   tests/test_chat.py → app/services/safety.py
 - `safety()` --indirect_call--> `get_safety_client()`  [INFERRED]
   tests/test_chat.py → app/services/safety.py
 - `safety()` --indirect_call--> `get_safety_client()`  [INFERRED]
   tests/test_safe.py → app/services/safety.py
-- `test_try_consume_respects_limit()` --calls--> `try_consume()`  [EXTRACTED]
-  tests/test_quota.py → app/services/quota.py
-- `caption_chat_message_job()` --indirect_call--> `ChatMessage`  [INFERRED]
-  app/services/ai_media.py → app/models/chat.py
+- `test_cleanup_deletes_stale_drafts()` --calls--> `cleanup_stale_drafts()`  [EXTRACTED]
+  tests/test_media.py → app/services/scheduler.py
 
 ## Import Cycles
 - None detected.
@@ -106,23 +113,23 @@
 ## Hyperedges (group relationships)
 - **Docker Compose 스택 서비스 구성** — docker_compose_app, docker_compose_db, docker_compose_redis [EXTRACTED 0.90]
 
-## Communities (68 total, 20 thin omitted)
+## Communities (75 total, 21 thin omitted)
 
 ### Community 0 - "Auth Test Suite"
-Cohesion: 0.10
-Nodes (33): cleanup_stale_drafts(), CAPTION-01: 업로드 후 24시간 미게시 내부 드래프트를 영상·자막과 함께 삭제.      이미 성공한 자막 생성의 일일 횟수 차감은 복, AsyncClient, auth_header(), client(), mock OAuth 가입 헬퍼 → {access_token, user_id, ...}., register(), ACC-01/02 — 소셜 OAuth 전용 인증 (mock 제공자). (+25 more)
+Cohesion: 0.07
+Nodes (38): AsyncClient, auth_header(), client(), db(), 테스트 공용 픽스처.  각 테스트는 단일 커넥션 위의 외부 트랜잭션에서 실행되고 끝나면 롤백된다. 앱 코드가 `await db.commit()`, 테스트가 직접 DB를 만질 때 사용 — client와 같은 커넥션을 공유한다., mock OAuth 가입 헬퍼 → {access_token, user_id, ...}., register() (+30 more)
 
 ### Community 1 - "Auth Endpoints & JWT Security"
-Cohesion: 0.10
-Nodes (44): me(), _me_out(), patch_me(), patch_settings(), public_profile(), put_mode(), put_tags(), AsyncSession (+36 more)
+Cohesion: 0.15
+Nodes (32): me(), _me_out(), patch_me(), patch_settings(), public_profile(), put_mode(), put_tags(), AsyncSession (+24 more)
 
 ### Community 2 - "App Core, Upload & Config"
-Cohesion: 0.06
-Nodes (40): authorize(), callback(), logout(), AsyncSession, ACC-01/02 — 소셜 OAuth 전용 인증.  흐름: authorize → 제공자 로그인 → callback   - 기가입자: 즉시 로그인, refresh(), _set_refresh_cookie(), signup() (+32 more)
+Cohesion: 0.10
+Nodes (11): get_provider(), GoogleProvider, KakaoProvider, MockProvider, OAuthProvider, OAuthUserInfo, 소셜 OAuth 제공자 추상화 (ACC-01).  - dev: OAUTH_MOCK=true → 모든 제공자 이름이 MockProvider로 동작, dev 전용. code 형식: `mock:<provider_user_id>`. (+3 more)
 
 ### Community 3 - "Posts API & DB Models"
-Cohesion: 0.08
-Nodes (38): get_current_user(), AsyncSession, SAFE-05 관계 단위 자동 전송 제한.      누적 카운터는 별도 컬럼 없이 chat_messages에서     `flagged AND c, SendRestriction, AiResultCache, Notification, 알림 (§16). WS 푸시와 병행 저장., 동일 미디어 해시 캐싱 (VISION-01·CAPTION-01 중복 호출 방지, 비용 방어). (+30 more)
+Cohesion: 0.06
+Nodes (48): do_run_migrations(), run_async_migrations(), run_migrations_online(), get_current_user(), AsyncSession, Base, get_db(), ChatMessage (+40 more)
 
 ### Community 4 - "GPT-4o Vision + Redis Cache"
 Cohesion: 0.13
@@ -133,8 +140,8 @@ Cohesion: 0.50
 Nodes (5): app 서비스 (FastAPI), db 서비스 (PostgreSQL 15), db/redis 호스트 포트 미노출 (내부 네트워크), app 루프백 바인딩 (127.0.0.1:8000), redis 서비스 (Redis 7)
 
 ### Community 6 - "User Disability-Mode Settings"
-Cohesion: 0.09
-Nodes (29): AiStatus, MediaType, MessageType, PostStatus, Provider, v2.1 도메인 enum. DB에는 String으로 저장한다 (PG enum 마이그레이션 부담 회피)., §POST-01 — '작성 중'은 서버 레코드 이전 단계라 상태로 두지 않음., description_status / caption_status 공용. (+21 more)
+Cohesion: 0.11
+Nodes (26): AiStatus, MediaType, MessageType, PostStatus, Provider, v2.1 도메인 enum. DB에는 String으로 저장한다 (PG enum 마이그레이션 부담 회피)., §POST-01 — '작성 중'은 서버 레코드 이전 단계라 상태로 두지 않음., description_status / caption_status 공용. (+18 more)
 
 ### Community 8 - "Whisper STT Service"
 Cohesion: 0.10
@@ -145,8 +152,8 @@ Cohesion: 0.07
 Nodes (27): 0. 사전 점검, 1) refresh 쿠키 SameSite — 이미 반영됨 ✅, 1. Tailscale 설치 & 로그인, 2) `.env` 설정, 2. Funnel 기능 켜기 (최초 1회, 콘솔에서), 3. Funnel 실행, 3) 프론트 fetch, Cloudflare Tunnel과 비교 (+19 more)
 
 ### Community 10 - "Schema v2 Migration"
-Cohesion: 0.05
-Nodes (46): do_run_migrations(), run_async_migrations(), run_migrations_online(), async_sessionmaker, AsyncSession, BackgroundTasks, Redis, User (+38 more)
+Cohesion: 0.12
+Nodes (24): async_sessionmaker, AsyncSession, BackgroundTasks, Redis, User, 미디어 업로드 — 사진(≤3장) · 영상(드래프트+자막 시작) · VIS-03 음성 입력., VIS-03 음성 입력 — 결과는 입력란 삽입용. 자동 게시하지 않는다 (§20-4)., 사진 업로드 (post 미연결) — POST /posts 의 media_ids로 연결한다. (+16 more)
 
 ### Community 11 - "Project Concept"
 Cohesion: 0.15
@@ -222,7 +229,7 @@ Nodes (4): 9. 친구·차단, BLOCK-01 사용자 차단, FRIEND-01 친구 요청
 
 ### Community 38 - "3. MVP 범위"
 Cohesion: 0.08
-Nodes (62): accept_request(), _author(), create_room(), _get_my_room(), list_messages(), list_requests(), list_rooms(), _message_out() (+54 more)
+Nodes (50): ChatRoom, 1:1 채팅방 (CHAT-01/02). request=요청함, active=일반 채팅.      참여자는 정규화 쌍(user_a < user_b, ChatPolicyError, counterpart_id(), flagged_count_since_reset(), get_or_create_room(), has_active_restriction(), AsyncSession (+42 more)
 
 ### Community 39 - "5. 공통 화면 구조"
 Cohesion: 0.13
@@ -241,12 +248,24 @@ Cohesion: 0.67
 Nodes (3): 5.1 주요 화면, 5.2 UI 모드 전환, 5. 공통 화면 구조
 
 ### Community 53 - "stt.py"
-Cohesion: 0.16
-Nodes (24): get_safety_client(), FastAPI 의존성 — 테스트에서 fake로 override., _describe_fake(), FakeSafety, make_friends(), CHAT-01 친구 채팅 · CHAT-02 비친구 요청 · 미디어 제한 (§4.5)., 돈' 포함 → flagged. fail=True → SafetyUnavailable (§18.3)., _room() (+16 more)
+Cohesion: 0.22
+Nodes (17): authorize(), callback(), logout(), AsyncSession, ACC-01/02 — 소셜 OAuth 전용 인증.  흐름: authorize → 제공자 로그인 → callback   - 기가입자: 즉시 로그인, refresh(), _set_refresh_cookie(), signup() (+9 more)
+
+### Community 54 - "AsyncSession"
+Cohesion: 0.15
+Nodes (10): Redis, WS /api/v1/ws?token=<access> — 새 메시지·알림 실시간 푸시.  인증은 JWT 검증만으로 처리(DB 미조회)해 연결 비용, _relay(), ws_endpoint(), Settings, lifespan(), BaseSettings, FastAPI (+2 more)
 
 ### Community 57 - "vision.py"
-Cohesion: 0.08
-Nodes (38): _cache_get(), _cache_put(), caption_chat_message_job(), caption_post_media_job(), consume_vision(), describe_chat_message_job(), describe_image(), describe_post_media_job() (+30 more)
+Cohesion: 0.09
+Nodes (36): _cache_get(), _cache_put(), caption_chat_message_job(), caption_post_media_job(), consume_vision(), describe_chat_message_job(), describe_image(), describe_post_media_job() (+28 more)
+
+### Community 60 - "GoogleProvider"
+Cohesion: 0.10
+Nodes (37): accept_request(), _author(), create_room(), _get_my_room(), list_messages(), list_requests(), list_rooms(), _message_out() (+29 more)
+
+### Community 62 - "env.py"
+Cohesion: 0.46
+Nodes (7): create_access_token(), create_refresh_token(), create_signup_token(), _encode(), JWT 토큰 (access/refresh/signup). 소셜 OAuth 전용이라 비밀번호 해시는 없다 (ACC-01)., 콜백에서 신규 사용자에게 발급 — 추가 정보 입력(signup) 완료까지의 단기 자격., timedelta
 
 ### Community 63 - "test_quota.py"
 Cohesion: 0.18
@@ -257,12 +276,24 @@ Cohesion: 0.15
 Nodes (20): age_band(), full_age(), is_minor(), 만 나이 계산 (§4.5 미성년 보호, MATCH-02-5 연령대).  생년월일 원문은 저장만 하고 파생값(만 나이·연령대·미성년)은 항상 요청, 만 14~18세 미성년 보호 대상 여부 (§4.5). 만 13 이하는 가입 자체가 불가., MATCH-02-5 연령대. 추천 특성으로만 사용, 생년월일 원문은 모델에 전달하지 않는다., normalize_pair(), 사용자 쌍 정규화. friendships·chat_rooms는 (작은 UUID, 큰 UUID) 순으로 저장한다. (+12 more)
 
 ### Community 65 - "friends.py"
-Cohesion: 0.16
-Nodes (29): create_block(), list_blocks(), AsyncSession, User, UUID, BLOCK-01 사용자 차단 — 게시물·프로필·요청·채팅·추천 상호 제거., remove_block(), accept_request() (+21 more)
+Cohesion: 0.08
+Nodes (51): create_block(), list_blocks(), AsyncSession, User, UUID, BLOCK-01 사용자 차단 — 게시물·프로필·요청·채팅·추천 상호 제거., remove_block(), accept_request() (+43 more)
+
+### Community 66 - "test_ws.py"
+Cohesion: 0.32
+Nodes (5): user_channel(), WS 푸시 — 토큰 검증, pub/sub 릴레이, 채팅 전송 이벤트., 운영 Redis(db 0)에 직접 publish — pub/sub은 잔존 데이터가 없어 안전., test_chat_send_publishes_event(), test_ws_relays_published_event()
 
 ### Community 67 - "0. 문서 정보"
 Cohesion: 0.67
 Nodes (3): 0.1 v2.1 주요 개정 사항, 0.2 v2.0 주요 개정 사항 (이력), 0. 문서 정보
+
+### Community 68 - "stt.py"
+Cohesion: 0.32
+Nodes (7): _get_client(), OpenAI Whisper STT 서비스 (F02_S05 음성 댓글 / 자막).  엔드포인트는 `stt.transcribe(...)` 를 호출한, 오디오 바이트 → 한국어 전사 텍스트. (실제 Whisper 호출, VIS-03 음성 입력), 영상/오디오 → 자막 세그먼트 [{start, end, text}] (CAPTION-01)., transcribe(), transcribe_segments(), AsyncOpenAI
+
+### Community 69 - "nickname.py"
+Cohesion: 0.40
+Nodes (4): AsyncSession, 닉네임 정책 (ACC-01): 2~12자 한글·영문·숫자, 금칙어·중복 불가., 형식(400) → 금칙어(400) → 중복(409) 순 검증. 통과 시 None., validate_nickname()
 
 ### Community 71 - "test_friends.py"
 Cohesion: 0.44
@@ -271,22 +302,22 @@ Nodes (9): _pair(), FRIEND-01/02 친구 요청·관리 · BLOCK-01 차단., _req
 ## Knowledge Gaps
 - **163 isolated node(s):** `thisabled-backend`, `auth (ACC-01/02)`, `users (ACC-03 · TAG-01 · §15)`, `posts / feed (FEED-01 · POST-01~03)`, `media (VISION-01 · CAPTION-01 · VIS-03)` (+158 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **21 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `ThisAbled 기능 명세서 v2.1` connect `ThisAbled 기능 명세서 v2.1` to `6. 회원가입 및 계정`, `10. 1:1 채팅`, `13. 청각장애인 모드`, `0. 문서 정보`, `18. 기술 구성`, `19. 비기능 요구사항`, `9. 친구·차단`, `5. 공통 화면 구조`, `MATCH-02 추천 입력`, `14. 발달장애인 모드 및 AI 소통 코치`, `7. 피드·게시물·댓글`, `11. AI 안심 채팅`, `1. 서비스 개요`, `4. 사용자 정책`, `12. 시각장애인 모드`, `17. 외부 AI 사용 및 데이터 처리 원칙`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
 - **Why does `upload_video()` connect `Schema v2 Migration` to `5. 공통 화면 구조`?**
   _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **What connects `CHAT-01/02/03 — 1:1 채팅 · 요청함 · SAFE-03 블러 · SAFE-05 제한 해제.`, `요청함 (CHAT-02) — 분석 완료된 메시지가 있는 요청만 표시 (SAFE-01 동기 원칙).`, `SAFE-03 '내용 보기' — 열람해도 SAFE-05 집계에는 계속 포함 (SAFE-05-6).` to the rest of the system?**
-  _292 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _296 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Auth Test Suite` be split into smaller, more focused modules?**
-  _Cohesion score 0.10384068278805121 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0693815987933635 - nodes in this community are weakly interconnected._
 - **Should `Auth Endpoints & JWT Security` be split into smaller, more focused modules?**
-  _Cohesion score 0.10453283996299723 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.14795008912655971 - nodes in this community are weakly interconnected._
 - **Should `App Core, Upload & Config` be split into smaller, more focused modules?**
-  _Cohesion score 0.06253652834599649 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09686609686609686 - nodes in this community are weakly interconnected._
 - **Should `Posts API & DB Models` be split into smaller, more focused modules?**
-  _Cohesion score 0.080338266384778 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.061952074810052604 - nodes in this community are weakly interconnected._

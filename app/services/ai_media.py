@@ -238,3 +238,11 @@ async def caption_post_media_job(
             AiStatus.done.value if segments is not None else AiStatus.failed.value
         )
         await db.commit()
+        # §16: 자막 생성 완료·실패 알림 (게시 버튼 활성화 신호)
+        from app.services import notify as noti
+
+        await noti.notify(
+            db, redis, user_id,
+            noti.CAPTION_DONE if segments is not None else noti.CAPTION_FAILED,
+            {"post_id": str(media.post_id), "media_id": str(media.id)},
+        )

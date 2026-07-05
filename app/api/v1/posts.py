@@ -16,6 +16,7 @@ from app.db.session import get_db, get_session_factory
 from app.models import Block, Comment, Post, PostLike, PostMedia, User
 from app.schemas.media import CaptionStatusOut, PublishIn
 from app.services import ai_media
+from app.services import notify as noti
 from app.schemas.post import (
     AuthorOut,
     CommentIn,
@@ -265,6 +266,7 @@ async def publish_post(
     body: PublishIn,
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
 ):
     """영상 드래프트 게시 (POST-01). 공개는 항상 사용자의 게시 실행으로만 (§20-4/6)."""
     post = await db.get(Post, post_id)
@@ -292,6 +294,7 @@ async def publish_post(
     post.status = PostStatus.published.value
     post.published_at = datetime.now(timezone.utc)
     await db.commit()
+    await noti.notify(db, redis, user.id, noti.POST_PUBLISHED, {"post_id": str(post.id)})
     return (await _serialize_posts(db, user.id, [post]))[0]
 
 
@@ -334,12 +337,18 @@ async def like_post(
     post_id: uuid.UUID,
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
 ):
-    await _get_visible_post(db, user, post_id)
+    post = await _get_visible_post(db, user, post_id)
     exists = await db.get(PostLike, (post_id, user.id))
     if exists is None:
         db.add(PostLike(post_id=post_id, user_id=user.id))
         await db.commit()
+        if post.author_id is not None and post.author_id != user.id:
+            await noti.notify(
+                db, redis, post.author_id, noti.POST_LIKE,
+                {"post_id": str(post_id), "by_nickname": user.nickname},
+            )
     return LikeOut(post_id=post_id, liked=True, like_count=await _like_count(db, post_id))
 
 
@@ -388,11 +397,17 @@ async def create_comment(
     body: CommentIn,
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
 ):
-    await _get_visible_post(db, user, post_id)
+    post = await _get_visible_post(db, user, post_id)
     comment = Comment(id=uuid.uuid4(), post_id=post_id, author_id=user.id, content=body.content)
     db.add(comment)
     await db.commit()
+    if post.author_id is not None and post.author_id != user.id:
+        await noti.notify(
+            db, redis, post.author_id, noti.POST_COMMENT,
+            {"post_id": str(post_id), "comment_id": str(comment.id), "by_nickname": user.nickname},
+        )
     return _comment_out(comment, user)
 
 

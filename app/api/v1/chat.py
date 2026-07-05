@@ -28,6 +28,7 @@ from app.schemas.chat import (
 )
 from app.schemas.post import AuthorOut
 from app.services import ai_media
+from app.services import notify as noti
 from app.services.events import publish_to_user
 from app.services.chat import (
     ChatPolicyError,
@@ -190,10 +191,26 @@ async def send_message(
             redis, other_id,
             {"type": "chat.message", "payload": {"room_id": str(room.id), "message_id": str(message.id)}},
         )
+        if room.state == RoomState.request.value:
+            await noti.notify(
+                db, redis, other_id, noti.CHAT_REQUEST,
+                {"room_id": str(room.id), "sender_nickname": user.nickname},
+            )
+        if message.safety_status == SafetyStatus.flagged.value:
+            # 주의 메시지 도착 — 수신자에게만 (§16, SAFE-03)
+            await noti.notify(
+                db, redis, other_id, noti.CHAT_FLAGGED,
+                {"room_id": str(room.id), "message_id": str(message.id)},
+            )
     if other_id is not None and newly_restricted:
-        await publish_to_user(
-            redis, other_id,
-            {"type": "chat.restricted", "payload": {"room_id": str(room.id), "sender_id": str(user.id)}},
+        # SAFE-05-5: 수신자 안내 (발신자에게는 어떤 알림도 없음)
+        await noti.notify(
+            db, redis, other_id, noti.CHAT_RESTRICTED,
+            {
+                "room_id": str(room.id),
+                "sender_id": str(user.id),
+                "message": "위험 가능성이 있는 메시지가 반복되어 전송을 제한했어요",
+            },
         )
     return _message_out(message, user.id, user)
 

@@ -64,8 +64,5 @@
   "62": "env.py",
   "63": "test_quota.py",
   "64": "test_age.py",
-  "65": "KakaoProvider",
-  "66": "OAuthProvider",
-  "67": "0. 문서 정보",
-  "68": "test_config.py"
+  "67": "0. 문서 정보"
 }

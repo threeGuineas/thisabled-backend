@@ -52,12 +52,20 @@
   "50": "storage.py",
   "51": "84e58e0eefae_schema_v3_baseline.py",
   "52": "5. 공통 화면 구조",
+  "53": "stt.py",
   "54": "AsyncSession",
   "55": "UploadFile",
   "56": "UploadFile",
+  "57": "vision.py",
   "58": "Redis",
+  "59": "storage.py",
+  "60": "GoogleProvider",
   "61": "str",
   "62": "env.py",
   "63": "test_quota.py",
-  "64": "test_age.py"
+  "64": "test_age.py",
+  "65": "KakaoProvider",
+  "66": "OAuthProvider",
+  "67": "0. 문서 정보",
+  "68": "test_config.py"
 }

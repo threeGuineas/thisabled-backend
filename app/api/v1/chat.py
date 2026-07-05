@@ -28,6 +28,7 @@ from app.schemas.chat import (
 )
 from app.schemas.post import AuthorOut
 from app.services import ai_media
+from app.services.events import publish_to_user
 from app.services.chat import (
     ChatPolicyError,
     SendRestricted,
@@ -169,17 +170,31 @@ async def send_message(
     body: MessageIn,
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
     safety: SafetyClient = Depends(get_safety_client),
 ):
     room = await _get_my_room(db, user, room_id)
     try:
-        message, _newly_restricted = await send_text(db, safety, user, room, body.content)
+        message, newly_restricted = await send_text(db, safety, user, room, body.content)
     except SendRestricted:
         raise HTTPException(status_code=403, detail=RESTRICTED)
     except ChatPolicyError:
         raise HTTPException(status_code=403, detail=RESTRICTED)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+    other_id = counterpart_id(room, user.id)
+    if other_id is not None and message.safety_status != SafetyStatus.pending.value:
+        # 원문은 싣지 않는다 — 수신 측이 REST로 조회하며 블러 규칙 적용
+        await publish_to_user(
+            redis, other_id,
+            {"type": "chat.message", "payload": {"room_id": str(room.id), "message_id": str(message.id)}},
+        )
+    if other_id is not None and newly_restricted:
+        await publish_to_user(
+            redis, other_id,
+            {"type": "chat.restricted", "payload": {"room_id": str(room.id), "sender_id": str(user.id)}},
+        )
     return _message_out(message, user.id, user)
 
 
@@ -362,4 +377,8 @@ async def send_media(
             ai_media.caption_chat_message_job, session_factory, redis, message.id, media_hash,
             user.id, caption_caller,
         )
+    await publish_to_user(
+        redis, other_id,
+        {"type": "chat.message", "payload": {"room_id": str(room.id), "message_id": str(message.id)}},
+    )
     return _message_out(message, user.id, user)

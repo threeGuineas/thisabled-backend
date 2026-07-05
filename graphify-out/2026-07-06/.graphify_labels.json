@@ -64,5 +64,17 @@
   "62": "env.py",
   "63": "test_quota.py",
   "64": "test_age.py",
-  "67": "0. 문서 정보"
+  "65": "friends.py",
+  "66": "GoogleProvider",
+  "67": "0. 문서 정보",
+  "68": "conftest.py",
+  "69": "security.py",
+  "70": "post.py",
+  "71": "test_friends.py",
+  "72": "user.py",
+  "73": "env.py",
+  "74": "social.py",
+  "75": "nickname.py",
+  "76": "KakaoProvider",
+  "77": "MockProvider"
 }

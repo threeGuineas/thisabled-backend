@@ -1,18 +1,12 @@
-# Graph Report - thisabled-backend  (2026-07-05)
+# Graph Report - .  (2026-07-04)
 
 ## Corpus Check
-- 50 files · ~13,536 words
-- Verdict: corpus is large enough that graph structure adds value.
+- Corpus is ~7,333 words - fits in a single context window. You may not need a graph.
 
 ## Summary
-- 231 nodes · 508 edges · 21 communities (19 shown, 2 thin omitted)
-- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 19 edges (avg confidence: 0.65)
-- Token cost: 0 input · 0 output
-
-## Graph Freshness
-- Built from commit: `40f2b018`
-- Run `git rev-parse HEAD` and compare to check if the graph is stale.
-- Run `graphify update .` after code changes (no API cost).
+- 228 nodes · 505 edges · 21 communities (18 shown, 3 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.68)
+- Token cost: 41,000 input · 2,568 output
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Auth Test Suite|Auth Test Suite]]
@@ -35,23 +29,23 @@
 3. `User` - 23 edges
 4. `signup()` - 13 edges
 5. `Base` - 13 edges
-6. `ThisAbled — Backend` - 12 edges
-7. `get_current_user()` - 11 edges
-8. `login()` - 9 edges
-9. `Post` - 8 edges
-10. `update_mode()` - 7 edges
+6. `get_current_user()` - 11 edges
+7. `login()` - 9 edges
+8. `Post` - 8 edges
+9. `update_mode()` - 7 edges
+10. `create_access_token()` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `login()` --indirect_call--> `User`  [INFERRED]
-  app/api/v1/auth.py → app/models/user.py
-- `recovery()` --indirect_call--> `User`  [INFERRED]
-  app/api/v1/auth.py → app/models/user.py
-- `User` --uses--> `Base`  [INFERRED]
-  app/models/user.py → app/db/session.py
-- `Tailscale Funnel 임시 배포 가이드` --references--> `app 서비스 (FastAPI)`  [EXTRACTED]
-  docs/deploy-tailscale-funnel.md → docker-compose.yml
-- `Cloudflare Tunnel 임시 배포 가이드` --references--> `app 서비스 (FastAPI)`  [EXTRACTED]
-  docs/deploy-tunnel.md → docker-compose.yml
+- `워크트리 금지 (포트 고정 충돌)` --rationale_for--> `app 서비스 (FastAPI)`  [INFERRED]
+  CLAUDE.md → docker-compose.yml
+- `GPT-4o 호출 Redis 캐싱 정책` --conceptually_related_to--> `redis 서비스 (Redis 7)`  [INFERRED]
+  CLAUDE.md → docker-compose.yml
+- `OpenAI 비용 노출 위험 (vision/stt)` --conceptually_related_to--> `GPT-4o 호출 Redis 캐싱 정책`  [INFERRED]
+  docs/deploy-tunnel.md → CLAUDE.md
+- `DB 스키마 (users/posts/messages/reports 등)` --shares_data_with--> `db 서비스 (PostgreSQL 15)`  [INFERRED]
+  CLAUDE.md → docker-compose.yml
+- `Ralph 루프 태스크 가이드` --references--> `명세 검증 게이트`  [EXTRACTED]
+  docs/ralph/README.md → CLAUDE.md
 
 ## Import Cycles
 - None detected.
@@ -60,7 +54,7 @@
 - **터널 노출 시 크로스오리진 대응 3종 세트** — docs_deploy_tunnel_refresh_cookie_samesite, docs_deploy_tunnel_cors_origins, docs_deploy_tunnel_guide [EXTRACTED 0.90]
 - **Docker Compose 스택 서비스 구성** — docker_compose_app, docker_compose_db, docker_compose_redis [EXTRACTED 0.90]
 
-## Communities (21 total, 2 thin omitted)
+## Communities (21 total, 3 thin omitted)
 
 ### Community 0 - "Auth Test Suite"
 Cohesion: 0.08
@@ -71,28 +65,28 @@ Cohesion: 0.15
 Nodes (30): check_nickname(), login(), logout(), _nickname_forbidden(), _nickname_taken(), AsyncSession, recovery(), refresh() (+22 more)
 
 ### Community 2 - "App Core, Upload & Config"
-Cohesion: 0.09
-Nodes (29): me(), UploadFile, transcribe(), UploadFile, upload_image(), UploadResponse, describe_image(), Redis (+21 more)
+Cohesion: 0.13
+Nodes (19): me(), UploadFile, transcribe(), UploadFile, upload_image(), UploadResponse, Settings, get_current_user() (+11 more)
 
 ### Community 3 - "Posts API & DB Models"
 Cohesion: 0.19
 Nodes (18): create_post(), delete_post(), get_post(), list_posts(), AsyncSession, Base, get_db(), Message (+10 more)
 
 ### Community 4 - "GPT-4o Vision + Redis Cache"
-Cohesion: 0.40
-Nodes (5): generate_description(), _get_client(), AsyncOpenAI, GPT-4o Vision 이미지 해설 서비스 (F02_S04 시각장애 모드).  엔드포인트는 `vision.generate_description, 이미지 바이트 → 한국어 해설 텍스트. (실제 GPT-4o 호출)
+Cohesion: 0.16
+Nodes (15): describe_image(), Redis, /uploads/<name> → 로컬 파일 경로. 경로 탈출 방지(basename만 사용)., _resolve_upload_path(), get_redis(), get_redis_client(), Redis, FastAPI 의존성. 테스트에서 override 가능하도록 분리. (+7 more)
 
 ### Community 5 - "Infra & Deployment Policy"
-Cohesion: 0.27
-Nodes (10): app 서비스 (FastAPI), db 서비스 (PostgreSQL 15), db/redis 호스트 포트 미노출 (내부 네트워크), app 루프백 바인딩 (127.0.0.1:8000), redis 서비스 (Redis 7), Funnel 고정 URL, Tailscale Funnel 임시 배포 가이드, CORS 오리진 명시 설정 (+2 more)
+Cohesion: 0.16
+Nodes (15): DB 스키마 (users/posts/messages/reports 등), GPT-4o 호출 Redis 캐싱 정책, PK·FK 전부 UUID 정책, 워크트리 금지 (포트 고정 충돌), app 서비스 (FastAPI), db 서비스 (PostgreSQL 15), db/redis 호스트 포트 미노출 (내부 네트워크), app 루프백 바인딩 (127.0.0.1:8000) (+7 more)
 
 ### Community 6 - "User Disability-Mode Settings"
 Cohesion: 0.32
 Nodes (10): get_mode(), AsyncSession, update_mode(), DisabilityMode, 모드 + 사용자별 미세조정(overrides)을 합친 최종 설정., settings_for(), ModeResponse, ModeUpdateRequest (+2 more)
 
 ### Community 7 - "Dev Workflow & Ralph Loop"
-Cohesion: 0.50
-Nodes (5): Definition of Done 체크리스트, 예시 태스크: 게시글 수정 API (PUT /posts/{id}), Ralph 루프 태스크 가이드, --max-iterations 필수 안전장치, pytest 그린 = 완료 판정 기준
+Cohesion: 0.29
+Nodes (8): Conventional Commits 규칙, Ralph 루프 (자율 반복 개발), 명세 검증 게이트, Definition of Done 체크리스트, 예시 태스크: 게시글 수정 API (PUT /posts/{id}), Ralph 루프 태스크 가이드, --max-iterations 필수 안전장치, pytest 그린 = 완료 판정 기준
 
 ### Community 8 - "Whisper STT Service"
 Cohesion: 0.40
@@ -102,27 +96,23 @@ Nodes (5): _get_client(), AsyncOpenAI, OpenAI Whisper STT 서비스 (F02_S05 음
 Cohesion: 0.60
 Nodes (3): do_run_migrations(), run_async_migrations(), run_migrations_online()
 
-### Community 11 - "Project Concept"
-Cohesion: 0.15
-Nodes (12): DB 스키마, graphify, Ralph 루프 (선택), ThisAbled — Backend, 기술 스택, 데드라인, 링크, 명령어 (+4 more)
-
 ## Knowledge Gaps
-- **13 isolated node(s):** `프로젝트`, `기술 스택`, `명령어`, `DB 스키마`, `워크플로우` (+8 more)
+- **8 isolated node(s):** `thisabled-backend`, `ThisAbled 백엔드 프로젝트`, `장애 유형별 적응형 UI 모드`, `feature 브랜치 워크플로우`, `명세 검증 게이트` (+3 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `User` connect `App Core, Upload & Config` to `Auth Endpoints & JWT Security`, `Posts API & DB Models`, `User Disability-Mode Settings`?**
-  _High betweenness centrality (0.086) - this node is a cross-community bridge._
+- **Why does `User` connect `App Core, Upload & Config` to `Auth Endpoints & JWT Security`, `Posts API & DB Models`, `GPT-4o Vision + Redis Cache`, `User Disability-Mode Settings`?**
+  _High betweenness centrality (0.088) - this node is a cross-community bridge._
 - **Are the 4 inferred relationships involving `User` (e.g. with `login()` and `recovery()`) actually correct?**
   _`User` has 4 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `프로젝트`, `기술 스택`, `명령어` to the rest of the system?**
-  _33 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `/uploads/<name> → 로컬 파일 경로. 경로 탈출 방지(basename만 사용).`, `모드 + 사용자별 미세조정(overrides)을 합친 최종 설정.`, `F01_S08: 가입 시 1회 노출하는 12자리 복구 코드.` to the rest of the system?**
+  _30 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Auth Test Suite` be split into smaller, more focused modules?**
   _Cohesion score 0.07518796992481203 - nodes in this community are weakly interconnected._
 - **Should `Auth Endpoints & JWT Security` be split into smaller, more focused modules?**
   _Cohesion score 0.1492063492063492 - nodes in this community are weakly interconnected._
 - **Should `App Core, Upload & Config` be split into smaller, more focused modules?**
-  _Cohesion score 0.09268292682926829 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.12698412698412698 - nodes in this community are weakly interconnected._

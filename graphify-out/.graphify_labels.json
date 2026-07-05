@@ -1,1 +1,23 @@
-{"0": "Auth Test Suite", "1": "Auth Endpoints & JWT Security", "2": "App Core, Upload & Config", "3": "Posts API & DB Models", "4": "GPT-4o Vision + Redis Cache", "5": "Infra & Deployment Policy", "6": "User Disability-Mode Settings", "7": "Dev Workflow & Ralph Loop", "8": "Whisper STT Service", "9": "Alembic Migration Runner", "10": "Schema v2 Migration", "11": "Project Concept", "12": "Package init (a)", "13": "Package init (b)", "14": "Package init (c)", "15": "Package init (d)", "16": "Package init (e)", "17": "Package init (f)", "18": "Package init (g)", "19": "Feature Branch Workflow", "20": "Repository Root"}
+{
+  "0": "Auth Test Suite",
+  "1": "Auth Endpoints & JWT Security",
+  "2": "App Core, Upload & Config",
+  "3": "Posts API & DB Models",
+  "4": "GPT-4o Vision + Redis Cache",
+  "5": "Infra & Deployment Policy",
+  "6": "User Disability-Mode Settings",
+  "7": "Dev Workflow & Ralph Loop",
+  "8": "Whisper STT Service",
+  "9": "Alembic Migration Runner",
+  "10": "Schema v2 Migration",
+  "11": "Project Concept",
+  "12": "Package init (a)",
+  "13": "Package init (b)",
+  "14": "Package init (c)",
+  "15": "Package init (d)",
+  "16": "Package init (e)",
+  "17": "Package init (f)",
+  "18": "Package init (g)",
+  "19": "Feature Branch Workflow",
+  "20": "Repository Root"
+}

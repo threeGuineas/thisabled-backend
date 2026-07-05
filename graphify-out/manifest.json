@@ -255,13 +255,13 @@
     "semantic_hash": ""
   },
   "app/api/v1/users.py": {
-    "mtime": 1783271524.4261737,
-    "ast_hash": "6a70401916b2fbe3245b006135074a42",
+    "mtime": 1783271614.0620024,
+    "ast_hash": "40c10c6ee6ae3f1d1152964d7b4bd556",
     "semantic_hash": ""
   },
   "app/schemas/user.py": {
-    "mtime": 1783271482.9422457,
-    "ast_hash": "b60a1421fd97ce7b95e25ffd2fdc2598",
+    "mtime": 1783271611.6655354,
+    "ast_hash": "982272e9fb4ae67c4d7d807bf21af93c",
     "semantic_hash": ""
   },
   "app/services/relations.py": {
@@ -272,6 +272,16 @@
   "tests/test_users.py": {
     "mtime": 1783271315.7894733,
     "ast_hash": "b23aaf3b08c42b82137f3803bbdbc098",
+    "semantic_hash": ""
+  },
+  "app/services/withdrawal.py": {
+    "mtime": 1783271598.0902984,
+    "ast_hash": "30f3865b2e8404c894b555c136e9f322",
+    "semantic_hash": ""
+  },
+  "tests/test_withdrawal.py": {
+    "mtime": 1783271581.1257455,
+    "ast_hash": "20c91f3df9f4631fa890a36ec0372870",
     "semantic_hash": ""
   }
 }

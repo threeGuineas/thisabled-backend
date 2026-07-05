@@ -33,7 +33,7 @@
       "label": "_reject_contact_in_bio()",
       "file_type": "code",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L39",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "app_api_v1_users_reject_contact_in_bio",
       "community": 1,
@@ -43,7 +43,7 @@
       "label": "_user_tags()",
       "file_type": "code",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L47",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "app_api_v1_users_user_tags",
       "community": 1,
@@ -73,7 +73,7 @@
       "label": "_me_out()",
       "file_type": "code",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L58",
+      "source_location": "L60",
       "_origin": "ast",
       "id": "app_api_v1_users_me_out",
       "community": 1,
@@ -85,7 +85,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "user",
+      "id": "app_api_v1_users_py_user",
       "community": 1,
       "norm_label": "user"
     },
@@ -93,7 +93,7 @@
       "label": "tag_catalog()",
       "file_type": "code",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L73",
+      "source_location": "L75",
       "_origin": "ast",
       "id": "app_api_v1_users_tag_catalog",
       "community": 1,
@@ -103,7 +103,7 @@
       "label": "me()",
       "file_type": "code",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L79",
+      "source_location": "L81",
       "_origin": "ast",
       "id": "app_api_v1_users_me",
       "community": 1,
@@ -113,7 +113,7 @@
       "label": "patch_me()",
       "file_type": "code",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L84",
+      "source_location": "L86",
       "_origin": "ast",
       "id": "app_api_v1_users_patch_me",
       "community": 1,
@@ -123,7 +123,7 @@
       "label": "put_tags()",
       "file_type": "code",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L102",
+      "source_location": "L104",
       "_origin": "ast",
       "id": "app_api_v1_users_put_tags",
       "community": 1,
@@ -133,7 +133,7 @@
       "label": "patch_settings()",
       "file_type": "code",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L125",
+      "source_location": "L127",
       "_origin": "ast",
       "id": "app_api_v1_users_patch_settings",
       "community": 1,
@@ -143,17 +143,27 @@
       "label": "put_mode()",
       "file_type": "code",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L139",
+      "source_location": "L141",
       "_origin": "ast",
       "id": "app_api_v1_users_put_mode",
       "community": 1,
       "norm_label": "put_mode()"
     },
     {
+      "label": "withdraw_me()",
+      "file_type": "code",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L161",
+      "_origin": "ast",
+      "id": "app_api_v1_users_withdraw_me",
+      "community": 1,
+      "norm_label": "withdraw_me()"
+    },
+    {
       "label": "public_profile()",
       "file_type": "code",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L159",
+      "source_location": "L171",
       "_origin": "ast",
       "id": "app_api_v1_users_public_profile",
       "community": 1,
@@ -170,34 +180,14 @@
       "norm_label": "acc-03 \u1111\u1173\u1105\u1169\u1111\u1175\u11af \u00b7 tag-01 \u1110\u1162\u1100\u1173 \u00b7 \u00a715 \u1109\u1165\u11af\u110c\u1165\u11bc \u00b7 \u00a75.2 \u1106\u1169\u1103\u1173 \u1107\u1167\u11ab\u1100\u1167\u11bc."
     },
     {
-      "label": "main.py",
-      "file_type": "code",
-      "source_file": "app/main.py",
-      "source_location": "L1",
+      "label": "\u00a715 \ud68c\uc6d0 \ud0c8\ud1f4. \uac8c\uc2dc\ubb3c\u00b7\ub313\uae00 \ucc98\ub9ac\ub294 \uc0ac\uc6a9\uc790\uac00 \uc120\ud0dd(\ud0c8\ud1f4 \ud654\uba74 \ud655\uc778 \ub2e8\uacc4\ub294 FE).",
+      "file_type": "rationale",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L166",
       "_origin": "ast",
-      "id": "app_main",
-      "community": 2,
-      "norm_label": "main.py"
-    },
-    {
-      "label": "lifespan()",
-      "file_type": "code",
-      "source_file": "app/main.py",
-      "source_location": "L37",
-      "_origin": "ast",
-      "id": "app_main_lifespan",
-      "community": 2,
-      "norm_label": "lifespan()"
-    },
-    {
-      "label": "FastAPI",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "fastapi",
-      "community": 2,
-      "norm_label": "fastapi"
+      "id": "app_api_v1_users_rationale_166",
+      "community": 1,
+      "norm_label": "\u00a715 \u1112\u116c\u110b\u116f\u11ab \u1110\u1161\u11af\u1110\u116c. \u1100\u1166\u1109\u1175\u1106\u116e\u11af\u00b7\u1103\u1162\u11ba\u1100\u1173\u11af \u110e\u1165\u1105\u1175\u1102\u1173\u11ab \u1109\u1161\u110b\u116d\u11bc\u110c\u1161\u1100\u1161 \u1109\u1165\u11ab\u1110\u1162\u11a8(\u1110\u1161\u11af\u1110\u116c \u1112\u116a\u1106\u1167\u11ab \u1112\u116a\u11a8\u110b\u1175\u11ab \u1103\u1161\u11ab\u1100\u1168\u1102\u1173\u11ab fe)."
     },
     {
       "label": "user.py",
@@ -213,7 +203,7 @@
       "label": "TagOut",
       "file_type": "code",
       "source_file": "app/schemas/user.py",
-      "source_location": "L8",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "app_schemas_user_tagout",
       "community": 1,
@@ -233,7 +223,7 @@
       "label": "TagCatalogOut",
       "file_type": "code",
       "source_file": "app/schemas/user.py",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "app_schemas_user_tagcatalogout",
       "community": 1,
@@ -243,7 +233,7 @@
       "label": "MeOut",
       "file_type": "code",
       "source_file": "app/schemas/user.py",
-      "source_location": "L18",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "app_schemas_user_meout",
       "community": 1,
@@ -253,7 +243,7 @@
       "label": "PublicProfileOut",
       "file_type": "code",
       "source_file": "app/schemas/user.py",
-      "source_location": "L32",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "app_schemas_user_publicprofileout",
       "community": 1,
@@ -263,7 +253,7 @@
       "label": "ProfilePatchIn",
       "file_type": "code",
       "source_file": "app/schemas/user.py",
-      "source_location": "L42",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "app_schemas_user_profilepatchin",
       "community": 1,
@@ -273,7 +263,7 @@
       "label": "TagsPutIn",
       "file_type": "code",
       "source_file": "app/schemas/user.py",
-      "source_location": "L48",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "app_schemas_user_tagsputin",
       "community": 1,
@@ -283,7 +273,7 @@
       "label": "SettingsPatchIn",
       "file_type": "code",
       "source_file": "app/schemas/user.py",
-      "source_location": "L52",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "app_schemas_user_settingspatchin",
       "community": 1,
@@ -293,19 +283,29 @@
       "label": "ModePutIn",
       "file_type": "code",
       "source_file": "app/schemas/user.py",
-      "source_location": "L57",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "app_schemas_user_modeputin",
       "community": 1,
       "norm_label": "modeputin"
     },
     {
+      "label": "WithdrawIn",
+      "file_type": "code",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "app_schemas_user_withdrawin",
+      "community": 1,
+      "norm_label": "withdrawin"
+    },
+    {
       "label": "\ubcf8\uc778 \uc870\ud68c \u2014 ui_mode\u00b7is_minor \ub4f1 \ubbfc\uac10 \ud30c\uc0dd\uac12 \ud3ec\ud568 (\ud0c0\uc778 \uc870\ud68c\uc640 \ubd84\ub9ac).",
       "file_type": "rationale",
       "source_file": "app/schemas/user.py",
-      "source_location": "L19",
+      "source_location": "L20",
       "_origin": "ast",
-      "id": "app_schemas_user_rationale_19",
+      "id": "app_schemas_user_rationale_20",
       "community": 1,
       "norm_label": "\u1107\u1169\u11ab\u110b\u1175\u11ab \u110c\u1169\u1112\u116c \u2014 ui_mode\u00b7is_minor \u1103\u1173\u11bc \u1106\u1175\u11ab\u1100\u1161\u11b7 \u1111\u1161\u1109\u1162\u11bc\u1100\u1161\u11b9 \u1111\u1169\u1112\u1161\u11b7 (\u1110\u1161\u110b\u1175\u11ab \u110c\u1169\u1112\u116c\u110b\u116a \u1107\u116e\u11ab\u1105\u1175)."
     },
@@ -313,31 +313,41 @@
       "label": "\ud0c0\uc778 \ud504\ub85c\ud544 \u2014 \uc7a5\uc560 \uc720\ud615\u00b7UI \ubaa8\ub4dc\u00b7\uc0dd\ub144\uc6d4\uc77c \ube44\ub178\ucd9c (ACC-03, \u00a75.2).",
       "file_type": "rationale",
       "source_file": "app/schemas/user.py",
-      "source_location": "L33",
+      "source_location": "L34",
       "_origin": "ast",
-      "id": "app_schemas_user_rationale_33",
+      "id": "app_schemas_user_rationale_34",
       "community": 1,
       "norm_label": "\u1110\u1161\u110b\u1175\u11ab \u1111\u1173\u1105\u1169\u1111\u1175\u11af \u2014 \u110c\u1161\u11bc\u110b\u1162 \u110b\u1172\u1112\u1167\u11bc\u00b7ui \u1106\u1169\u1103\u1173\u00b7\u1109\u1162\u11bc\u1102\u1167\u11ab\u110b\u116f\u11af\u110b\u1175\u11af \u1107\u1175\u1102\u1169\u110e\u116e\u11af (acc-03, \u00a75.2)."
     },
     {
-      "label": "relations.py",
-      "file_type": "code",
-      "source_file": "app/services/relations.py",
-      "source_location": "L1",
+      "label": "\u00a715: \uac8c\uc2dc\ubb3c\u00b7\ub313\uae00\uc744 '\ud0c8\ud1f4\ud55c \uc0ac\uc6a9\uc790'\ub85c \ub0a8\uae38\uc9c0 \ud568\uaed8 \uc9c0\uc6b8\uc9c0 \ud0c8\ud1f4 \ud654\uba74\uc5d0\uc11c \uc120\ud0dd.",
+      "file_type": "rationale",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L63",
       "_origin": "ast",
-      "id": "app_services_relations",
-      "community": 49,
-      "norm_label": "relations.py"
+      "id": "app_schemas_user_rationale_63",
+      "community": 1,
+      "norm_label": "\u00a715: \u1100\u1166\u1109\u1175\u1106\u116e\u11af\u00b7\u1103\u1162\u11ba\u1100\u1173\u11af\u110b\u1173\u11af '\u1110\u1161\u11af\u1110\u116c\u1112\u1161\u11ab \u1109\u1161\u110b\u116d\u11bc\u110c\u1161'\u1105\u1169 \u1102\u1161\u11b7\u1100\u1175\u11af\u110c\u1175 \u1112\u1161\u11b7\u1101\u1166 \u110c\u1175\u110b\u116e\u11af\u110c\u1175 \u1110\u1161\u11af\u1110\u116c \u1112\u116a\u1106\u1167\u11ab\u110b\u1166\u1109\u1165 \u1109\u1165\u11ab\u1110\u1162\u11a8."
     },
     {
-      "label": "are_friends()",
+      "label": "withdrawal.py",
       "file_type": "code",
-      "source_file": "app/services/relations.py",
-      "source_location": "L13",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L1",
       "_origin": "ast",
-      "id": "app_services_relations_are_friends",
-      "community": 49,
-      "norm_label": "are_friends()"
+      "id": "app_services_withdrawal",
+      "community": 3,
+      "norm_label": "withdrawal.py"
+    },
+    {
+      "label": "withdraw()",
+      "file_type": "code",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "app_services_withdrawal_withdraw",
+      "community": 1,
+      "norm_label": "withdraw()"
     },
     {
       "label": "AsyncSession",
@@ -345,9 +355,59 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "app_services_relations_py_asyncsession",
-      "community": 49,
+      "id": "app_services_withdrawal_py_asyncsession",
+      "community": 1,
       "norm_label": "asyncsession"
+    },
+    {
+      "label": "User",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "app_services_withdrawal_py_user",
+      "community": 1,
+      "norm_label": "user"
+    },
+    {
+      "label": "PostsAction",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "postsaction",
+      "community": 1,
+      "norm_label": "postsaction"
+    },
+    {
+      "label": "\u00a715 \ud68c\uc6d0 \ud0c8\ud1f4.  - \uacc4\uc815\u00b7\ud504\ub85c\ud544 \uc989\uc2dc \uc0ad\uc81c (users hard delete) - \uac8c\uc2dc\ubb3c\u00b7\ub313\uae00: \uc0ac\uc6a9\uc790\uac00 \uc775\uba85\ud654/\uc0ad\uc81c \uc120\ud0dd - \ucc44\ud305 \uba54\uc2dc\uc9c0",
+      "file_type": "rationale",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_services_withdrawal_rationale_1",
+      "community": 3,
+      "norm_label": "\u00a715 \u1112\u116c\u110b\u116f\u11ab \u1110\u1161\u11af\u1110\u116c.  - \u1100\u1168\u110c\u1165\u11bc\u00b7\u1111\u1173\u1105\u1169\u1111\u1175\u11af \u110c\u1173\u11a8\u1109\u1175 \u1109\u1161\u11a8\u110c\u1166 (users hard delete) - \u1100\u1166\u1109\u1175\u1106\u116e\u11af\u00b7\u1103\u1162\u11ba\u1100\u1173\u11af: \u1109\u1161\u110b\u116d\u11bc\u110c\u1161\u1100\u1161 \u110b\u1175\u11a8\u1106\u1167\u11bc\u1112\u116a/\u1109\u1161\u11a8\u110c\u1166 \u1109\u1165\u11ab\u1110\u1162\u11a8 - \u110e\u1162\u1110\u1175\u11bc \u1106\u1166\u1109\u1175\u110c\u1175"
+    },
+    {
+      "label": "test_withdrawal.py",
+      "file_type": "code",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_withdrawal",
+      "community": 0,
+      "norm_label": "test_withdrawal.py"
+    },
+    {
+      "label": "_make_post()",
+      "file_type": "code",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "tests_test_withdrawal_make_post",
+      "community": 0,
+      "norm_label": "_make_post()"
     },
     {
       "label": "UUID",
@@ -355,9 +415,139 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "app_services_relations_py_uuid",
-      "community": 49,
+      "id": "tests_test_withdrawal_py_uuid",
+      "community": 0,
       "norm_label": "uuid"
+    },
+    {
+      "label": "_make_chat()",
+      "file_type": "code",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "tests_test_withdrawal_make_chat",
+      "community": 0,
+      "norm_label": "_make_chat()"
+    },
+    {
+      "label": "test_withdraw_anonymize_keeps_posts_and_chat()",
+      "file_type": "code",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "tests_test_withdrawal_test_withdraw_anonymize_keeps_posts_and_chat",
+      "community": 0,
+      "norm_label": "test_withdraw_anonymize_keeps_posts_and_chat()"
+    },
+    {
+      "label": "test_withdraw_delete_removes_posts()",
+      "file_type": "code",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "tests_test_withdrawal_test_withdraw_delete_removes_posts",
+      "community": 0,
+      "norm_label": "test_withdraw_delete_removes_posts()"
+    },
+    {
+      "label": "test_withdraw_invalidates_token_and_blocks_rejoin()",
+      "file_type": "code",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "tests_test_withdrawal_test_withdraw_invalidates_token_and_blocks_rejoin",
+      "community": 0,
+      "norm_label": "test_withdraw_invalidates_token_and_blocks_rejoin()"
+    },
+    {
+      "label": "\u00a715 \ud68c\uc6d0 \ud0c8\ud1f4 \u2014 \uc775\uba85\ud654/\uc0ad\uc81c \uc120\ud0dd, \ucc44\ud305 \ubcf4\uc874, 30\uc77c \uc7ac\uac00\uc785 \uc81c\ud55c.",
+      "file_type": "rationale",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_withdrawal_rationale_1",
+      "community": 0,
+      "norm_label": "\u00a715 \u1112\u116c\u110b\u116f\u11ab \u1110\u1161\u11af\u1110\u116c \u2014 \u110b\u1175\u11a8\u1106\u1167\u11bc\u1112\u116a/\u1109\u1161\u11a8\u110c\u1166 \u1109\u1165\u11ab\u1110\u1162\u11a8, \u110e\u1162\u1110\u1175\u11bc \u1107\u1169\u110c\u1169\u11ab, 30\u110b\u1175\u11af \u110c\u1162\u1100\u1161\u110b\u1175\u11b8 \u110c\u1166\u1112\u1161\u11ab."
+    },
+    {
+      "label": "User",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 39,
+      "norm_label": "user",
+      "id": "user"
+    },
+    {
+      "label": "main.py",
+      "file_type": "code",
+      "source_file": "app/main.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 10,
+      "norm_label": "main.py",
+      "id": "app_main"
+    },
+    {
+      "label": "lifespan()",
+      "file_type": "code",
+      "source_file": "app/main.py",
+      "source_location": "L37",
+      "_origin": "ast",
+      "community": 10,
+      "norm_label": "lifespan()",
+      "id": "app_main_lifespan"
+    },
+    {
+      "label": "FastAPI",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 10,
+      "norm_label": "fastapi",
+      "id": "fastapi"
+    },
+    {
+      "label": "relations.py",
+      "file_type": "code",
+      "source_file": "app/services/relations.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "relations.py",
+      "id": "app_services_relations"
+    },
+    {
+      "label": "are_friends()",
+      "file_type": "code",
+      "source_file": "app/services/relations.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "are_friends()",
+      "id": "app_services_relations_are_friends"
+    },
+    {
+      "label": "AsyncSession",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "asyncsession",
+      "id": "app_services_relations_py_asyncsession"
+    },
+    {
+      "label": "UUID",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 49,
+      "norm_label": "uuid",
+      "id": "app_services_relations_py_uuid"
     },
     {
       "label": "is_blocked_either()",
@@ -365,9 +555,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L23",
       "_origin": "ast",
-      "id": "app_services_relations_is_blocked_either",
       "community": 49,
-      "norm_label": "is_blocked_either()"
+      "norm_label": "is_blocked_either()",
+      "id": "app_services_relations_is_blocked_either"
     },
     {
       "label": "block_user()",
@@ -375,9 +565,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L38",
       "_origin": "ast",
-      "id": "app_services_relations_block_user",
       "community": 49,
-      "norm_label": "block_user()"
+      "norm_label": "block_user()",
+      "id": "app_services_relations_block_user"
     },
     {
       "label": "\uce5c\uad6c\u00b7\ucc28\ub2e8 \uad00\uacc4 \ud310\uc815 \uacf5\uc6a9 (FRIEND \u00b7 BLOCK-01). posts \ud53c\ub4dc, chat, \ucd94\ucc9c\uc774 \uc0ac\uc6a9.",
@@ -385,9 +575,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "app_services_relations_rationale_1",
       "community": 49,
-      "norm_label": "\u110e\u1175\u11ab\u1100\u116e\u00b7\u110e\u1161\u1103\u1161\u11ab \u1100\u116a\u11ab\u1100\u1168 \u1111\u1161\u11ab\u110c\u1165\u11bc \u1100\u1169\u11bc\u110b\u116d\u11bc (friend \u00b7 block-01). posts \u1111\u1175\u1103\u1173, chat, \u110e\u116e\u110e\u1165\u11ab\u110b\u1175 \u1109\u1161\u110b\u116d\u11bc."
+      "norm_label": "\u110e\u1175\u11ab\u1100\u116e\u00b7\u110e\u1161\u1103\u1161\u11ab \u1100\u116a\u11ab\u1100\u1168 \u1111\u1161\u11ab\u110c\u1165\u11bc \u1100\u1169\u11bc\u110b\u116d\u11bc (friend \u00b7 block-01). posts \u1111\u1175\u1103\u1173, chat, \u110e\u116e\u110e\u1165\u11ab\u110b\u1175 \u1109\u1161\u110b\u116d\u11bc.",
+      "id": "app_services_relations_rationale_1"
     },
     {
       "label": "\uc5b4\ub290 \ubc29\ud5a5\uc774\ub4e0 \ucc28\ub2e8\uc774\uba74 True \u2014 \ubaa8\ub4e0 \uc811\uc810 \uc0c1\ud638 \uc81c\uac70 (BLOCK-01).",
@@ -395,9 +585,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L24",
       "_origin": "ast",
-      "id": "app_services_relations_rationale_24",
       "community": 49,
-      "norm_label": "\u110b\u1165\u1102\u1173 \u1107\u1161\u11bc\u1112\u1163\u11bc\u110b\u1175\u1103\u1173\u11ab \u110e\u1161\u1103\u1161\u11ab\u110b\u1175\u1106\u1167\u11ab true \u2014 \u1106\u1169\u1103\u1173\u11ab \u110c\u1165\u11b8\u110c\u1165\u11b7 \u1109\u1161\u11bc\u1112\u1169 \u110c\u1166\u1100\u1165 (block-01)."
+      "norm_label": "\u110b\u1165\u1102\u1173 \u1107\u1161\u11bc\u1112\u1163\u11bc\u110b\u1175\u1103\u1173\u11ab \u110e\u1161\u1103\u1161\u11ab\u110b\u1175\u1106\u1167\u11ab true \u2014 \u1106\u1169\u1103\u1173\u11ab \u110c\u1165\u11b8\u110c\u1165\u11b7 \u1109\u1161\u11bc\u1112\u1169 \u110c\u1166\u1100\u1165 (block-01).",
+      "id": "app_services_relations_rationale_24"
     },
     {
       "label": "\ucc28\ub2e8: \uce5c\uad6c \ud574\uc81c + \uc9c4\ud589 \uc911 \uce5c\uad6c \uc694\uccad \ucde8\uc18c + \ucc28\ub2e8 \ud589 \ucd94\uac00 (BLOCK-01).",
@@ -405,9 +595,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L39",
       "_origin": "ast",
-      "id": "app_services_relations_rationale_39",
       "community": 49,
-      "norm_label": "\u110e\u1161\u1103\u1161\u11ab: \u110e\u1175\u11ab\u1100\u116e \u1112\u1162\u110c\u1166 + \u110c\u1175\u11ab\u1112\u1162\u11bc \u110c\u116e\u11bc \u110e\u1175\u11ab\u1100\u116e \u110b\u116d\u110e\u1165\u11bc \u110e\u1171\u1109\u1169 + \u110e\u1161\u1103\u1161\u11ab \u1112\u1162\u11bc \u110e\u116e\u1100\u1161 (block-01)."
+      "norm_label": "\u110e\u1161\u1103\u1161\u11ab: \u110e\u1175\u11ab\u1100\u116e \u1112\u1162\u110c\u1166 + \u110c\u1175\u11ab\u1112\u1162\u11bc \u110c\u116e\u11bc \u110e\u1175\u11ab\u1100\u116e \u110b\u116d\u110e\u1165\u11bc \u110e\u1171\u1109\u1169 + \u110e\u1161\u1103\u1161\u11ab \u1112\u1162\u11bc \u110e\u116e\u1100\u1161 (block-01).",
+      "id": "app_services_relations_rationale_39"
     },
     {
       "label": "test_users.py",
@@ -415,9 +605,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "tests_test_users",
       "community": 0,
-      "norm_label": "test_users.py"
+      "norm_label": "test_users.py",
+      "id": "tests_test_users"
     },
     {
       "label": "test_me_includes_profile_and_derived_minor()",
@@ -425,9 +615,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "tests_test_users_test_me_includes_profile_and_derived_minor",
       "community": 0,
-      "norm_label": "test_me_includes_profile_and_derived_minor()"
+      "norm_label": "test_me_includes_profile_and_derived_minor()",
+      "id": "tests_test_users_test_me_includes_profile_and_derived_minor"
     },
     {
       "label": "test_patch_me_rejects_contact_in_bio()",
@@ -435,9 +625,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L20",
       "_origin": "ast",
-      "id": "tests_test_users_test_patch_me_rejects_contact_in_bio",
       "community": 0,
-      "norm_label": "test_patch_me_rejects_contact_in_bio()"
+      "norm_label": "test_patch_me_rejects_contact_in_bio()",
+      "id": "tests_test_users_test_patch_me_rejects_contact_in_bio"
     },
     {
       "label": "test_tags_catalog_and_replace()",
@@ -445,9 +635,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L31",
       "_origin": "ast",
-      "id": "tests_test_users_test_tags_catalog_and_replace",
       "community": 0,
-      "norm_label": "test_tags_catalog_and_replace()"
+      "norm_label": "test_tags_catalog_and_replace()",
+      "id": "tests_test_users_test_tags_catalog_and_replace"
     },
     {
       "label": "test_mode_change_records_history()",
@@ -455,9 +645,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L50",
       "_origin": "ast",
-      "id": "tests_test_users_test_mode_change_records_history",
       "community": 0,
-      "norm_label": "test_mode_change_records_history()"
+      "norm_label": "test_mode_change_records_history()",
+      "id": "tests_test_users_test_mode_change_records_history"
     },
     {
       "label": "test_settings_update()",
@@ -465,9 +655,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L62",
       "_origin": "ast",
-      "id": "tests_test_users_test_settings_update",
       "community": 0,
-      "norm_label": "test_settings_update()"
+      "norm_label": "test_settings_update()",
+      "id": "tests_test_users_test_settings_update"
     },
     {
       "label": "test_public_profile_hides_mode_and_birth()",
@@ -475,9 +665,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L75",
       "_origin": "ast",
-      "id": "tests_test_users_test_public_profile_hides_mode_and_birth",
       "community": 0,
-      "norm_label": "test_public_profile_hides_mode_and_birth()"
+      "norm_label": "test_public_profile_hides_mode_and_birth()",
+      "id": "tests_test_users_test_public_profile_hides_mode_and_birth"
     },
     {
       "label": "ACC-03 \ud504\ub85c\ud544 \u00b7 TAG-01 \ud0dc\uadf8 \u00b7 \u00a715 \uc124\uc815 \u00b7 \u00a75.2 \ubaa8\ub4dc \ubcc0\uacbd.",
@@ -485,9 +675,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "tests_test_users_rationale_1",
       "community": 0,
-      "norm_label": "acc-03 \u1111\u1173\u1105\u1169\u1111\u1175\u11af \u00b7 tag-01 \u1110\u1162\u1100\u1173 \u00b7 \u00a715 \u1109\u1165\u11af\u110c\u1165\u11bc \u00b7 \u00a75.2 \u1106\u1169\u1103\u1173 \u1107\u1167\u11ab\u1100\u1167\u11bc."
+      "norm_label": "acc-03 \u1111\u1173\u1105\u1169\u1111\u1175\u11af \u00b7 tag-01 \u1110\u1162\u1100\u1173 \u00b7 \u00a715 \u1109\u1165\u11af\u110c\u1165\u11bc \u00b7 \u00a75.2 \u1106\u1169\u1103\u1173 \u1107\u1167\u11ab\u1100\u1167\u11bc.",
+      "id": "tests_test_users_rationale_1"
     },
     {
       "label": "auth.py",
@@ -665,7 +855,7 @@
       "source_file": "app/core/security.py",
       "source_location": "L40",
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
       "norm_label": "decode_token()",
       "id": "app_core_security_decode_token"
     },
@@ -2568,7 +2758,7 @@
       "source_file": "app/core/config.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 10,
       "norm_label": "config.py",
       "id": "app_core_config"
     },
@@ -2578,7 +2768,7 @@
       "source_file": "app/core/config.py",
       "source_location": "L4",
       "_origin": "ast",
-      "community": 2,
+      "community": 10,
       "norm_label": "settings",
       "id": "app_core_config_settings"
     },
@@ -2588,7 +2778,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 2,
+      "community": 10,
       "norm_label": "basesettings",
       "id": "basesettings"
     },
@@ -2598,7 +2788,7 @@
       "source_file": "app/core/config.py",
       "source_location": "L63",
       "_origin": "ast",
-      "community": 2,
+      "community": 10,
       "norm_label": ".cors_origins()",
       "id": "app_core_config_settings_cors_origins"
     },
@@ -2608,7 +2798,7 @@
       "source_file": "tests/test_config.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 10,
       "norm_label": "test_config.py",
       "id": "tests_test_config"
     },
@@ -2618,7 +2808,7 @@
       "source_file": "tests/test_config.py",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 2,
+      "community": 10,
       "norm_label": "test_v2_1_settings_defaults()",
       "id": "tests_test_config_test_v2_1_settings_defaults"
     },
@@ -2628,7 +2818,7 @@
       "source_file": "tests/test_config.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 10,
       "norm_label": "v2.1 \u1106\u1167\u11bc\u1109\u1166 \u1100\u1169\u110c\u1165\u11bc\u1100\u1161\u11b9\u110b\u1175 settings\u110b\u1166 \u1107\u1161\u11ab\u110b\u1167\u11bc\u1103\u116c\u110b\u1165 \u110b\u1175\u11bb\u1102\u1173\u11ab\u110c\u1175 \u1100\u1165\u11b7\u110c\u1173\u11bc.",
       "id": "tests_test_config_rationale_1"
     },
@@ -2718,7 +2908,7 @@
       "source_file": "app/api/v1/health.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 10,
       "norm_label": "health.py",
       "id": "app_api_v1_health"
     },
@@ -2728,7 +2918,7 @@
       "source_file": "app/api/v1/health.py",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 2,
+      "community": 10,
       "norm_label": "health()",
       "id": "app_api_v1_health_health"
     },
@@ -2768,7 +2958,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 53,
+      "community": 10,
       "norm_label": "path",
       "id": "path"
     },
@@ -2858,7 +3048,7 @@
       "source_file": "app/core/storage.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 53,
+      "community": 10,
       "norm_label": "storage.py",
       "id": "app_core_storage"
     },
@@ -2868,7 +3058,7 @@
       "source_file": "app/core/storage.py",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 53,
+      "community": 10,
       "norm_label": "_ext_from_content_type()",
       "id": "app_core_storage_ext_from_content_type"
     },
@@ -2878,7 +3068,7 @@
       "source_file": "app/core/storage.py",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 53,
+      "community": 10,
       "norm_label": "save_upload()",
       "id": "app_core_storage_save_upload"
     },
@@ -2888,7 +3078,7 @@
       "source_file": "app/core/storage.py",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 53,
+      "community": 10,
       "norm_label": "save file locally and return the public url path.",
       "id": "app_core_storage_rationale_21"
     },
@@ -2908,7 +3098,7 @@
       "source_file": "app/db/redis.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 10,
       "norm_label": "redis.py",
       "id": "app_db_redis"
     },
@@ -2918,7 +3108,7 @@
       "source_file": "app/db/redis.py",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 0,
+      "community": 10,
       "norm_label": "get_redis_client()",
       "id": "app_db_redis_get_redis_client"
     },
@@ -2928,7 +3118,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 0,
+      "community": 10,
       "norm_label": "redis",
       "id": "app_db_redis_py_redis"
     },
@@ -2938,7 +3128,7 @@
       "source_file": "app/db/redis.py",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 0,
+      "community": 10,
       "norm_label": "get_redis()",
       "id": "app_db_redis_get_redis"
     },
@@ -2948,7 +3138,7 @@
       "source_file": "app/db/redis.py",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 0,
+      "community": 10,
       "norm_label": "fastapi \u110b\u1174\u110c\u1169\u11ab\u1109\u1165\u11bc. \u1110\u1166\u1109\u1173\u1110\u1173\u110b\u1166\u1109\u1165 override \u1100\u1161\u1102\u1173\u11bc\u1112\u1161\u1103\u1169\u1105\u1169\u11a8 \u1107\u116e\u11ab\u1105\u1175.",
       "id": "app_db_redis_rationale_16"
     },
@@ -3018,7 +3208,7 @@
       "source_file": "app/services/stt.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 39,
+      "community": 10,
       "norm_label": "stt.py",
       "id": "app_services_stt"
     },
@@ -3028,7 +3218,7 @@
       "source_file": "app/services/stt.py",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 39,
+      "community": 10,
       "norm_label": "_get_client()",
       "id": "app_services_stt_get_client"
     },
@@ -3038,7 +3228,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 39,
+      "community": 10,
       "norm_label": "asyncopenai",
       "id": "app_services_stt_py_asyncopenai"
     },
@@ -3048,7 +3238,7 @@
       "source_file": "app/services/stt.py",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 39,
+      "community": 10,
       "norm_label": "transcribe()",
       "id": "app_services_stt_transcribe"
     },
@@ -3058,7 +3248,7 @@
       "source_file": "app/services/stt.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 39,
+      "community": 10,
       "norm_label": "openai whisper stt \u1109\u1165\u1107\u1175\u1109\u1173 (f02_s05 \u110b\u1173\u11b7\u1109\u1165\u11bc \u1103\u1162\u11ba\u1100\u1173\u11af / \u110c\u1161\u1106\u1161\u11a8).  \u110b\u1166\u11ab\u1103\u1173\u1111\u1169\u110b\u1175\u11ab\u1110\u1173\u1102\u1173\u11ab `stt.transcribe(...)` \u1105\u1173\u11af \u1112\u1169\u110e\u116e\u11af\u1112\u1161\u11ab",
       "id": "app_services_stt_rationale_1"
     },
@@ -3068,7 +3258,7 @@
       "source_file": "app/services/stt.py",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 39,
+      "community": 10,
       "norm_label": "\u110b\u1169\u1103\u1175\u110b\u1169 \u1107\u1161\u110b\u1175\u1110\u1173 \u2192 \u1112\u1161\u11ab\u1100\u116e\u11a8\u110b\u1165 \u110c\u1165\u11ab\u1109\u1161 \u1110\u1166\u11a8\u1109\u1173\u1110\u1173. (\u1109\u1175\u11af\u110c\u1166 whisper \u1112\u1169\u110e\u116e\u11af)",
       "id": "app_services_stt_rationale_24"
     },
@@ -5206,7 +5396,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L79",
+      "source_location": "L81",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_api_v1_users_me",
@@ -5216,7 +5406,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L58",
+      "source_location": "L60",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_api_v1_users_me_out",
@@ -5226,7 +5416,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L84",
+      "source_location": "L86",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_api_v1_users_patch_me",
@@ -5236,7 +5426,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L125",
+      "source_location": "L127",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_api_v1_users_patch_settings",
@@ -5246,7 +5436,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L159",
+      "source_location": "L171",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_api_v1_users_public_profile",
@@ -5256,7 +5446,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L139",
+      "source_location": "L141",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_api_v1_users_put_mode",
@@ -5266,7 +5456,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L102",
+      "source_location": "L104",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_api_v1_users_put_tags",
@@ -5287,7 +5477,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L39",
+      "source_location": "L41",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_api_v1_users_reject_contact_in_bio",
@@ -5297,7 +5487,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L73",
+      "source_location": "L75",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_api_v1_users_tag_catalog",
@@ -5307,10 +5497,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L47",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_api_v1_users_user_tags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L161",
+      "weight": 1.0,
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_withdraw_me",
       "confidence_score": 1.0
     },
     {
@@ -5457,11 +5657,22 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "app_api_v1_users",
+      "target": "app_schemas_user_withdrawin",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L24",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_services_nickname",
@@ -5472,10 +5683,21 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "app_api_v1_users",
       "target": "app_services_relations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "app_api_v1_users",
+      "target": "app_services_withdrawal",
       "confidence_score": 1.0
     },
     {
@@ -5483,10 +5705,10 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L25",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "app_api_v1_users",
-      "target": "app_services_relations_is_blocked_either",
+      "target": "app_services_withdrawal_withdraw",
       "confidence_score": 1.0
     },
     {
@@ -5517,16 +5739,16 @@
       "source_file": "app/main.py",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_main",
-      "target": "app_api_v1_users",
-      "confidence_score": 1.0
+      "target": "app_api_v1_users"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L93",
+      "source_location": "L95",
       "weight": 1.0,
       "source": "app_api_v1_users_patch_me",
       "target": "app_api_v1_users_reject_contact_in_bio",
@@ -5537,7 +5759,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L80",
+      "source_location": "L82",
       "weight": 1.0,
       "source": "app_api_v1_users_me",
       "target": "app_api_v1_users_user_tags",
@@ -5548,7 +5770,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L98",
+      "source_location": "L100",
       "weight": 1.0,
       "source": "app_api_v1_users_patch_me",
       "target": "app_api_v1_users_user_tags",
@@ -5559,7 +5781,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L135",
+      "source_location": "L137",
       "weight": 1.0,
       "source": "app_api_v1_users_patch_settings",
       "target": "app_api_v1_users_user_tags",
@@ -5570,7 +5792,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L173",
+      "source_location": "L185",
       "weight": 1.0,
       "source": "app_api_v1_users_public_profile",
       "target": "app_api_v1_users_user_tags",
@@ -5581,7 +5803,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L155",
+      "source_location": "L157",
       "weight": 1.0,
       "source": "app_api_v1_users_put_mode",
       "target": "app_api_v1_users_user_tags",
@@ -5592,7 +5814,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L121",
+      "source_location": "L123",
       "weight": 1.0,
       "source": "app_api_v1_users_put_tags",
       "target": "app_api_v1_users_user_tags",
@@ -5603,7 +5825,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L47",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "app_api_v1_users_user_tags",
       "target": "app_api_v1_users_py_asyncsession",
@@ -5614,7 +5836,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L47",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "app_api_v1_users_user_tags",
       "target": "app_api_v1_users_py_uuid",
@@ -5625,7 +5847,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L47",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "app_api_v1_users_user_tags",
       "target": "app_schemas_user_tagout",
@@ -5636,7 +5858,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L79",
+      "source_location": "L81",
       "weight": 1.0,
       "source": "app_api_v1_users_me",
       "target": "app_api_v1_users_py_asyncsession",
@@ -5647,7 +5869,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L84",
+      "source_location": "L86",
       "weight": 1.0,
       "source": "app_api_v1_users_patch_me",
       "target": "app_api_v1_users_py_asyncsession",
@@ -5658,7 +5880,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L125",
+      "source_location": "L127",
       "weight": 1.0,
       "source": "app_api_v1_users_patch_settings",
       "target": "app_api_v1_users_py_asyncsession",
@@ -5669,7 +5891,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L159",
+      "source_location": "L171",
       "weight": 1.0,
       "source": "app_api_v1_users_public_profile",
       "target": "app_api_v1_users_py_asyncsession",
@@ -5680,7 +5902,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L139",
+      "source_location": "L141",
       "weight": 1.0,
       "source": "app_api_v1_users_put_mode",
       "target": "app_api_v1_users_py_asyncsession",
@@ -5691,7 +5913,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L102",
+      "source_location": "L104",
       "weight": 1.0,
       "source": "app_api_v1_users_put_tags",
       "target": "app_api_v1_users_py_asyncsession",
@@ -5702,7 +5924,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L73",
+      "source_location": "L75",
       "weight": 1.0,
       "source": "app_api_v1_users_tag_catalog",
       "target": "app_api_v1_users_py_asyncsession",
@@ -5713,7 +5935,18 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L159",
+      "source_location": "L161",
+      "weight": 1.0,
+      "source": "app_api_v1_users_withdraw_me",
+      "target": "app_api_v1_users_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L171",
       "weight": 1.0,
       "source": "app_api_v1_users_public_profile",
       "target": "app_api_v1_users_py_uuid",
@@ -5724,7 +5957,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L80",
+      "source_location": "L82",
       "weight": 1.0,
       "source": "app_api_v1_users_me",
       "target": "app_api_v1_users_me_out",
@@ -5732,10 +5965,21 @@
     },
     {
       "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "app_api_v1_users_me_out",
+      "target": "app_api_v1_users_py_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L58",
+      "source_location": "L60",
       "weight": 1.0,
       "source": "app_api_v1_users_me_out",
       "target": "app_schemas_user_meout",
@@ -5746,29 +5990,18 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L58",
+      "source_location": "L60",
       "weight": 1.0,
       "source": "app_api_v1_users_me_out",
       "target": "app_schemas_user_tagout",
       "confidence_score": 1.0
     },
     {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/users.py",
-      "source_location": "L58",
-      "weight": 1.0,
-      "source": "app_api_v1_users_me_out",
-      "target": "user",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L98",
+      "source_location": "L100",
       "weight": 1.0,
       "source": "app_api_v1_users_patch_me",
       "target": "app_api_v1_users_me_out",
@@ -5779,7 +6012,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L135",
+      "source_location": "L137",
       "weight": 1.0,
       "source": "app_api_v1_users_patch_settings",
       "target": "app_api_v1_users_me_out",
@@ -5790,7 +6023,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L155",
+      "source_location": "L157",
       "weight": 1.0,
       "source": "app_api_v1_users_put_mode",
       "target": "app_api_v1_users_me_out",
@@ -5801,7 +6034,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L121",
+      "source_location": "L123",
       "weight": 1.0,
       "source": "app_api_v1_users_put_tags",
       "target": "app_api_v1_users_me_out",
@@ -5812,10 +6045,10 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L79",
+      "source_location": "L81",
       "weight": 1.0,
       "source": "app_api_v1_users_me",
-      "target": "user",
+      "target": "app_api_v1_users_py_user",
       "confidence_score": 1.0
     },
     {
@@ -5823,10 +6056,10 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L84",
+      "source_location": "L86",
       "weight": 1.0,
       "source": "app_api_v1_users_patch_me",
-      "target": "user",
+      "target": "app_api_v1_users_py_user",
       "confidence_score": 1.0
     },
     {
@@ -5834,10 +6067,10 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L125",
+      "source_location": "L127",
       "weight": 1.0,
       "source": "app_api_v1_users_patch_settings",
-      "target": "user",
+      "target": "app_api_v1_users_py_user",
       "confidence_score": 1.0
     },
     {
@@ -5845,10 +6078,10 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L159",
+      "source_location": "L171",
       "weight": 1.0,
       "source": "app_api_v1_users_public_profile",
-      "target": "user",
+      "target": "app_api_v1_users_py_user",
       "confidence_score": 1.0
     },
     {
@@ -5856,10 +6089,10 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L139",
+      "source_location": "L141",
       "weight": 1.0,
       "source": "app_api_v1_users_put_mode",
-      "target": "user",
+      "target": "app_api_v1_users_py_user",
       "confidence_score": 1.0
     },
     {
@@ -5867,10 +6100,21 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L102",
+      "source_location": "L104",
       "weight": 1.0,
       "source": "app_api_v1_users_put_tags",
-      "target": "user",
+      "target": "app_api_v1_users_py_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L161",
+      "weight": 1.0,
+      "source": "app_api_v1_users_withdraw_me",
+      "target": "app_api_v1_users_py_user",
       "confidence_score": 1.0
     },
     {
@@ -5879,7 +6123,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/api/v1/users.py",
-      "source_location": "L75",
+      "source_location": "L77",
       "weight": 1.0,
       "source": "app_api_v1_users_tag_catalog",
       "target": "app_schemas_user_tagcatalogout"
@@ -5889,7 +6133,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L75",
+      "source_location": "L77",
       "weight": 1.0,
       "source": "app_api_v1_users_tag_catalog",
       "target": "app_schemas_user_tagout",
@@ -5900,7 +6144,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L84",
+      "source_location": "L86",
       "weight": 1.0,
       "source": "app_api_v1_users_patch_me",
       "target": "app_schemas_user_profilepatchin",
@@ -5911,7 +6155,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L102",
+      "source_location": "L104",
       "weight": 1.0,
       "source": "app_api_v1_users_put_tags",
       "target": "app_schemas_user_tagsputin",
@@ -5922,7 +6166,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L125",
+      "source_location": "L127",
       "weight": 1.0,
       "source": "app_api_v1_users_patch_settings",
       "target": "app_schemas_user_settingspatchin",
@@ -5933,171 +6177,61 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/users.py",
-      "source_location": "L139",
+      "source_location": "L141",
       "weight": 1.0,
       "source": "app_api_v1_users_put_mode",
       "target": "app_schemas_user_modeputin",
       "confidence_score": 1.0
     },
     {
-      "relation": "calls",
-      "context": "call",
+      "relation": "rationale_for",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/api/v1/users.py",
-      "source_location": "L168",
-      "weight": 1.0,
-      "source": "app_api_v1_users_public_profile",
-      "target": "app_schemas_user_publicprofileout"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
       "source_file": "app/api/v1/users.py",
       "source_location": "L166",
       "weight": 1.0,
-      "source": "app_api_v1_users_public_profile",
-      "target": "app_services_relations_is_blocked_either"
-    },
-    {
-      "relation": "imports_from",
-      "context": "submodule_import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/main.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "app_main",
-      "target": "app_api_v1_auth",
+      "source": "app_api_v1_users_rationale_166",
+      "target": "app_api_v1_users_withdraw_me",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "submodule_import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/main.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "app_main",
-      "target": "app_api_v1_health",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/main.py",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "app_main",
-      "target": "app_core_config",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/main.py",
-      "source_location": "L37",
-      "weight": 1.0,
-      "source": "app_main",
-      "target": "app_main_lifespan",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/main.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "app_main",
-      "target": "fastapi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/conftest.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_conftest",
-      "target": "app_main"
     },
     {
       "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
-      "source_file": "app/main.py",
-      "source_location": "L37",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L161",
       "weight": 1.0,
-      "source": "app_main_lifespan",
-      "target": "fastapi",
+      "source": "app_api_v1_users_withdraw_me",
+      "target": "app_schemas_user_withdrawin",
       "confidence_score": 1.0
     },
     {
-      "relation": "imports_from",
-      "context": "import",
+      "relation": "calls",
+      "context": "call",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L12",
-      "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "fastapi"
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L167",
+      "weight": 1.0,
+      "source": "app_api_v1_users_withdraw_me",
+      "target": "app_services_withdrawal_withdraw"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
+      "relation": "calls",
+      "context": "call",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/health.py",
-      "source_location": "L1",
-      "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "app_api_v1_health",
-      "target": "fastapi"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/core/deps.py",
-      "source_location": "L3",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L180",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_core_deps",
-      "target": "fastapi"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/services/nickname.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_services_nickname",
-      "target": "fastapi"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/services/oauth.py",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_services_oauth",
-      "target": "fastapi"
+      "source": "app_api_v1_users_public_profile",
+      "target": "app_schemas_user_publicprofileout"
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "app_schemas_user",
       "target": "app_core_enums",
@@ -6107,7 +6241,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "app_schemas_user",
       "target": "app_schemas_user_meout",
@@ -6117,7 +6251,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0,
       "source": "app_schemas_user",
       "target": "app_schemas_user_modeputin",
@@ -6127,7 +6261,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L42",
+      "source_location": "L43",
       "weight": 1.0,
       "source": "app_schemas_user",
       "target": "app_schemas_user_profilepatchin",
@@ -6137,7 +6271,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "app_schemas_user",
       "target": "app_schemas_user_publicprofileout",
@@ -6147,7 +6281,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "source": "app_schemas_user",
       "target": "app_schemas_user_settingspatchin",
@@ -6157,7 +6291,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "app_schemas_user",
       "target": "app_schemas_user_tagcatalogout",
@@ -6167,7 +6301,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "app_schemas_user",
       "target": "app_schemas_user_tagout",
@@ -6177,10 +6311,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L48",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "app_schemas_user",
       "target": "app_schemas_user_tagsputin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "app_schemas_user",
+      "target": "app_schemas_user_withdrawin",
       "confidence_score": 1.0
     },
     {
@@ -6198,7 +6342,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "app_schemas_user_tagout",
       "target": "basemodel",
@@ -6268,7 +6412,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "app_schemas_user_meout",
       "target": "basemodel",
@@ -6278,7 +6422,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0,
       "source": "app_schemas_user_modeputin",
       "target": "basemodel",
@@ -6288,7 +6432,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L42",
+      "source_location": "L43",
       "weight": 1.0,
       "source": "app_schemas_user_profilepatchin",
       "target": "basemodel",
@@ -6298,7 +6442,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "app_schemas_user_publicprofileout",
       "target": "basemodel",
@@ -6308,7 +6452,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "source": "app_schemas_user_settingspatchin",
       "target": "basemodel",
@@ -6318,7 +6462,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "app_schemas_user_tagcatalogout",
       "target": "basemodel",
@@ -6328,9 +6472,19 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L48",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "app_schemas_user_tagsputin",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "app_schemas_user_withdrawin",
       "target": "basemodel",
       "confidence_score": 1.0
     },
@@ -6338,9 +6492,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0,
-      "source": "app_schemas_user_rationale_19",
+      "source": "app_schemas_user_rationale_20",
       "target": "app_schemas_user_meout",
       "confidence_score": 1.0
     },
@@ -6348,11 +6502,441 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "app/schemas/user.py",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0,
-      "source": "app_schemas_user_rationale_33",
+      "source": "app_schemas_user_rationale_34",
       "target": "app_schemas_user_publicprofileout",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "app_schemas_user_rationale_63",
+      "target": "app_schemas_user_withdrawin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "app_services_withdrawal",
+      "target": "app_models_post",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "app_services_withdrawal",
+      "target": "app_models_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "app_services_withdrawal",
+      "target": "app_services_oauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "app_services_withdrawal",
+      "target": "app_services_withdrawal_withdraw",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "app_services_withdrawal",
+      "target": "uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "app_services_withdrawal_rationale_1",
+      "target": "app_services_withdrawal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "app_services_withdrawal_withdraw",
+      "target": "app_services_withdrawal_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "app_services_withdrawal_withdraw",
+      "target": "app_services_withdrawal_py_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/withdrawal.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "app_services_withdrawal_withdraw",
+      "target": "postsaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal",
+      "target": "app_core_pairs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal",
+      "target": "app_models_post",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal",
+      "target": "app_models_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal",
+      "target": "tests_conftest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal",
+      "target": "tests_test_withdrawal_make_chat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal",
+      "target": "tests_test_withdrawal_make_post",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal",
+      "target": "tests_test_withdrawal_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal",
+      "target": "tests_test_withdrawal_test_withdraw_anonymize_keeps_posts_and_chat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal",
+      "target": "tests_test_withdrawal_test_withdraw_delete_removes_posts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal",
+      "target": "tests_test_withdrawal_test_withdraw_invalidates_token_and_blocks_rejoin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal_rationale_1",
+      "target": "tests_test_withdrawal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal_make_post",
+      "target": "tests_test_withdrawal_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal_test_withdraw_anonymize_keeps_posts_and_chat",
+      "target": "tests_test_withdrawal_make_post",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal_test_withdraw_delete_removes_posts",
+      "target": "tests_test_withdrawal_make_post",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal_make_chat",
+      "target": "tests_test_withdrawal_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal_test_withdraw_anonymize_keeps_posts_and_chat",
+      "target": "tests_test_withdrawal_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal_test_withdraw_delete_removes_posts",
+      "target": "tests_test_withdrawal_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_withdrawal.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "tests_test_withdrawal_test_withdraw_anonymize_keeps_posts_and_chat",
+      "target": "tests_test_withdrawal_make_chat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_main",
+      "target": "app_api_v1_auth"
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_main",
+      "target": "app_api_v1_health"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_main",
+      "target": "app_core_config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_main",
+      "target": "app_main_lifespan"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_main",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/conftest.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_conftest",
+      "target": "app_main"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_main_lifespan",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/health.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_health",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/core/deps.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_core_deps",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/nickname.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_services_nickname",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/oauth.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_services_oauth",
+      "target": "fastapi"
     },
     {
       "relation": "imports_from",
@@ -6361,9 +6945,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations",
-      "target": "app_core_enums",
-      "confidence_score": 1.0
+      "target": "app_core_enums"
     },
     {
       "relation": "imports_from",
@@ -6372,9 +6956,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations",
-      "target": "app_core_pairs",
-      "confidence_score": 1.0
+      "target": "app_core_pairs"
     },
     {
       "relation": "contains",
@@ -6382,9 +6966,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations",
-      "target": "app_services_relations_are_friends",
-      "confidence_score": 1.0
+      "target": "app_services_relations_are_friends"
     },
     {
       "relation": "contains",
@@ -6392,9 +6976,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations",
-      "target": "app_services_relations_block_user",
-      "confidence_score": 1.0
+      "target": "app_services_relations_block_user"
     },
     {
       "relation": "contains",
@@ -6402,9 +6986,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations",
-      "target": "app_services_relations_is_blocked_either",
-      "confidence_score": 1.0
+      "target": "app_services_relations_is_blocked_either"
     },
     {
       "relation": "imports",
@@ -6413,9 +6997,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations",
-      "target": "app_services_relations_py_uuid",
-      "confidence_score": 1.0
+      "target": "app_services_relations_py_uuid"
     },
     {
       "relation": "rationale_for",
@@ -6423,9 +7007,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations_rationale_1",
-      "target": "app_services_relations",
-      "confidence_score": 1.0
+      "target": "app_services_relations"
     },
     {
       "relation": "references",
@@ -6434,9 +7018,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations_are_friends",
-      "target": "app_services_relations_py_asyncsession",
-      "confidence_score": 1.0
+      "target": "app_services_relations_py_asyncsession"
     },
     {
       "relation": "references",
@@ -6445,9 +7029,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations_are_friends",
-      "target": "app_services_relations_py_uuid",
-      "confidence_score": 1.0
+      "target": "app_services_relations_py_uuid"
     },
     {
       "relation": "references",
@@ -6456,9 +7040,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations_block_user",
-      "target": "app_services_relations_py_asyncsession",
-      "confidence_score": 1.0
+      "target": "app_services_relations_py_asyncsession"
     },
     {
       "relation": "references",
@@ -6467,9 +7051,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations_is_blocked_either",
-      "target": "app_services_relations_py_asyncsession",
-      "confidence_score": 1.0
+      "target": "app_services_relations_py_asyncsession"
     },
     {
       "relation": "references",
@@ -6478,9 +7062,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations_block_user",
-      "target": "app_services_relations_py_uuid",
-      "confidence_score": 1.0
+      "target": "app_services_relations_py_uuid"
     },
     {
       "relation": "references",
@@ -6489,9 +7073,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations_is_blocked_either",
-      "target": "app_services_relations_py_uuid",
-      "confidence_score": 1.0
+      "target": "app_services_relations_py_uuid"
     },
     {
       "relation": "rationale_for",
@@ -6499,9 +7083,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations_rationale_24",
-      "target": "app_services_relations_is_blocked_either",
-      "confidence_score": 1.0
+      "target": "app_services_relations_is_blocked_either"
     },
     {
       "relation": "rationale_for",
@@ -6509,9 +7093,9 @@
       "source_file": "app/services/relations.py",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_relations_rationale_39",
-      "target": "app_services_relations_block_user",
-      "confidence_score": 1.0
+      "target": "app_services_relations_block_user"
     },
     {
       "relation": "imports_from",
@@ -6520,9 +7104,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_users",
-      "target": "tests_conftest",
-      "confidence_score": 1.0
+      "target": "tests_conftest"
     },
     {
       "relation": "contains",
@@ -6530,9 +7114,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_users",
-      "target": "tests_test_users_test_me_includes_profile_and_derived_minor",
-      "confidence_score": 1.0
+      "target": "tests_test_users_test_me_includes_profile_and_derived_minor"
     },
     {
       "relation": "contains",
@@ -6540,9 +7124,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_users",
-      "target": "tests_test_users_test_mode_change_records_history",
-      "confidence_score": 1.0
+      "target": "tests_test_users_test_mode_change_records_history"
     },
     {
       "relation": "contains",
@@ -6550,9 +7134,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_users",
-      "target": "tests_test_users_test_patch_me_rejects_contact_in_bio",
-      "confidence_score": 1.0
+      "target": "tests_test_users_test_patch_me_rejects_contact_in_bio"
     },
     {
       "relation": "contains",
@@ -6560,9 +7144,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_users",
-      "target": "tests_test_users_test_public_profile_hides_mode_and_birth",
-      "confidence_score": 1.0
+      "target": "tests_test_users_test_public_profile_hides_mode_and_birth"
     },
     {
       "relation": "contains",
@@ -6570,9 +7154,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_users",
-      "target": "tests_test_users_test_settings_update",
-      "confidence_score": 1.0
+      "target": "tests_test_users_test_settings_update"
     },
     {
       "relation": "contains",
@@ -6580,9 +7164,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_users",
-      "target": "tests_test_users_test_tags_catalog_and_replace",
-      "confidence_score": 1.0
+      "target": "tests_test_users_test_tags_catalog_and_replace"
     },
     {
       "relation": "rationale_for",
@@ -6590,9 +7174,9 @@
       "source_file": "tests/test_users.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_users_rationale_1",
-      "target": "tests_test_users",
-      "confidence_score": 1.0
+      "target": "tests_test_users"
     },
     {
       "relation": "contains",
@@ -12960,5 +13544,5 @@
       "source_file": "docker-compose.yml"
     }
   ],
-  "built_at_commit": "33d0c3461fadcf3edd58e3592b95372bf9075cb2"
+  "built_at_commit": "69e25f9c2a4cab09b0523e73357e6c19341f4758"
 }

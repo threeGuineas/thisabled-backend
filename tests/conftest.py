@@ -58,14 +58,5 @@ async def client():
     await engine.dispose()
 
 
-async def register(client: AsyncClient, nickname: str, password: str = "pass1234") -> dict:
-    """가입 헬퍼 → signup 응답 JSON 반환 (access_token, user_id, recovery_code)."""
-    resp = await client.post(
-        "/api/v1/auth/signup", json={"nickname": nickname, "password": password}
-    )
-    assert resp.status_code == 201, resp.text
-    return resp.json()
-
-
 def auth_header(token: str) -> dict:
     return {"Authorization": f"Bearer {token}"}

@@ -1,111 +1,127 @@
-<mxfile host="app.diagrams.net" version="24.0.0">
-  <diagram name="기능 처리도 (S2)" id="thisabled-funcflow">
-    <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+<mxfile host="app.diagrams.net" agent="thisabled-backend" version="24.0.0">
+  <diagram id="flow-signup" name="① 가입 (OAuth)">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" page="1" pageWidth="850" pageHeight="1100">
       <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-
-        <mxCell id="title" value="ThisAbled — 기능 처리도 (S2): 인증·온보딩 / 이미지 해설 / 음성 전사" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="180" y="10" width="780" height="30" as="geometry" />
-        </mxCell>
-
-        <!-- ===== Flow A: 가입·온보딩 ===== -->
-        <mxCell id="aT" value="① 회원가입 · 온보딩 (F01·F02)" style="text;html=1;align=center;fontStyle=1;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="40" y="50" width="300" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="a0" value="시작" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="80" y="80" width="120" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="a1" value="회원가입&#10;POST /auth/signup&#10;(닉네임·비밀번호)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="60" y="140" width="160" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="a2" value="닉네임 사용 가능?&#10;(중복·금칙어·형식)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="55" y="215" width="170" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="aErr" value="오류 반환&#10;(409/422)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="255" y="235" width="100" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="a3" value="복구코드 발급 + JWT&#10;(access 24h / refresh 30일)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="60" y="330" width="160" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="a4" value="온보딩: 모드 선택&#10;PUT /users/me/mode&#10;(이력 기록)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="60" y="405" width="160" height="55" as="geometry" />
-        </mxCell>
-        <mxCell id="a5" value="메인 피드&#10;(모드 settings 적용)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="70" y="485" width="140" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="ae0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a0" target="a1"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ae1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a1" target="a2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ae2" value="아니오" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a2" target="aErr"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ae3" value="예" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a2" target="a3"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ae4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a3" target="a4"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ae5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="a4" target="a5"><mxGeometry relative="1" as="geometry" /></mxCell>
-
-        <!-- ===== Flow B: 이미지 해설 ===== -->
-        <mxCell id="bT" value="② 시각장애 이미지 해설 (F02_S04, GPT-4o Vision)" style="text;html=1;align=center;fontStyle=1;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="400" y="50" width="360" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="b0" value="이미지 해설 요청" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="440" y="80" width="150" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="b1" value="POST /vision/describe&#10;(image_url, 인증 필수)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="415" y="140" width="200" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="b2" value="이미지 로드 + sha256 해시" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="415" y="205" width="200" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="b3" value="Redis 캐시 HIT?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="445" y="260" width="140" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="bCache" value="캐시 텍스트 반환&#10;(GPT 호출 0)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="630" y="270" width="130" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="b4" value="GPT-4o Vision 호출&#10;한국어 50~150자 해설" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
-          <mxGeometry x="415" y="360" width="200" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="b5" value="Redis 24h 캐싱&#10;(동일 이미지 재호출 방지)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="415" y="425" width="200" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="b6" value="해설 텍스트 반환&#10;→ TTS (프론트 Web Speech)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="430" y="500" width="170" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="be0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b0" target="b1"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="be1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b1" target="b2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="be2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b2" target="b3"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="be3" value="예" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b3" target="bCache"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="be4" value="아니오" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b3" target="b4"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="be5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b4" target="b5"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="be6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="b5" target="b6"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="be7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="bCache" target="b6"><mxGeometry relative="1" as="geometry" /></mxCell>
-
-        <!-- ===== Flow C: 음성 전사 ===== -->
-        <mxCell id="cT" value="③ 음성 댓글 전사 (F02_S05, Whisper)" style="text;html=1;align=center;fontStyle=1;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="790" y="50" width="320" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="c0" value="음성 녹음" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="830" y="80" width="140" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="c1" value="POST /stt/transcribe&#10;(오디오 multipart, 인증)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="800" y="140" width="200" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="c2" value="형식·크기 OK?&#10;(mp3/wav/webm…, ≤25MB)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="810" y="210" width="180" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="cErr" value="오류 반환&#10;(415 / 413)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="1020" y="230" width="110" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="c3" value="Whisper-1 전사&#10;(language=ko)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
-          <mxGeometry x="800" y="325" width="200" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="c4" value="댓글 텍스트 반환" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="830" y="400" width="140" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="ce0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c0" target="c1"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c1" target="c2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce2" value="아니오" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c2" target="cErr"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce3" value="예" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c2" target="c3"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="ce4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="c3" target="c4"><mxGeometry relative="1" as="geometry" /></mxCell>
-
+        <mxCell id="0" /><mxCell id="1" parent="0" />
+        <mxCell id="s1" value="시작 화면 — 카카오/구글로 시작하기" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="280" y="40" width="280" height="50" as="geometry" /></mxCell>
+        <mxCell id="s2" value="GET /auth/{provider}/authorize → 제공자 로그인·동의" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="130" width="280" height="50" as="geometry" /></mxCell>
+        <mxCell id="s3" value="GET /auth/{provider}/callback?code=" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="220" width="280" height="50" as="geometry" /></mxCell>
+        <mxCell id="s4" value="기가입 소셜 계정?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="320" y="310" width="200" height="70" as="geometry" /></mxCell>
+        <mxCell id="s5" value="즉시 로그인&#10;access_token + refresh 쿠키 → 홈 피드" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="600" y="310" width="220" height="70" as="geometry" /></mxCell>
+        <mxCell id="s6" value="signup_token(30분) 발급 → 추가 정보 입력&#10;닉네임 · 생년월일 · UI 모드 · 약관 3종 동의" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="260" y="430" width="320" height="60" as="geometry" /></mxCell>
+        <mxCell id="s7" value="만 14세 이상?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="330" y="530" width="180" height="70" as="geometry" /></mxCell>
+        <mxCell id="s8" value="가입 중단 — 연령 제한 안내 (400)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1"><mxGeometry x="600" y="540" width="220" height="50" as="geometry" /></mxCell>
+        <mxCell id="s9" value="탈퇴 후 30일 이내 재가입?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="320" y="640" width="200" height="70" as="geometry" /></mxCell>
+        <mxCell id="s10" value="재가입 제한 안내 (403)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1"><mxGeometry x="600" y="650" width="220" height="50" as="geometry" /></mxCell>
+        <mxCell id="s11" value="닉네임 2~12자 · 중복(409) · 금칙어(400) 검증" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="750" width="280" height="50" as="geometry" /></mxCell>
+        <mxCell id="s12" value="가입 완료 (201) — 미성년이면 비친구 요청 기본 차단&#10;users + social_identities 생성 → 홈 피드" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="260" y="840" width="320" height="70" as="geometry" /></mxCell>
+        <mxCell id="se1" style="endArrow=classic;html=1;" edge="1" parent="1" source="s1" target="s2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="se2" style="endArrow=classic;html=1;" edge="1" parent="1" source="s2" target="s3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="se3" style="endArrow=classic;html=1;" edge="1" parent="1" source="s3" target="s4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="se4" value="예" style="endArrow=classic;html=1;" edge="1" parent="1" source="s4" target="s5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="se5" value="아니오 (신규)" style="endArrow=classic;html=1;" edge="1" parent="1" source="s4" target="s6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="se6" style="endArrow=classic;html=1;" edge="1" parent="1" source="s6" target="s7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="se7" value="아니오" style="endArrow=classic;html=1;" edge="1" parent="1" source="s7" target="s8"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="se8" value="예" style="endArrow=classic;html=1;" edge="1" parent="1" source="s7" target="s9"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="se9" value="예" style="endArrow=classic;html=1;" edge="1" parent="1" source="s9" target="s10"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="se10" value="아니오" style="endArrow=classic;html=1;" edge="1" parent="1" source="s9" target="s11"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="se11" style="endArrow=classic;html=1;" edge="1" parent="1" source="s11" target="s12"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="flow-video" name="② 영상 게시물 수명주기">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" page="1" pageWidth="850" pageHeight="1100">
+      <root>
+        <mxCell id="0" /><mxCell id="1" parent="0" />
+        <mxCell id="v1" value="영상 첨부 — POST /media/videos&#10;(≤200MB · ≤3분 · 일 5회 차감)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="280" y="40" width="280" height="60" as="geometry" /></mxCell>
+        <mxCell id="v2" value="processing 내부 드래프트 post 생성&#10;+ 자막 생성 시작 (Whisper, 해시 캐싱)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="140" width="280" height="60" as="geometry" /></mxCell>
+        <mxCell id="v3" value="자막 생성 성공?&#10;(재시도 최대 2회)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="320" y="240" width="200" height="80" as="geometry" /></mxCell>
+        <mxCell id="v4" value="게시 버튼 활성 — 사용자가 직접 게시 실행&#10;POST /posts/{id}/publish" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="120" y="370" width="280" height="60" as="geometry" /></mxCell>
+        <mxCell id="v5" value="일일 횟수 차감 복원 →&#10;다시 시도 / 자막 없이 게시 선택" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1"><mxGeometry x="540" y="370" width="260" height="60" as="geometry" /></mxCell>
+        <mxCell id="v6" value="published 전환 + 이 시점에 사진 설명 생성&#10;(자막 없이 게시 시 '자막 없음' 라벨)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="260" y="480" width="320" height="70" as="geometry" /></mxCell>
+        <mxCell id="v7" value="24시간 미게시 드래프트&#10;→ 영상·자막과 함께 자동 삭제 (횟수 복원 없음)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;dashed=1;" vertex="1" parent="1"><mxGeometry x="540" y="140" width="260" height="60" as="geometry" /></mxCell>
+        <mxCell id="v8" value="AI 처리 결과가 게시를 대신 실행하지 않음 —&#10;공개는 항상 사용자의 게시 실행 (§20-4)" style="text;html=1;align=left;fontSize=11;fontColor=#666666;" vertex="1" parent="1"><mxGeometry x="120" y="580" width="400" height="40" as="geometry" /></mxCell>
+        <mxCell id="ve1" style="endArrow=classic;html=1;" edge="1" parent="1" source="v1" target="v2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ve2" style="endArrow=classic;html=1;" edge="1" parent="1" source="v2" target="v3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ve3" value="성공" style="endArrow=classic;html=1;" edge="1" parent="1" source="v3" target="v4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ve4" value="실패 (소진)" style="endArrow=classic;html=1;" edge="1" parent="1" source="v3" target="v5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ve5" style="endArrow=classic;html=1;" edge="1" parent="1" source="v4" target="v6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ve6" value="자막 없이 게시" style="endArrow=classic;html=1;dashed=1;" edge="1" parent="1" source="v5" target="v6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ve7" value="미게시 24h" style="endArrow=classic;html=1;dashed=1;" edge="1" parent="1" source="v2" target="v7"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="flow-safe" name="③ 채팅 SAFE 파이프라인">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" page="1" pageWidth="850" pageHeight="1100">
+      <root>
+        <mxCell id="0" /><mxCell id="1" parent="0" />
+        <mxCell id="f1" value="발신자 A → 수신자 B 텍스트 전송&#10;POST /chat/rooms/{id}/messages" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="280" y="40" width="280" height="60" as="geometry" /></mxCell>
+        <mxCell id="f2" value="A→B 전송 제한 활성? (SAFE-05)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="310" y="140" width="220" height="70" as="geometry" /></mxCell>
+        <mxCell id="f3" value="403 '메시지를 보낼 수 없습니다'&#10;(사유 비노출)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1"><mxGeometry x="600" y="150" width="220" height="50" as="geometry" /></mxCell>
+        <mxCell id="f4" value="자체 안전 모델 동기 분석 (timeout 2s)&#10;미성년 수신자는 민감 임계값" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="250" width="280" height="60" as="geometry" /></mxCell>
+        <mxCell id="f5" value="판정" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="360" y="350" width="120" height="60" as="geometry" /></mxCell>
+        <mxCell id="f6" value="safe — 그대로 전달" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="80" y="450" width="180" height="50" as="geometry" /></mxCell>
+        <mxCell id="f7" value="flagged — 블러 상태로 전달&#10;'내용 보기'·'차단' 제공 (수신자에게만)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;" vertex="1" parent="1"><mxGeometry x="300" y="450" width="250" height="60" as="geometry" /></mxCell>
+        <mxCell id="f8" value="모델 장애 (§18.3)&#10;친구 방: unanalyzed 표시 후 전달&#10;비친구 요청: pending 보류" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1"><mxGeometry x="600" y="440" width="230" height="80" as="geometry" /></mxCell>
+        <mxCell id="f9" value="최근 3일 내 A→B flagged ≥ 3회?&#10;(해제 이후만 집계, 열람 메시지 포함)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="290" y="560" width="270" height="90" as="geometry" /></mxCell>
+        <mxCell id="f10" value="A→B 전송 제한 생성 + B에게 안내&#10;'위험 가능성이 있는 메시지가 반복되어 전송을 제한했어요'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1"><mxGeometry x="260" y="700" width="320" height="60" as="geometry" /></mxCell>
+        <mxCell id="f11" value="B가 채팅방에서 직접 해제 가능&#10;→ released_at 기록 = 누적 카운터 리셋" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="260" y="800" width="320" height="60" as="geometry" /></mxCell>
+        <mxCell id="f12" value="복구 후 미분석 재분석 → flagged면 소급 블러+알림" style="text;html=1;align=left;fontSize=11;fontColor=#666666;" vertex="1" parent="1"><mxGeometry x="600" y="540" width="240" height="40" as="geometry" /></mxCell>
+        <mxCell id="fe1" style="endArrow=classic;html=1;" edge="1" parent="1" source="f1" target="f2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fe2" value="예" style="endArrow=classic;html=1;" edge="1" parent="1" source="f2" target="f3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fe3" value="아니오" style="endArrow=classic;html=1;" edge="1" parent="1" source="f2" target="f4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fe4" style="endArrow=classic;html=1;" edge="1" parent="1" source="f4" target="f5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fe5" value="safe" style="endArrow=classic;html=1;" edge="1" parent="1" source="f5" target="f6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fe6" value="flagged" style="endArrow=classic;html=1;" edge="1" parent="1" source="f5" target="f7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fe7" value="장애·지연" style="endArrow=classic;html=1;dashed=1;" edge="1" parent="1" source="f5" target="f8"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fe8" style="endArrow=classic;html=1;" edge="1" parent="1" source="f7" target="f9"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fe9" value="예" style="endArrow=classic;html=1;" edge="1" parent="1" source="f9" target="f10"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fe10" style="endArrow=classic;html=1;" edge="1" parent="1" source="f10" target="f11"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="flow-request" name="④ 비친구 메시지 요청">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" page="1" pageWidth="850" pageHeight="1100">
+      <root>
+        <mxCell id="0" /><mxCell id="1" parent="0" />
+        <mxCell id="r1" value="비친구 A가 B에게 첫 메시지 시도" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="280" y="40" width="280" height="50" as="geometry" /></mxCell>
+        <mxCell id="r2" value="B가 비친구 요청 허용?&#10;+ B 미성년 &amp; A 성인 아님?&#10;+ 차단 관계 아님?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="300" y="130" width="240" height="100" as="geometry" /></mxCell>
+        <mxCell id="r3" value="404 '요청을 보낼 수 없는 상대입니다'&#10;(미성년 여부 등 사유 비노출 — CHAT-02)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1"><mxGeometry x="600" y="150" width="230" height="60" as="geometry" /></mxCell>
+        <mxCell id="r4" value="request 상태 방 생성&#10;수락 전 텍스트 1건만 (사진·동영상 불가)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="280" y="280" width="280" height="60" as="geometry" /></mxCell>
+        <mxCell id="r5" value="안전 분석 완료 후에만 요청함 표시 (동기)&#10;지연 시 '안전 확인 중' 보류 — flagged면 블러" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;" vertex="1" parent="1"><mxGeometry x="280" y="380" width="280" height="60" as="geometry" /></mxCell>
+        <mxCell id="r6" value="수신자 B의 선택" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="330" y="480" width="180" height="70" as="geometry" /></mxCell>
+        <mxCell id="r7" value="수락 → active 일반 채팅 전환" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="120" y="600" width="220" height="60" as="geometry" /></mxCell>
+        <mxCell id="r8" value="차단 → BLOCK-01 상호 접점 제거" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1"><mxGeometry x="500" y="600" width="220" height="60" as="geometry" /></mxCell>
+        <mxCell id="re1" style="endArrow=classic;html=1;" edge="1" parent="1" source="r1" target="r2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="re2" value="불가" style="endArrow=classic;html=1;" edge="1" parent="1" source="r2" target="r3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="re3" value="가능" style="endArrow=classic;html=1;" edge="1" parent="1" source="r2" target="r4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="re4" style="endArrow=classic;html=1;" edge="1" parent="1" source="r4" target="r5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="re5" style="endArrow=classic;html=1;" edge="1" parent="1" source="r5" target="r6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="re6" value="수락" style="endArrow=classic;html=1;" edge="1" parent="1" source="r6" target="r7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="re7" value="차단" style="endArrow=classic;html=1;" edge="1" parent="1" source="r6" target="r8"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="flow-block-withdraw" name="⑤ 차단·탈퇴">
+    <mxGraphModel dx="1000" dy="700" grid="1" gridSize="10" page="1" pageWidth="850" pageHeight="1100">
+      <root>
+        <mxCell id="0" /><mxCell id="1" parent="0" />
+        <mxCell id="b1" value="차단 실행 (BLOCK-01)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="120" y="40" width="220" height="50" as="geometry" /></mxCell>
+        <mxCell id="b2" value="친구 관계 해제 + 진행 중 요청 취소&#10;게시물·프로필·채팅·추천 상호 제거" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="90" y="130" width="280" height="60" as="geometry" /></mxCell>
+        <mxCell id="b3" value="차단은 SAFE-05 전송 제한보다 우선" style="text;html=1;align=left;fontSize=11;fontColor=#666666;" vertex="1" parent="1"><mxGeometry x="90" y="210" width="280" height="30" as="geometry" /></mxCell>
+        <mxCell id="w1" value="회원 탈퇴 (§15) — 확인 단계" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1"><mxGeometry x="500" y="40" width="240" height="50" as="geometry" /></mxCell>
+        <mxCell id="w2" value="게시물·댓글 처리 선택" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1"><mxGeometry x="520" y="130" width="200" height="70" as="geometry" /></mxCell>
+        <mxCell id="w3" value="익명화 — '탈퇴한 사용자'로 유지" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="420" y="250" width="190" height="50" as="geometry" /></mxCell>
+        <mxCell id="w4" value="삭제 — 게시물·댓글 함께 삭제" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="640" y="250" width="190" height="50" as="geometry" /></mxCell>
+        <mxCell id="w5" value="공통 처리&#10;· 채팅 메시지 유지 + 발신자 '탈퇴한 사용자' 익명화&#10;· 좋아요·친구·진행 중 요청 삭제&#10;· SAFE-04 위험 점수·SAFE-05 제한 삭제&#10;· 소셜 unlink + withdrawn_socials 기록" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1"><mxGeometry x="480" y="340" width="320" height="110" as="geometry" /></mxCell>
+        <mxCell id="w6" value="계정·프로필 즉시 삭제 (hard delete)&#10;동일 소셜 계정 30일 재가입 제한" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1"><mxGeometry x="500" y="490" width="280" height="70" as="geometry" /></mxCell>
+        <mxCell id="be1" style="endArrow=classic;html=1;" edge="1" parent="1" source="b1" target="b2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="we1" style="endArrow=classic;html=1;" edge="1" parent="1" source="w1" target="w2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="we2" value="익명화" style="endArrow=classic;html=1;" edge="1" parent="1" source="w2" target="w3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="we3" value="삭제" style="endArrow=classic;html=1;" edge="1" parent="1" source="w2" target="w4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="we4" style="endArrow=classic;html=1;" edge="1" parent="1" source="w3" target="w5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="we5" style="endArrow=classic;html=1;" edge="1" parent="1" source="w4" target="w5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="we6" style="endArrow=classic;html=1;" edge="1" parent="1" source="w5" target="w6"><mxGeometry relative="1" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>

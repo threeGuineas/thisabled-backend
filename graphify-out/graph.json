@@ -20,64 +20,34 @@
   },
   "nodes": [
     {
-      "label": "auth.py",
+      "label": "users.py",
       "file_type": "code",
-      "source_file": "app/api/v1/auth.py",
+      "source_file": "app/api/v1/users.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "app_api_v1_auth",
+      "id": "app_api_v1_users",
       "community": 1,
-      "norm_label": "auth.py"
+      "norm_label": "users.py"
     },
     {
-      "label": "_set_refresh_cookie()",
+      "label": "_reject_contact_in_bio()",
       "file_type": "code",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L37",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L39",
       "_origin": "ast",
-      "id": "app_api_v1_auth_set_refresh_cookie",
+      "id": "app_api_v1_users_reject_contact_in_bio",
       "community": 1,
-      "norm_label": "_set_refresh_cookie()"
+      "norm_label": "_reject_contact_in_bio()"
     },
     {
-      "label": "Response",
+      "label": "_user_tags()",
       "file_type": "code",
-      "source_file": "",
-      "source_location": "",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L47",
       "_origin": "ast",
-      "id": "response",
+      "id": "app_api_v1_users_user_tags",
       "community": 1,
-      "norm_label": "response"
-    },
-    {
-      "label": "UUID",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "uuid",
-      "community": 3,
-      "norm_label": "uuid"
-    },
-    {
-      "label": "authorize()",
-      "file_type": "code",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L51",
-      "_origin": "ast",
-      "id": "app_api_v1_auth_authorize",
-      "community": 1,
-      "norm_label": "authorize()"
-    },
-    {
-      "label": "callback()",
-      "file_type": "code",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L57",
-      "_origin": "ast",
-      "id": "app_api_v1_auth_callback",
-      "community": 1,
-      "norm_label": "callback()"
+      "norm_label": "_user_tags()"
     },
     {
       "label": "AsyncSession",
@@ -85,159 +55,119 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "app_api_v1_auth_py_asyncsession",
+      "id": "app_api_v1_users_py_asyncsession",
       "community": 1,
       "norm_label": "asyncsession"
     },
     {
-      "label": "signup()",
-      "file_type": "code",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L90",
-      "_origin": "ast",
-      "id": "app_api_v1_auth_signup",
-      "community": 1,
-      "norm_label": "signup()"
-    },
-    {
-      "label": "refresh()",
-      "file_type": "code",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L163",
-      "_origin": "ast",
-      "id": "app_api_v1_auth_refresh",
-      "community": 1,
-      "norm_label": "refresh()"
-    },
-    {
-      "label": "logout()",
-      "file_type": "code",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L180",
-      "_origin": "ast",
-      "id": "app_api_v1_auth_logout",
-      "community": 1,
-      "norm_label": "logout()"
-    },
-    {
-      "label": "ACC-01/02 \u2014 \uc18c\uc15c OAuth \uc804\uc6a9 \uc778\uc99d.  \ud750\ub984: authorize \u2192 \uc81c\uacf5\uc790 \ub85c\uadf8\uc778 \u2192 callback   - \uae30\uac00\uc785\uc790: \uc989\uc2dc \ub85c\uadf8\uc778",
-      "file_type": "rationale",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "app_api_v1_auth_rationale_1",
-      "community": 1,
-      "norm_label": "acc-01/02 \u2014 \u1109\u1169\u1109\u1167\u11af oauth \u110c\u1165\u11ab\u110b\u116d\u11bc \u110b\u1175\u11ab\u110c\u1173\u11bc.  \u1112\u1173\u1105\u1173\u11b7: authorize \u2192 \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u1105\u1169\u1100\u1173\u110b\u1175\u11ab \u2192 callback   - \u1100\u1175\u1100\u1161\u110b\u1175\u11b8\u110c\u1161: \u110c\u1173\u11a8\u1109\u1175 \u1105\u1169\u1100\u1173\u110b\u1175\u11ab"
-    },
-    {
-      "label": "security.py",
-      "file_type": "code",
-      "source_file": "app/core/security.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "app_core_security",
-      "community": 1,
-      "norm_label": "security.py"
-    },
-    {
-      "label": "_encode()",
-      "file_type": "code",
-      "source_file": "app/core/security.py",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "app_core_security_encode",
-      "community": 1,
-      "norm_label": "_encode()"
-    },
-    {
-      "label": "timedelta",
+      "label": "UUID",
       "file_type": "code",
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "timedelta",
+      "id": "app_api_v1_users_py_uuid",
       "community": 1,
-      "norm_label": "timedelta"
+      "norm_label": "uuid"
     },
     {
-      "label": "create_access_token()",
+      "label": "_me_out()",
       "file_type": "code",
-      "source_file": "app/core/security.py",
-      "source_location": "L19",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L58",
       "_origin": "ast",
-      "id": "app_core_security_create_access_token",
+      "id": "app_api_v1_users_me_out",
       "community": 1,
-      "norm_label": "create_access_token()"
+      "norm_label": "_me_out()"
     },
     {
-      "label": "create_refresh_token()",
+      "label": "User",
       "file_type": "code",
-      "source_file": "app/core/security.py",
-      "source_location": "L25",
+      "source_file": "",
+      "source_location": "",
       "_origin": "ast",
-      "id": "app_core_security_create_refresh_token",
+      "id": "user",
       "community": 1,
-      "norm_label": "create_refresh_token()"
+      "norm_label": "user"
     },
     {
-      "label": "create_signup_token()",
+      "label": "tag_catalog()",
       "file_type": "code",
-      "source_file": "app/core/security.py",
-      "source_location": "L31",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L73",
       "_origin": "ast",
-      "id": "app_core_security_create_signup_token",
+      "id": "app_api_v1_users_tag_catalog",
       "community": 1,
-      "norm_label": "create_signup_token()"
+      "norm_label": "tag_catalog()"
     },
     {
-      "label": "decode_token()",
+      "label": "me()",
       "file_type": "code",
-      "source_file": "app/core/security.py",
-      "source_location": "L40",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L79",
       "_origin": "ast",
-      "id": "app_core_security_decode_token",
+      "id": "app_api_v1_users_me",
       "community": 1,
-      "norm_label": "decode_token()"
+      "norm_label": "me()"
     },
     {
-      "label": "decode_signup_token()",
+      "label": "patch_me()",
       "file_type": "code",
-      "source_file": "app/core/security.py",
-      "source_location": "L47",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L84",
       "_origin": "ast",
-      "id": "app_core_security_decode_signup_token",
+      "id": "app_api_v1_users_patch_me",
       "community": 1,
-      "norm_label": "decode_signup_token()"
+      "norm_label": "patch_me()"
     },
     {
-      "label": "JWT \ud1a0\ud070 (access/refresh/signup). \uc18c\uc15c OAuth \uc804\uc6a9\uc774\ub77c \ube44\ubc00\ubc88\ud638 \ud574\uc2dc\ub294 \uc5c6\ub2e4 (ACC-01).",
+      "label": "put_tags()",
+      "file_type": "code",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L102",
+      "_origin": "ast",
+      "id": "app_api_v1_users_put_tags",
+      "community": 1,
+      "norm_label": "put_tags()"
+    },
+    {
+      "label": "patch_settings()",
+      "file_type": "code",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L125",
+      "_origin": "ast",
+      "id": "app_api_v1_users_patch_settings",
+      "community": 1,
+      "norm_label": "patch_settings()"
+    },
+    {
+      "label": "put_mode()",
+      "file_type": "code",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L139",
+      "_origin": "ast",
+      "id": "app_api_v1_users_put_mode",
+      "community": 1,
+      "norm_label": "put_mode()"
+    },
+    {
+      "label": "public_profile()",
+      "file_type": "code",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L159",
+      "_origin": "ast",
+      "id": "app_api_v1_users_public_profile",
+      "community": 1,
+      "norm_label": "public_profile()"
+    },
+    {
+      "label": "ACC-03 \ud504\ub85c\ud544 \u00b7 TAG-01 \ud0dc\uadf8 \u00b7 \u00a715 \uc124\uc815 \u00b7 \u00a75.2 \ubaa8\ub4dc \ubcc0\uacbd.",
       "file_type": "rationale",
-      "source_file": "app/core/security.py",
+      "source_file": "app/api/v1/users.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "app_core_security_rationale_1",
+      "id": "app_api_v1_users_rationale_1",
       "community": 1,
-      "norm_label": "jwt \u1110\u1169\u110f\u1173\u11ab (access/refresh/signup). \u1109\u1169\u1109\u1167\u11af oauth \u110c\u1165\u11ab\u110b\u116d\u11bc\u110b\u1175\u1105\u1161 \u1107\u1175\u1106\u1175\u11af\u1107\u1165\u11ab\u1112\u1169 \u1112\u1162\u1109\u1175\u1102\u1173\u11ab \u110b\u1165\u11b9\u1103\u1161 (acc-01)."
-    },
-    {
-      "label": "\ucf5c\ubc31\uc5d0\uc11c \uc2e0\uaddc \uc0ac\uc6a9\uc790\uc5d0\uac8c \ubc1c\uae09 \u2014 \ucd94\uac00 \uc815\ubcf4 \uc785\ub825(signup) \uc644\ub8cc\uae4c\uc9c0\uc758 \ub2e8\uae30 \uc790\uaca9.",
-      "file_type": "rationale",
-      "source_file": "app/core/security.py",
-      "source_location": "L32",
-      "_origin": "ast",
-      "id": "app_core_security_rationale_32",
-      "community": 1,
-      "norm_label": "\u110f\u1169\u11af\u1107\u1162\u11a8\u110b\u1166\u1109\u1165 \u1109\u1175\u11ab\u1100\u1172 \u1109\u1161\u110b\u116d\u11bc\u110c\u1161\u110b\u1166\u1100\u1166 \u1107\u1161\u11af\u1100\u1173\u11b8 \u2014 \u110e\u116e\u1100\u1161 \u110c\u1165\u11bc\u1107\u1169 \u110b\u1175\u11b8\u1105\u1167\u11a8(signup) \u110b\u116a\u11ab\u1105\u116d\u1101\u1161\u110c\u1175\u110b\u1174 \u1103\u1161\u11ab\u1100\u1175 \u110c\u1161\u1100\u1167\u11a8."
-    },
-    {
-      "label": "\u2192 (provider, provider_user_id). \uc704\uc870\u00b7\ub9cc\ub8cc \uc2dc JWTError.",
-      "file_type": "rationale",
-      "source_file": "app/core/security.py",
-      "source_location": "L48",
-      "_origin": "ast",
-      "id": "app_core_security_rationale_48",
-      "community": 1,
-      "norm_label": "\u2192 (provider, provider_user_id). \u110b\u1171\u110c\u1169\u00b7\u1106\u1161\u11ab\u1105\u116d \u1109\u1175 jwterror."
+      "norm_label": "acc-03 \u1111\u1173\u1105\u1169\u1111\u1175\u11af \u00b7 tag-01 \u1110\u1162\u1100\u1173 \u00b7 \u00a715 \u1109\u1165\u11af\u110c\u1165\u11bc \u00b7 \u00a75.2 \u1106\u1169\u1103\u1173 \u1107\u1167\u11ab\u1100\u1167\u11bc."
     },
     {
       "label": "main.py",
@@ -270,24 +200,24 @@
       "norm_label": "fastapi"
     },
     {
-      "label": "auth.py",
+      "label": "user.py",
       "file_type": "code",
-      "source_file": "app/schemas/auth.py",
+      "source_file": "app/schemas/user.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "app_schemas_auth",
+      "id": "app_schemas_user",
       "community": 1,
-      "norm_label": "auth.py"
+      "norm_label": "user.py"
     },
     {
-      "label": "AuthorizeOut",
+      "label": "TagOut",
       "file_type": "code",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L9",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L8",
       "_origin": "ast",
-      "id": "app_schemas_auth_authorizeout",
+      "id": "app_schemas_user_tagout",
       "community": 1,
-      "norm_label": "authorizeout"
+      "norm_label": "tagout"
     },
     {
       "label": "BaseModel",
@@ -300,84 +230,114 @@
       "norm_label": "basemodel"
     },
     {
-      "label": "CallbackOut",
+      "label": "TagCatalogOut",
       "file_type": "code",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L13",
-      "_origin": "ast",
-      "id": "app_schemas_auth_callbackout",
-      "community": 1,
-      "norm_label": "callbackout"
-    },
-    {
-      "label": "Agreements",
-      "file_type": "code",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L23",
-      "_origin": "ast",
-      "id": "app_schemas_auth_agreements",
-      "community": 1,
-      "norm_label": "agreements"
-    },
-    {
-      "label": "SignupIn",
-      "file_type": "code",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L31",
-      "_origin": "ast",
-      "id": "app_schemas_auth_signupin",
-      "community": 1,
-      "norm_label": "signupin"
-    },
-    {
-      "label": "TokenOut",
-      "file_type": "code",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L39",
-      "_origin": "ast",
-      "id": "app_schemas_auth_tokenout",
-      "community": 1,
-      "norm_label": "tokenout"
-    },
-    {
-      "label": "AccessTokenOut",
-      "file_type": "code",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "app_schemas_auth_accesstokenout",
-      "community": 1,
-      "norm_label": "accesstokenout"
-    },
-    {
-      "label": "\uac00\uc785 \ud544\uc218 \ub3d9\uc758 3\uc885 (ACC-01, \u00a717 \uc678\ubd80 AI \ub370\uc774\ud130 \ucc98\ub9ac \uc548\ub0b4 \ud3ec\ud568).",
-      "file_type": "rationale",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L24",
-      "_origin": "ast",
-      "id": "app_schemas_auth_rationale_24",
-      "community": 1,
-      "norm_label": "\u1100\u1161\u110b\u1175\u11b8 \u1111\u1175\u11af\u1109\u116e \u1103\u1169\u11bc\u110b\u1174 3\u110c\u1169\u11bc (acc-01, \u00a717 \u110b\u116c\u1107\u116e ai \u1103\u1166\u110b\u1175\u1110\u1165 \u110e\u1165\u1105\u1175 \u110b\u1161\u11ab\u1102\u1162 \u1111\u1169\u1112\u1161\u11b7)."
-    },
-    {
-      "label": "nickname.py",
-      "file_type": "code",
-      "source_file": "app/services/nickname.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "app_services_nickname",
-      "community": 1,
-      "norm_label": "nickname.py"
-    },
-    {
-      "label": "validate_nickname()",
-      "file_type": "code",
-      "source_file": "app/services/nickname.py",
+      "source_file": "app/schemas/user.py",
       "source_location": "L14",
       "_origin": "ast",
-      "id": "app_services_nickname_validate_nickname",
+      "id": "app_schemas_user_tagcatalogout",
       "community": 1,
-      "norm_label": "validate_nickname()"
+      "norm_label": "tagcatalogout"
+    },
+    {
+      "label": "MeOut",
+      "file_type": "code",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "app_schemas_user_meout",
+      "community": 1,
+      "norm_label": "meout"
+    },
+    {
+      "label": "PublicProfileOut",
+      "file_type": "code",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "app_schemas_user_publicprofileout",
+      "community": 1,
+      "norm_label": "publicprofileout"
+    },
+    {
+      "label": "ProfilePatchIn",
+      "file_type": "code",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "app_schemas_user_profilepatchin",
+      "community": 1,
+      "norm_label": "profilepatchin"
+    },
+    {
+      "label": "TagsPutIn",
+      "file_type": "code",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "app_schemas_user_tagsputin",
+      "community": 1,
+      "norm_label": "tagsputin"
+    },
+    {
+      "label": "SettingsPatchIn",
+      "file_type": "code",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "app_schemas_user_settingspatchin",
+      "community": 1,
+      "norm_label": "settingspatchin"
+    },
+    {
+      "label": "ModePutIn",
+      "file_type": "code",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "app_schemas_user_modeputin",
+      "community": 1,
+      "norm_label": "modeputin"
+    },
+    {
+      "label": "\ubcf8\uc778 \uc870\ud68c \u2014 ui_mode\u00b7is_minor \ub4f1 \ubbfc\uac10 \ud30c\uc0dd\uac12 \ud3ec\ud568 (\ud0c0\uc778 \uc870\ud68c\uc640 \ubd84\ub9ac).",
+      "file_type": "rationale",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "app_schemas_user_rationale_19",
+      "community": 1,
+      "norm_label": "\u1107\u1169\u11ab\u110b\u1175\u11ab \u110c\u1169\u1112\u116c \u2014 ui_mode\u00b7is_minor \u1103\u1173\u11bc \u1106\u1175\u11ab\u1100\u1161\u11b7 \u1111\u1161\u1109\u1162\u11bc\u1100\u1161\u11b9 \u1111\u1169\u1112\u1161\u11b7 (\u1110\u1161\u110b\u1175\u11ab \u110c\u1169\u1112\u116c\u110b\u116a \u1107\u116e\u11ab\u1105\u1175)."
+    },
+    {
+      "label": "\ud0c0\uc778 \ud504\ub85c\ud544 \u2014 \uc7a5\uc560 \uc720\ud615\u00b7UI \ubaa8\ub4dc\u00b7\uc0dd\ub144\uc6d4\uc77c \ube44\ub178\ucd9c (ACC-03, \u00a75.2).",
+      "file_type": "rationale",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "app_schemas_user_rationale_33",
+      "community": 1,
+      "norm_label": "\u1110\u1161\u110b\u1175\u11ab \u1111\u1173\u1105\u1169\u1111\u1175\u11af \u2014 \u110c\u1161\u11bc\u110b\u1162 \u110b\u1172\u1112\u1167\u11bc\u00b7ui \u1106\u1169\u1103\u1173\u00b7\u1109\u1162\u11bc\u1102\u1167\u11ab\u110b\u116f\u11af\u110b\u1175\u11af \u1107\u1175\u1102\u1169\u110e\u116e\u11af (acc-03, \u00a75.2)."
+    },
+    {
+      "label": "relations.py",
+      "file_type": "code",
+      "source_file": "app/services/relations.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_services_relations",
+      "community": 49,
+      "norm_label": "relations.py"
+    },
+    {
+      "label": "are_friends()",
+      "file_type": "code",
+      "source_file": "app/services/relations.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "app_services_relations_are_friends",
+      "community": 49,
+      "norm_label": "are_friends()"
     },
     {
       "label": "AsyncSession",
@@ -385,9 +345,479 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "app_services_nickname_py_asyncsession",
-      "community": 1,
+      "id": "app_services_relations_py_asyncsession",
+      "community": 49,
       "norm_label": "asyncsession"
+    },
+    {
+      "label": "UUID",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "app_services_relations_py_uuid",
+      "community": 49,
+      "norm_label": "uuid"
+    },
+    {
+      "label": "is_blocked_either()",
+      "file_type": "code",
+      "source_file": "app/services/relations.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "app_services_relations_is_blocked_either",
+      "community": 49,
+      "norm_label": "is_blocked_either()"
+    },
+    {
+      "label": "block_user()",
+      "file_type": "code",
+      "source_file": "app/services/relations.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "app_services_relations_block_user",
+      "community": 49,
+      "norm_label": "block_user()"
+    },
+    {
+      "label": "\uce5c\uad6c\u00b7\ucc28\ub2e8 \uad00\uacc4 \ud310\uc815 \uacf5\uc6a9 (FRIEND \u00b7 BLOCK-01). posts \ud53c\ub4dc, chat, \ucd94\ucc9c\uc774 \uc0ac\uc6a9.",
+      "file_type": "rationale",
+      "source_file": "app/services/relations.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_services_relations_rationale_1",
+      "community": 49,
+      "norm_label": "\u110e\u1175\u11ab\u1100\u116e\u00b7\u110e\u1161\u1103\u1161\u11ab \u1100\u116a\u11ab\u1100\u1168 \u1111\u1161\u11ab\u110c\u1165\u11bc \u1100\u1169\u11bc\u110b\u116d\u11bc (friend \u00b7 block-01). posts \u1111\u1175\u1103\u1173, chat, \u110e\u116e\u110e\u1165\u11ab\u110b\u1175 \u1109\u1161\u110b\u116d\u11bc."
+    },
+    {
+      "label": "\uc5b4\ub290 \ubc29\ud5a5\uc774\ub4e0 \ucc28\ub2e8\uc774\uba74 True \u2014 \ubaa8\ub4e0 \uc811\uc810 \uc0c1\ud638 \uc81c\uac70 (BLOCK-01).",
+      "file_type": "rationale",
+      "source_file": "app/services/relations.py",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "app_services_relations_rationale_24",
+      "community": 49,
+      "norm_label": "\u110b\u1165\u1102\u1173 \u1107\u1161\u11bc\u1112\u1163\u11bc\u110b\u1175\u1103\u1173\u11ab \u110e\u1161\u1103\u1161\u11ab\u110b\u1175\u1106\u1167\u11ab true \u2014 \u1106\u1169\u1103\u1173\u11ab \u110c\u1165\u11b8\u110c\u1165\u11b7 \u1109\u1161\u11bc\u1112\u1169 \u110c\u1166\u1100\u1165 (block-01)."
+    },
+    {
+      "label": "\ucc28\ub2e8: \uce5c\uad6c \ud574\uc81c + \uc9c4\ud589 \uc911 \uce5c\uad6c \uc694\uccad \ucde8\uc18c + \ucc28\ub2e8 \ud589 \ucd94\uac00 (BLOCK-01).",
+      "file_type": "rationale",
+      "source_file": "app/services/relations.py",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "app_services_relations_rationale_39",
+      "community": 49,
+      "norm_label": "\u110e\u1161\u1103\u1161\u11ab: \u110e\u1175\u11ab\u1100\u116e \u1112\u1162\u110c\u1166 + \u110c\u1175\u11ab\u1112\u1162\u11bc \u110c\u116e\u11bc \u110e\u1175\u11ab\u1100\u116e \u110b\u116d\u110e\u1165\u11bc \u110e\u1171\u1109\u1169 + \u110e\u1161\u1103\u1161\u11ab \u1112\u1162\u11bc \u110e\u116e\u1100\u1161 (block-01)."
+    },
+    {
+      "label": "test_users.py",
+      "file_type": "code",
+      "source_file": "tests/test_users.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_users",
+      "community": 0,
+      "norm_label": "test_users.py"
+    },
+    {
+      "label": "test_me_includes_profile_and_derived_minor()",
+      "file_type": "code",
+      "source_file": "tests/test_users.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "tests_test_users_test_me_includes_profile_and_derived_minor",
+      "community": 0,
+      "norm_label": "test_me_includes_profile_and_derived_minor()"
+    },
+    {
+      "label": "test_patch_me_rejects_contact_in_bio()",
+      "file_type": "code",
+      "source_file": "tests/test_users.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "tests_test_users_test_patch_me_rejects_contact_in_bio",
+      "community": 0,
+      "norm_label": "test_patch_me_rejects_contact_in_bio()"
+    },
+    {
+      "label": "test_tags_catalog_and_replace()",
+      "file_type": "code",
+      "source_file": "tests/test_users.py",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "tests_test_users_test_tags_catalog_and_replace",
+      "community": 0,
+      "norm_label": "test_tags_catalog_and_replace()"
+    },
+    {
+      "label": "test_mode_change_records_history()",
+      "file_type": "code",
+      "source_file": "tests/test_users.py",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "tests_test_users_test_mode_change_records_history",
+      "community": 0,
+      "norm_label": "test_mode_change_records_history()"
+    },
+    {
+      "label": "test_settings_update()",
+      "file_type": "code",
+      "source_file": "tests/test_users.py",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "tests_test_users_test_settings_update",
+      "community": 0,
+      "norm_label": "test_settings_update()"
+    },
+    {
+      "label": "test_public_profile_hides_mode_and_birth()",
+      "file_type": "code",
+      "source_file": "tests/test_users.py",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "tests_test_users_test_public_profile_hides_mode_and_birth",
+      "community": 0,
+      "norm_label": "test_public_profile_hides_mode_and_birth()"
+    },
+    {
+      "label": "ACC-03 \ud504\ub85c\ud544 \u00b7 TAG-01 \ud0dc\uadf8 \u00b7 \u00a715 \uc124\uc815 \u00b7 \u00a75.2 \ubaa8\ub4dc \ubcc0\uacbd.",
+      "file_type": "rationale",
+      "source_file": "tests/test_users.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_users_rationale_1",
+      "community": 0,
+      "norm_label": "acc-03 \u1111\u1173\u1105\u1169\u1111\u1175\u11af \u00b7 tag-01 \u1110\u1162\u1100\u1173 \u00b7 \u00a715 \u1109\u1165\u11af\u110c\u1165\u11bc \u00b7 \u00a75.2 \u1106\u1169\u1103\u1173 \u1107\u1167\u11ab\u1100\u1167\u11bc."
+    },
+    {
+      "label": "auth.py",
+      "file_type": "code",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "auth.py",
+      "id": "app_api_v1_auth"
+    },
+    {
+      "label": "_set_refresh_cookie()",
+      "file_type": "code",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L37",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "_set_refresh_cookie()",
+      "id": "app_api_v1_auth_set_refresh_cookie"
+    },
+    {
+      "label": "Response",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "response",
+      "id": "response"
+    },
+    {
+      "label": "UUID",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 3,
+      "norm_label": "uuid",
+      "id": "uuid"
+    },
+    {
+      "label": "authorize()",
+      "file_type": "code",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L51",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "authorize()",
+      "id": "app_api_v1_auth_authorize"
+    },
+    {
+      "label": "callback()",
+      "file_type": "code",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L57",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "callback()",
+      "id": "app_api_v1_auth_callback"
+    },
+    {
+      "label": "AsyncSession",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "asyncsession",
+      "id": "app_api_v1_auth_py_asyncsession"
+    },
+    {
+      "label": "signup()",
+      "file_type": "code",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L90",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "signup()",
+      "id": "app_api_v1_auth_signup"
+    },
+    {
+      "label": "refresh()",
+      "file_type": "code",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L163",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "refresh()",
+      "id": "app_api_v1_auth_refresh"
+    },
+    {
+      "label": "logout()",
+      "file_type": "code",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L180",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "logout()",
+      "id": "app_api_v1_auth_logout"
+    },
+    {
+      "label": "ACC-01/02 \u2014 \uc18c\uc15c OAuth \uc804\uc6a9 \uc778\uc99d.  \ud750\ub984: authorize \u2192 \uc81c\uacf5\uc790 \ub85c\uadf8\uc778 \u2192 callback   - \uae30\uac00\uc785\uc790: \uc989\uc2dc \ub85c\uadf8\uc778",
+      "file_type": "rationale",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "acc-01/02 \u2014 \u1109\u1169\u1109\u1167\u11af oauth \u110c\u1165\u11ab\u110b\u116d\u11bc \u110b\u1175\u11ab\u110c\u1173\u11bc.  \u1112\u1173\u1105\u1173\u11b7: authorize \u2192 \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u1105\u1169\u1100\u1173\u110b\u1175\u11ab \u2192 callback   - \u1100\u1175\u1100\u1161\u110b\u1175\u11b8\u110c\u1161: \u110c\u1173\u11a8\u1109\u1175 \u1105\u1169\u1100\u1173\u110b\u1175\u11ab",
+      "id": "app_api_v1_auth_rationale_1"
+    },
+    {
+      "label": "security.py",
+      "file_type": "code",
+      "source_file": "app/core/security.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "security.py",
+      "id": "app_core_security"
+    },
+    {
+      "label": "_encode()",
+      "file_type": "code",
+      "source_file": "app/core/security.py",
+      "source_location": "L10",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "_encode()",
+      "id": "app_core_security_encode"
+    },
+    {
+      "label": "timedelta",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "timedelta",
+      "id": "timedelta"
+    },
+    {
+      "label": "create_access_token()",
+      "file_type": "code",
+      "source_file": "app/core/security.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "create_access_token()",
+      "id": "app_core_security_create_access_token"
+    },
+    {
+      "label": "create_refresh_token()",
+      "file_type": "code",
+      "source_file": "app/core/security.py",
+      "source_location": "L25",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "create_refresh_token()",
+      "id": "app_core_security_create_refresh_token"
+    },
+    {
+      "label": "create_signup_token()",
+      "file_type": "code",
+      "source_file": "app/core/security.py",
+      "source_location": "L31",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "create_signup_token()",
+      "id": "app_core_security_create_signup_token"
+    },
+    {
+      "label": "decode_token()",
+      "file_type": "code",
+      "source_file": "app/core/security.py",
+      "source_location": "L40",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "decode_token()",
+      "id": "app_core_security_decode_token"
+    },
+    {
+      "label": "decode_signup_token()",
+      "file_type": "code",
+      "source_file": "app/core/security.py",
+      "source_location": "L47",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "decode_signup_token()",
+      "id": "app_core_security_decode_signup_token"
+    },
+    {
+      "label": "JWT \ud1a0\ud070 (access/refresh/signup). \uc18c\uc15c OAuth \uc804\uc6a9\uc774\ub77c \ube44\ubc00\ubc88\ud638 \ud574\uc2dc\ub294 \uc5c6\ub2e4 (ACC-01).",
+      "file_type": "rationale",
+      "source_file": "app/core/security.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "jwt \u1110\u1169\u110f\u1173\u11ab (access/refresh/signup). \u1109\u1169\u1109\u1167\u11af oauth \u110c\u1165\u11ab\u110b\u116d\u11bc\u110b\u1175\u1105\u1161 \u1107\u1175\u1106\u1175\u11af\u1107\u1165\u11ab\u1112\u1169 \u1112\u1162\u1109\u1175\u1102\u1173\u11ab \u110b\u1165\u11b9\u1103\u1161 (acc-01).",
+      "id": "app_core_security_rationale_1"
+    },
+    {
+      "label": "\ucf5c\ubc31\uc5d0\uc11c \uc2e0\uaddc \uc0ac\uc6a9\uc790\uc5d0\uac8c \ubc1c\uae09 \u2014 \ucd94\uac00 \uc815\ubcf4 \uc785\ub825(signup) \uc644\ub8cc\uae4c\uc9c0\uc758 \ub2e8\uae30 \uc790\uaca9.",
+      "file_type": "rationale",
+      "source_file": "app/core/security.py",
+      "source_location": "L32",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "\u110f\u1169\u11af\u1107\u1162\u11a8\u110b\u1166\u1109\u1165 \u1109\u1175\u11ab\u1100\u1172 \u1109\u1161\u110b\u116d\u11bc\u110c\u1161\u110b\u1166\u1100\u1166 \u1107\u1161\u11af\u1100\u1173\u11b8 \u2014 \u110e\u116e\u1100\u1161 \u110c\u1165\u11bc\u1107\u1169 \u110b\u1175\u11b8\u1105\u1167\u11a8(signup) \u110b\u116a\u11ab\u1105\u116d\u1101\u1161\u110c\u1175\u110b\u1174 \u1103\u1161\u11ab\u1100\u1175 \u110c\u1161\u1100\u1167\u11a8.",
+      "id": "app_core_security_rationale_32"
+    },
+    {
+      "label": "\u2192 (provider, provider_user_id). \uc704\uc870\u00b7\ub9cc\ub8cc \uc2dc JWTError.",
+      "file_type": "rationale",
+      "source_file": "app/core/security.py",
+      "source_location": "L48",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "\u2192 (provider, provider_user_id). \u110b\u1171\u110c\u1169\u00b7\u1106\u1161\u11ab\u1105\u116d \u1109\u1175 jwterror.",
+      "id": "app_core_security_rationale_48"
+    },
+    {
+      "label": "auth.py",
+      "file_type": "code",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "auth.py",
+      "id": "app_schemas_auth"
+    },
+    {
+      "label": "AuthorizeOut",
+      "file_type": "code",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "authorizeout",
+      "id": "app_schemas_auth_authorizeout"
+    },
+    {
+      "label": "CallbackOut",
+      "file_type": "code",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "callbackout",
+      "id": "app_schemas_auth_callbackout"
+    },
+    {
+      "label": "Agreements",
+      "file_type": "code",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "agreements",
+      "id": "app_schemas_auth_agreements"
+    },
+    {
+      "label": "SignupIn",
+      "file_type": "code",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L31",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "signupin",
+      "id": "app_schemas_auth_signupin"
+    },
+    {
+      "label": "TokenOut",
+      "file_type": "code",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L39",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "tokenout",
+      "id": "app_schemas_auth_tokenout"
+    },
+    {
+      "label": "AccessTokenOut",
+      "file_type": "code",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L46",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "accesstokenout",
+      "id": "app_schemas_auth_accesstokenout"
+    },
+    {
+      "label": "\uac00\uc785 \ud544\uc218 \ub3d9\uc758 3\uc885 (ACC-01, \u00a717 \uc678\ubd80 AI \ub370\uc774\ud130 \ucc98\ub9ac \uc548\ub0b4 \ud3ec\ud568).",
+      "file_type": "rationale",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L24",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "\u1100\u1161\u110b\u1175\u11b8 \u1111\u1175\u11af\u1109\u116e \u1103\u1169\u11bc\u110b\u1174 3\u110c\u1169\u11bc (acc-01, \u00a717 \u110b\u116c\u1107\u116e ai \u1103\u1166\u110b\u1175\u1110\u1165 \u110e\u1165\u1105\u1175 \u110b\u1161\u11ab\u1102\u1162 \u1111\u1169\u1112\u1161\u11b7).",
+      "id": "app_schemas_auth_rationale_24"
+    },
+    {
+      "label": "nickname.py",
+      "file_type": "code",
+      "source_file": "app/services/nickname.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "nickname.py",
+      "id": "app_services_nickname"
+    },
+    {
+      "label": "validate_nickname()",
+      "file_type": "code",
+      "source_file": "app/services/nickname.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "validate_nickname()",
+      "id": "app_services_nickname_validate_nickname"
+    },
+    {
+      "label": "AsyncSession",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "asyncsession",
+      "id": "app_services_nickname_py_asyncsession"
     },
     {
       "label": "\ub2c9\ub124\uc784 \uc815\ucc45 (ACC-01): 2~12\uc790 \ud55c\uae00\u00b7\uc601\ubb38\u00b7\uc22b\uc790, \uae08\uce59\uc5b4\u00b7\uc911\ubcf5 \ubd88\uac00.",
@@ -395,9 +825,9 @@
       "source_file": "app/services/nickname.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "app_services_nickname_rationale_1",
-      "community": 1,
-      "norm_label": "\u1102\u1175\u11a8\u1102\u1166\u110b\u1175\u11b7 \u110c\u1165\u11bc\u110e\u1162\u11a8 (acc-01): 2~12\u110c\u1161 \u1112\u1161\u11ab\u1100\u1173\u11af\u00b7\u110b\u1167\u11bc\u1106\u116e\u11ab\u00b7\u1109\u116e\u11ba\u110c\u1161, \u1100\u1173\u11b7\u110e\u1175\u11a8\u110b\u1165\u00b7\u110c\u116e\u11bc\u1107\u1169\u11a8 \u1107\u116e\u11af\u1100\u1161."
+      "community": 2,
+      "norm_label": "\u1102\u1175\u11a8\u1102\u1166\u110b\u1175\u11b7 \u110c\u1165\u11bc\u110e\u1162\u11a8 (acc-01): 2~12\u110c\u1161 \u1112\u1161\u11ab\u1100\u1173\u11af\u00b7\u110b\u1167\u11bc\u1106\u116e\u11ab\u00b7\u1109\u116e\u11ba\u110c\u1161, \u1100\u1173\u11b7\u110e\u1175\u11a8\u110b\u1165\u00b7\u110c\u116e\u11bc\u1107\u1169\u11a8 \u1107\u116e\u11af\u1100\u1161.",
+      "id": "app_services_nickname_rationale_1"
     },
     {
       "label": "\ud615\uc2dd(400) \u2192 \uae08\uce59\uc5b4(400) \u2192 \uc911\ubcf5(409) \uc21c \uac80\uc99d. \ud1b5\uacfc \uc2dc None.",
@@ -405,9 +835,9 @@
       "source_file": "app/services/nickname.py",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "app_services_nickname_rationale_15",
-      "community": 1,
-      "norm_label": "\u1112\u1167\u11bc\u1109\u1175\u11a8(400) \u2192 \u1100\u1173\u11b7\u110e\u1175\u11a8\u110b\u1165(400) \u2192 \u110c\u116e\u11bc\u1107\u1169\u11a8(409) \u1109\u116e\u11ab \u1100\u1165\u11b7\u110c\u1173\u11bc. \u1110\u1169\u11bc\u1100\u116a \u1109\u1175 none."
+      "community": 2,
+      "norm_label": "\u1112\u1167\u11bc\u1109\u1175\u11a8(400) \u2192 \u1100\u1173\u11b7\u110e\u1175\u11a8\u110b\u1165(400) \u2192 \u110c\u116e\u11bc\u1107\u1169\u11a8(409) \u1109\u116e\u11ab \u1100\u1165\u11b7\u110c\u1173\u11bc. \u1110\u1169\u11bc\u1100\u116a \u1109\u1175 none.",
+      "id": "app_services_nickname_rationale_15"
     },
     {
       "label": "oauth.py",
@@ -415,9 +845,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "app_services_oauth",
       "community": 2,
-      "norm_label": "oauth.py"
+      "norm_label": "oauth.py",
+      "id": "app_services_oauth"
     },
     {
       "label": "OAuthUserInfo",
@@ -425,9 +855,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "app_services_oauth_oauthuserinfo",
       "community": 2,
-      "norm_label": "oauthuserinfo"
+      "norm_label": "oauthuserinfo",
+      "id": "app_services_oauth_oauthuserinfo"
     },
     {
       "label": "OAuthProvider",
@@ -435,9 +865,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L24",
       "_origin": "ast",
-      "id": "app_services_oauth_oauthprovider",
       "community": 2,
-      "norm_label": "oauthprovider"
+      "norm_label": "oauthprovider",
+      "id": "app_services_oauth_oauthprovider"
     },
     {
       "label": "Protocol",
@@ -445,9 +875,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "protocol",
       "community": 2,
-      "norm_label": "protocol"
+      "norm_label": "protocol",
+      "id": "protocol"
     },
     {
       "label": ".authorize_url()",
@@ -455,9 +885,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L27",
       "_origin": "ast",
-      "id": "app_services_oauth_oauthprovider_authorize_url",
       "community": 2,
-      "norm_label": ".authorize_url()"
+      "norm_label": ".authorize_url()",
+      "id": "app_services_oauth_oauthprovider_authorize_url"
     },
     {
       "label": ".exchange_code()",
@@ -465,9 +895,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L29",
       "_origin": "ast",
-      "id": "app_services_oauth_oauthprovider_exchange_code",
       "community": 2,
-      "norm_label": ".exchange_code()"
+      "norm_label": ".exchange_code()",
+      "id": "app_services_oauth_oauthprovider_exchange_code"
     },
     {
       "label": ".unlink()",
@@ -475,9 +905,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L31",
       "_origin": "ast",
-      "id": "app_services_oauth_oauthprovider_unlink",
       "community": 2,
-      "norm_label": ".unlink()"
+      "norm_label": ".unlink()",
+      "id": "app_services_oauth_oauthprovider_unlink"
     },
     {
       "label": "MockProvider",
@@ -485,9 +915,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "app_services_oauth_mockprovider",
       "community": 2,
-      "norm_label": "mockprovider"
+      "norm_label": "mockprovider",
+      "id": "app_services_oauth_mockprovider"
     },
     {
       "label": ".__init__()",
@@ -495,9 +925,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L37",
       "_origin": "ast",
-      "id": "app_services_oauth_mockprovider_init",
       "community": 2,
-      "norm_label": ".__init__()"
+      "norm_label": ".__init__()",
+      "id": "app_services_oauth_mockprovider_init"
     },
     {
       "label": ".authorize_url()",
@@ -505,9 +935,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L40",
       "_origin": "ast",
-      "id": "app_services_oauth_mockprovider_authorize_url",
       "community": 2,
-      "norm_label": ".authorize_url()"
+      "norm_label": ".authorize_url()",
+      "id": "app_services_oauth_mockprovider_authorize_url"
     },
     {
       "label": ".exchange_code()",
@@ -515,9 +945,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L47",
       "_origin": "ast",
-      "id": "app_services_oauth_mockprovider_exchange_code",
       "community": 2,
-      "norm_label": ".exchange_code()"
+      "norm_label": ".exchange_code()",
+      "id": "app_services_oauth_mockprovider_exchange_code"
     },
     {
       "label": ".unlink()",
@@ -525,9 +955,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L52",
       "_origin": "ast",
-      "id": "app_services_oauth_mockprovider_unlink",
       "community": 2,
-      "norm_label": ".unlink()"
+      "norm_label": ".unlink()",
+      "id": "app_services_oauth_mockprovider_unlink"
     },
     {
       "label": "KakaoProvider",
@@ -535,9 +965,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L56",
       "_origin": "ast",
-      "id": "app_services_oauth_kakaoprovider",
       "community": 2,
-      "norm_label": "kakaoprovider"
+      "norm_label": "kakaoprovider",
+      "id": "app_services_oauth_kakaoprovider"
     },
     {
       "label": "._redirect_uri()",
@@ -545,9 +975,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L66",
       "_origin": "ast",
-      "id": "app_services_oauth_kakaoprovider_redirect_uri",
       "community": 2,
-      "norm_label": "._redirect_uri()"
+      "norm_label": "._redirect_uri()",
+      "id": "app_services_oauth_kakaoprovider_redirect_uri"
     },
     {
       "label": ".authorize_url()",
@@ -555,9 +985,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L69",
       "_origin": "ast",
-      "id": "app_services_oauth_kakaoprovider_authorize_url",
       "community": 2,
-      "norm_label": ".authorize_url()"
+      "norm_label": ".authorize_url()",
+      "id": "app_services_oauth_kakaoprovider_authorize_url"
     },
     {
       "label": ".exchange_code()",
@@ -565,9 +995,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L75",
       "_origin": "ast",
-      "id": "app_services_oauth_kakaoprovider_exchange_code",
       "community": 2,
-      "norm_label": ".exchange_code()"
+      "norm_label": ".exchange_code()",
+      "id": "app_services_oauth_kakaoprovider_exchange_code"
     },
     {
       "label": ".unlink()",
@@ -575,9 +1005,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L90",
       "_origin": "ast",
-      "id": "app_services_oauth_kakaoprovider_unlink",
       "community": 2,
-      "norm_label": ".unlink()"
+      "norm_label": ".unlink()",
+      "id": "app_services_oauth_kakaoprovider_unlink"
     },
     {
       "label": "GoogleProvider",
@@ -585,9 +1015,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L95",
       "_origin": "ast",
-      "id": "app_services_oauth_googleprovider",
       "community": 2,
-      "norm_label": "googleprovider"
+      "norm_label": "googleprovider",
+      "id": "app_services_oauth_googleprovider"
     },
     {
       "label": "._redirect_uri()",
@@ -595,9 +1025,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L104",
       "_origin": "ast",
-      "id": "app_services_oauth_googleprovider_redirect_uri",
       "community": 2,
-      "norm_label": "._redirect_uri()"
+      "norm_label": "._redirect_uri()",
+      "id": "app_services_oauth_googleprovider_redirect_uri"
     },
     {
       "label": ".authorize_url()",
@@ -605,9 +1035,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L107",
       "_origin": "ast",
-      "id": "app_services_oauth_googleprovider_authorize_url",
       "community": 2,
-      "norm_label": ".authorize_url()"
+      "norm_label": ".authorize_url()",
+      "id": "app_services_oauth_googleprovider_authorize_url"
     },
     {
       "label": ".exchange_code()",
@@ -615,9 +1045,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L113",
       "_origin": "ast",
-      "id": "app_services_oauth_googleprovider_exchange_code",
       "community": 2,
-      "norm_label": ".exchange_code()"
+      "norm_label": ".exchange_code()",
+      "id": "app_services_oauth_googleprovider_exchange_code"
     },
     {
       "label": ".unlink()",
@@ -625,9 +1055,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L128",
       "_origin": "ast",
-      "id": "app_services_oauth_googleprovider_unlink",
       "community": 2,
-      "norm_label": ".unlink()"
+      "norm_label": ".unlink()",
+      "id": "app_services_oauth_googleprovider_unlink"
     },
     {
       "label": "get_provider()",
@@ -635,9 +1065,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L135",
       "_origin": "ast",
-      "id": "app_services_oauth_get_provider",
-      "community": 1,
-      "norm_label": "get_provider()"
+      "community": 2,
+      "norm_label": "get_provider()",
+      "id": "app_services_oauth_get_provider"
     },
     {
       "label": "\uc18c\uc15c OAuth \uc81c\uacf5\uc790 \ucd94\uc0c1\ud654 (ACC-01).  - dev: OAUTH_MOCK=true \u2192 \ubaa8\ub4e0 \uc81c\uacf5\uc790 \uc774\ub984\uc774 MockProvider\ub85c \ub3d9\uc791",
@@ -645,9 +1075,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "app_services_oauth_rationale_1",
       "community": 2,
-      "norm_label": "\u1109\u1169\u1109\u1167\u11af oauth \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u110e\u116e\u1109\u1161\u11bc\u1112\u116a (acc-01).  - dev: oauth_mock=true \u2192 \u1106\u1169\u1103\u1173\u11ab \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u110b\u1175\u1105\u1173\u11b7\u110b\u1175 mockprovider\u1105\u1169 \u1103\u1169\u11bc\u110c\u1161\u11a8"
+      "norm_label": "\u1109\u1169\u1109\u1167\u11af oauth \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u110e\u116e\u1109\u1161\u11bc\u1112\u116a (acc-01).  - dev: oauth_mock=true \u2192 \u1106\u1169\u1103\u1173\u11ab \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u110b\u1175\u1105\u1173\u11b7\u110b\u1175 mockprovider\u1105\u1169 \u1103\u1169\u11bc\u110c\u1161\u11a8",
+      "id": "app_services_oauth_rationale_1"
     },
     {
       "label": "dev \uc804\uc6a9. code \ud615\uc2dd: `mock:<provider_user_id>`.",
@@ -655,9 +1085,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L35",
       "_origin": "ast",
-      "id": "app_services_oauth_rationale_35",
       "community": 2,
-      "norm_label": "dev \u110c\u1165\u11ab\u110b\u116d\u11bc. code \u1112\u1167\u11bc\u1109\u1175\u11a8: `mock:<provider_user_id>`."
+      "norm_label": "dev \u110c\u1165\u11ab\u110b\u116d\u11bc. code \u1112\u1167\u11bc\u1109\u1175\u11a8: `mock:<provider_user_id>`.",
+      "id": "app_services_oauth_rationale_35"
     },
     {
       "label": "\uce74\uce74\uc624 REST API. \uc2e4\uac80\uc99d\uc740 \ud0a4 \ubc1c\uae09 \ud6c4 (docs/api.md \ucc38\uc870).",
@@ -665,9 +1095,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L57",
       "_origin": "ast",
-      "id": "app_services_oauth_rationale_57",
       "community": 2,
-      "norm_label": "\u110f\u1161\u110f\u1161\u110b\u1169 rest api. \u1109\u1175\u11af\u1100\u1165\u11b7\u110c\u1173\u11bc\u110b\u1173\u11ab \u110f\u1175 \u1107\u1161\u11af\u1100\u1173\u11b8 \u1112\u116e (docs/api.md \u110e\u1161\u11b7\u110c\u1169)."
+      "norm_label": "\u110f\u1161\u110f\u1161\u110b\u1169 rest api. \u1109\u1175\u11af\u1100\u1165\u11b7\u110c\u1173\u11bc\u110b\u1173\u11ab \u110f\u1175 \u1107\u1161\u11af\u1100\u1173\u11b8 \u1112\u116e (docs/api.md \u110e\u1161\u11b7\u110c\u1169).",
+      "id": "app_services_oauth_rationale_57"
     },
     {
       "label": "\uad6c\uae00 OAuth 2.0. \uc2e4\uac80\uc99d\uc740 \ud0a4 \ubc1c\uae09 \ud6c4.",
@@ -675,9 +1105,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L96",
       "_origin": "ast",
-      "id": "app_services_oauth_rationale_96",
       "community": 2,
-      "norm_label": "\u1100\u116e\u1100\u1173\u11af oauth 2.0. \u1109\u1175\u11af\u1100\u1165\u11b7\u110c\u1173\u11bc\u110b\u1173\u11ab \u110f\u1175 \u1107\u1161\u11af\u1100\u1173\u11b8 \u1112\u116e."
+      "norm_label": "\u1100\u116e\u1100\u1173\u11af oauth 2.0. \u1109\u1175\u11af\u1100\u1165\u11b7\u110c\u1173\u11bc\u110b\u1173\u11ab \u110f\u1175 \u1107\u1161\u11af\u1100\u1173\u11b8 \u1112\u116e.",
+      "id": "app_services_oauth_rationale_96"
     },
     {
       "label": "thisabled-backend",
@@ -688,9 +1118,9 @@
       "source_location": "L1",
       "version": "0.1.0",
       "_origin": "ast",
-      "id": "pkg_thisabled_backend",
       "community": 20,
-      "norm_label": "thisabled-backend"
+      "norm_label": "thisabled-backend",
+      "id": "pkg_thisabled_backend"
     },
     {
       "label": "conftest.py",
@@ -698,9 +1128,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "tests_conftest",
       "community": 0,
-      "norm_label": "conftest.py"
+      "norm_label": "conftest.py",
+      "id": "tests_conftest"
     },
     {
       "label": "_test_redis_url()",
@@ -708,9 +1138,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L21",
       "_origin": "ast",
-      "id": "tests_conftest_test_redis_url",
       "community": 0,
-      "norm_label": "_test_redis_url()"
+      "norm_label": "_test_redis_url()",
+      "id": "tests_conftest_test_redis_url"
     },
     {
       "label": "_conn()",
@@ -718,9 +1148,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L28",
       "_origin": "ast",
-      "id": "tests_conftest_conn",
       "community": 0,
-      "norm_label": "_conn()"
+      "norm_label": "_conn()",
+      "id": "tests_conftest_conn"
     },
     {
       "label": "_session_factory()",
@@ -728,9 +1158,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L39",
       "_origin": "ast",
-      "id": "tests_conftest_session_factory",
       "community": 0,
-      "norm_label": "_session_factory()"
+      "norm_label": "_session_factory()",
+      "id": "tests_conftest_session_factory"
     },
     {
       "label": "db()",
@@ -738,9 +1168,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L48",
       "_origin": "ast",
-      "id": "tests_conftest_db",
       "community": 0,
-      "norm_label": "db()"
+      "norm_label": "db()",
+      "id": "tests_conftest_db"
     },
     {
       "label": "client()",
@@ -748,9 +1178,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L55",
       "_origin": "ast",
-      "id": "tests_conftest_client",
       "community": 0,
-      "norm_label": "client()"
+      "norm_label": "client()",
+      "id": "tests_conftest_client"
     },
     {
       "label": "register()",
@@ -758,9 +1188,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L75",
       "_origin": "ast",
-      "id": "tests_conftest_register",
       "community": 0,
-      "norm_label": "register()"
+      "norm_label": "register()",
+      "id": "tests_conftest_register"
     },
     {
       "label": "AsyncClient",
@@ -768,9 +1198,9 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "asyncclient",
       "community": 0,
-      "norm_label": "asyncclient"
+      "norm_label": "asyncclient",
+      "id": "asyncclient"
     },
     {
       "label": "auth_header()",
@@ -778,9 +1208,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L103",
       "_origin": "ast",
-      "id": "tests_conftest_auth_header",
       "community": 0,
-      "norm_label": "auth_header()"
+      "norm_label": "auth_header()",
+      "id": "tests_conftest_auth_header"
     },
     {
       "label": "\ud14c\uc2a4\ud2b8 \uacf5\uc6a9 \ud53d\uc2a4\ucc98.  \uac01 \ud14c\uc2a4\ud2b8\ub294 \ub2e8\uc77c \ucee4\ub125\uc158 \uc704\uc758 \uc678\ubd80 \ud2b8\ub79c\uc7ad\uc158\uc5d0\uc11c \uc2e4\ud589\ub418\uace0 \ub05d\ub098\uba74 \ub864\ubc31\ub41c\ub2e4. \uc571 \ucf54\ub4dc\uac00 `await db.commit()`",
@@ -788,9 +1218,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "tests_conftest_rationale_1",
       "community": 0,
-      "norm_label": "\u1110\u1166\u1109\u1173\u1110\u1173 \u1100\u1169\u11bc\u110b\u116d\u11bc \u1111\u1175\u11a8\u1109\u1173\u110e\u1165.  \u1100\u1161\u11a8 \u1110\u1166\u1109\u1173\u1110\u1173\u1102\u1173\u11ab \u1103\u1161\u11ab\u110b\u1175\u11af \u110f\u1165\u1102\u1166\u11a8\u1109\u1167\u11ab \u110b\u1171\u110b\u1174 \u110b\u116c\u1107\u116e \u1110\u1173\u1105\u1162\u11ab\u110c\u1162\u11a8\u1109\u1167\u11ab\u110b\u1166\u1109\u1165 \u1109\u1175\u11af\u1112\u1162\u11bc\u1103\u116c\u1100\u1169 \u1101\u1173\u11c0\u1102\u1161\u1106\u1167\u11ab \u1105\u1169\u11af\u1107\u1162\u11a8\u1103\u116c\u11ab\u1103\u1161. \u110b\u1162\u11b8 \u110f\u1169\u1103\u1173\u1100\u1161 `await db.commit()`"
+      "norm_label": "\u1110\u1166\u1109\u1173\u1110\u1173 \u1100\u1169\u11bc\u110b\u116d\u11bc \u1111\u1175\u11a8\u1109\u1173\u110e\u1165.  \u1100\u1161\u11a8 \u1110\u1166\u1109\u1173\u1110\u1173\u1102\u1173\u11ab \u1103\u1161\u11ab\u110b\u1175\u11af \u110f\u1165\u1102\u1166\u11a8\u1109\u1167\u11ab \u110b\u1171\u110b\u1174 \u110b\u116c\u1107\u116e \u1110\u1173\u1105\u1162\u11ab\u110c\u1162\u11a8\u1109\u1167\u11ab\u110b\u1166\u1109\u1165 \u1109\u1175\u11af\u1112\u1162\u11bc\u1103\u116c\u1100\u1169 \u1101\u1173\u11c0\u1102\u1161\u1106\u1167\u11ab \u1105\u1169\u11af\u1107\u1162\u11a8\u1103\u116c\u11ab\u1103\u1161. \u110b\u1162\u11b8 \u110f\u1169\u1103\u1173\u1100\u1161 `await db.commit()`",
+      "id": "tests_conftest_rationale_1"
     },
     {
       "label": "\ud14c\uc2a4\ud2b8\uac00 \uc9c1\uc811 DB\ub97c \ub9cc\uc9c8 \ub54c \uc0ac\uc6a9 \u2014 client\uc640 \uac19\uc740 \ucee4\ub125\uc158\uc744 \uacf5\uc720\ud55c\ub2e4.",
@@ -798,9 +1228,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L49",
       "_origin": "ast",
-      "id": "tests_conftest_rationale_49",
       "community": 0,
-      "norm_label": "\u1110\u1166\u1109\u1173\u1110\u1173\u1100\u1161 \u110c\u1175\u11a8\u110c\u1165\u11b8 db\u1105\u1173\u11af \u1106\u1161\u11ab\u110c\u1175\u11af \u1104\u1162 \u1109\u1161\u110b\u116d\u11bc \u2014 client\u110b\u116a \u1100\u1161\u11c0\u110b\u1173\u11ab \u110f\u1165\u1102\u1166\u11a8\u1109\u1167\u11ab\u110b\u1173\u11af \u1100\u1169\u11bc\u110b\u1172\u1112\u1161\u11ab\u1103\u1161."
+      "norm_label": "\u1110\u1166\u1109\u1173\u1110\u1173\u1100\u1161 \u110c\u1175\u11a8\u110c\u1165\u11b8 db\u1105\u1173\u11af \u1106\u1161\u11ab\u110c\u1175\u11af \u1104\u1162 \u1109\u1161\u110b\u116d\u11bc \u2014 client\u110b\u116a \u1100\u1161\u11c0\u110b\u1173\u11ab \u110f\u1165\u1102\u1166\u11a8\u1109\u1167\u11ab\u110b\u1173\u11af \u1100\u1169\u11bc\u110b\u1172\u1112\u1161\u11ab\u1103\u1161.",
+      "id": "tests_conftest_rationale_49"
     },
     {
       "label": "mock OAuth \uac00\uc785 \ud5ec\ud37c \u2192 {access_token, user_id, ...}.",
@@ -808,9 +1238,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L83",
       "_origin": "ast",
-      "id": "tests_conftest_rationale_83",
       "community": 0,
-      "norm_label": "mock oauth \u1100\u1161\u110b\u1175\u11b8 \u1112\u1166\u11af\u1111\u1165 \u2192 {access_token, user_id, ...}."
+      "norm_label": "mock oauth \u1100\u1161\u110b\u1175\u11b8 \u1112\u1166\u11af\u1111\u1165 \u2192 {access_token, user_id, ...}.",
+      "id": "tests_conftest_rationale_83"
     },
     {
       "label": "test_auth.py",
@@ -818,9 +1248,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "tests_test_auth",
       "community": 0,
-      "norm_label": "test_auth.py"
+      "norm_label": "test_auth.py",
+      "id": "tests_test_auth"
     },
     {
       "label": "_signup_token()",
@@ -828,9 +1258,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L14",
       "_origin": "ast",
-      "id": "tests_test_auth_signup_token",
       "community": 0,
-      "norm_label": "_signup_token()"
+      "norm_label": "_signup_token()",
+      "id": "tests_test_auth_signup_token"
     },
     {
       "label": "test_callback_new_user_returns_signup_token()",
@@ -838,9 +1268,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L22",
       "_origin": "ast",
-      "id": "tests_test_auth_test_callback_new_user_returns_signup_token",
       "community": 0,
-      "norm_label": "test_callback_new_user_returns_signup_token()"
+      "norm_label": "test_callback_new_user_returns_signup_token()",
+      "id": "tests_test_auth_test_callback_new_user_returns_signup_token"
     },
     {
       "label": "test_signup_success_adult()",
@@ -848,9 +1278,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L27",
       "_origin": "ast",
-      "id": "tests_test_auth_test_signup_success_adult",
       "community": 0,
-      "norm_label": "test_signup_success_adult()"
+      "norm_label": "test_signup_success_adult()",
+      "id": "tests_test_auth_test_signup_success_adult"
     },
     {
       "label": "test_signup_minor_blocks_stranger_requests()",
@@ -858,9 +1288,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L43",
       "_origin": "ast",
-      "id": "tests_test_auth_test_signup_minor_blocks_stranger_requests",
       "community": 0,
-      "norm_label": "test_signup_minor_blocks_stranger_requests()"
+      "norm_label": "test_signup_minor_blocks_stranger_requests()",
+      "id": "tests_test_auth_test_signup_minor_blocks_stranger_requests"
     },
     {
       "label": "test_signup_under_14_rejected()",
@@ -868,9 +1298,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L53",
       "_origin": "ast",
-      "id": "tests_test_auth_test_signup_under_14_rejected",
       "community": 0,
-      "norm_label": "test_signup_under_14_rejected()"
+      "norm_label": "test_signup_under_14_rejected()",
+      "id": "tests_test_auth_test_signup_under_14_rejected"
     },
     {
       "label": "test_signup_duplicate_nickname()",
@@ -878,9 +1308,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L63",
       "_origin": "ast",
-      "id": "tests_test_auth_test_signup_duplicate_nickname",
       "community": 0,
-      "norm_label": "test_signup_duplicate_nickname()"
+      "norm_label": "test_signup_duplicate_nickname()",
+      "id": "tests_test_auth_test_signup_duplicate_nickname"
     },
     {
       "label": "test_signup_forbidden_nickname()",
@@ -888,9 +1318,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L73",
       "_origin": "ast",
-      "id": "tests_test_auth_test_signup_forbidden_nickname",
       "community": 0,
-      "norm_label": "test_signup_forbidden_nickname()"
+      "norm_label": "test_signup_forbidden_nickname()",
+      "id": "tests_test_auth_test_signup_forbidden_nickname"
     },
     {
       "label": "test_signup_requires_all_agreements()",
@@ -898,9 +1328,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L82",
       "_origin": "ast",
-      "id": "tests_test_auth_test_signup_requires_all_agreements",
       "community": 0,
-      "norm_label": "test_signup_requires_all_agreements()"
+      "norm_label": "test_signup_requires_all_agreements()",
+      "id": "tests_test_auth_test_signup_requires_all_agreements"
     },
     {
       "label": "test_existing_user_callback_logs_in()",
@@ -908,9 +1338,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L92",
       "_origin": "ast",
-      "id": "tests_test_auth_test_existing_user_callback_logs_in",
       "community": 0,
-      "norm_label": "test_existing_user_callback_logs_in()"
+      "norm_label": "test_existing_user_callback_logs_in()",
+      "id": "tests_test_auth_test_existing_user_callback_logs_in"
     },
     {
       "label": "test_rejoin_blocked_within_30_days()",
@@ -918,9 +1348,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L101",
       "_origin": "ast",
-      "id": "tests_test_auth_test_rejoin_blocked_within_30_days",
       "community": 0,
-      "norm_label": "test_rejoin_blocked_within_30_days()"
+      "norm_label": "test_rejoin_blocked_within_30_days()",
+      "id": "tests_test_auth_test_rejoin_blocked_within_30_days"
     },
     {
       "label": "test_refresh_rotates_access_token()",
@@ -928,9 +1358,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L116",
       "_origin": "ast",
-      "id": "tests_test_auth_test_refresh_rotates_access_token",
       "community": 0,
-      "norm_label": "test_refresh_rotates_access_token()"
+      "norm_label": "test_refresh_rotates_access_token()",
+      "id": "tests_test_auth_test_refresh_rotates_access_token"
     },
     {
       "label": "test_invalid_mock_code_rejected()",
@@ -938,9 +1368,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L123",
       "_origin": "ast",
-      "id": "tests_test_auth_test_invalid_mock_code_rejected",
       "community": 0,
-      "norm_label": "test_invalid_mock_code_rejected()"
+      "norm_label": "test_invalid_mock_code_rejected()",
+      "id": "tests_test_auth_test_invalid_mock_code_rejected"
     },
     {
       "label": "ACC-01/02 \u2014 \uc18c\uc15c OAuth \uc804\uc6a9 \uc778\uc99d (mock \uc81c\uacf5\uc790).",
@@ -948,9 +1378,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "tests_test_auth_rationale_1",
       "community": 0,
-      "norm_label": "acc-01/02 \u2014 \u1109\u1169\u1109\u1167\u11af oauth \u110c\u1165\u11ab\u110b\u116d\u11bc \u110b\u1175\u11ab\u110c\u1173\u11bc (mock \u110c\u1166\u1100\u1169\u11bc\u110c\u1161)."
+      "norm_label": "acc-01/02 \u2014 \u1109\u1169\u1109\u1167\u11af oauth \u110c\u1165\u11ab\u110b\u116d\u11bc \u110b\u1175\u11ab\u110c\u1173\u11bc (mock \u110c\u1166\u1100\u1169\u11bc\u110c\u1161).",
+      "id": "tests_test_auth_rationale_1"
     },
     {
       "label": "age.py",
@@ -2333,22 +2763,12 @@
       "id": "app_api_v1_upload_py_uploadfile"
     },
     {
-      "label": "AsyncSession",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "community": 57,
-      "norm_label": "asyncsession",
-      "id": "app_api_v1_users_py_asyncsession"
-    },
-    {
       "label": "Path",
       "file_type": "code",
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "community": 2,
+      "community": 53,
       "norm_label": "path",
       "id": "path"
     },
@@ -2438,7 +2858,7 @@
       "source_file": "app/core/storage.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 53,
       "norm_label": "storage.py",
       "id": "app_core_storage"
     },
@@ -2448,7 +2868,7 @@
       "source_file": "app/core/storage.py",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 2,
+      "community": 53,
       "norm_label": "_ext_from_content_type()",
       "id": "app_core_storage_ext_from_content_type"
     },
@@ -2458,7 +2878,7 @@
       "source_file": "app/core/storage.py",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 2,
+      "community": 53,
       "norm_label": "save_upload()",
       "id": "app_core_storage_save_upload"
     },
@@ -2468,7 +2888,7 @@
       "source_file": "app/core/storage.py",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 2,
+      "community": 53,
       "norm_label": "save file locally and return the public url path.",
       "id": "app_core_storage_rationale_21"
     },
@@ -4785,71 +5205,122 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L51",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L79",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_api_v1_auth_authorize",
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_me",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L57",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L58",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_api_v1_auth_callback",
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_me_out",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L180",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L84",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_api_v1_auth_logout",
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_patch_me",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L163",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L125",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_api_v1_auth_refresh",
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_patch_settings",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L37",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L159",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_api_v1_auth_set_refresh_cookie",
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_public_profile",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L90",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L139",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_api_v1_auth_signup",
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_put_mode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_put_tags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_reject_contact_in_bio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_tag_catalog",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "app_api_v1_users",
+      "target": "app_api_v1_users_user_tags",
       "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L17",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L10",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
+      "source": "app_api_v1_users",
       "target": "app_core_age",
       "confidence_score": 1.0
     },
@@ -4857,87 +5328,21 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L18",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L11",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_core_config",
+      "source": "app_api_v1_users",
+      "target": "app_core_deps",
       "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L19",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L12",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_core_security",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L19",
-      "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_core_security_create_access_token",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L19",
-      "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_core_security_create_refresh_token",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L19",
-      "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_core_security_create_signup_token",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L19",
-      "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_core_security_decode_signup_token",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L19",
-      "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_core_security_decode_token",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L26",
-      "weight": 1.0,
-      "source": "app_api_v1_auth",
+      "source": "app_api_v1_users",
       "target": "app_db_session",
       "confidence_score": 1.0
     },
@@ -4945,10 +5350,10 @@
       "relation": "imports_from",
       "context": "submodule_import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L27",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L13",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
+      "source": "app_api_v1_users",
       "target": "app_models_user",
       "confidence_score": 1.0
     },
@@ -4956,143 +5361,605 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L28",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L14",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_schemas_auth",
+      "source": "app_api_v1_users",
+      "target": "app_schemas_user",
       "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L28",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L14",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_schemas_auth_accesstokenout",
+      "source": "app_api_v1_users",
+      "target": "app_schemas_user_meout",
       "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L28",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L14",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_schemas_auth_authorizeout",
+      "source": "app_api_v1_users",
+      "target": "app_schemas_user_modeputin",
       "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L28",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L14",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_schemas_auth_callbackout",
+      "source": "app_api_v1_users",
+      "target": "app_schemas_user_profilepatchin",
       "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L28",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L14",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_schemas_auth_signupin",
+      "source": "app_api_v1_users",
+      "target": "app_schemas_user_publicprofileout",
       "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L28",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L14",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_schemas_auth_tokenout",
+      "source": "app_api_v1_users",
+      "target": "app_schemas_user_settingspatchin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "app_api_v1_users",
+      "target": "app_schemas_user_tagcatalogout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "app_api_v1_users",
+      "target": "app_schemas_user_tagout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "app_api_v1_users",
+      "target": "app_schemas_user_tagsputin",
       "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L29",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L24",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
+      "source": "app_api_v1_users",
       "target": "app_services_nickname",
       "confidence_score": 1.0
     },
     {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L29",
-      "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_services_nickname_validate_nickname",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L30",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L25",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_services_oauth",
+      "source": "app_api_v1_users",
+      "target": "app_services_relations",
       "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L30",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L25",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "app_services_oauth_get_provider",
+      "source": "app_api_v1_users",
+      "target": "app_services_relations_is_blocked_either",
       "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L12",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L6",
       "weight": 1.0,
-      "source": "app_api_v1_auth",
+      "source": "app_api_v1_users",
       "target": "fastapi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "app_api_v1_auth",
-      "target": "uuid",
       "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/auth.py",
+      "source_file": "app/api/v1/users.py",
       "source_location": "L1",
       "weight": 1.0,
-      "source": "app_api_v1_auth_rationale_1",
-      "target": "app_api_v1_auth",
+      "source": "app_api_v1_users_rationale_1",
+      "target": "app_api_v1_users",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_main",
+      "target": "app_api_v1_users",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "app_api_v1_users_patch_me",
+      "target": "app_api_v1_users_reject_contact_in_bio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "app_api_v1_users_me",
+      "target": "app_api_v1_users_user_tags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "app_api_v1_users_patch_me",
+      "target": "app_api_v1_users_user_tags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L135",
+      "weight": 1.0,
+      "source": "app_api_v1_users_patch_settings",
+      "target": "app_api_v1_users_user_tags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L173",
+      "weight": 1.0,
+      "source": "app_api_v1_users_public_profile",
+      "target": "app_api_v1_users_user_tags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L155",
+      "weight": 1.0,
+      "source": "app_api_v1_users_put_mode",
+      "target": "app_api_v1_users_user_tags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "app_api_v1_users_put_tags",
+      "target": "app_api_v1_users_user_tags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "app_api_v1_users_user_tags",
+      "target": "app_api_v1_users_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "app_api_v1_users_user_tags",
+      "target": "app_api_v1_users_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "app_api_v1_users_user_tags",
+      "target": "app_schemas_user_tagout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "app_api_v1_users_me",
+      "target": "app_api_v1_users_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "app_api_v1_users_patch_me",
+      "target": "app_api_v1_users_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L125",
+      "weight": 1.0,
+      "source": "app_api_v1_users_patch_settings",
+      "target": "app_api_v1_users_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L159",
+      "weight": 1.0,
+      "source": "app_api_v1_users_public_profile",
+      "target": "app_api_v1_users_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "app_api_v1_users_put_mode",
+      "target": "app_api_v1_users_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "app_api_v1_users_put_tags",
+      "target": "app_api_v1_users_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "app_api_v1_users_tag_catalog",
+      "target": "app_api_v1_users_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L159",
+      "weight": 1.0,
+      "source": "app_api_v1_users_public_profile",
+      "target": "app_api_v1_users_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "app_api_v1_users_me",
+      "target": "app_api_v1_users_me_out",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "app_api_v1_users_me_out",
+      "target": "app_schemas_user_meout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "app_api_v1_users_me_out",
+      "target": "app_schemas_user_tagout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "app_api_v1_users_me_out",
+      "target": "user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "app_api_v1_users_patch_me",
+      "target": "app_api_v1_users_me_out",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L135",
+      "weight": 1.0,
+      "source": "app_api_v1_users_patch_settings",
+      "target": "app_api_v1_users_me_out",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L155",
+      "weight": 1.0,
+      "source": "app_api_v1_users_put_mode",
+      "target": "app_api_v1_users_me_out",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "app_api_v1_users_put_tags",
+      "target": "app_api_v1_users_me_out",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "app_api_v1_users_me",
+      "target": "user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "app_api_v1_users_patch_me",
+      "target": "user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L125",
+      "weight": 1.0,
+      "source": "app_api_v1_users_patch_settings",
+      "target": "user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L159",
+      "weight": 1.0,
+      "source": "app_api_v1_users_public_profile",
+      "target": "user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "app_api_v1_users_put_mode",
+      "target": "user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "app_api_v1_users_put_tags",
+      "target": "user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "app_api_v1_users_tag_catalog",
+      "target": "app_schemas_user_tagcatalogout"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "app_api_v1_users_tag_catalog",
+      "target": "app_schemas_user_tagout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "app_api_v1_users_patch_me",
+      "target": "app_schemas_user_profilepatchin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "app_api_v1_users_put_tags",
+      "target": "app_schemas_user_tagsputin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L125",
+      "weight": 1.0,
+      "source": "app_api_v1_users_patch_settings",
+      "target": "app_schemas_user_settingspatchin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "app_api_v1_users_put_mode",
+      "target": "app_schemas_user_modeputin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L168",
+      "weight": 1.0,
+      "source": "app_api_v1_users_public_profile",
+      "target": "app_schemas_user_publicprofileout"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/api/v1/users.py",
+      "source_location": "L166",
+      "weight": 1.0,
+      "source": "app_api_v1_users_public_profile",
+      "target": "app_services_relations_is_blocked_either"
     },
     {
       "relation": "imports_from",
@@ -5106,15 +5973,938 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_main",
+      "target": "app_api_v1_health",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "app_main",
+      "target": "app_core_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "app_main",
+      "target": "app_main_lifespan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_main",
+      "target": "fastapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/conftest.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_conftest",
+      "target": "app_main"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "app_main_lifespan",
+      "target": "fastapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/health.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_health",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/core/deps.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_core_deps",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/nickname.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_services_nickname",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/oauth.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_services_oauth",
+      "target": "fastapi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "app_schemas_user",
+      "target": "app_core_enums",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "app_schemas_user",
+      "target": "app_schemas_user_meout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "app_schemas_user",
+      "target": "app_schemas_user_modeputin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "app_schemas_user",
+      "target": "app_schemas_user_profilepatchin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "app_schemas_user",
+      "target": "app_schemas_user_publicprofileout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "app_schemas_user",
+      "target": "app_schemas_user_settingspatchin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "app_schemas_user",
+      "target": "app_schemas_user_tagcatalogout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_schemas_user",
+      "target": "app_schemas_user_tagout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "app_schemas_user",
+      "target": "app_schemas_user_tagsputin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "app_schemas_user",
+      "target": "uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_schemas_user_tagout",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_schemas_auth_accesstokenout",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_schemas_auth_agreements",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_schemas_auth_authorizeout",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_schemas_auth_callbackout",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_schemas_auth_signupin",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/auth.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_schemas_auth_tokenout",
+      "target": "basemodel"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "app_schemas_user_meout",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "app_schemas_user_modeputin",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "app_schemas_user_profilepatchin",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "app_schemas_user_publicprofileout",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "app_schemas_user_settingspatchin",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "app_schemas_user_tagcatalogout",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "app_schemas_user_tagsputin",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "app_schemas_user_rationale_19",
+      "target": "app_schemas_user_meout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/schemas/user.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "app_schemas_user_rationale_33",
+      "target": "app_schemas_user_publicprofileout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_services_relations",
+      "target": "app_core_enums",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "app_services_relations",
+      "target": "app_core_pairs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "app_services_relations",
+      "target": "app_services_relations_are_friends",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "app_services_relations",
+      "target": "app_services_relations_block_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "app_services_relations",
+      "target": "app_services_relations_is_blocked_either",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "app_services_relations",
+      "target": "app_services_relations_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "app_services_relations_rationale_1",
+      "target": "app_services_relations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "app_services_relations_are_friends",
+      "target": "app_services_relations_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "app_services_relations_are_friends",
+      "target": "app_services_relations_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "app_services_relations_block_user",
+      "target": "app_services_relations_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "app_services_relations_is_blocked_either",
+      "target": "app_services_relations_py_asyncsession",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "app_services_relations_block_user",
+      "target": "app_services_relations_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "app_services_relations_is_blocked_either",
+      "target": "app_services_relations_py_uuid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "app_services_relations_rationale_24",
+      "target": "app_services_relations_is_blocked_either",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/relations.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "app_services_relations_rationale_39",
+      "target": "app_services_relations_block_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_users.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tests_test_users",
+      "target": "tests_conftest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_users.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_test_users",
+      "target": "tests_test_users_test_me_includes_profile_and_derived_minor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_users.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "tests_test_users",
+      "target": "tests_test_users_test_mode_change_records_history",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_users.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_users",
+      "target": "tests_test_users_test_patch_me_rejects_contact_in_bio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_users.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "tests_test_users",
+      "target": "tests_test_users_test_public_profile_hides_mode_and_birth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_users.py",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "tests_test_users",
+      "target": "tests_test_users_test_settings_update",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_users.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "tests_test_users",
+      "target": "tests_test_users_test_tags_catalog_and_replace",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_users.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_users_rationale_1",
+      "target": "tests_test_users",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_api_v1_auth_authorize"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_api_v1_auth_callback"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L180",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_api_v1_auth_logout"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L163",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_api_v1_auth_refresh"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_api_v1_auth_set_refresh_cookie"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_api_v1_auth_signup"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_core_age"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_core_config"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_core_security"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_core_security_create_access_token"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_core_security_create_refresh_token"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_core_security_create_signup_token"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_core_security_decode_signup_token"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_core_security_decode_token"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_db_session"
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_models_user"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_schemas_auth"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_schemas_auth_accesstokenout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_schemas_auth_authorizeout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_schemas_auth_callbackout"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_schemas_auth_signupin"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_schemas_auth_tokenout"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_services_nickname"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_services_nickname_validate_nickname"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_services_oauth"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "app_services_oauth_get_provider"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth",
+      "target": "uuid"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/v1/auth.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_api_v1_auth_rationale_1",
+      "target": "app_api_v1_auth"
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/api/v1/auth.py",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_callback",
-      "target": "app_api_v1_auth_set_refresh_cookie",
-      "confidence_score": 1.0
+      "target": "app_api_v1_auth_set_refresh_cookie"
     },
     {
       "relation": "calls",
@@ -5123,9 +6913,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L41",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_set_refresh_cookie",
-      "target": "app_core_security_create_refresh_token",
-      "confidence_score": 1.0
+      "target": "app_core_security_create_refresh_token"
     },
     {
       "relation": "references",
@@ -5134,9 +6924,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_set_refresh_cookie",
-      "target": "response",
-      "confidence_score": 1.0
+      "target": "response"
     },
     {
       "relation": "references",
@@ -5145,9 +6935,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_set_refresh_cookie",
-      "target": "uuid",
-      "confidence_score": 1.0
+      "target": "uuid"
     },
     {
       "relation": "calls",
@@ -5156,9 +6946,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L154",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_signup",
-      "target": "app_api_v1_auth_set_refresh_cookie",
-      "confidence_score": 1.0
+      "target": "app_api_v1_auth_set_refresh_cookie"
     },
     {
       "relation": "references",
@@ -5167,9 +6957,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_callback",
-      "target": "response",
-      "confidence_score": 1.0
+      "target": "response"
     },
     {
       "relation": "references",
@@ -5178,9 +6968,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L180",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_logout",
-      "target": "response",
-      "confidence_score": 1.0
+      "target": "response"
     },
     {
       "relation": "references",
@@ -5189,9 +6979,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L90",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_signup",
-      "target": "response",
-      "confidence_score": 1.0
+      "target": "response"
     },
     {
       "relation": "calls",
@@ -5200,9 +6990,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L171",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_refresh",
-      "target": "uuid",
-      "confidence_score": 1.0
+      "target": "uuid"
     },
     {
       "relation": "imports",
@@ -5310,9 +7100,9 @@
       "source_file": "app/schemas/auth.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_schemas_auth",
-      "target": "uuid",
-      "confidence_score": 1.0
+      "target": "uuid"
     },
     {
       "relation": "imports",
@@ -5332,9 +7122,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "uuid",
-      "confidence_score": 1.0
+      "target": "uuid"
     },
     {
       "relation": "calls",
@@ -5365,9 +7155,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_callback",
-      "target": "app_api_v1_auth_py_asyncsession",
-      "confidence_score": 1.0
+      "target": "app_api_v1_auth_py_asyncsession"
     },
     {
       "relation": "calls",
@@ -5420,9 +7210,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L163",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_refresh",
-      "target": "app_api_v1_auth_py_asyncsession",
-      "confidence_score": 1.0
+      "target": "app_api_v1_auth_py_asyncsession"
     },
     {
       "relation": "references",
@@ -5431,9 +7221,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L90",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_signup",
-      "target": "app_api_v1_auth_py_asyncsession",
-      "confidence_score": 1.0
+      "target": "app_api_v1_auth_py_asyncsession"
     },
     {
       "relation": "calls",
@@ -5464,9 +7254,9 @@
       "source_file": "app/api/v1/auth.py",
       "source_location": "L90",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_api_v1_auth_signup",
-      "target": "app_schemas_auth_signupin",
-      "confidence_score": 1.0
+      "target": "app_schemas_auth_signupin"
     },
     {
       "relation": "calls",
@@ -5552,9 +7342,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security",
-      "target": "app_core_config",
-      "confidence_score": 1.0
+      "target": "app_core_config"
     },
     {
       "relation": "contains",
@@ -5562,9 +7352,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security",
-      "target": "app_core_security_create_access_token",
-      "confidence_score": 1.0
+      "target": "app_core_security_create_access_token"
     },
     {
       "relation": "contains",
@@ -5572,9 +7362,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security",
-      "target": "app_core_security_create_refresh_token",
-      "confidence_score": 1.0
+      "target": "app_core_security_create_refresh_token"
     },
     {
       "relation": "contains",
@@ -5582,9 +7372,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security",
-      "target": "app_core_security_create_signup_token",
-      "confidence_score": 1.0
+      "target": "app_core_security_create_signup_token"
     },
     {
       "relation": "contains",
@@ -5592,9 +7382,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security",
-      "target": "app_core_security_decode_signup_token",
-      "confidence_score": 1.0
+      "target": "app_core_security_decode_signup_token"
     },
     {
       "relation": "contains",
@@ -5602,9 +7392,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L40",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security",
-      "target": "app_core_security_decode_token",
-      "confidence_score": 1.0
+      "target": "app_core_security_decode_token"
     },
     {
       "relation": "contains",
@@ -5612,9 +7402,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security",
-      "target": "app_core_security_encode",
-      "confidence_score": 1.0
+      "target": "app_core_security_encode"
     },
     {
       "relation": "rationale_for",
@@ -5622,9 +7412,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security_rationale_1",
-      "target": "app_core_security",
-      "confidence_score": 1.0
+      "target": "app_core_security"
     },
     {
       "relation": "calls",
@@ -5633,9 +7423,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security_create_access_token",
-      "target": "app_core_security_encode",
-      "confidence_score": 1.0
+      "target": "app_core_security_encode"
     },
     {
       "relation": "calls",
@@ -5644,9 +7434,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security_create_refresh_token",
-      "target": "app_core_security_encode",
-      "confidence_score": 1.0
+      "target": "app_core_security_encode"
     },
     {
       "relation": "calls",
@@ -5655,9 +7445,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security_create_signup_token",
-      "target": "app_core_security_encode",
-      "confidence_score": 1.0
+      "target": "app_core_security_encode"
     },
     {
       "relation": "references",
@@ -5666,9 +7456,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security_encode",
-      "target": "timedelta",
-      "confidence_score": 1.0
+      "target": "timedelta"
     },
     {
       "relation": "calls",
@@ -5677,9 +7467,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security_create_access_token",
-      "target": "timedelta",
-      "confidence_score": 1.0
+      "target": "timedelta"
     },
     {
       "relation": "calls",
@@ -5688,9 +7478,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security_create_refresh_token",
-      "target": "timedelta",
-      "confidence_score": 1.0
+      "target": "timedelta"
     },
     {
       "relation": "calls",
@@ -5699,9 +7489,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L36",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security_create_signup_token",
-      "target": "timedelta",
-      "confidence_score": 1.0
+      "target": "timedelta"
     },
     {
       "relation": "calls",
@@ -5720,9 +7510,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security_rationale_32",
-      "target": "app_core_security_create_signup_token",
-      "confidence_score": 1.0
+      "target": "app_core_security_create_signup_token"
     },
     {
       "relation": "imports",
@@ -5753,9 +7543,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L49",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security_decode_signup_token",
-      "target": "app_core_security_decode_token",
-      "confidence_score": 1.0
+      "target": "app_core_security_decode_token"
     },
     {
       "relation": "rationale_for",
@@ -5763,118 +7553,9 @@
       "source_file": "app/core/security.py",
       "source_location": "L48",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_core_security_rationale_48",
-      "target": "app_core_security_decode_signup_token",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "submodule_import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/main.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "app_main",
-      "target": "app_api_v1_health",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/main.py",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "app_main",
-      "target": "app_core_config",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/main.py",
-      "source_location": "L37",
-      "weight": 1.0,
-      "source": "app_main",
-      "target": "app_main_lifespan",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/main.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "app_main",
-      "target": "fastapi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/conftest.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "source": "tests_conftest",
-      "target": "app_main",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "app/main.py",
-      "source_location": "L37",
-      "weight": 1.0,
-      "source": "app_main_lifespan",
-      "target": "fastapi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/api/v1/health.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_api_v1_health",
-      "target": "fastapi"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/core/deps.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_core_deps",
-      "target": "fastapi"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/services/nickname.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "app_services_nickname",
-      "target": "fastapi",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/services/oauth.py",
-      "source_location": "L13",
-      "weight": 1.0,
-      "source": "app_services_oauth",
-      "target": "fastapi",
-      "confidence_score": 1.0
+      "target": "app_core_security_decode_signup_token"
     },
     {
       "relation": "imports_from",
@@ -5883,9 +7564,9 @@
       "source_file": "app/schemas/auth.py",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_schemas_auth",
-      "target": "app_core_enums",
-      "confidence_score": 1.0
+      "target": "app_core_enums"
     },
     {
       "relation": "contains",
@@ -5893,9 +7574,9 @@
       "source_file": "app/schemas/auth.py",
       "source_location": "L46",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_schemas_auth",
-      "target": "app_schemas_auth_accesstokenout",
-      "confidence_score": 1.0
+      "target": "app_schemas_auth_accesstokenout"
     },
     {
       "relation": "contains",
@@ -5903,9 +7584,9 @@
       "source_file": "app/schemas/auth.py",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_schemas_auth",
-      "target": "app_schemas_auth_agreements",
-      "confidence_score": 1.0
+      "target": "app_schemas_auth_agreements"
     },
     {
       "relation": "contains",
@@ -5913,9 +7594,9 @@
       "source_file": "app/schemas/auth.py",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_schemas_auth",
-      "target": "app_schemas_auth_authorizeout",
-      "confidence_score": 1.0
+      "target": "app_schemas_auth_authorizeout"
     },
     {
       "relation": "contains",
@@ -5923,9 +7604,9 @@
       "source_file": "app/schemas/auth.py",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_schemas_auth",
-      "target": "app_schemas_auth_callbackout",
-      "confidence_score": 1.0
+      "target": "app_schemas_auth_callbackout"
     },
     {
       "relation": "contains",
@@ -5933,9 +7614,9 @@
       "source_file": "app/schemas/auth.py",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_schemas_auth",
-      "target": "app_schemas_auth_signupin",
-      "confidence_score": 1.0
+      "target": "app_schemas_auth_signupin"
     },
     {
       "relation": "contains",
@@ -5943,69 +7624,9 @@
       "source_file": "app/schemas/auth.py",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_schemas_auth",
-      "target": "app_schemas_auth_tokenout",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "app_schemas_auth_authorizeout",
-      "target": "basemodel",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L46",
-      "weight": 1.0,
-      "source": "app_schemas_auth_accesstokenout",
-      "target": "basemodel",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "source": "app_schemas_auth_agreements",
-      "target": "basemodel",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L13",
-      "weight": 1.0,
-      "source": "app_schemas_auth_callbackout",
-      "target": "basemodel",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L31",
-      "weight": 1.0,
-      "source": "app_schemas_auth_signupin",
-      "target": "basemodel",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "app/schemas/auth.py",
-      "source_location": "L39",
-      "weight": 1.0,
-      "source": "app_schemas_auth_tokenout",
-      "target": "basemodel",
-      "confidence_score": 1.0
+      "target": "app_schemas_auth_tokenout"
     },
     {
       "relation": "rationale_for",
@@ -6013,9 +7634,9 @@
       "source_file": "app/schemas/auth.py",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_schemas_auth_rationale_24",
-      "target": "app_schemas_auth_agreements",
-      "confidence_score": 1.0
+      "target": "app_schemas_auth_agreements"
     },
     {
       "relation": "imports_from",
@@ -6024,9 +7645,9 @@
       "source_file": "app/services/nickname.py",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_nickname",
-      "target": "app_models_user",
-      "confidence_score": 1.0
+      "target": "app_models_user"
     },
     {
       "relation": "contains",
@@ -6034,9 +7655,9 @@
       "source_file": "app/services/nickname.py",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_nickname",
-      "target": "app_services_nickname_validate_nickname",
-      "confidence_score": 1.0
+      "target": "app_services_nickname_validate_nickname"
     },
     {
       "relation": "rationale_for",
@@ -6044,9 +7665,9 @@
       "source_file": "app/services/nickname.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_nickname_rationale_1",
-      "target": "app_services_nickname",
-      "confidence_score": 1.0
+      "target": "app_services_nickname"
     },
     {
       "relation": "rationale_for",
@@ -6054,9 +7675,9 @@
       "source_file": "app/services/nickname.py",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_nickname_rationale_15",
-      "target": "app_services_nickname_validate_nickname",
-      "confidence_score": 1.0
+      "target": "app_services_nickname_validate_nickname"
     },
     {
       "relation": "references",
@@ -6065,9 +7686,9 @@
       "source_file": "app/services/nickname.py",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_nickname_validate_nickname",
-      "target": "app_services_nickname_py_asyncsession",
-      "confidence_score": 1.0
+      "target": "app_services_nickname_py_asyncsession"
     },
     {
       "relation": "imports_from",
@@ -6076,9 +7697,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth",
-      "target": "app_core_config",
-      "confidence_score": 1.0
+      "target": "app_core_config"
     },
     {
       "relation": "contains",
@@ -6086,9 +7707,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L135",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth",
-      "target": "app_services_oauth_get_provider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_get_provider"
     },
     {
       "relation": "contains",
@@ -6096,9 +7717,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L95",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth",
-      "target": "app_services_oauth_googleprovider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_googleprovider"
     },
     {
       "relation": "contains",
@@ -6106,9 +7727,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L56",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth",
-      "target": "app_services_oauth_kakaoprovider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_kakaoprovider"
     },
     {
       "relation": "contains",
@@ -6116,9 +7737,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth",
-      "target": "app_services_oauth_mockprovider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_mockprovider"
     },
     {
       "relation": "contains",
@@ -6126,9 +7747,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth",
-      "target": "app_services_oauth_oauthprovider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_oauthprovider"
     },
     {
       "relation": "contains",
@@ -6136,9 +7757,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth",
-      "target": "app_services_oauth_oauthuserinfo",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_oauthuserinfo"
     },
     {
       "relation": "rationale_for",
@@ -6146,9 +7767,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_rationale_1",
-      "target": "app_services_oauth",
-      "confidence_score": 1.0
+      "target": "app_services_oauth"
     },
     {
       "relation": "references",
@@ -6157,9 +7778,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L113",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_googleprovider_exchange_code",
-      "target": "app_services_oauth_oauthuserinfo",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_oauthuserinfo"
     },
     {
       "relation": "references",
@@ -6168,9 +7789,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_kakaoprovider_exchange_code",
-      "target": "app_services_oauth_oauthuserinfo",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_oauthuserinfo"
     },
     {
       "relation": "references",
@@ -6179,9 +7800,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_mockprovider_exchange_code",
-      "target": "app_services_oauth_oauthuserinfo",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_oauthuserinfo"
     },
     {
       "relation": "references",
@@ -6190,9 +7811,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_oauthprovider_exchange_code",
-      "target": "app_services_oauth_oauthuserinfo",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_oauthuserinfo"
     },
     {
       "relation": "references",
@@ -6201,9 +7822,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L135",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_get_provider",
-      "target": "app_services_oauth_oauthprovider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_oauthprovider"
     },
     {
       "relation": "method",
@@ -6211,9 +7832,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_oauthprovider",
-      "target": "app_services_oauth_oauthprovider_authorize_url",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_oauthprovider_authorize_url"
     },
     {
       "relation": "method",
@@ -6221,9 +7842,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_oauthprovider",
-      "target": "app_services_oauth_oauthprovider_exchange_code",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_oauthprovider_exchange_code"
     },
     {
       "relation": "method",
@@ -6231,9 +7852,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_oauthprovider",
-      "target": "app_services_oauth_oauthprovider_unlink",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_oauthprovider_unlink"
     },
     {
       "relation": "inherits",
@@ -6241,9 +7862,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_oauthprovider",
-      "target": "protocol",
-      "confidence_score": 1.0
+      "target": "protocol"
     },
     {
       "relation": "calls",
@@ -6252,9 +7873,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L139",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_get_provider",
-      "target": "app_services_oauth_mockprovider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_mockprovider"
     },
     {
       "relation": "method",
@@ -6262,9 +7883,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L40",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_mockprovider",
-      "target": "app_services_oauth_mockprovider_authorize_url",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_mockprovider_authorize_url"
     },
     {
       "relation": "method",
@@ -6272,9 +7893,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_mockprovider",
-      "target": "app_services_oauth_mockprovider_exchange_code",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_mockprovider_exchange_code"
     },
     {
       "relation": "method",
@@ -6282,9 +7903,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_mockprovider",
-      "target": "app_services_oauth_mockprovider_init",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_mockprovider_init"
     },
     {
       "relation": "method",
@@ -6292,9 +7913,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L52",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_mockprovider",
-      "target": "app_services_oauth_mockprovider_unlink",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_mockprovider_unlink"
     },
     {
       "relation": "rationale_for",
@@ -6302,9 +7923,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_rationale_35",
-      "target": "app_services_oauth_mockprovider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_mockprovider"
     },
     {
       "relation": "calls",
@@ -6313,9 +7934,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L141",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_get_provider",
-      "target": "app_services_oauth_kakaoprovider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_kakaoprovider"
     },
     {
       "relation": "method",
@@ -6323,9 +7944,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L69",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_kakaoprovider",
-      "target": "app_services_oauth_kakaoprovider_authorize_url",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_kakaoprovider_authorize_url"
     },
     {
       "relation": "method",
@@ -6333,9 +7954,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_kakaoprovider",
-      "target": "app_services_oauth_kakaoprovider_exchange_code",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_kakaoprovider_exchange_code"
     },
     {
       "relation": "method",
@@ -6343,9 +7964,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L66",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_kakaoprovider",
-      "target": "app_services_oauth_kakaoprovider_redirect_uri",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_kakaoprovider_redirect_uri"
     },
     {
       "relation": "method",
@@ -6353,9 +7974,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L90",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_kakaoprovider",
-      "target": "app_services_oauth_kakaoprovider_unlink",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_kakaoprovider_unlink"
     },
     {
       "relation": "rationale_for",
@@ -6363,9 +7984,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_rationale_57",
-      "target": "app_services_oauth_kakaoprovider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_kakaoprovider"
     },
     {
       "relation": "calls",
@@ -6374,9 +7995,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L143",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_get_provider",
-      "target": "app_services_oauth_googleprovider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_googleprovider"
     },
     {
       "relation": "method",
@@ -6384,9 +8005,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L107",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_googleprovider",
-      "target": "app_services_oauth_googleprovider_authorize_url",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_googleprovider_authorize_url"
     },
     {
       "relation": "method",
@@ -6394,9 +8015,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L113",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_googleprovider",
-      "target": "app_services_oauth_googleprovider_exchange_code",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_googleprovider_exchange_code"
     },
     {
       "relation": "method",
@@ -6404,9 +8025,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L104",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_googleprovider",
-      "target": "app_services_oauth_googleprovider_redirect_uri",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_googleprovider_redirect_uri"
     },
     {
       "relation": "method",
@@ -6414,9 +8035,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L128",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_googleprovider",
-      "target": "app_services_oauth_googleprovider_unlink",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_googleprovider_unlink"
     },
     {
       "relation": "rationale_for",
@@ -6424,9 +8045,9 @@
       "source_file": "app/services/oauth.py",
       "source_location": "L96",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_services_oauth_rationale_96",
-      "target": "app_services_oauth_googleprovider",
-      "confidence_score": 1.0
+      "target": "app_services_oauth_googleprovider"
     },
     {
       "relation": "imports_from",
@@ -6435,9 +8056,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest",
-      "target": "app_core_config",
-      "confidence_score": 1.0
+      "target": "app_core_config"
     },
     {
       "relation": "imports_from",
@@ -6446,9 +8067,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest",
-      "target": "app_db_redis",
-      "confidence_score": 1.0
+      "target": "app_db_redis"
     },
     {
       "relation": "imports_from",
@@ -6457,9 +8078,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest",
-      "target": "app_db_session",
-      "confidence_score": 1.0
+      "target": "app_db_session"
     },
     {
       "relation": "contains",
@@ -6467,9 +8088,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L103",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest",
-      "target": "tests_conftest_auth_header",
-      "confidence_score": 1.0
+      "target": "tests_conftest_auth_header"
     },
     {
       "relation": "contains",
@@ -6477,9 +8098,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L55",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest",
-      "target": "tests_conftest_client",
-      "confidence_score": 1.0
+      "target": "tests_conftest_client"
     },
     {
       "relation": "contains",
@@ -6487,9 +8108,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest",
-      "target": "tests_conftest_conn",
-      "confidence_score": 1.0
+      "target": "tests_conftest_conn"
     },
     {
       "relation": "contains",
@@ -6497,9 +8118,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L48",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest",
-      "target": "tests_conftest_db",
-      "confidence_score": 1.0
+      "target": "tests_conftest_db"
     },
     {
       "relation": "contains",
@@ -6507,9 +8128,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest",
-      "target": "tests_conftest_register",
-      "confidence_score": 1.0
+      "target": "tests_conftest_register"
     },
     {
       "relation": "contains",
@@ -6517,9 +8138,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest",
-      "target": "tests_conftest_session_factory",
-      "confidence_score": 1.0
+      "target": "tests_conftest_session_factory"
     },
     {
       "relation": "contains",
@@ -6527,9 +8148,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest",
-      "target": "tests_conftest_test_redis_url",
-      "confidence_score": 1.0
+      "target": "tests_conftest_test_redis_url"
     },
     {
       "relation": "rationale_for",
@@ -6537,9 +8158,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest_rationale_1",
-      "target": "tests_conftest",
-      "confidence_score": 1.0
+      "target": "tests_conftest"
     },
     {
       "relation": "imports_from",
@@ -6548,9 +8169,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_conftest",
-      "confidence_score": 1.0
+      "target": "tests_conftest"
     },
     {
       "relation": "calls",
@@ -6559,9 +8180,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L60",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest_client",
-      "target": "tests_conftest_test_redis_url",
-      "confidence_score": 1.0
+      "target": "tests_conftest_test_redis_url"
     },
     {
       "relation": "calls",
@@ -6570,9 +8191,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest_db",
-      "target": "tests_conftest_session_factory",
-      "confidence_score": 1.0
+      "target": "tests_conftest_session_factory"
     },
     {
       "relation": "rationale_for",
@@ -6580,9 +8201,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L49",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest_rationale_49",
-      "target": "tests_conftest_db",
-      "confidence_score": 1.0
+      "target": "tests_conftest_db"
     },
     {
       "relation": "calls",
@@ -6591,9 +8212,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L69",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest_client",
-      "target": "asyncclient",
-      "confidence_score": 1.0
+      "target": "asyncclient"
     },
     {
       "relation": "rationale_for",
@@ -6601,9 +8222,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest_rationale_83",
-      "target": "tests_conftest_register",
-      "confidence_score": 1.0
+      "target": "tests_conftest_register"
     },
     {
       "relation": "references",
@@ -6612,9 +8233,9 @@
       "source_file": "tests/conftest.py",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_conftest_register",
-      "target": "asyncclient",
-      "confidence_score": 1.0
+      "target": "asyncclient"
     },
     {
       "relation": "imports",
@@ -6623,9 +8244,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_conftest_register",
-      "confidence_score": 1.0
+      "target": "tests_conftest_register"
     },
     {
       "relation": "calls",
@@ -6634,9 +8255,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L93",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_existing_user_callback_logs_in",
-      "target": "tests_conftest_register",
-      "confidence_score": 1.0
+      "target": "tests_conftest_register"
     },
     {
       "relation": "calls",
@@ -6645,9 +8266,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L117",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_refresh_rotates_access_token",
-      "target": "tests_conftest_register",
-      "confidence_score": 1.0
+      "target": "tests_conftest_register"
     },
     {
       "relation": "calls",
@@ -6656,9 +8277,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L64",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_signup_duplicate_nickname",
-      "target": "tests_conftest_register",
-      "confidence_score": 1.0
+      "target": "tests_conftest_register"
     },
     {
       "relation": "imports",
@@ -6667,9 +8288,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_conftest_auth_header",
-      "confidence_score": 1.0
+      "target": "tests_conftest_auth_header"
     },
     {
       "relation": "calls",
@@ -6678,9 +8299,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_signup_success_adult",
-      "target": "tests_conftest_auth_header",
-      "confidence_score": 1.0
+      "target": "tests_conftest_auth_header"
     },
     {
       "relation": "contains",
@@ -6688,9 +8309,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_signup_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_signup_token"
     },
     {
       "relation": "contains",
@@ -6698,9 +8319,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_callback_new_user_returns_signup_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_callback_new_user_returns_signup_token"
     },
     {
       "relation": "contains",
@@ -6708,9 +8329,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L92",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_existing_user_callback_logs_in",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_existing_user_callback_logs_in"
     },
     {
       "relation": "contains",
@@ -6718,9 +8339,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L123",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_invalid_mock_code_rejected",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_invalid_mock_code_rejected"
     },
     {
       "relation": "contains",
@@ -6728,9 +8349,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L116",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_refresh_rotates_access_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_refresh_rotates_access_token"
     },
     {
       "relation": "contains",
@@ -6738,9 +8359,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L101",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_rejoin_blocked_within_30_days",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_rejoin_blocked_within_30_days"
     },
     {
       "relation": "contains",
@@ -6748,9 +8369,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_signup_duplicate_nickname",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_signup_duplicate_nickname"
     },
     {
       "relation": "contains",
@@ -6758,9 +8379,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L73",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_signup_forbidden_nickname",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_signup_forbidden_nickname"
     },
     {
       "relation": "contains",
@@ -6768,9 +8389,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_signup_minor_blocks_stranger_requests",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_signup_minor_blocks_stranger_requests"
     },
     {
       "relation": "contains",
@@ -6778,9 +8399,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L82",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_signup_requires_all_agreements",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_signup_requires_all_agreements"
     },
     {
       "relation": "contains",
@@ -6788,9 +8409,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_signup_success_adult",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_signup_success_adult"
     },
     {
       "relation": "contains",
@@ -6798,9 +8419,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L53",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth",
-      "target": "tests_test_auth_test_signup_under_14_rejected",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_test_signup_under_14_rejected"
     },
     {
       "relation": "rationale_for",
@@ -6808,9 +8429,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_rationale_1",
-      "target": "tests_test_auth",
-      "confidence_score": 1.0
+      "target": "tests_test_auth"
     },
     {
       "relation": "calls",
@@ -6819,9 +8440,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_callback_new_user_returns_signup_token",
-      "target": "tests_test_auth_signup_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_signup_token"
     },
     {
       "relation": "calls",
@@ -6830,9 +8451,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L107",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_rejoin_blocked_within_30_days",
-      "target": "tests_test_auth_signup_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_signup_token"
     },
     {
       "relation": "calls",
@@ -6841,9 +8462,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L65",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_signup_duplicate_nickname",
-      "target": "tests_test_auth_signup_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_signup_token"
     },
     {
       "relation": "calls",
@@ -6852,9 +8473,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L74",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_signup_forbidden_nickname",
-      "target": "tests_test_auth_signup_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_signup_token"
     },
     {
       "relation": "calls",
@@ -6863,9 +8484,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L44",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_signup_minor_blocks_stranger_requests",
-      "target": "tests_test_auth_signup_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_signup_token"
     },
     {
       "relation": "calls",
@@ -6874,9 +8495,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_signup_requires_all_agreements",
-      "target": "tests_test_auth_signup_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_signup_token"
     },
     {
       "relation": "calls",
@@ -6885,9 +8506,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_signup_success_adult",
-      "target": "tests_test_auth_signup_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_signup_token"
     },
     {
       "relation": "calls",
@@ -6896,9 +8517,9 @@
       "source_file": "tests/test_auth.py",
       "source_location": "L54",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_auth_test_signup_under_14_rejected",
-      "target": "tests_test_auth_signup_token",
-      "confidence_score": 1.0
+      "target": "tests_test_auth_signup_token"
     },
     {
       "relation": "contains",
@@ -11339,5 +12960,5 @@
       "source_file": "docker-compose.yml"
     }
   ],
-  "built_at_commit": "bd849620fc8b44bc090cf35332dbfc0830d8461d"
+  "built_at_commit": "33d0c3461fadcf3edd58e3592b95372bf9075cb2"
 }

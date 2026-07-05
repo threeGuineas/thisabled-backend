@@ -20,9 +20,11 @@ from app.schemas.user import (
     TagCatalogOut,
     TagOut,
     TagsPutIn,
+    WithdrawIn,
 )
 from app.services.nickname import validate_nickname
 from app.services.relations import is_blocked_either
+from app.services.withdrawal import withdraw
 
 router = APIRouter(tags=["users"])
 
@@ -153,6 +155,16 @@ async def put_mode(
         user.ui_mode = body.ui_mode.value
         await db.commit()
     return _me_out(user, await _user_tags(db, user.id))
+
+
+@router.delete("/users/me", status_code=204)
+async def withdraw_me(
+    body: WithdrawIn,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """§15 회원 탈퇴. 게시물·댓글 처리는 사용자가 선택(탈퇴 화면 확인 단계는 FE)."""
+    await withdraw(db, user, body.posts_action)
 
 
 @router.get("/users/{user_id}", response_model=PublicProfileOut)

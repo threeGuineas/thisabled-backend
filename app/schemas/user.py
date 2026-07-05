@@ -1,4 +1,5 @@
 import uuid
+from typing import Literal
 
 from pydantic import BaseModel, Field
 
@@ -56,3 +57,9 @@ class SettingsPatchIn(BaseModel):
 
 class ModePutIn(BaseModel):
     ui_mode: UiMode
+
+
+class WithdrawIn(BaseModel):
+    """§15: 게시물·댓글을 '탈퇴한 사용자'로 남길지 함께 지울지 탈퇴 화면에서 선택."""
+
+    posts_action: Literal["anonymize", "delete"] = "anonymize"

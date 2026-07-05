@@ -1,44 +1,40 @@
-import secrets
+"""JWT 토큰 (access/refresh/signup). 소셜 OAuth 전용이라 비밀번호 해시는 없다 (ACC-01)."""
+
 from datetime import datetime, timedelta, timezone
 
-import bcrypt
 from jose import JWTError, jwt
 
 from app.core.config import settings
 
-# 복구 코드용 알파벳 (혼동되는 0/O/1/I/L 제외)
-_RECOVERY_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"
-_RECOVERY_LENGTH = 12
 
-
-def hash_secret(plain: str) -> str:
-    return bcrypt.hashpw(plain.encode(), bcrypt.gensalt()).decode()
-
-
-def verify_secret(plain: str, hashed: str) -> bool:
-    return bcrypt.checkpw(plain.encode(), hashed.encode())
-
-
-def generate_recovery_code() -> str:
-    """F01_S08: 가입 시 1회 노출하는 12자리 복구 코드."""
-    return "".join(secrets.choice(_RECOVERY_ALPHABET) for _ in range(_RECOVERY_LENGTH))
-
-
-def _encode(subject: str, token_type: str, delta: timedelta) -> str:
+def _encode(claims: dict, token_type: str, delta: timedelta) -> str:
     now = datetime.now(timezone.utc)
     return jwt.encode(
-        {"sub": str(subject), "type": token_type, "iat": now, "exp": now + delta},
+        {**claims, "type": token_type, "iat": now, "exp": now + delta},
         settings.SECRET_KEY,
         algorithm=settings.ALGORITHM,
     )
 
 
 def create_access_token(subject: str) -> str:
-    return _encode(subject, "access", timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES))
+    return _encode(
+        {"sub": str(subject)}, "access", timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
 
 
 def create_refresh_token(subject: str) -> str:
-    return _encode(subject, "refresh", timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS))
+    return _encode(
+        {"sub": str(subject)}, "refresh", timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
+    )
+
+
+def create_signup_token(provider: str, provider_user_id: str) -> str:
+    """콜백에서 신규 사용자에게 발급 — 추가 정보 입력(signup) 완료까지의 단기 자격."""
+    return _encode(
+        {"sub": provider_user_id, "provider": provider},
+        "signup",
+        timedelta(minutes=settings.SIGNUP_TOKEN_EXPIRE_MINUTES),
+    )
 
 
 def decode_token(token: str, expected_type: str | None = None) -> dict:
@@ -46,3 +42,9 @@ def decode_token(token: str, expected_type: str | None = None) -> dict:
     if expected_type is not None and payload.get("type") != expected_type:
         raise JWTError(f"expected {expected_type} token")
     return payload
+
+
+def decode_signup_token(token: str) -> tuple[str, str]:
+    """→ (provider, provider_user_id). 위조·만료 시 JWTError."""
+    payload = decode_token(token, expected_type="signup")
+    return payload["provider"], payload["sub"]

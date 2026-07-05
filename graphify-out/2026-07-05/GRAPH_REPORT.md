@@ -1,16 +1,16 @@
 # Graph Report - thisabled-backend  (2026-07-05)
 
 ## Corpus Check
-- 52 files · ~18,952 words
+- 40 files · ~18,651 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 404 nodes · 664 edges · 49 communities (37 shown, 12 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 17 edges (avg confidence: 0.62)
+- 366 nodes · 409 edges · 63 communities (41 shown, 22 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.65)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `47ea80d4`
+- Built from commit: `532d3243`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,6 +25,7 @@
 - [[_COMMUNITY_Dev Workflow & Ralph Loop|Dev Workflow & Ralph Loop]]
 - [[_COMMUNITY_Whisper STT Service|Whisper STT Service]]
 - [[_COMMUNITY_get_redis|get_redis]]
+- [[_COMMUNITY_Schema v2 Migration|Schema v2 Migration]]
 - [[_COMMUNITY_Project Concept|Project Concept]]
 - [[_COMMUNITY_Feature Branch Workflow|Feature Branch Workflow]]
 - [[_COMMUNITY_Repository Root|Repository Root]]
@@ -56,30 +57,37 @@
 - [[_COMMUNITY_Ralph 루프 태스크 가이드|Ralph 루프 태스크 가이드]]
 - [[_COMMUNITY_--max-iterations 필수 안전장치|--max-iterations 필수 안전장치]]
 - [[_COMMUNITY_pytest 그린 = 완료 판정 기준|pytest 그린 = 완료 판정 기준]]
+- [[_COMMUNITY_0. 문서 정보|0. 문서 정보]]
+- [[_COMMUNITY_storage.py|storage.py]]
+- [[_COMMUNITY_5. 공통 화면 구조|5. 공통 화면 구조]]
+- [[_COMMUNITY_AsyncSession|AsyncSession]]
+- [[_COMMUNITY_AsyncSession|AsyncSession]]
+- [[_COMMUNITY_UploadFile|UploadFile]]
+- [[_COMMUNITY_UploadFile|UploadFile]]
+- [[_COMMUNITY_AsyncSession|AsyncSession]]
+- [[_COMMUNITY_Redis|Redis]]
+- [[_COMMUNITY_BaseModel|BaseModel]]
+- [[_COMMUNITY_Response|Response]]
+- [[_COMMUNITY_str|str]]
+- [[_COMMUNITY_env.py|env.py]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `register()` - 31 edges
-2. `auth_header()` - 24 edges
-3. `User` - 23 edges
-4. `ThisAbled 기능 명세서 v2.1` - 23 edges
-5. `Global Constraints` - 18 edges
-6. `signup()` - 13 edges
-7. `Base` - 13 edges
-8. `ThisAbled — Backend` - 12 edges
-9. `get_current_user()` - 11 edges
-10. `login()` - 9 edges
+1. `ThisAbled 기능 명세서 v2.1` - 23 edges
+2. `Global Constraints` - 18 edges
+3. `ThisAbled — Backend` - 12 edges
+4. `ThisAbled API 명세 요약 (v2.1)` - 10 edges
+5. `MATCH-02 추천 입력` - 9 edges
+6. `임시 배포 — 맥미니 로컬호스팅 + Tailscale Funnel` - 9 edges
+7. `ThisAbled 백엔드 v2.1 전면 리팩토링 — 설계` - 9 edges
+8. `7. 피드·게시물·댓글` - 7 edges
+9. `14. 발달장애인 모드 및 AI 소통 코치` - 7 edges
+10. `임시 배포 — 맥미니 로컬호스팅 + Cloudflare Tunnel` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `login()` --indirect_call--> `User`  [INFERRED]
-  app/api/v1/auth.py → app/models/user.py
-- `recovery()` --indirect_call--> `User`  [INFERRED]
-  app/api/v1/auth.py → app/models/user.py
-- `me()` --references--> `User`  [EXTRACTED]
-  app/api/v1/auth.py → app/models/user.py
-- `UploadResponse` --uses--> `User`  [INFERRED]
-  app/api/v1/upload.py → app/models/user.py
-- `UserModeHistory` --uses--> `Base`  [INFERRED]
-  app/models/user.py → app/db/session.py
+- `get_current_user()` --references--> `User`  [EXTRACTED]
+  app/core/deps.py → app/models/user.py
+- `get_current_user()` --calls--> `decode_token()`  [EXTRACTED]
+  app/core/deps.py → app/core/security.py
 
 ## Import Cycles
 - None detected.
@@ -87,23 +95,19 @@
 ## Hyperedges (group relationships)
 - **Docker Compose 스택 서비스 구성** — docker_compose_app, docker_compose_db, docker_compose_redis [EXTRACTED 0.90]
 
-## Communities (49 total, 12 thin omitted)
-
-### Community 0 - "Auth Test Suite"
-Cohesion: 0.08
-Nodes (38): AsyncClient, auth_header(), client(), 테스트 공용 픽스처.  각 테스트는 단일 커넥션 위의 외부 트랜잭션에서 실행되고 끝나면 롤백된다. 앱 코드가 `await db.commit()`, 가입 헬퍼 → signup 응답 JSON 반환 (access_token, user_id, recovery_code)., register(), _test_redis_url(), test_login_needs_onboarding_flips() (+30 more)
+## Communities (63 total, 22 thin omitted)
 
 ### Community 1 - "Auth Endpoints & JWT Security"
-Cohesion: 0.14
-Nodes (31): check_nickname(), login(), logout(), me(), _nickname_forbidden(), _nickname_taken(), AsyncSession, recovery() (+23 more)
+Cohesion: 0.17
+Nodes (13): get_current_user(), AsyncSession, create_access_token(), create_refresh_token(), decode_token(), _encode(), generate_recovery_code(), F01_S08: 가입 시 1회 노출하는 12자리 복구 코드. (+5 more)
 
 ### Community 2 - "App Core, Upload & Config"
-Cohesion: 0.07
-Nodes (34): UploadFile, transcribe(), UploadFile, upload_image(), UploadResponse, describe_image(), Redis, /uploads/<name> → 로컬 파일 경로. 경로 탈출 방지(basename만 사용). (+26 more)
+Cohesion: 0.10
+Nodes (16): Settings, _ext_from_content_type(), Save file locally and return the public URL path., save_upload(), get_redis(), get_redis_client(), Redis, FastAPI 의존성. 테스트에서 override 가능하도록 분리. (+8 more)
 
 ### Community 3 - "Posts API & DB Models"
-Cohesion: 0.19
-Nodes (20): create_post(), delete_post(), get_post(), list_posts(), AsyncSession, get_current_user(), AsyncSession, Base (+12 more)
+Cohesion: 0.09
+Nodes (37): ChatMessage, ChatRoom, 1:1 채팅방 (CHAT-01/02). request=요청함, active=일반 채팅.      참여자는 정규화 쌍(user_a < user_b, 채팅 메시지 (SAFE-01~03). 텍스트는 동기 분석 후 저장·전달., SAFE-05 관계 단위 자동 전송 제한.      누적 카운터는 별도 컬럼 없이 chat_messages에서     `flagged AND c, SendRestriction, AiResultCache, Notification (+29 more)
 
 ### Community 4 - "GPT-4o Vision + Redis Cache"
 Cohesion: 0.13
@@ -114,8 +118,8 @@ Cohesion: 0.50
 Nodes (5): app 서비스 (FastAPI), db 서비스 (PostgreSQL 15), db/redis 호스트 포트 미노출 (내부 네트워크), app 루프백 바인딩 (127.0.0.1:8000), redis 서비스 (Redis 7)
 
 ### Community 6 - "User Disability-Mode Settings"
-Cohesion: 0.27
-Nodes (12): get_mode(), AsyncSession, update_mode(), DisabilityMode, 모드 + 사용자별 미세조정(overrides)을 합친 최종 설정., settings_for(), 모드 변경 이력 (F02_S08, 베타테스트 분석용)., UserModeHistory (+4 more)
+Cohesion: 0.15
+Nodes (18): AiStatus, MediaType, MessageType, PostStatus, Provider, v2.1 도메인 enum. DB에는 String으로 저장한다 (PG enum 마이그레이션 부담 회피)., §POST-01 — '작성 중'은 서버 레코드 이전 단계라 상태로 두지 않음., description_status / caption_status 공용. (+10 more)
 
 ### Community 8 - "Whisper STT Service"
 Cohesion: 0.10
@@ -124,6 +128,10 @@ Nodes (20): Global Constraints, Task 10: friends & blocks, Task 11: chat REST + 
 ### Community 9 - "get_redis"
 Cohesion: 0.07
 Nodes (27): 0. 사전 점검, 1) refresh 쿠키 SameSite — 이미 반영됨 ✅, 1. Tailscale 설치 & 로그인, 2) `.env` 설정, 2. Funnel 기능 켜기 (최초 1회, 콘솔에서), 3. Funnel 실행, 3) 프론트 fetch, Cloudflare Tunnel과 비교 (+19 more)
+
+### Community 10 - "Schema v2 Migration"
+Cohesion: 0.40
+Nodes (5): generate_description(), _get_client(), AsyncOpenAI, GPT-4o Vision 이미지 해설 서비스 (F02_S04 시각장애 모드).  엔드포인트는 `vision.generate_description, 이미지 바이트 → 한국어 해설 텍스트. (실제 GPT-4o 호출)
 
 ### Community 11 - "Project Concept"
 Cohesion: 0.15
@@ -138,8 +146,8 @@ Cohesion: 0.17
 Nodes (10): Definition of Done (체크리스트), 구현 범위, 배경 / 명세 출처, [예시] 게시글 수정 API (PUT /posts/{id}), 제약, Ralph 루프 태스크, 실행 방법, 안전장치 (필수) (+2 more)
 
 ### Community 23 - "ThisAbled 기능 명세서 v2.1"
-Cohesion: 0.20
-Nodes (9): 0.1 v2.1 주요 개정 사항, 0.2 v2.0 주요 개정 사항 (이력), 0. 문서 정보, 15. 마이페이지·설정, 16. 알림, 20. 핵심 인수 조건, 21. MVP 이후 계획, 2. 핵심 기능명 (+1 more)
+Cohesion: 0.29
+Nodes (6): 15. 마이페이지·설정, 16. 알림, 20. 핵심 인수 조건, 21. MVP 이후 계획, 2. 핵심 기능명, ThisAbled 기능 명세서 v2.1
 
 ### Community 24 - "14. 발달장애인 모드 및 AI 소통 코치"
 Cohesion: 0.29
@@ -162,8 +170,8 @@ Cohesion: 0.33
 Nodes (6): 4.1 가입 대상, 4.2 장애인 자격 확인, 4.3 복합장애, 4.4 콘텐츠 공개, 4.5 미성년자 보호 (신설), 4. 사용자 정책
 
 ### Community 29 - "env.py"
-Cohesion: 0.60
-Nodes (3): do_run_migrations(), run_async_migrations(), run_migrations_online()
+Cohesion: 0.33
+Nodes (3): 스키마 v3 baseline 정합 검증 (설계: docs/superpowers/specs/2026-07-05-v2_1-refactor-desig, 탈퇴 익명화(§15): 게시물·댓글·채팅 발신자는 SET NULL 가능해야 한다., test_anonymizable_fks_nullable()
 
 ### Community 30 - "12. 시각장애인 모드"
 Cohesion: 0.40
@@ -202,28 +210,44 @@ Cohesion: 0.67
 Nodes (3): 3.1 포함, 3.2 제외 및 후속 범위, 3. MVP 범위
 
 ### Community 39 - "5. 공통 화면 구조"
+Cohesion: 0.40
+Nodes (5): _get_client(), AsyncOpenAI, OpenAI Whisper STT 서비스 (F02_S05 음성 댓글 / 자막).  엔드포인트는 `stt.transcribe(...)` 를 호출한, 오디오 바이트 → 한국어 전사 텍스트. (실제 Whisper 호출), transcribe()
+
+### Community 49 - "0. 문서 정보"
+Cohesion: 0.67
+Nodes (3): 0.1 v2.1 주요 개정 사항, 0.2 v2.0 주요 개정 사항 (이력), 0. 문서 정보
+
+### Community 50 - "storage.py"
+Cohesion: 0.18
+Nodes (10): auth (ACC-01/02), chat (CHAT-01~03 · SAFE-01~05), comm (COMM-01~05), friends / blocks (FRIEND-01/02 · BLOCK-01), media (VISION-01 · CAPTION-01 · VIS-03), notifications (§16) / ws, posts / feed (FEED-01 · POST-01~03), recommendations (MATCH) (+2 more)
+
+### Community 52 - "5. 공통 화면 구조"
 Cohesion: 0.67
 Nodes (3): 5.1 주요 화면, 5.2 UI 모드 전환, 5. 공통 화면 구조
 
+### Community 62 - "env.py"
+Cohesion: 0.38
+Nodes (5): do_run_migrations(), run_async_migrations(), run_migrations_online(), Base, DeclarativeBase
+
 ## Knowledge Gaps
-- **154 isolated node(s):** `thisabled-backend`, `프로젝트`, `기술 스택`, `명령어`, `DB 스키마 (v3)` (+149 more)
+- **163 isolated node(s):** `auth (ACC-01/02)`, `users (ACC-03 · TAG-01 · §15)`, `posts / feed (FEED-01 · POST-01~03)`, `media (VISION-01 · CAPTION-01 · VIS-03)`, `friends / blocks (FRIEND-01/02 · BLOCK-01)` (+158 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **22 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `ThisAbled 기능 명세서 v2.1` connect `ThisAbled 기능 명세서 v2.1` to `6. 회원가입 및 계정`, `10. 1:1 채팅`, `13. 청각장애인 모드`, `18. 기술 구성`, `19. 비기능 요구사항`, `9. 친구·차단`, `3. MVP 범위`, `5. 공통 화면 구조`, `MATCH-02 추천 입력`, `14. 발달장애인 모드 및 AI 소통 코치`, `7. 피드·게시물·댓글`, `11. AI 안심 채팅`, `1. 서비스 개요`, `4. 사용자 정책`, `12. 시각장애인 모드`, `17. 외부 AI 사용 및 데이터 처리 원칙`?**
-  _High betweenness centrality (0.052) - this node is a cross-community bridge._
-- **Why does `User` connect `Posts API & DB Models` to `Auth Endpoints & JWT Security`, `App Core, Upload & Config`, `User Disability-Mode Settings`?**
-  _High betweenness centrality (0.028) - this node is a cross-community bridge._
-- **Are the 4 inferred relationships involving `User` (e.g. with `login()` and `recovery()`) actually correct?**
-  _`User` has 4 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `/uploads/<name> → 로컬 파일 경로. 경로 탈출 방지(basename만 사용).`, `모드 + 사용자별 미세조정(overrides)을 합친 최종 설정.`, `F01_S08: 가입 시 1회 노출하는 12자리 복구 코드.` to the rest of the system?**
-  _175 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Auth Test Suite` be split into smaller, more focused modules?**
-  _Cohesion score 0.07518796992481203 - nodes in this community are weakly interconnected._
-- **Should `Auth Endpoints & JWT Security` be split into smaller, more focused modules?**
-  _Cohesion score 0.14264264264264265 - nodes in this community are weakly interconnected._
+- **Why does `ThisAbled 기능 명세서 v2.1` connect `ThisAbled 기능 명세서 v2.1` to `6. 회원가입 및 계정`, `10. 1:1 채팅`, `13. 청각장애인 모드`, `18. 기술 구성`, `19. 비기능 요구사항`, `9. 친구·차단`, `3. MVP 범위`, `0. 문서 정보`, `5. 공통 화면 구조`, `MATCH-02 추천 입력`, `14. 발달장애인 모드 및 AI 소통 코치`, `7. 피드·게시물·댓글`, `11. AI 안심 채팅`, `1. 서비스 개요`, `4. 사용자 정책`, `12. 시각장애인 모드`, `17. 외부 AI 사용 및 데이터 처리 원칙`?**
+  _High betweenness centrality (0.064) - this node is a cross-community bridge._
+- **Why does `8. AI 사용자 매칭` connect `MATCH-02 추천 입력` to `ThisAbled 기능 명세서 v2.1`?**
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
+- **What connects `auth (ACC-01/02)`, `users (ACC-03 · TAG-01 · §15)`, `posts / feed (FEED-01 · POST-01~03)` to the rest of the system?**
+  _204 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `App Core, Upload & Config` be split into smaller, more focused modules?**
-  _Cohesion score 0.06914893617021277 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09971509971509972 - nodes in this community are weakly interconnected._
+- **Should `Posts API & DB Models` be split into smaller, more focused modules?**
+  _Cohesion score 0.09090909090909091 - nodes in this community are weakly interconnected._
+- **Should `GPT-4o Vision + Redis Cache` be split into smaller, more focused modules?**
+  _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._
+- **Should `Whisper STT Service` be split into smaller, more focused modules?**
+  _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._

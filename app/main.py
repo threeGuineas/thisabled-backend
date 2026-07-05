@@ -5,13 +5,21 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from app.api.v1 import health
+from app.api.v1 import auth, health
 from app.core.config import settings
 
 # v2.1 리팩토링 진행 중 — 라우터는 도메인 태스크마다 재등록한다.
 # (docs/superpowers/plans/2026-07-05-v2_1-refactor.md)
 tags_metadata = [
     {"name": "health", "description": "서버·DB·Redis 헬스체크. 배포/모니터링용."},
+    {
+        "name": "auth",
+        "description": (
+            "소셜 OAuth 전용 인증 (ACC-01/02). authorize → callback → "
+            "기가입자는 즉시 로그인, 신규는 signup_token으로 추가 정보 입력. "
+            "**access_token**(24h)은 body, **refresh_token**(30d)은 httpOnly 쿠키."
+        ),
+    },
 ]
 
 description = """
@@ -52,3 +60,4 @@ app.add_middleware(
 app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
 
 app.include_router(health.router, prefix="/api/v1", tags=["health"])
+app.include_router(auth.router, prefix="/api/v1")

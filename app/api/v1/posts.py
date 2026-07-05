@@ -4,14 +4,18 @@ import uuid
 from datetime import datetime, timezone
 from urllib.parse import quote, unquote
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+import redis.asyncio as aioredis
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
 from sqlalchemy import delete, func, or_, select, union
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from app.core.deps import get_current_user
-from app.core.enums import MediaType, PostStatus
-from app.db.session import get_db
+from app.core.enums import AiStatus, MediaType, PostStatus
+from app.db.redis import get_redis
+from app.db.session import get_db, get_session_factory
 from app.models import Block, Comment, Post, PostLike, PostMedia, User
+from app.schemas.media import CaptionStatusOut, PublishIn
+from app.services import ai_media
 from app.schemas.post import (
     AuthorOut,
     CommentIn,
@@ -124,8 +128,12 @@ async def _serialize_posts(db: AsyncSession, me_id: uuid.UUID, posts: list[Post]
 @router.post("/posts", response_model=PostOut, status_code=201)
 async def create_post(
     body: PostCreateIn,
+    background: BackgroundTasks,
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
+    session_factory: async_sessionmaker = Depends(get_session_factory),
+    describe_caller=Depends(ai_media.get_describe_caller),
 ):
     """텍스트·사진 게시물 — 게시 실행 즉시 공개 (POST-01). 영상은 /media/videos 드래프트 경로."""
     media: list[PostMedia] = []
@@ -158,6 +166,16 @@ async def create_post(
         m.post_id = post.id
         m.sort_order = i
     await db.commit()
+
+    # VISION-01: 사진 설명은 '게시' 실행 시점에 생성 (선택·취소 반복에 의한 중복 호출 방지)
+    for m in media:
+        if m.media_type == MediaType.image.value:
+            m.description_status = AiStatus.processing.value
+            background.add_task(
+                ai_media.describe_post_media_job, session_factory, redis, m.id, user.id, describe_caller
+            )
+    if media:
+        await db.commit()
     return (await _serialize_posts(db, user.id, [post]))[0]
 
 
@@ -216,6 +234,64 @@ async def post_detail(
     # 드래프트는 작성자 본인만 (POST-01 내부 드래프트)
     if post.status != PostStatus.published.value and post.author_id != user.id:
         raise HTTPException(status_code=404, detail="게시물을 찾을 수 없습니다")
+    return (await _serialize_posts(db, user.id, [post]))[0]
+
+
+@router.get("/posts/{post_id}/caption-status", response_model=CaptionStatusOut)
+async def caption_status(
+    post_id: uuid.UUID,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """영상 드래프트 자막 상태 폴링 (작성자 전용, CAPTION-01 '자막 만드는 중')."""
+    post = await db.get(Post, post_id)
+    if post is None or post.author_id != user.id:
+        raise HTTPException(status_code=404, detail="게시물을 찾을 수 없습니다")
+    video = (
+        await db.execute(
+            select(PostMedia).where(
+                PostMedia.post_id == post_id, PostMedia.media_type == MediaType.video.value
+            )
+        )
+    ).scalar_one_or_none()
+    if video is None:
+        raise HTTPException(status_code=404, detail="영상이 없는 게시물입니다")
+    return CaptionStatusOut(caption_status=video.caption_status)
+
+
+@router.post("/posts/{post_id}/publish", response_model=PostOut)
+async def publish_post(
+    post_id: uuid.UUID,
+    body: PublishIn,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """영상 드래프트 게시 (POST-01). 공개는 항상 사용자의 게시 실행으로만 (§20-4/6)."""
+    post = await db.get(Post, post_id)
+    if post is None or post.author_id != user.id:
+        raise HTTPException(status_code=404, detail="게시물을 찾을 수 없습니다")
+    if post.status == PostStatus.published.value:
+        raise HTTPException(status_code=400, detail="이미 게시된 게시물입니다")
+
+    video = (
+        await db.execute(
+            select(PostMedia).where(
+                PostMedia.post_id == post_id, PostMedia.media_type == MediaType.video.value
+            )
+        )
+    ).scalar_one_or_none()
+    if video is not None:
+        if video.caption_status == AiStatus.processing.value:
+            raise HTTPException(status_code=409, detail="자막을 만드는 중입니다. 잠시 후 다시 시도해 주세요")
+        if video.caption_status == AiStatus.failed.value and not body.allow_no_caption:
+            raise HTTPException(
+                status_code=400,
+                detail="자막 생성에 실패했습니다. 다시 시도하거나 '자막 없이 게시'를 선택해 주세요",
+            )
+
+    post.status = PostStatus.published.value
+    post.published_at = datetime.now(timezone.utc)
+    await db.commit()
     return (await _serialize_posts(db, user.id, [post]))[0]
 
 

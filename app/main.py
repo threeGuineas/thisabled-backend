@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from app.api.v1 import auth, health, posts, users
+from app.api.v1 import auth, health, media, posts, users
 from app.core.config import settings
 
 # v2.1 리팩토링 진행 중 — 라우터는 도메인 태스크마다 재등록한다.
@@ -36,7 +36,12 @@ description = """
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Path(settings.UPLOAD_DIR).mkdir(parents=True, exist_ok=True)
+    # 24h 드래프트 청소 등 인프로세스 크론 (테스트는 lifespan 미실행이라 영향 없음)
+    from app.services.scheduler import start_scheduler, stop_scheduler
+
+    start_scheduler()
     yield
+    stop_scheduler()
 
 
 app = FastAPI(
@@ -63,3 +68,4 @@ app.include_router(health.router, prefix="/api/v1", tags=["health"])
 app.include_router(auth.router, prefix="/api/v1")
 app.include_router(users.router, prefix="/api/v1")
 app.include_router(posts.router, prefix="/api/v1")
+app.include_router(media.router, prefix="/api/v1")

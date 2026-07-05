@@ -14,7 +14,7 @@ from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 import app.models  # noqa: F401 — ORM 모델 등록
 from app.core.config import settings
 from app.db.redis import get_redis
-from app.db.session import get_db
+from app.db.session import get_db, get_session_factory
 from app.main import app
 
 
@@ -52,19 +52,25 @@ async def db(_session_factory):
 
 
 @pytest_asyncio.fixture
-async def client(_session_factory):
+async def test_redis():
+    r = aioredis.from_url(_test_redis_url(), decode_responses=True)
+    await r.flushdb()
+    yield r
+    await r.aclose()
+
+
+@pytest_asyncio.fixture
+async def client(_session_factory, test_redis):
     async def override_get_db():
         async with _session_factory() as session:
             yield session
-
-    test_redis = aioredis.from_url(_test_redis_url(), decode_responses=True)
-    await test_redis.flushdb()
 
     async def override_get_redis():
         return test_redis
 
     app.dependency_overrides[get_db] = override_get_db
     app.dependency_overrides[get_redis] = override_get_redis
+    app.dependency_overrides[get_session_factory] = lambda: _session_factory
     # https: COOKIE_SECURE=true 환경에서도 Secure 쿠키(refresh)가 전송되도록
     async with AsyncClient(transport=ASGITransport(app=app), base_url="https://test") as c:
         yield c

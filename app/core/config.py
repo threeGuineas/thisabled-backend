@@ -2,7 +2,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env")
+    # POSTGRES_PASSWORD/REDIS_PASSWORD는 compose 변수 참조용 — app이 쓰는 필드가 아니므로 무시
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     DATABASE_URL: str
     REDIS_URL: str

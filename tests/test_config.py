@@ -1,6 +1,6 @@
 """v2.1 명세 고정값이 Settings에 반영되어 있는지 검증."""
 
-from app.core.config import settings
+from app.core.config import Settings, settings
 
 
 def test_v2_1_settings_defaults():
@@ -20,3 +20,11 @@ def test_v2_1_settings_defaults():
     assert settings.OAUTH_MOCK is True
     assert settings.SAFETY_MODEL_URL.startswith("http")
     assert settings.MATCH_MODEL_URL.startswith("http")
+
+
+def test_settings_ignores_compose_only_env_vars(monkeypatch):
+    """docker compose env_file은 POSTGRES_PASSWORD/REDIS_PASSWORD도 컨테이너 프로세스에 노출한다.
+    이 값들은 compose 변수 치환용일 뿐 Settings 필드가 아니므로 extra=forbid면 부팅이 죽는다."""
+    monkeypatch.setenv("POSTGRES_PASSWORD", "irrelevant-to-app")
+    monkeypatch.setenv("REDIS_PASSWORD", "irrelevant-to-app")
+    Settings(DATABASE_URL=settings.DATABASE_URL, REDIS_URL=settings.REDIS_URL, SECRET_KEY=settings.SECRET_KEY)

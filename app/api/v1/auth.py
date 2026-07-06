@@ -1,174 +1,182 @@
-from fastapi import APIRouter, Cookie, Depends, HTTPException, Response, status
+"""ACC-01/02 — 소셜 OAuth 전용 인증.
+
+흐름: authorize → 제공자 로그인 → callback
+  - 기가입자: 즉시 로그인 (access body + refresh httpOnly 쿠키)
+  - 신규: signup_token(30분) → POST /signup (추가 정보 + 약관) → 가입 완료
+"""
+
+import secrets
+import uuid
+from datetime import datetime, timedelta, timezone
+
+from fastapi import APIRouter, Cookie, Depends, HTTPException, Response
 from jose import JWTError
-from sqlalchemy import func, select
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.age import full_age, is_minor
 from app.core.config import settings
-from app.core.deps import get_current_user
 from app.core.security import (
     create_access_token,
     create_refresh_token,
+    create_signup_token,
+    decode_signup_token,
     decode_token,
-    generate_recovery_code,
-    hash_secret,
-    verify_secret,
 )
 from app.db.session import get_db
-from app.models.user import ForbiddenNickname, User
-from app.schemas.auth import (
-    CheckNicknameResponse,
-    LoginRequest,
-    LoginResponse,
-    RecoveryRequest,
-    SignupRequest,
-    SignupResponse,
-    TokenRefreshResponse,
-    UserResponse,
-)
-from app.schemas.auth import NICKNAME_RE
+from app.models import SocialIdentity, User, WithdrawnSocial
+from app.schemas.auth import AccessTokenOut, AuthorizeOut, CallbackOut, SignupIn, TokenOut
+from app.services.nickname import validate_nickname
+from app.services.oauth import get_provider
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
-REFRESH_COOKIE = "refresh_token"
+_REFRESH_COOKIE = "refresh_token"
 
 
-def _set_refresh_cookie(response: Response, user_id) -> None:
+def _set_refresh_cookie(response: Response, user_id: uuid.UUID) -> None:
+    # COOKIE_SECURE=true(HTTPS 크로스사이트)면 SameSite=None 필요 — dcf4a31 참조
     response.set_cookie(
-        key=REFRESH_COOKIE,
+        key=_REFRESH_COOKIE,
         value=create_refresh_token(str(user_id)),
         httponly=True,
         secure=settings.COOKIE_SECURE,
-        # HTTPS 터널(Cloudflare/Tailscale Funnel 등)로 프론트와 크로스오리진일 때는
-        # SameSite=None(+Secure)이어야 브라우저가 refresh 쿠키를 실어 보낸다.
         samesite="none" if settings.COOKIE_SECURE else "lax",
-        max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 3600,
+        max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 86400,
         path="/api/v1/auth",
     )
 
 
-async def _nickname_taken(db: AsyncSession, nickname: str) -> bool:
-    existing = await db.scalar(select(User.id).where(User.nickname == nickname))
-    return existing is not None
+@router.get("/{provider}/authorize", response_model=AuthorizeOut)
+async def authorize(provider: str):
+    p = get_provider(provider)
+    return AuthorizeOut(authorize_url=p.authorize_url(state=secrets.token_urlsafe(16)))
 
 
-async def _nickname_forbidden(db: AsyncSession, nickname: str) -> bool:
-    hit = await db.scalar(
-        select(ForbiddenNickname.id).where(func.lower(ForbiddenNickname.word) == nickname.lower())
+@router.get("/{provider}/callback", response_model=CallbackOut)
+async def callback(provider: str, code: str, response: Response, db: AsyncSession = Depends(get_db)):
+    p = get_provider(provider)
+    try:
+        info = await p.exchange_code(code)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="소셜 인증에 실패했습니다. 다시 시도해 주세요")
+
+    identity = (
+        await db.execute(
+            select(SocialIdentity).where(
+                SocialIdentity.provider == info.provider,
+                SocialIdentity.provider_user_id == info.provider_user_id,
+            )
+        )
+    ).scalar_one_or_none()
+
+    if identity is None:
+        # 신규 — 추가 정보 입력 단계로 (ACC-01 시나리오 3)
+        return CallbackOut(
+            is_new_user=True,
+            signup_token=create_signup_token(info.provider, info.provider_user_id),
+        )
+
+    user = await db.get(User, identity.user_id)
+    user.last_login_at = datetime.now(timezone.utc)
+    await db.commit()
+    _set_refresh_cookie(response, user.id)
+    return CallbackOut(
+        is_new_user=False, access_token=create_access_token(str(user.id)), user_id=user.id
     )
-    return hit is not None
 
 
-@router.get(
-    "/check-nickname",
-    response_model=CheckNicknameResponse,
-    summary="닉네임 사용 가능 여부 확인",
-    description="가입 전 실시간 검증용. `available:false` 시 `reason`은 "
-    "`invalid_format`(형식) · `forbidden_word`(금칙어) · `duplicate`(중복) 중 하나.",
-)
-async def check_nickname(nickname: str, db: AsyncSession = Depends(get_db)):
-    if not NICKNAME_RE.match(nickname):
-        return CheckNicknameResponse(available=False, reason="invalid_format")
-    if await _nickname_forbidden(db, nickname):
-        return CheckNicknameResponse(available=False, reason="forbidden_word")
-    if await _nickname_taken(db, nickname):
-        return CheckNicknameResponse(available=False, reason="duplicate")
-    return CheckNicknameResponse(available=True)
+@router.post("/signup", response_model=TokenOut, status_code=201)
+async def signup(body: SignupIn, response: Response, db: AsyncSession = Depends(get_db)):
+    try:
+        provider, provider_user_id = decode_signup_token(body.signup_token)
+    except (JWTError, KeyError):
+        raise HTTPException(status_code=401, detail="가입 세션이 만료됐습니다. 처음부터 다시 시도해 주세요")
 
+    a = body.agreements
+    if not (a.terms and a.privacy and a.ai_notice):
+        raise HTTPException(status_code=400, detail="필수 약관에 모두 동의해야 가입할 수 있습니다")
 
-@router.post(
-    "/signup",
-    response_model=SignupResponse,
-    status_code=status.HTTP_201_CREATED,
-    summary="회원가입",
-    description="성공 시 `access_token` 발급 + refresh 쿠키 설정. "
-    "`recovery_code`는 **이 응답에서만** 제공되며 재발급되지 않으니 사용자에게 반드시 안내·저장하게 한다.",
-)
-async def signup(body: SignupRequest, response: Response, db: AsyncSession = Depends(get_db)):
-    if await _nickname_forbidden(db, body.nickname):
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="사용할 수 없는 닉네임입니다")
-    if await _nickname_taken(db, body.nickname):
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="이미 사용 중인 닉네임입니다")
+    if full_age(body.birth_date) < 14:
+        raise HTTPException(status_code=400, detail="만 14세 이상만 가입할 수 있습니다")
 
-    recovery_code = generate_recovery_code()
+    # §15: 동일 소셜 계정 탈퇴 후 30일 재가입 제한
+    rejoin_limit = datetime.now(timezone.utc) - timedelta(days=settings.REJOIN_BLOCK_DAYS)
+    recent_withdrawal = (
+        await db.execute(
+            select(WithdrawnSocial.id).where(
+                WithdrawnSocial.provider == provider,
+                WithdrawnSocial.provider_user_id == provider_user_id,
+                WithdrawnSocial.withdrawn_at > rejoin_limit,
+            )
+        )
+    ).scalar_one_or_none()
+    if recent_withdrawal is not None:
+        raise HTTPException(status_code=403, detail="탈퇴 후 30일간 재가입할 수 없습니다")
+
+    # 콜백 이후 동일 계정이 먼저 가입을 끝낸 경우
+    existing = (
+        await db.execute(
+            select(SocialIdentity.id).where(
+                SocialIdentity.provider == provider,
+                SocialIdentity.provider_user_id == provider_user_id,
+            )
+        )
+    ).scalar_one_or_none()
+    if existing is not None:
+        raise HTTPException(status_code=409, detail="이미 가입된 소셜 계정입니다. 로그인해 주세요")
+
+    await validate_nickname(db, body.nickname)
+
     user = User(
+        id=uuid.uuid4(),
         nickname=body.nickname,
-        password_hash=hash_secret(body.password),
-        recovery_code_hash=hash_secret(recovery_code),
+        birth_date=body.birth_date,
+        ui_mode=body.ui_mode.value,
+        # §4.5: 미성년은 성인 발신 비친구 요청 기본 차단
+        stranger_requests_allowed=not is_minor(body.birth_date),
+        last_login_at=datetime.now(timezone.utc),
     )
     db.add(user)
-    await db.commit()
-    await db.refresh(user)
-
-    _set_refresh_cookie(response, user.id)
-    return SignupResponse(
-        user_id=user.id,
-        access_token=create_access_token(str(user.id)),
-        recovery_code=recovery_code,
-    )
-
-
-@router.post(
-    "/login",
-    response_model=LoginResponse,
-    summary="로그인",
-    description="`needs_onboarding:true` 면 장애 모드 미설정 상태 → 프론트는 온보딩(모드 선택) 화면으로 보낸다.",
-)
-async def login(body: LoginRequest, response: Response, db: AsyncSession = Depends(get_db)):
-    user = await db.scalar(select(User).where(User.nickname == body.nickname))
-    if not user or not verify_secret(body.password, user.password_hash):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, detail="닉네임 또는 비밀번호가 올바르지 않습니다"
+    # relationship() 미사용 모델은 mapper 간 insert 순서가 보장되지 않는다 —
+    # 부모(users) 먼저 flush 후 자식(social_identities) 추가 (레포 컨벤션)
+    await db.flush()
+    db.add(
+        SocialIdentity(
+            id=uuid.uuid4(),
+            user_id=user.id,
+            provider=provider,
+            provider_user_id=provider_user_id,
         )
-
-    user.last_login_at = func.now()
+    )
     await db.commit()
 
     _set_refresh_cookie(response, user.id)
-    return LoginResponse(
+    return TokenOut(
         access_token=create_access_token(str(user.id)),
         user_id=user.id,
-        needs_onboarding=user.disability_mode is None,
+        stranger_requests_allowed=user.stranger_requests_allowed,
     )
 
 
-@router.post(
-    "/refresh",
-    response_model=TokenRefreshResponse,
-    summary="access 토큰 갱신",
-    description="httpOnly refresh 쿠키를 검증해 새 access_token 발급. 프론트는 401 발생 시 한 번 호출 후 원요청 재시도.",
-)
-async def refresh(refresh_token: str | None = Cookie(default=None, alias=REFRESH_COOKIE)):
-    if not refresh_token:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="갱신 토큰이 없습니다")
+@router.post("/refresh", response_model=AccessTokenOut)
+async def refresh(
+    db: AsyncSession = Depends(get_db),
+    refresh_token: str | None = Cookie(default=None, alias=_REFRESH_COOKIE),
+):
+    if refresh_token is None:
+        raise HTTPException(status_code=401, detail="Not authenticated")
     try:
         payload = decode_token(refresh_token, expected_type="refresh")
-    except JWTError:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="갱신 토큰이 유효하지 않습니다")
-    return TokenRefreshResponse(access_token=create_access_token(payload["sub"]))
+        user_id = uuid.UUID(payload["sub"])
+    except (JWTError, KeyError, ValueError):
+        raise HTTPException(status_code=401, detail="Invalid token")
+    if await db.get(User, user_id) is None:
+        raise HTTPException(status_code=401, detail="User not found")
+    return AccessTokenOut(access_token=create_access_token(str(user_id)))
 
 
-@router.post(
-    "/recovery",
-    summary="복구 코드로 비밀번호 재설정",
-    description="가입 시 받은 `recovery_code`로 본인 확인 후 비밀번호를 새로 설정한다.",
-)
-async def recovery(body: RecoveryRequest, db: AsyncSession = Depends(get_db)):
-    user = await db.scalar(select(User).where(User.nickname == body.nickname))
-    if not user or not verify_secret(body.recovery_code, user.recovery_code_hash):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, detail="닉네임 또는 복구 코드가 올바르지 않습니다"
-        )
-    user.password_hash = hash_secret(body.new_password)
-    await db.commit()
-    return {"status": "ok"}
-
-
-@router.post("/logout", summary="로그아웃", description="refresh 쿠키를 만료시킨다. access_token은 만료까지 유효하므로 프론트 저장소에서도 삭제.")
+@router.post("/logout", status_code=204)
 async def logout(response: Response):
-    response.delete_cookie(REFRESH_COOKIE, path="/api/v1/auth")
-    return {"status": "ok"}
-
-
-@router.get("/me", response_model=UserResponse, summary="내 정보 조회", description="현재 access_token 소유자의 기본 정보.")
-async def me(current_user: User = Depends(get_current_user)):
-    return current_user
+    response.delete_cookie(_REFRESH_COOKIE, path="/api/v1/auth")
+    return Response(status_code=204)

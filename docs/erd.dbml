@@ -1,38 +1,100 @@
-// ThisAbled — ERD v2 (인증·모드 정합)
+// ThisAbled — ERD v3 (기능명세서 v2.1 정합)
 // dbdiagram.io 에서 https://dbdiagram.io/d 에 붙여넣기하면 시각화됩니다.
+// 정본 마이그레이션: alembic/versions/84e58e0eefae_schema_v3_baseline.py
 
 Project ThisAbled {
   database_type: 'PostgreSQL'
-  Note: '장애 유형별 적응형 UI 소셜 플랫폼 — F01 회원가입 / F02 적응형 UI 엔진 정합'
+  Note: '''
+    장애 유형별 적응형 UI 소셜 플랫폼 — 명세 v2.1 (docs/ThisAbled_기능명세서_v2_1.md)
+    - PK·FK 전부 UUID (forbidden_nicknames.id serial 예외)
+    - enum은 DB에 varchar로 저장 (app/core/enums.py 가 정본)
+    - 신고(reports)는 MVP 제외 (§3.2)
+  '''
 }
 
-Enum disability_mode {
-  visual        [note: '시각장애']
-  hearing       [note: '청각장애']
-  developmental [note: '발달장애']
-  default       [note: '기본 모드']
+Enum ui_mode {
+  visual        [note: '시각장애 모드']
+  hearing       [note: '청각장애 모드']
+  developmental [note: '발달장애 모드']
 }
+
+Enum post_status {
+  processing [note: '영상 내부 드래프트 (POST-01), 24h 미게시 시 자동 삭제']
+  published  [note: '공개']
+}
+
+Enum safety_status {
+  pending    [note: '분석 대기 — 비친구 요청 보류 (SAFE-01)']
+  safe       [note: '정상']
+  flagged    [note: '주의 — 수신자 화면 블러 (SAFE-03)']
+  unanalyzed [note: '성능저하 모드 미분석 (§18.3), 복구 후 재분석']
+}
+
+Enum room_state {
+  request [note: '비친구 메시지 요청함 (CHAT-02)']
+  active  [note: '일반 1:1 채팅']
+}
+
+// ── 계정·프로필 ─────────────────────────────────────────
 
 Table users {
-  id                 uuid        [pk, default: `gen_random_uuid()`]
-  nickname           varchar(12) [not null, unique, note: '2~12자 한글·영문·숫자']
-  password_hash      varchar(60) [not null, note: 'bcrypt']
-  recovery_code_hash varchar(60) [not null, note: 'F01_S08 12자리 복구코드 해시']
-  disability_mode    varchar(20) [null, note: 'null=온보딩 전 → needs_onboarding']
-  mode_settings      jsonb       [not null, default: `'{}'`, note: '사용자별 미세조정']
-  trust_score        float       [not null, default: 1, note: 'F03 안전감시에서 사용']
-  created_at         timestamptz [not null, default: `now()`]
-  last_login_at      timestamptz [null]
+  id                        uuid         [pk, default: `gen_random_uuid()`]
+  nickname                  varchar(12)  [not null, unique, note: '2~12자 (ACC-01)']
+  birth_date                date         [not null, note: '만 나이·연령대·미성년은 매번 서버 계산 (§4.5, MATCH-02-5)']
+  ui_mode                   varchar(20)  [not null, note: '장애 유형 원본은 저장 안 함 (§18.3)']
+  bio                       varchar(300) [null, note: '자기소개, 매칭 입력 (MATCH-02-1). 연락처 패턴 저장 거부 (MATCH-02-7)']
+  profile_image_url         text         [null]
+  stranger_requests_allowed boolean      [not null, default: true, note: '가입 시 성인 true / 미성년 false (§4.5)']
+  mode_settings             jsonb        [not null, default: `'{}'`, note: '글자 크기·대비·자막 설정 (§15)']
+  risk_score                float        [not null, default: 0, note: 'SAFE-04 내부 위험 점수 (비노출)']
+  created_at                timestamptz  [not null, default: `now()`]
+  last_login_at             timestamptz  [null]
 
-  Note: '서비스 사용자. disability_mode 에 따라 프론트 UI 모드 결정'
+  Note: '탈퇴 시 hard delete → 관련 FK는 SET NULL(익명화) 또는 CASCADE (§15)'
+}
+
+Table social_identities {
+  id               uuid         [pk, default: `gen_random_uuid()`]
+  user_id          uuid         [not null, ref: > users.id, note: 'ON DELETE CASCADE']
+  provider         varchar(20)  [not null, note: 'kakao | google | mock']
+  provider_user_id varchar(255) [not null]
+  created_at       timestamptz  [not null, default: `now()`]
+
+  indexes {
+    (provider, provider_user_id) [unique]
+  }
+  Note: '소셜 계정 연결 (ACC-01). 비밀번호는 수집하지 않음'
+}
+
+Table withdrawn_socials {
+  id               uuid         [pk, default: `gen_random_uuid()`]
+  provider         varchar(20)  [not null]
+  provider_user_id varchar(255) [not null]
+  withdrawn_at     timestamptz  [not null, default: `now()`]
+
+  Note: '탈퇴 후 30일 재가입 제한 판정 (§15). users 행 삭제 후 유일한 흔적'
+}
+
+Table interest_tags {
+  id       uuid        [pk, default: `gen_random_uuid()`]
+  code     varchar(40) [not null, unique, note: '영문 슬러그']
+  category varchar(40) [not null, note: 'TAG-01 10개 카테고리']
+  label    varchar(40) [not null, note: '사용자 노출명']
+
+  Note: 'TAG-01 카탈로그 43개, baseline 시드'
+}
+
+Table user_interest_tags {
+  user_id uuid [pk, ref: > users.id]
+  tag_id  uuid [pk, ref: > interest_tags.id]
+
+  Note: '최대 10개는 앱 검증 (TAG-01)'
 }
 
 Table forbidden_nicknames {
   id         int         [pk, increment]
   word       varchar(50) [not null, unique]
   created_at timestamptz [not null, default: `now()`]
-
-  Note: '운영자 관리 금칙어 사전. check-nickname 의 forbidden_word 판정 근거'
 }
 
 Table user_mode_history {
@@ -42,35 +104,157 @@ Table user_mode_history {
   to_mode    varchar(20) [not null]
   changed_at timestamptz [not null, default: `now()`]
 
-  Note: 'F02_S08 모드 변경 이력 (베타테스트 분석용)'
+  Note: '모드 변경 이력 (§5.2)'
 }
 
+// ── 게시물 ─────────────────────────────────────────────
+
 Table posts {
+  id           uuid        [pk, default: `gen_random_uuid()`]
+  author_id    uuid        [null, ref: > users.id, note: 'SET NULL = 탈퇴한 사용자 (§15)']
+  content      text        [not null, default: '']
+  status       post_status [not null, note: '텍스트·사진=즉시 published, 영상=processing 드래프트 (POST-01)']
+  published_at timestamptz [null]
+  created_at   timestamptz [not null, default: `now()`]
+  updated_at   timestamptz [null]
+}
+
+Table post_media {
+  id                 uuid        [pk, default: `gen_random_uuid()`]
+  post_id            uuid        [null, ref: > posts.id, note: '사진은 업로드 직후 미연결, POST /posts에서 연결']
+  uploader_id        uuid        [null, ref: > users.id]
+  media_type         varchar(10) [not null, note: 'image | video. 사진≤3장·영상 1개는 앱 검증']
+  url                text        [not null]
+  sort_order         int         [not null, default: 0]
+  media_hash         varchar(64) [null, note: 'ai_result_cache 키 (중복 호출 방지)']
+  description        text        [null, note: 'VISION-01 사진 설명 — 게시 시점 생성']
+  description_status varchar(20) [not null, default: 'none', note: 'none|processing|done|failed']
+  caption            jsonb       [null, note: 'CAPTION-01 자막 세그먼트 [{start,end,text}]']
+  caption_status     varchar(20) [not null, default: 'none', note: 'failed=자막 없음 라벨 (HEAR-02)']
+  created_at         timestamptz [not null, default: `now()`]
+}
+
+Table comments {
   id         uuid        [pk, default: `gen_random_uuid()`]
-  user_id    uuid        [not null, ref: > users.id]
+  post_id    uuid        [not null, ref: > posts.id]
+  author_id  uuid        [null, ref: > users.id, note: 'SET NULL = 탈퇴한 사용자']
   content    text        [not null]
-  image_url  text        [null, note: '/uploads/<uuid>.ext 또는 S3 URL']
+  created_at timestamptz [not null, default: `now()`]
+  updated_at timestamptz [null]
+}
+
+Table post_likes {
+  post_id    uuid        [pk, ref: > posts.id]
+  user_id    uuid        [pk, ref: > users.id]
+  created_at timestamptz [not null, default: `now()`]
+
+  Note: 'MATCH-02-6 좋아요 기반 관심 신호 입력'
+}
+
+// ── 관계 ──────────────────────────────────────────────
+
+Table friend_requests {
+  id           uuid        [pk, default: `gen_random_uuid()`]
+  sender_id    uuid        [not null, ref: > users.id]
+  receiver_id  uuid        [not null, ref: > users.id]
+  status       varchar(20) [not null, default: 'pending', note: 'pending|accepted|declined|cancelled']
+  created_at   timestamptz [not null, default: `now()`]
+  responded_at timestamptz [null, note: 'declined 후 30일 추천 제외 근거 (MATCH-03)']
+}
+
+Table friendships {
+  user_a     uuid        [pk, ref: > users.id, note: '정규화 쌍: user_a < user_b']
+  user_b     uuid        [pk, ref: > users.id]
   created_at timestamptz [not null, default: `now()`]
 }
 
-Table messages {
+Table blocks {
+  blocker_id uuid        [pk, ref: > users.id]
+  blocked_id uuid        [pk, ref: > users.id]
+  created_at timestamptz [not null, default: `now()`]
+
+  Note: 'BLOCK-01: 차단 시 친구 해제 + 게시물·프로필·요청·채팅·추천 상호 제거'
+}
+
+// ── 채팅·SAFE ─────────────────────────────────────────
+
+Table chat_rooms {
+  id           uuid        [pk, default: `gen_random_uuid()`]
+  user_a       uuid        [null, ref: > users.id, note: '정규화 쌍. SET NULL = 탈퇴 (§15)']
+  user_b       uuid        [null, ref: > users.id]
+  state        room_state  [not null]
+  requested_by uuid        [null, note: '비친구 요청 발신자 (CHAT-02)']
+  accepted_at  timestamptz [null]
+  created_at   timestamptz [not null, default: `now()`]
+
+  indexes {
+    (user_a, user_b) [unique]
+  }
+}
+
+Table chat_messages {
+  id                 uuid          [pk, default: `gen_random_uuid()`]
+  room_id            uuid          [not null, ref: > chat_rooms.id]
+  sender_id          uuid          [null, ref: > users.id, note: 'SET NULL = 탈퇴한 사용자 (§15)']
+  type               varchar(10)   [not null, default: 'text', note: 'text|image|video']
+  content            text          [null]
+  media_url          text          [null, note: '사진·영상은 안전 분석 없이 즉시 전달 (SAFE-02)']
+  description        text          [null, note: '채팅 사진 설명 — 비동기 부착 (VISION-01)']
+  description_status varchar(20)   [not null, default: 'none']
+  caption            jsonb         [null, note: '채팅 영상 자막 — 비동기 부착 (CAPTION-01)']
+  caption_status     varchar(20)   [not null, default: 'none']
+  safety_status      safety_status [not null, note: '텍스트만 분석. 발신자에게 판정 비노출 (SAFE-03)']
+  revealed_at        timestamptz   [null, note: '내용 보기 실행 시각. 실행해도 SAFE-05 집계 포함']
+  created_at         timestamptz   [not null, default: `now()`]
+
+  indexes {
+    (room_id, created_at)
+  }
+}
+
+Table send_restrictions {
   id          uuid        [pk, default: `gen_random_uuid()`]
   sender_id   uuid        [not null, ref: > users.id]
   receiver_id uuid        [not null, ref: > users.id]
-  content     text        [not null]
-  is_flagged  bool        [not null, default: false, note: 'KoBERT 그루밍 탐지 결과']
+  active      boolean     [not null, default: true]
   created_at  timestamptz [not null, default: `now()`]
+  released_at timestamptz [null, note: '수신자 해제 = 카운터 리셋 경계 (SAFE-05-7)']
 
-  Note: 'DM. F03 안전감시(M1)에서 safety_status 등 컬럼 추가 예정'
+  indexes {
+    (sender_id, receiver_id, active)
+  }
+  Note: '''
+    SAFE-05 관계 단위 자동 전송 제한.
+    누적 카운터 컬럼 없음 — chat_messages에서
+    flagged AND created_at > max(now-3일, 마지막 released_at) 쿼리로 계산.
+    기간(3일)·횟수(3회)는 운영 설정값 (SAFE_FLAG_WINDOW_DAYS/LIMIT)
+  '''
 }
 
-Table reports {
-  id          uuid        [pk, default: `gen_random_uuid()`]
-  reporter_id uuid        [not null, ref: > users.id]
-  target_id   uuid        [not null, ref: > users.id]
-  reason      text        [not null]
-  status      varchar(20) [not null, default: 'pending']
-  created_at  timestamptz [not null, default: `now()`]
+// ── 기타 ──────────────────────────────────────────────
 
-  Note: 'v1 사용자 단위 신고. F03 명세는 message 단위로 재설계 예정 (M1)'
+Table notifications {
+  id         uuid        [pk, default: `gen_random_uuid()`]
+  user_id    uuid        [not null, ref: > users.id]
+  type       varchar(30) [not null, note: '§16 유형: friend.request, post.comment, chat.flagged, media.caption_done ...']
+  payload    jsonb       [not null, default: `'{}'`]
+  read_at    timestamptz [null]
+  created_at timestamptz [not null, default: `now()`]
+
+  indexes {
+    (user_id, read_at)
+  }
+}
+
+Table ai_result_cache {
+  id         uuid        [pk, default: `gen_random_uuid()`]
+  kind       varchar(10) [not null, note: 'vision | caption']
+  media_hash varchar(64) [not null]
+  result     jsonb       [not null]
+  created_at timestamptz [not null, default: `now()`]
+
+  indexes {
+    (kind, media_hash) [unique]
+  }
+  Note: '동일 미디어 해시 캐싱 (비용 방어). 호출 한도 카운터는 Redis TTL 키'
 }

@@ -6,12 +6,18 @@ dev는 `OAUTH_MOCK=true`(기본)로 키 없이 동작한다. 이 문서는 **실
 
 ## 0. 사전 결정: redirect URI
 
-`OAUTH_REDIRECT_BASE` 기준으로 콜백 URI가 만들어진다.
+`OAUTH_REDIRECT_BASE`는 **브라우저가 실제로 접속하는 서버 주소**여야 한다 — "로컬 개발이니까
+localhost"가 아니라 "카카오·구글 로그인 완료 후 브라우저가 리다이렉트될 수 있는 주소"가 기준이다.
+Tailscale Funnel처럼 상시 배포 중이면 로컬 주소는 브라우저(카카오·구글 서버)가 도달할 수 없으므로
+**Funnel 도메인을 써야 한다.**
 
 | 환경 | OAUTH_REDIRECT_BASE | 콘솔에 등록할 URI |
 |---|---|---|
-| 로컬 | `http://localhost:8000` | `http://localhost:8000/api/v1/auth/kakao/callback`<br>`http://localhost:8000/api/v1/auth/google/callback` |
-| Funnel 배포 | `https://<funnel-host>` | 위와 동일 패턴 (https) |
+| Funnel 상시 배포 (이 프로젝트 기본) | `https://<funnel-host>.ts.net` | `https://<funnel-host>.ts.net/api/v1/auth/kakao/callback`<br>`https://<funnel-host>.ts.net/api/v1/auth/google/callback` |
+| 순수 로컬(Funnel 미사용, 브라우저·서버가 같은 머신) | `http://localhost:8000` | `http://localhost:8000/api/v1/auth/{provider}/callback` |
+
+`tailscale funnel status`로 현재 Funnel 도메인을 확인한다. `.env.example`의 기본값은
+범용 템플릿용 localhost이니, 실제 `.env`에는 위 표에서 실제 접속 경로에 맞는 값을 넣는다.
 
 두 환경 모두 쓸 거면 콘솔에 URI를 **둘 다 등록**한다 (카카오·구글 모두 복수 등록 가능).
 
@@ -35,7 +41,10 @@ dev는 `OAUTH_MOCK=true`(기본)로 키 없이 동작한다. 이 문서는 **실
    - Application type: **Web application**
    - Authorized redirect URIs: 위 표의 google callback URI
 3. Client ID → `GOOGLE_CLIENT_ID`, Client secret → `GOOGLE_CLIENT_SECRET`
-   (구글은 secret 필수)
+   - **구글은 Web application 타입이면 secret이 항상 발급된다.** Credentials 목록에서 해당
+     클라이언트를 클릭하면 다시 확인 가능. secret이 안 보인다면 Application type을 Web
+     application이 아닌 다른 것(Android/iOS/Desktop 등)으로 만든 것 — 그 타입들은 서버사이드
+     code 교환에 안 맞으므로 Web application으로 다시 만들어야 한다.
 
 ## 3. 환경변수 투입
 
@@ -47,7 +56,7 @@ KAKAO_CLIENT_ID=<REST API 키>
 KAKAO_CLIENT_SECRET=            # 콘솔에서 '사용' 켰을 때만
 GOOGLE_CLIENT_ID=<클라이언트 ID>
 GOOGLE_CLIENT_SECRET=<클라이언트 보안 비밀>
-OAUTH_REDIRECT_BASE=http://localhost:8000
+OAUTH_REDIRECT_BASE=https://<funnel-host>.ts.net   # §0 표 참고 — localhost 아님
 ```
 
 ```bash

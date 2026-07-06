@@ -61,9 +61,9 @@
   "59": "storage.py",
   "60": "GoogleProvider",
   "61": "str",
+  "62": "test_config.py",
+  "63": "AsyncSession",
   "64": "test_age.py",
-  "65": "friends.py",
   "70": "test_comm.py",
-  "71": "test_friends.py",
   "72": "recommendations.py"
 }

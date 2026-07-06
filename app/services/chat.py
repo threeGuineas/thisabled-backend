@@ -168,6 +168,54 @@ async def send_text(
     return message, newly_restricted
 
 
+async def reanalyze_unanalyzed(session_factory, redis, safety: SafetyClient) -> int:
+    """§18.3: 모델 복구 후 미분석(unanalyzed)·보류(pending) 텍스트 재분석.
+
+    재분석에서 주의 판정 시 소급 블러(=flagged 저장) + 수신자 알림.
+    미디어 메시지는 대상이 아니다 (type=text만, SAFE-02).
+    """
+    from app.services import notify as noti
+
+    processed = 0
+    async with session_factory() as db:
+        rows = (
+            await db.execute(
+                select(ChatMessage).where(
+                    ChatMessage.type == MessageType.text.value,
+                    ChatMessage.safety_status.in_(
+                        [SafetyStatus.unanalyzed.value, SafetyStatus.pending.value]
+                    ),
+                )
+            )
+        ).scalars().all()
+        for msg in rows:
+            if msg.sender_id is None or msg.content is None:
+                continue
+            room = await db.get(ChatRoom, msg.room_id)
+            other_id = counterpart_id(room, msg.sender_id)
+            if other_id is None:
+                continue
+            other = await db.get(User, other_id)
+            try:
+                verdict = await safety.analyze(
+                    msg.content, receiver_is_minor=is_minor(other.birth_date)
+                )
+            except SafetyUnavailable:
+                continue  # 아직 복구 전 — 다음 주기에 재시도
+            msg.safety_status = (
+                SafetyStatus.safe.value if verdict == "safe" else SafetyStatus.flagged.value
+            )
+            await db.commit()
+            processed += 1
+            if msg.safety_status == SafetyStatus.flagged.value:
+                # 소급 블러 + 추가 알림 (§18.3)
+                await noti.notify(
+                    db, redis, other_id, noti.CHAT_FLAGGED,
+                    {"room_id": str(msg.room_id), "message_id": str(msg.id), "retroactive": True},
+                )
+    return processed
+
+
 async def release_restriction(
     db: AsyncSession, sender_id: uuid.UUID, receiver: User
 ) -> bool:

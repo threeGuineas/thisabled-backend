@@ -69,5 +69,7 @@
   "67": "0. 문서 정보",
   "68": "stt.py",
   "69": "nickname.py",
-  "71": "test_friends.py"
+  "70": "test_comm.py",
+  "71": "test_friends.py",
+  "72": "recommendations.py"
 }

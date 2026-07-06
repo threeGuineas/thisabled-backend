@@ -107,6 +107,28 @@ async def test_reveal_still_counts_for_safe05(client, safety):
     assert (await _send(client, ha, room_id, "인사")).status_code == 403
 
 
+async def test_reanalysis_applies_retroactive_blur(client, db, test_redis, _session_factory, safety):
+    """§18.3: 복구 후 재분석 — flagged면 소급 블러 + 수신자 알림."""
+    from app.services.chat import reanalyze_unanalyzed
+
+    a, ha, b, hb, room_id = await _friend_room(client, "재분석갑", "재분석을")
+    safety.fail = True
+    await _send(client, ha, room_id, "돈 문제 메시지")  # 장애 중 → unanalyzed 전달
+    msgs = (await client.get(f"/api/v1/chat/rooms/{room_id}/messages", headers=hb)).json()
+    assert msgs["items"][0]["safety_status"] == "unanalyzed"
+
+    safety.fail = False  # 복구
+    processed = await reanalyze_unanalyzed(_session_factory, test_redis, safety)
+    assert processed == 1
+
+    msgs = (await client.get(f"/api/v1/chat/rooms/{room_id}/messages", headers=hb)).json()
+    assert msgs["items"][0]["safety_status"] == "flagged"
+    assert msgs["items"][0]["blurred"] is True  # 소급 블러
+
+    notis = (await client.get("/api/v1/notifications", headers=hb)).json()["items"]
+    assert any(n["type"] == "chat.flagged" and n["payload"].get("retroactive") for n in notis)
+
+
 async def test_block_overrides_restriction(client, safety):
     a, ha, b, hb, room_id = await _friend_room(client, "차단발신", "차단수신")
     await client.post("/api/v1/blocks", json={"user_id": a["user_id"]}, headers=hb)

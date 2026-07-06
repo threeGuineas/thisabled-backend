@@ -48,11 +48,22 @@ async def cleanup_stale_drafts(session_factory=None) -> int:
     return deleted
 
 
+async def _reanalyze_job() -> None:
+    """§18.3: 모델 복구 감지용 주기 재분석 (unanalyzed·pending 텍스트)."""
+    from app.db.redis import get_redis_client
+    from app.db.session import AsyncSessionLocal
+    from app.services.chat import reanalyze_unanalyzed
+    from app.services.safety import SafetyClient
+
+    await reanalyze_unanalyzed(AsyncSessionLocal, get_redis_client(), SafetyClient())
+
+
 def start_scheduler() -> AsyncIOScheduler:
     global _scheduler
     if _scheduler is None:
         _scheduler = AsyncIOScheduler(timezone="UTC")
         _scheduler.add_job(cleanup_stale_drafts, "interval", hours=1, id="cleanup_stale_drafts")
+        _scheduler.add_job(_reanalyze_job, "interval", minutes=10, id="reanalyze_unanalyzed")
         _scheduler.start()
     return _scheduler
 

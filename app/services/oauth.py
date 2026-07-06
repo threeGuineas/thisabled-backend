@@ -8,11 +8,19 @@
 
 from dataclasses import dataclass
 from typing import Protocol
+from urllib.parse import urlencode
 
 import httpx
 from fastapi import HTTPException
 
 from app.core.config import settings
+
+# 테스트에서 MockTransport 주입용 — 운영은 None(기본 네트워크)
+_transport: httpx.AsyncBaseTransport | None = None
+
+
+def _http() -> httpx.AsyncClient:
+    return httpx.AsyncClient(timeout=10, transport=_transport)
 
 
 @dataclass
@@ -67,24 +75,32 @@ class KakaoProvider:
         return f"{settings.OAUTH_REDIRECT_BASE}/api/v1/auth/kakao/callback"
 
     def authorize_url(self, state: str) -> str:
-        return (
-            f"{self._AUTH}?response_type=code&client_id={settings.KAKAO_CLIENT_ID}"
-            f"&redirect_uri={self._redirect_uri}&state={state}"
-        )
+        params = urlencode({
+            "response_type": "code",
+            "client_id": settings.KAKAO_CLIENT_ID,
+            "redirect_uri": self._redirect_uri,
+            "state": state,
+        })
+        return f"{self._AUTH}?{params}"
 
     async def exchange_code(self, code: str) -> OAuthUserInfo:
-        async with httpx.AsyncClient(timeout=10) as http:
-            token_resp = await http.post(self._TOKEN, data={
-                "grant_type": "authorization_code",
-                "client_id": settings.KAKAO_CLIENT_ID,
-                "client_secret": settings.KAKAO_CLIENT_SECRET or "",
-                "redirect_uri": self._redirect_uri,
-                "code": code,
-            })
-            token_resp.raise_for_status()
+        data = {
+            "grant_type": "authorization_code",
+            "client_id": settings.KAKAO_CLIENT_ID,
+            "redirect_uri": self._redirect_uri,
+            "code": code,
+        }
+        # client_secret은 카카오 콘솔에서 '사용'으로 켠 경우에만 전송
+        if settings.KAKAO_CLIENT_SECRET:
+            data["client_secret"] = settings.KAKAO_CLIENT_SECRET
+        async with _http() as http:
+            token_resp = await http.post(self._TOKEN, data=data)
+            if token_resp.status_code != 200:
+                raise ValueError(f"kakao token exchange failed: {token_resp.status_code}")
             access = token_resp.json()["access_token"]
             me = await http.get(self._ME, headers={"Authorization": f"Bearer {access}"})
-            me.raise_for_status()
+            if me.status_code != 200:
+                raise ValueError(f"kakao userinfo failed: {me.status_code}")
             return OAuthUserInfo(provider=self.name, provider_user_id=str(me.json()["id"]))
 
     async def unlink(self, provider_user_id: str) -> None:
@@ -98,20 +114,25 @@ class GoogleProvider:
     name = "google"
     _AUTH = "https://accounts.google.com/o/oauth2/v2/auth"
     _TOKEN = "https://oauth2.googleapis.com/token"
-    _ME = "https://www.googleapis.com/oauth2/v2/userinfo"
+    # scope=openid만 쓰므로 OIDC userinfo(sub)로 식별 — oauth2/v2는 profile scope 필요
+    _ME = "https://openidconnect.googleapis.com/v1/userinfo"
 
     @property
     def _redirect_uri(self) -> str:
         return f"{settings.OAUTH_REDIRECT_BASE}/api/v1/auth/google/callback"
 
     def authorize_url(self, state: str) -> str:
-        return (
-            f"{self._AUTH}?response_type=code&client_id={settings.GOOGLE_CLIENT_ID}"
-            f"&redirect_uri={self._redirect_uri}&scope=openid&state={state}"
-        )
+        params = urlencode({
+            "response_type": "code",
+            "client_id": settings.GOOGLE_CLIENT_ID,
+            "redirect_uri": self._redirect_uri,
+            "scope": "openid",
+            "state": state,
+        })
+        return f"{self._AUTH}?{params}"
 
     async def exchange_code(self, code: str) -> OAuthUserInfo:
-        async with httpx.AsyncClient(timeout=10) as http:
+        async with _http() as http:
             token_resp = await http.post(self._TOKEN, data={
                 "grant_type": "authorization_code",
                 "client_id": settings.GOOGLE_CLIENT_ID,
@@ -119,11 +140,13 @@ class GoogleProvider:
                 "redirect_uri": self._redirect_uri,
                 "code": code,
             })
-            token_resp.raise_for_status()
+            if token_resp.status_code != 200:
+                raise ValueError(f"google token exchange failed: {token_resp.status_code}")
             access = token_resp.json()["access_token"]
             me = await http.get(self._ME, headers={"Authorization": f"Bearer {access}"})
-            me.raise_for_status()
-            return OAuthUserInfo(provider=self.name, provider_user_id=str(me.json()["id"]))
+            if me.status_code != 200:
+                raise ValueError(f"google userinfo failed: {me.status_code}")
+            return OAuthUserInfo(provider=self.name, provider_user_id=str(me.json()["sub"]))
 
     async def unlink(self, provider_user_id: str) -> None:
         return None

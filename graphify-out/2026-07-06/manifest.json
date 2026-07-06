@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "app/main.py": {
-    "mtime": 1783272570.8612366,
-    "ast_hash": "58e54876e4856356f4f37174cec1ff12",
+    "mtime": 1783272739.4554613,
+    "ast_hash": "dd0b9725b325f05fb3f417e9de4653b4",
     "semantic_hash": ""
   },
   "app/models/__init__.py": {
@@ -345,8 +345,8 @@
     "semantic_hash": ""
   },
   "app/api/v1/chat.py": {
-    "mtime": 1783272567.969041,
-    "ast_hash": "c421f465efcdd092eb0b5687b8651972",
+    "mtime": 1783272720.2167008,
+    "ast_hash": "95b3ffea6fe5bdae1ed7e6cb997372d0",
     "semantic_hash": ""
   },
   "app/schemas/chat.py": {
@@ -372,6 +372,21 @@
   "tests/test_safe.py": {
     "mtime": 1783272428.8952553,
     "ast_hash": "c8633deb1ba531f69eeef7163d3bc6df",
+    "semantic_hash": ""
+  },
+  "app/api/v1/ws.py": {
+    "mtime": 1783272697.4582758,
+    "ast_hash": "2d6d7f511389a4d76608fafd5ec3dfd5",
+    "semantic_hash": ""
+  },
+  "app/services/events.py": {
+    "mtime": 1783272690.2244902,
+    "ast_hash": "ea56e7ce71e914ca5f1353da45736bdd",
+    "semantic_hash": ""
+  },
+  "tests/test_ws.py": {
+    "mtime": 1783272782.338578,
+    "ast_hash": "c664deab1c8f5b55bf1557de33488999",
     "semantic_hash": ""
   }
 }

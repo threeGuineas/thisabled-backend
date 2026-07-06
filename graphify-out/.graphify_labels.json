@@ -56,14 +56,9 @@
   "54": "AsyncSession",
   "55": "UploadFile",
   "56": "UploadFile",
-  "57": "vision.py",
-  "58": "Redis",
   "59": "storage.py",
   "60": "GoogleProvider",
   "61": "str",
-  "62": "test_config.py",
-  "63": "AsyncSession",
-  "64": "test_age.py",
-  "70": "test_comm.py",
-  "72": "recommendations.py"
+  "63": "chat.py",
+  "70": "test_comm.py"
 }

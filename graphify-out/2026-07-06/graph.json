@@ -10,7 +10,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "alembic_env",
-      "community": 56,
+      "community": 63,
       "norm_label": "env.py"
     },
     {
@@ -20,7 +20,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "alembic_env_run_migrations_offline",
-      "community": 56,
+      "community": 63,
       "norm_label": "run_migrations_offline()"
     },
     {
@@ -30,7 +30,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "alembic_env_do_run_migrations",
-      "community": 56,
+      "community": 63,
       "norm_label": "do_run_migrations()"
     },
     {
@@ -40,7 +40,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "alembic_env_run_async_migrations",
-      "community": 56,
+      "community": 63,
       "norm_label": "run_async_migrations()"
     },
     {
@@ -50,7 +50,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "alembic_env_run_migrations_online",
-      "community": 56,
+      "community": 63,
       "norm_label": "run_migrations_online()"
     },
     {
@@ -120,7 +120,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_auth",
-      "community": 2,
+      "community": 3,
       "norm_label": "auth.py"
     },
     {
@@ -130,7 +130,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "app_api_v1_auth_set_refresh_cookie",
-      "community": 2,
+      "community": 3,
       "norm_label": "_set_refresh_cookie()"
     },
     {
@@ -140,7 +140,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "response",
-      "community": 2,
+      "community": 3,
       "norm_label": "response"
     },
     {
@@ -150,7 +150,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_auth_py_uuid",
-      "community": 2,
+      "community": 3,
       "norm_label": "uuid"
     },
     {
@@ -160,7 +160,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "app_api_v1_auth_authorize",
-      "community": 2,
+      "community": 3,
       "norm_label": "authorize()"
     },
     {
@@ -170,7 +170,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "app_api_v1_auth_callback",
-      "community": 2,
+      "community": 3,
       "norm_label": "callback()"
     },
     {
@@ -180,7 +180,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_auth_py_asyncsession",
-      "community": 2,
+      "community": 3,
       "norm_label": "asyncsession"
     },
     {
@@ -190,7 +190,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "app_api_v1_auth_signup",
-      "community": 2,
+      "community": 3,
       "norm_label": "signup()"
     },
     {
@@ -200,7 +200,7 @@
       "source_location": "L163",
       "_origin": "ast",
       "id": "app_api_v1_auth_refresh",
-      "community": 2,
+      "community": 3,
       "norm_label": "refresh()"
     },
     {
@@ -210,7 +210,7 @@
       "source_location": "L180",
       "_origin": "ast",
       "id": "app_api_v1_auth_logout",
-      "community": 2,
+      "community": 3,
       "norm_label": "logout()"
     },
     {
@@ -220,7 +220,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_auth_rationale_1",
-      "community": 2,
+      "community": 3,
       "norm_label": "acc-01/02 \u2014 \u1109\u1169\u1109\u1167\u11af oauth \u110c\u1165\u11ab\u110b\u116d\u11bc \u110b\u1175\u11ab\u110c\u1173\u11bc.  \u1112\u1173\u1105\u1173\u11b7: authorize \u2192 \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u1105\u1169\u1100\u1173\u110b\u1175\u11ab \u2192 callback   - \u1100\u1175\u1100\u1161\u110b\u1175\u11b8\u110c\u1161: \u110c\u1173\u11a8\u1109\u1175 \u1105\u1169\u1100\u1173\u110b\u1175\u11ab"
     },
     {
@@ -870,7 +870,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_health",
-      "community": 54,
+      "community": 53,
       "norm_label": "health.py"
     },
     {
@@ -880,7 +880,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "app_api_v1_health_health",
-      "community": 54,
+      "community": 53,
       "norm_label": "health()"
     },
     {
@@ -890,7 +890,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_media",
-      "community": 53,
+      "community": 38,
       "norm_label": "media.py"
     },
     {
@@ -900,7 +900,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "app_api_v1_media_upload_images",
-      "community": 53,
+      "community": 38,
       "norm_label": "upload_images()"
     },
     {
@@ -910,7 +910,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_media_py_uploadfile",
-      "community": 53,
+      "community": 38,
       "norm_label": "uploadfile"
     },
     {
@@ -920,7 +920,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_media_py_asyncsession",
-      "community": 53,
+      "community": 38,
       "norm_label": "asyncsession"
     },
     {
@@ -930,7 +930,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "app_api_v1_media_upload_video",
-      "community": 53,
+      "community": 38,
       "norm_label": "upload_video()"
     },
     {
@@ -940,7 +940,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_media_py_backgroundtasks",
-      "community": 53,
+      "community": 38,
       "norm_label": "backgroundtasks"
     },
     {
@@ -950,7 +950,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_media_py_redis",
-      "community": 53,
+      "community": 38,
       "norm_label": "redis"
     },
     {
@@ -960,7 +960,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_media_py_async_sessionmaker",
-      "community": 53,
+      "community": 38,
       "norm_label": "async_sessionmaker"
     },
     {
@@ -970,7 +970,7 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "app_api_v1_media_transcribe_voice",
-      "community": 53,
+      "community": 38,
       "norm_label": "transcribe_voice()"
     },
     {
@@ -980,7 +980,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_media_rationale_1",
-      "community": 53,
+      "community": 38,
       "norm_label": "\u1106\u1175\u1103\u1175\u110b\u1165 \u110b\u1165\u11b8\u1105\u1169\u1103\u1173 \u2014 \u1109\u1161\u110c\u1175\u11ab(\u22643\u110c\u1161\u11bc) \u00b7 \u110b\u1167\u11bc\u1109\u1161\u11bc(\u1103\u1173\u1105\u1162\u1111\u1173\u1110\u1173+\u110c\u1161\u1106\u1161\u11a8 \u1109\u1175\u110c\u1161\u11a8) \u00b7 vis-03 \u110b\u1173\u11b7\u1109\u1165\u11bc \u110b\u1175\u11b8\u1105\u1167\u11a8."
     },
     {
@@ -990,7 +990,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "app_api_v1_media_rationale_34",
-      "community": 53,
+      "community": 38,
       "norm_label": "\u1109\u1161\u110c\u1175\u11ab \u110b\u1165\u11b8\u1105\u1169\u1103\u1173 (post \u1106\u1175\u110b\u1167\u11ab\u1100\u1167\u11af) \u2014 post /posts \u110b\u1174 media_ids\u1105\u1169 \u110b\u1167\u11ab\u1100\u1167\u11af\u1112\u1161\u11ab\u1103\u1161."
     },
     {
@@ -1000,7 +1000,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "app_api_v1_media_rationale_69",
-      "community": 53,
+      "community": 38,
       "norm_label": "\u110b\u1167\u11bc\u1109\u1161\u11bc \u110e\u1165\u11b7\u1107\u116e = processing \u1102\u1162\u1107\u116e \u1103\u1173\u1105\u1162\u1111\u1173\u1110\u1173 \u1109\u1162\u11bc\u1109\u1165\u11bc + \u110c\u1161\u1106\u1161\u11a8 \u1109\u1162\u11bc\u1109\u1165\u11bc \u110c\u1173\u11a8\u1109\u1175 \u1109\u1175\u110c\u1161\u11a8 (post-01\u00b7caption-01).      \u1100\u1175\u11af\u110b\u1175(\u22643\u1107\u116e\u11ab)\u1102\u1173\u11ab"
     },
     {
@@ -1010,7 +1010,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "app_api_v1_media_rationale_118",
-      "community": 53,
+      "community": 38,
       "norm_label": "vis-03 \u110b\u1173\u11b7\u1109\u1165\u11bc \u110b\u1175\u11b8\u1105\u1167\u11a8 \u2014 \u1100\u1167\u11af\u1100\u116a\u1102\u1173\u11ab \u110b\u1175\u11b8\u1105\u1167\u11a8\u1105\u1161\u11ab \u1109\u1161\u11b8\u110b\u1175\u11b8\u110b\u116d\u11bc. \u110c\u1161\u1103\u1169\u11bc \u1100\u1166\u1109\u1175\u1112\u1161\u110c\u1175 \u110b\u1161\u11ad\u1102\u1173\u11ab\u1103\u1161 (\u00a720-4)."
     },
     {
@@ -1020,7 +1020,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_notifications",
-      "community": 65,
+      "community": 55,
       "norm_label": "notifications.py"
     },
     {
@@ -1030,7 +1030,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "app_api_v1_notifications_notificationout",
-      "community": 65,
+      "community": 55,
       "norm_label": "notificationout"
     },
     {
@@ -1040,7 +1040,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "app_api_v1_notifications_notificationlistout",
-      "community": 65,
+      "community": 55,
       "norm_label": "notificationlistout"
     },
     {
@@ -1050,7 +1050,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "app_api_v1_notifications_readin",
-      "community": 65,
+      "community": 55,
       "norm_label": "readin"
     },
     {
@@ -1060,7 +1060,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "app_api_v1_notifications_list_notifications",
-      "community": 65,
+      "community": 55,
       "norm_label": "list_notifications()"
     },
     {
@@ -1070,7 +1070,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_notifications_py_asyncsession",
-      "community": 65,
+      "community": 55,
       "norm_label": "asyncsession"
     },
     {
@@ -1080,7 +1080,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "app_api_v1_notifications_mark_read",
-      "community": 65,
+      "community": 55,
       "norm_label": "mark_read()"
     },
     {
@@ -1610,7 +1610,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_ws",
-      "community": 2,
+      "community": 3,
       "norm_label": "ws.py"
     },
     {
@@ -1620,7 +1620,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "app_api_v1_ws_relay",
-      "community": 2,
+      "community": 3,
       "norm_label": "_relay()"
     },
     {
@@ -1630,7 +1630,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "websocket",
-      "community": 2,
+      "community": 3,
       "norm_label": "websocket"
     },
     {
@@ -1640,7 +1640,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "app_api_v1_ws_ws_endpoint",
-      "community": 2,
+      "community": 3,
       "norm_label": "ws_endpoint()"
     },
     {
@@ -1650,7 +1650,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_ws_py_redis",
-      "community": 2,
+      "community": 3,
       "norm_label": "redis"
     },
     {
@@ -1660,7 +1660,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_ws_rationale_1",
-      "community": 2,
+      "community": 3,
       "norm_label": "ws /api/v1/ws?token=<access> \u2014 \u1109\u1162 \u1106\u1166\u1109\u1175\u110c\u1175\u00b7\u110b\u1161\u11af\u1105\u1175\u11b7 \u1109\u1175\u11af\u1109\u1175\u1100\u1161\u11ab \u1111\u116e\u1109\u1175.  \u110b\u1175\u11ab\u110c\u1173\u11bc\u110b\u1173\u11ab jwt \u1100\u1165\u11b7\u110c\u1173\u11bc\u1106\u1161\u11ab\u110b\u1173\u1105\u1169 \u110e\u1165\u1105\u1175(db \u1106\u1175\u110c\u1169\u1112\u116c)\u1112\u1162 \u110b\u1167\u11ab\u1100\u1167\u11af \u1107\u1175\u110b\u116d\u11bc"
     },
     {
@@ -1760,7 +1760,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_core_config",
-      "community": 54,
+      "community": 53,
       "norm_label": "config.py"
     },
     {
@@ -1770,7 +1770,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "app_core_config_settings",
-      "community": 54,
+      "community": 53,
       "norm_label": "settings"
     },
     {
@@ -1780,7 +1780,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "basesettings",
-      "community": 54,
+      "community": 53,
       "norm_label": "basesettings"
     },
     {
@@ -1790,7 +1790,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "app_core_config_settings_cors_origins",
-      "community": 54,
+      "community": 53,
       "norm_label": ".cors_origins()"
     },
     {
@@ -1800,7 +1800,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_core_deps",
-      "community": 65,
+      "community": 55,
       "norm_label": "deps.py"
     },
     {
@@ -1810,7 +1810,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_core_deps_get_current_user",
-      "community": 65,
+      "community": 55,
       "norm_label": "get_current_user()"
     },
     {
@@ -1820,7 +1820,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "httpauthorizationcredentials",
-      "community": 65,
+      "community": 55,
       "norm_label": "httpauthorizationcredentials"
     },
     {
@@ -1830,7 +1830,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_core_deps_py_asyncsession",
-      "community": 65,
+      "community": 55,
       "norm_label": "asyncsession"
     },
     {
@@ -2060,7 +2060,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_core_security",
-      "community": 2,
+      "community": 3,
       "norm_label": "security.py"
     },
     {
@@ -2070,7 +2070,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "app_core_security_encode",
-      "community": 2,
+      "community": 3,
       "norm_label": "_encode()"
     },
     {
@@ -2080,7 +2080,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "timedelta",
-      "community": 2,
+      "community": 3,
       "norm_label": "timedelta"
     },
     {
@@ -2090,7 +2090,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "app_core_security_create_access_token",
-      "community": 2,
+      "community": 3,
       "norm_label": "create_access_token()"
     },
     {
@@ -2100,7 +2100,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "app_core_security_create_refresh_token",
-      "community": 2,
+      "community": 3,
       "norm_label": "create_refresh_token()"
     },
     {
@@ -2110,7 +2110,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "app_core_security_create_signup_token",
-      "community": 2,
+      "community": 3,
       "norm_label": "create_signup_token()"
     },
     {
@@ -2120,7 +2120,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "app_core_security_decode_token",
-      "community": 2,
+      "community": 3,
       "norm_label": "decode_token()"
     },
     {
@@ -2130,7 +2130,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "app_core_security_decode_signup_token",
-      "community": 2,
+      "community": 3,
       "norm_label": "decode_signup_token()"
     },
     {
@@ -2140,7 +2140,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_core_security_rationale_1",
-      "community": 2,
+      "community": 3,
       "norm_label": "jwt \u1110\u1169\u110f\u1173\u11ab (access/refresh/signup). \u1109\u1169\u1109\u1167\u11af oauth \u110c\u1165\u11ab\u110b\u116d\u11bc\u110b\u1175\u1105\u1161 \u1107\u1175\u1106\u1175\u11af\u1107\u1165\u11ab\u1112\u1169 \u1112\u1162\u1109\u1175\u1102\u1173\u11ab \u110b\u1165\u11b9\u1103\u1161 (acc-01)."
     },
     {
@@ -2150,7 +2150,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "app_core_security_rationale_32",
-      "community": 2,
+      "community": 3,
       "norm_label": "\u110f\u1169\u11af\u1107\u1162\u11a8\u110b\u1166\u1109\u1165 \u1109\u1175\u11ab\u1100\u1172 \u1109\u1161\u110b\u116d\u11bc\u110c\u1161\u110b\u1166\u1100\u1166 \u1107\u1161\u11af\u1100\u1173\u11b8 \u2014 \u110e\u116e\u1100\u1161 \u110c\u1165\u11bc\u1107\u1169 \u110b\u1175\u11b8\u1105\u1167\u11a8(signup) \u110b\u116a\u11ab\u1105\u116d\u1101\u1161\u110c\u1175\u110b\u1174 \u1103\u1161\u11ab\u1100\u1175 \u110c\u1161\u1100\u1167\u11a8."
     },
     {
@@ -2160,7 +2160,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "app_core_security_rationale_48",
-      "community": 2,
+      "community": 3,
       "norm_label": "\u2192 (provider, provider_user_id). \u110b\u1171\u110c\u1169\u00b7\u1106\u1161\u11ab\u1105\u116d \u1109\u1175 jwterror."
     },
     {
@@ -2170,7 +2170,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_core_storage",
-      "community": 53,
+      "community": 38,
       "norm_label": "storage.py"
     },
     {
@@ -2180,7 +2180,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "app_core_storage_ext_from_content_type",
-      "community": 53,
+      "community": 38,
       "norm_label": "_ext_from_content_type()"
     },
     {
@@ -2190,7 +2190,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "app_core_storage_save_upload",
-      "community": 53,
+      "community": 38,
       "norm_label": "save_upload()"
     },
     {
@@ -2200,7 +2200,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "app_core_storage_rationale_21",
-      "community": 53,
+      "community": 38,
       "norm_label": "save file locally and return the public url path."
     },
     {
@@ -2220,7 +2220,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_db_redis",
-      "community": 2,
+      "community": 3,
       "norm_label": "redis.py"
     },
     {
@@ -2230,7 +2230,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_db_redis_get_redis_client",
-      "community": 2,
+      "community": 3,
       "norm_label": "get_redis_client()"
     },
     {
@@ -2240,7 +2240,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_db_redis_py_redis",
-      "community": 2,
+      "community": 3,
       "norm_label": "redis"
     },
     {
@@ -2250,7 +2250,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_db_redis_get_redis",
-      "community": 2,
+      "community": 3,
       "norm_label": "get_redis()"
     },
     {
@@ -2260,7 +2260,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_db_redis_rationale_16",
-      "community": 2,
+      "community": 3,
       "norm_label": "fastapi \u110b\u1174\u110c\u1169\u11ab\u1109\u1165\u11bc. \u1110\u1166\u1109\u1173\u1110\u1173\u110b\u1166\u1109\u1165 override \u1100\u1161\u1102\u1173\u11bc\u1112\u1161\u1103\u1169\u1105\u1169\u11a8 \u1107\u116e\u11ab\u1105\u1175."
     },
     {
@@ -2270,7 +2270,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_db_session",
-      "community": 65,
+      "community": 55,
       "norm_label": "session.py"
     },
     {
@@ -2280,7 +2280,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "app_db_session_base",
-      "community": 3,
+      "community": 10,
       "norm_label": "base"
     },
     {
@@ -2290,7 +2290,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "declarativebase",
-      "community": 3,
+      "community": 10,
       "norm_label": "declarativebase"
     },
     {
@@ -2300,7 +2300,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "app_db_session_get_db",
-      "community": 65,
+      "community": 55,
       "norm_label": "get_db()"
     },
     {
@@ -2310,7 +2310,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "app_db_session_get_session_factory",
-      "community": 65,
+      "community": 55,
       "norm_label": "get_session_factory()"
     },
     {
@@ -2320,7 +2320,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "app_db_session_rationale_20",
-      "community": 65,
+      "community": 55,
       "norm_label": "\u1107\u1162\u11a8\u1100\u1173\u1105\u1161\u110b\u116e\u11ab\u1103\u1173 \u110c\u1161\u11a8\u110b\u1165\u11b8(\u110c\u1161\u1106\u1161\u11a8\u00b7\u1109\u1165\u11af\u1106\u1167\u11bc \u1107\u116e\u110e\u1161\u11a8)\u110b\u116d\u11bc \u1109\u1166\u1109\u1167\u11ab \u1111\u1162\u11a8\u1110\u1169\u1105\u1175. \u1110\u1166\u1109\u1173\u1110\u1173\u110b\u1166\u1109\u1165 override."
     },
     {
@@ -2330,7 +2330,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_main",
-      "community": 54,
+      "community": 53,
       "norm_label": "main.py"
     },
     {
@@ -2340,7 +2340,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "app_main_lifespan",
-      "community": 54,
+      "community": 53,
       "norm_label": "lifespan()"
     },
     {
@@ -2350,7 +2350,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "fastapi",
-      "community": 54,
+      "community": 53,
       "norm_label": "fastapi"
     },
     {
@@ -2360,7 +2360,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_init",
-      "community": 3,
+      "community": 10,
       "norm_label": "__init__.py"
     },
     {
@@ -2370,7 +2370,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_chat",
-      "community": 3,
+      "community": 10,
       "norm_label": "chat.py"
     },
     {
@@ -2380,7 +2380,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "app_models_chat_utcnow",
-      "community": 3,
+      "community": 10,
       "norm_label": "_utcnow()"
     },
     {
@@ -2390,7 +2390,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "datetime",
-      "community": 3,
+      "community": 10,
       "norm_label": "datetime"
     },
     {
@@ -2460,7 +2460,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_misc",
-      "community": 3,
+      "community": 10,
       "norm_label": "misc.py"
     },
     {
@@ -2470,7 +2470,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "app_models_misc_notification",
-      "community": 3,
+      "community": 10,
       "norm_label": "notification"
     },
     {
@@ -2480,7 +2480,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "app_models_misc_airesultcache",
-      "community": 57,
+      "community": 52,
       "norm_label": "airesultcache"
     },
     {
@@ -2490,7 +2490,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "app_models_misc_rationale_12",
-      "community": 3,
+      "community": 10,
       "norm_label": "\u110b\u1161\u11af\u1105\u1175\u11b7 (\u00a716). ws \u1111\u116e\u1109\u1175\u110b\u116a \u1107\u1167\u11bc\u1112\u1162\u11bc \u110c\u1165\u110c\u1161\u11bc."
     },
     {
@@ -2500,7 +2500,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "app_models_misc_rationale_30",
-      "community": 57,
+      "community": 52,
       "norm_label": "\u1103\u1169\u11bc\u110b\u1175\u11af \u1106\u1175\u1103\u1175\u110b\u1165 \u1112\u1162\u1109\u1175 \u110f\u1162\u1109\u1175\u11bc (vision-01\u00b7caption-01 \u110c\u116e\u11bc\u1107\u1169\u11a8 \u1112\u1169\u110e\u116e\u11af \u1107\u1161\u11bc\u110c\u1175, \u1107\u1175\u110b\u116d\u11bc \u1107\u1161\u11bc\u110b\u1165)."
     },
     {
@@ -2510,7 +2510,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_post",
-      "community": 3,
+      "community": 10,
       "norm_label": "post.py"
     },
     {
@@ -2530,7 +2530,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "app_models_post_postmedia",
-      "community": 3,
+      "community": 10,
       "norm_label": "postmedia"
     },
     {
@@ -2570,7 +2570,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "app_models_post_rationale_42",
-      "community": 3,
+      "community": 10,
       "norm_label": "\u1100\u1166\u1109\u1175\u1106\u116e\u11af \u1106\u1175\u1103\u1175\u110b\u1165 (\u1109\u1161\u110c\u1175\u11ab\u22643\u00b7\u110b\u1167\u11bc\u1109\u1161\u11bc 1\u1100\u1162\u1102\u1173\u11ab \u110b\u1162\u11b8 \u1100\u1165\u11b7\u110c\u1173\u11bc). vision \u1109\u1165\u11af\u1106\u1167\u11bc\u00b7caption \u110c\u1161\u1106\u1161\u11a8 \u1107\u116e\u110e\u1161\u11a8."
     },
     {
@@ -2590,7 +2590,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_social",
-      "community": 3,
+      "community": 10,
       "norm_label": "social.py"
     },
     {
@@ -2660,7 +2660,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_user",
-      "community": 3,
+      "community": 10,
       "norm_label": "user.py"
     },
     {
@@ -2680,7 +2680,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "app_models_user_socialidentity",
-      "community": 3,
+      "community": 10,
       "norm_label": "socialidentity"
     },
     {
@@ -2690,7 +2690,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "app_models_user_withdrawnsocial",
-      "community": 3,
+      "community": 10,
       "norm_label": "withdrawnsocial"
     },
     {
@@ -2720,7 +2720,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "app_models_user_forbiddennickname",
-      "community": 3,
+      "community": 10,
       "norm_label": "forbiddennickname"
     },
     {
@@ -2750,7 +2750,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "app_models_user_rationale_50",
-      "community": 3,
+      "community": 10,
       "norm_label": "\u1109\u1169\u1109\u1167\u11af \u1100\u1168\u110c\u1165\u11bc \u110b\u1167\u11ab\u1100\u1167\u11af (acc-01). \u1109\u1161\u110b\u116d\u11bc\u110c\u1161 1\u1106\u1167\u11bc\u110b\u1175 \u1107\u1169\u11a8\u1109\u116e \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u110b\u1167\u11ab\u1100\u1167\u11af \u1100\u1161\u1102\u1173\u11bc."
     },
     {
@@ -2760,7 +2760,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "app_models_user_rationale_67",
-      "community": 3,
+      "community": 10,
       "norm_label": "\u00a715: \u1110\u1161\u11af\u1110\u116c \u1112\u116e 30\u110b\u1175\u11af \u110c\u1162\u1100\u1161\u110b\u1175\u11b8 \u110c\u1166\u1112\u1161\u11ab \u1111\u1161\u11ab\u110c\u1165\u11bc\u110b\u116d\u11bc. users \u1112\u1162\u11bc\u110b\u1173\u11ab hard delete\u1112\u1161\u1100\u1169 \u110b\u1167\u1100\u1175\u110b\u1166\u1106\u1161\u11ab \u1112\u1173\u11ab\u110c\u1165\u11a8."
     },
     {
@@ -2790,7 +2790,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "app_models_user_rationale_104",
-      "community": 3,
+      "community": 10,
       "norm_label": "\u110b\u116e\u11ab\u110b\u1167\u11bc\u110c\u1161 \u1100\u116a\u11ab\u1105\u1175 \u1100\u1173\u11b7\u110e\u1175\u11a8\u110b\u1165 \u1109\u1161\u110c\u1165\u11ab (acc-01 \u1102\u1175\u11a8\u1102\u1166\u110b\u1175\u11b7 \u110c\u1165\u11bc\u110e\u1162\u11a8)."
     },
     {
@@ -2990,7 +2990,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_schemas_media",
-      "community": 53,
+      "community": 38,
       "norm_label": "media.py"
     },
     {
@@ -3000,7 +3000,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "app_schemas_media_uploadedmediaout",
-      "community": 53,
+      "community": 38,
       "norm_label": "uploadedmediaout"
     },
     {
@@ -3010,7 +3010,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "app_schemas_media_imageuploadout",
-      "community": 53,
+      "community": 38,
       "norm_label": "imageuploadout"
     },
     {
@@ -3020,7 +3020,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_schemas_media_videouploadout",
-      "community": 53,
+      "community": 38,
       "norm_label": "videouploadout"
     },
     {
@@ -3040,7 +3040,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "app_schemas_media_transcribeout",
-      "community": 53,
+      "community": 38,
       "norm_label": "transcribeout"
     },
     {
@@ -3060,7 +3060,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_schemas_media_rationale_16",
-      "community": 53,
+      "community": 38,
       "norm_label": "\u110b\u1167\u11bc\u1109\u1161\u11bc \u110b\u1165\u11b8\u1105\u1169\u1103\u1173 = \u1102\u1162\u1107\u116e \u1103\u1173\u1105\u1162\u1111\u1173\u1110\u1173 \u1109\u1162\u11bc\u1109\u1165\u11bc (post-01). post_id\u1105\u1169 \u110c\u1161\u1106\u1161\u11a8 \u1109\u1161\u11bc\u1110\u1162 \u1111\u1169\u11af\u1105\u1175\u11bc\u00b7\u1100\u1166\u1109\u1175."
     },
     {
@@ -3410,7 +3410,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_ai_media",
-      "community": 57,
+      "community": 52,
       "norm_label": "ai_media.py"
     },
     {
@@ -3420,7 +3420,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "app_services_ai_media_media_hash_of",
-      "community": 57,
+      "community": 52,
       "norm_label": "media_hash_of()"
     },
     {
@@ -3430,7 +3430,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "app_services_ai_media_file_path_from_url",
-      "community": 57,
+      "community": 52,
       "norm_label": "file_path_from_url()"
     },
     {
@@ -3440,7 +3440,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "path",
-      "community": 53,
+      "community": 38,
       "norm_label": "path"
     },
     {
@@ -3450,7 +3450,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "app_services_ai_media_get_describe_caller",
-      "community": 57,
+      "community": 52,
       "norm_label": "get_describe_caller()"
     },
     {
@@ -3460,7 +3460,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "app_services_ai_media_get_caption_caller",
-      "community": 57,
+      "community": 52,
       "norm_label": "get_caption_caller()"
     },
     {
@@ -3470,7 +3470,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "app_services_ai_media_get_text_transcriber",
-      "community": 57,
+      "community": 52,
       "norm_label": "get_text_transcriber()"
     },
     {
@@ -3480,7 +3480,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "app_services_ai_media_cache_get",
-      "community": 57,
+      "community": 52,
       "norm_label": "_cache_get()"
     },
     {
@@ -3490,7 +3490,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_ai_media_py_asyncsession",
-      "community": 57,
+      "community": 52,
       "norm_label": "asyncsession"
     },
     {
@@ -3500,7 +3500,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "app_services_ai_media_cache_put",
-      "community": 57,
+      "community": 52,
       "norm_label": "_cache_put()"
     },
     {
@@ -3510,7 +3510,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "app_services_ai_media_consume_vision",
-      "community": 57,
+      "community": 52,
       "norm_label": "consume_vision()"
     },
     {
@@ -3520,7 +3520,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_ai_media_py_redis",
-      "community": 57,
+      "community": 52,
       "norm_label": "redis"
     },
     {
@@ -3530,7 +3530,7 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "app_services_ai_media_describe_image",
-      "community": 57,
+      "community": 52,
       "norm_label": "describe_image()"
     },
     {
@@ -3540,7 +3540,7 @@
       "source_location": "L108",
       "_origin": "ast",
       "id": "app_services_ai_media_generate_caption",
-      "community": 57,
+      "community": 52,
       "norm_label": "generate_caption()"
     },
     {
@@ -3550,7 +3550,7 @@
       "source_location": "L137",
       "_origin": "ast",
       "id": "app_services_ai_media_describe_post_media_job",
-      "community": 57,
+      "community": 52,
       "norm_label": "describe_post_media_job()"
     },
     {
@@ -3560,7 +3560,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_ai_media_py_async_sessionmaker",
-      "community": 57,
+      "community": 52,
       "norm_label": "async_sessionmaker"
     },
     {
@@ -3570,7 +3570,7 @@
       "source_location": "L164",
       "_origin": "ast",
       "id": "app_services_ai_media_describe_chat_message_job",
-      "community": 57,
+      "community": 52,
       "norm_label": "describe_chat_message_job()"
     },
     {
@@ -3580,7 +3580,7 @@
       "source_location": "L192",
       "_origin": "ast",
       "id": "app_services_ai_media_caption_chat_message_job",
-      "community": 57,
+      "community": 52,
       "norm_label": "caption_chat_message_job()"
     },
     {
@@ -3590,7 +3590,7 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "app_services_ai_media_caption_post_media_job",
-      "community": 57,
+      "community": 52,
       "norm_label": "caption_post_media_job()"
     },
     {
@@ -3600,7 +3600,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_1",
-      "community": 57,
+      "community": 52,
       "norm_label": "vision-01 \u1109\u1161\u110c\u1175\u11ab \u1109\u1165\u11af\u1106\u1167\u11bc \u00b7 caption-01 \u110c\u1161\u1106\u1161\u11a8 \u2014 \u110f\u1162\u1109\u1175\u00b7\u110f\u116f\u1110\u1165\u00b7\u110c\u1162\u1109\u1175\u1103\u1169 \u110b\u1169\u110f\u1166\u1109\u1173\u1110\u1173\u1105\u1166\u110b\u1175\u1109\u1167\u11ab.  \u110b\u116c\u1107\u116e \u1112\u1169\u110e\u116e\u11af\u110b\u1173\u11ab \u110f\u1169\u11af\u1105\u1165\u1107\u1173\u11af \u110c\u116e\u110b\u1175\u11b8(di)\u110b\u1173\u1105\u1169 \u1107\u1161\u11ae\u110b\u1161 \u1110\u1166\u1109\u1173\u1110\u1173"
     },
     {
@@ -3610,7 +3610,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_28",
-      "community": 57,
+      "community": 52,
       "norm_label": "/uploads/<name>' \u2192 \u110f\u1165\u11ab\u1110\u1166\u110b\u1175\u1102\u1165 \u1105\u1169\u110f\u1165\u11af \u1100\u1167\u11bc\u1105\u1169."
     },
     {
@@ -3620,7 +3620,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_35",
-      "community": 57,
+      "community": 52,
       "norm_label": "(image_bytes, content_type) -> \u1109\u1165\u11af\u1106\u1167\u11bc \u1110\u1166\u11a8\u1109\u1173\u1110\u1173. \u1109\u1175\u11af\u1100\u116e\u1112\u1167\u11ab: gpt \u1100\u1168\u110b\u1167\u11af vision."
     },
     {
@@ -3630,7 +3630,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_40",
-      "community": 57,
+      "community": 52,
       "norm_label": "(media_bytes, filename) -> [{start,end,text}] \u1109\u1166\u1100\u1173\u1106\u1165\u11ab\u1110\u1173. \u1109\u1175\u11af\u1100\u116e\u1112\u1167\u11ab: whisper."
     },
     {
@@ -3640,7 +3640,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_45",
-      "community": 57,
+      "community": 52,
       "norm_label": "vis-03 \u110b\u1173\u11b7\u1109\u1165\u11bc \u110b\u1175\u11b8\u1105\u1167\u11a8\u110b\u116d\u11bc (bytes, filename, content_type) -> text."
     },
     {
@@ -3650,7 +3650,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_70",
-      "community": 57,
+      "community": 52,
       "norm_label": "\u110b\u1175\u11af 20\u1112\u116c\u00b7\u1107\u116e\u11ab 5\u1112\u116c \u1103\u1169\u11bc\u1109\u1175 \u1100\u1165\u11b7\u110c\u1173\u11bc \u2014 \u1107\u116e\u11ab \u1112\u1161\u11ab\u1103\u1169 \u110e\u1169\u1100\u116a \u1109\u1175 \u110b\u1175\u11af \u110f\u1161\u110b\u116e\u11ab\u1110\u1165 \u1105\u1169\u11af\u1107\u1162\u11a8."
     },
     {
@@ -3660,7 +3660,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_90",
-      "community": 57,
+      "community": 52,
       "norm_label": "\u1109\u1161\u110c\u1175\u11ab \u1109\u1165\u11af\u1106\u1167\u11bc \u1109\u1162\u11bc\u1109\u1165\u11bc. \u1109\u1175\u11af\u1111\u1162\u00b7\u1112\u1161\u11ab\u1103\u1169 \u110e\u1169\u1100\u116a \u1109\u1175 none (\u1100\u1166\u1109\u1175\u00b7\u110c\u1165\u11ab\u1109\u1169\u11bc\u110b\u1173\u11ab \u110c\u1165\u11bc\u1109\u1161\u11bc \u110b\u1172\u110c\u1175)."
     },
     {
@@ -3670,7 +3670,7 @@
       "source_location": "L118",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_118",
-      "community": 57,
+      "community": 52,
       "norm_label": "\u110c\u1161\u1106\u1161\u11a8 \u1109\u1166\u1100\u1173\u1106\u1165\u11ab\u1110\u1173 \u1109\u1162\u11bc\u1109\u1165\u11bc. \u110f\u116f\u1110\u1165\u1102\u1173\u11ab \u110b\u1165\u11b8\u1105\u1169\u1103\u1173 \u1109\u1175\u110c\u1165\u11b7\u110b\u1166 \u110b\u1175\u1106\u1175 \u110e\u1161\u1100\u1161\u11b7 \u2014 \u1109\u1175\u11af\u1111\u1162(\u110c\u1162\u1109\u1175\u1103\u1169 \u1109\u1169\u110c\u1175\u11ab) \u1109\u1175 \u1107\u1169\u11a8\u110b\u116f\u11ab."
     },
     {
@@ -3680,7 +3680,7 @@
       "source_location": "L167",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_167",
-      "community": 57,
+      "community": 52,
       "norm_label": "\u110e\u1162\u1110\u1175\u11bc \u1109\u1161\u110c\u1175\u11ab: \u110c\u1173\u11a8\u1109\u1175 \u110c\u1165\u11ab\u1103\u1161\u11af \u1112\u116e \u1109\u1165\u11af\u1106\u1167\u11bc\u110b\u1173\u11af \u1107\u1175\u1103\u1169\u11bc\u1100\u1175 \u1107\u116e\u110e\u1161\u11a8 (vision-01 \u110e\u1162\u1110\u1175\u11bc \u1109\u1161\u110c\u1175\u11ab \u110e\u1165\u1105\u1175)."
     },
     {
@@ -3690,7 +3690,7 @@
       "source_location": "L195",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_195",
-      "community": 57,
+      "community": 52,
       "norm_label": "\u110e\u1162\u1110\u1175\u11bc \u110b\u1167\u11bc\u1109\u1161\u11bc: \u110c\u1173\u11a8\u1109\u1175 \u110c\u1165\u11ab\u1103\u1161\u11af \u1112\u116e \u110c\u1161\u1106\u1161\u11a8\u110b\u1173\u11af \u1107\u1175\u1103\u1169\u11bc\u1100\u1175 \u1107\u116e\u110e\u1161\u11a8 (caption-01 \u110e\u1162\u1110\u1175\u11bc \u110b\u1167\u11bc\u1109\u1161\u11bc \u110e\u1165\u1105\u1175)."
     },
     {
@@ -4090,7 +4090,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "app_services_events_user_channel",
-      "community": 2,
+      "community": 3,
       "norm_label": "user_channel()"
     },
     {
@@ -4250,7 +4250,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_nickname",
-      "community": 3,
+      "community": 10,
       "norm_label": "nickname.py"
     },
     {
@@ -4260,7 +4260,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "app_services_nickname_validate_nickname",
-      "community": 2,
+      "community": 3,
       "norm_label": "validate_nickname()"
     },
     {
@@ -4270,7 +4270,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_nickname_py_asyncsession",
-      "community": 2,
+      "community": 3,
       "norm_label": "asyncsession"
     },
     {
@@ -4280,7 +4280,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_nickname_rationale_1",
-      "community": 3,
+      "community": 10,
       "norm_label": "\u1102\u1175\u11a8\u1102\u1166\u110b\u1175\u11b7 \u110c\u1165\u11bc\u110e\u1162\u11a8 (acc-01): 2~12\u110c\u1161 \u1112\u1161\u11ab\u1100\u1173\u11af\u00b7\u110b\u1167\u11bc\u1106\u116e\u11ab\u00b7\u1109\u116e\u11ba\u110c\u1161, \u1100\u1173\u11b7\u110e\u1175\u11a8\u110b\u1165\u00b7\u110c\u116e\u11bc\u1107\u1169\u11a8 \u1107\u116e\u11af\u1100\u1161."
     },
     {
@@ -4290,7 +4290,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_services_nickname_rationale_15",
-      "community": 2,
+      "community": 3,
       "norm_label": "\u1112\u1167\u11bc\u1109\u1175\u11a8(400) \u2192 \u1100\u1173\u11b7\u110e\u1175\u11a8\u110b\u1165(400) \u2192 \u110c\u116e\u11bc\u1107\u1169\u11a8(409) \u1109\u116e\u11ab \u1100\u1165\u11b7\u110c\u1173\u11bc. \u1110\u1169\u11bc\u1100\u116a \u1109\u1175 none."
     },
     {
@@ -4350,7 +4350,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_oauth",
-      "community": 54,
+      "community": 53,
       "norm_label": "oauth.py"
     },
     {
@@ -4360,7 +4360,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "app_services_oauth_oauthuserinfo",
-      "community": 2,
+      "community": 3,
       "norm_label": "oauthuserinfo"
     },
     {
@@ -4370,7 +4370,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "app_services_oauth_oauthprovider",
-      "community": 2,
+      "community": 3,
       "norm_label": "oauthprovider"
     },
     {
@@ -4380,7 +4380,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "protocol",
-      "community": 2,
+      "community": 3,
       "norm_label": "protocol"
     },
     {
@@ -4390,7 +4390,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "app_services_oauth_oauthprovider_authorize_url",
-      "community": 2,
+      "community": 3,
       "norm_label": ".authorize_url()"
     },
     {
@@ -4400,7 +4400,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "app_services_oauth_oauthprovider_exchange_code",
-      "community": 2,
+      "community": 3,
       "norm_label": ".exchange_code()"
     },
     {
@@ -4410,7 +4410,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "app_services_oauth_oauthprovider_unlink",
-      "community": 2,
+      "community": 3,
       "norm_label": ".unlink()"
     },
     {
@@ -4420,7 +4420,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "app_services_oauth_mockprovider",
-      "community": 2,
+      "community": 3,
       "norm_label": "mockprovider"
     },
     {
@@ -4430,7 +4430,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "app_services_oauth_mockprovider_init",
-      "community": 2,
+      "community": 3,
       "norm_label": ".__init__()"
     },
     {
@@ -4440,7 +4440,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "app_services_oauth_mockprovider_authorize_url",
-      "community": 2,
+      "community": 3,
       "norm_label": ".authorize_url()"
     },
     {
@@ -4450,7 +4450,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "app_services_oauth_mockprovider_exchange_code",
-      "community": 2,
+      "community": 3,
       "norm_label": ".exchange_code()"
     },
     {
@@ -4460,7 +4460,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "app_services_oauth_mockprovider_unlink",
-      "community": 2,
+      "community": 3,
       "norm_label": ".unlink()"
     },
     {
@@ -4470,7 +4470,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "app_services_oauth_kakaoprovider",
-      "community": 2,
+      "community": 3,
       "norm_label": "kakaoprovider"
     },
     {
@@ -4480,7 +4480,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "app_services_oauth_kakaoprovider_redirect_uri",
-      "community": 2,
+      "community": 3,
       "norm_label": "._redirect_uri()"
     },
     {
@@ -4490,7 +4490,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "app_services_oauth_kakaoprovider_authorize_url",
-      "community": 2,
+      "community": 3,
       "norm_label": ".authorize_url()"
     },
     {
@@ -4500,7 +4500,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "app_services_oauth_kakaoprovider_exchange_code",
-      "community": 2,
+      "community": 3,
       "norm_label": ".exchange_code()"
     },
     {
@@ -4510,7 +4510,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "app_services_oauth_kakaoprovider_unlink",
-      "community": 2,
+      "community": 3,
       "norm_label": ".unlink()"
     },
     {
@@ -4520,7 +4520,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "app_services_oauth_googleprovider",
-      "community": 2,
+      "community": 3,
       "norm_label": "googleprovider"
     },
     {
@@ -4530,7 +4530,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "app_services_oauth_googleprovider_redirect_uri",
-      "community": 2,
+      "community": 3,
       "norm_label": "._redirect_uri()"
     },
     {
@@ -4540,7 +4540,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "app_services_oauth_googleprovider_authorize_url",
-      "community": 2,
+      "community": 3,
       "norm_label": ".authorize_url()"
     },
     {
@@ -4550,7 +4550,7 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "app_services_oauth_googleprovider_exchange_code",
-      "community": 2,
+      "community": 3,
       "norm_label": ".exchange_code()"
     },
     {
@@ -4560,7 +4560,7 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "app_services_oauth_googleprovider_unlink",
-      "community": 2,
+      "community": 3,
       "norm_label": ".unlink()"
     },
     {
@@ -4570,7 +4570,7 @@
       "source_location": "L135",
       "_origin": "ast",
       "id": "app_services_oauth_get_provider",
-      "community": 2,
+      "community": 3,
       "norm_label": "get_provider()"
     },
     {
@@ -4580,7 +4580,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_oauth_rationale_1",
-      "community": 54,
+      "community": 53,
       "norm_label": "\u1109\u1169\u1109\u1167\u11af oauth \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u110e\u116e\u1109\u1161\u11bc\u1112\u116a (acc-01).  - dev: oauth_mock=true \u2192 \u1106\u1169\u1103\u1173\u11ab \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u110b\u1175\u1105\u1173\u11b7\u110b\u1175 mockprovider\u1105\u1169 \u1103\u1169\u11bc\u110c\u1161\u11a8"
     },
     {
@@ -4590,7 +4590,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "app_services_oauth_rationale_35",
-      "community": 2,
+      "community": 3,
       "norm_label": "dev \u110c\u1165\u11ab\u110b\u116d\u11bc. code \u1112\u1167\u11bc\u1109\u1175\u11a8: `mock:<provider_user_id>`."
     },
     {
@@ -4600,7 +4600,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "app_services_oauth_rationale_57",
-      "community": 2,
+      "community": 3,
       "norm_label": "\u110f\u1161\u110f\u1161\u110b\u1169 rest api. \u1109\u1175\u11af\u1100\u1165\u11b7\u110c\u1173\u11bc\u110b\u1173\u11ab \u110f\u1175 \u1107\u1161\u11af\u1100\u1173\u11b8 \u1112\u116e (docs/api.md \u110e\u1161\u11b7\u110c\u1169)."
     },
     {
@@ -4610,7 +4610,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "app_services_oauth_rationale_96",
-      "community": 2,
+      "community": 3,
       "norm_label": "\u1100\u116e\u1100\u1173\u11af oauth 2.0. \u1109\u1175\u11af\u1100\u1165\u11b7\u110c\u1173\u11bc\u110b\u1173\u11ab \u110f\u1175 \u1107\u1161\u11af\u1100\u1173\u11b8 \u1112\u116e."
     },
     {
@@ -4620,7 +4620,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_quota",
-      "community": 57,
+      "community": 52,
       "norm_label": "quota.py"
     },
     {
@@ -4630,7 +4630,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "app_services_quota_try_consume",
-      "community": 57,
+      "community": 52,
       "norm_label": "try_consume()"
     },
     {
@@ -4640,7 +4640,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_quota_py_redis",
-      "community": 57,
+      "community": 52,
       "norm_label": "redis"
     },
     {
@@ -4650,7 +4650,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "app_services_quota_refund",
-      "community": 57,
+      "community": 52,
       "norm_label": "refund()"
     },
     {
@@ -4660,7 +4660,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "app_services_quota_today",
-      "community": 57,
+      "community": 52,
       "norm_label": "_today()"
     },
     {
@@ -4670,7 +4670,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "app_services_quota_minute",
-      "community": 57,
+      "community": 52,
       "norm_label": "_minute()"
     },
     {
@@ -4680,7 +4680,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "app_services_quota_vision_keys",
-      "community": 57,
+      "community": 52,
       "norm_label": "vision_keys()"
     },
     {
@@ -4690,7 +4690,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "app_services_quota_caption_key",
-      "community": 57,
+      "community": 52,
       "norm_label": "caption_key()"
     },
     {
@@ -4700,7 +4700,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_quota_rationale_1",
-      "community": 57,
+      "community": 52,
       "norm_label": "redis ttl \u110f\u1161\u110b\u116e\u11ab\u1110\u1165 \u2014 vision-01\u00b7caption-01 \u1109\u1161\u110b\u116d\u11bc\u110c\u1161\u1107\u1167\u11af \u1112\u1169\u110e\u116e\u11af \u1112\u1161\u11ab\u1103\u1169.  \u110f\u1175\u1102\u1173\u11ab \u1102\u1161\u11af\u110d\u1161/\u1107\u116e\u11ab \u1103\u1161\u11ab\u110b\u1171\u1105\u1169 \u110c\u1161\u110b\u1167\u11ab \u1106\u1161\u11ab\u1105\u116d(ttl)\u1103\u116c\u1100\u1169, \u110c\u1161\u1106\u1161\u11a8 \u1109\u1175\u11af"
     },
     {
@@ -4710,7 +4710,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "app_services_quota_rationale_14",
-      "community": 57,
+      "community": 52,
       "norm_label": "\u110f\u1161\u110b\u116e\u11ab\u1110\u1165 1 \u110c\u1173\u11bc\u1100\u1161. \u1112\u1161\u11ab\u1103\u1169 \u110e\u1169\u1100\u116a\u1106\u1167\u11ab \u1105\u1169\u11af\u1107\u1162\u11a8 \u1112\u116e false."
     },
     {
@@ -4720,7 +4720,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "app_services_quota_rationale_25",
-      "community": 57,
+      "community": 52,
       "norm_label": "caption-01: \u110c\u1161\u1106\u1161\u11a8 \u1109\u1162\u11bc\u1109\u1165\u11bc \u1109\u1175\u11af\u1111\u1162(\u110c\u1162\u1109\u1175\u1103\u1169 \u1109\u1169\u110c\u1175\u11ab) \u1109\u1175 \u110b\u1175\u11af\u110b\u1175\u11af \u1112\u116c\u11ba\u1109\u116e \u110e\u1161\u1100\u1161\u11b7 \u1107\u1169\u11a8\u110b\u116f\u11ab."
     },
     {
@@ -4730,7 +4730,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "app_services_quota_rationale_39",
-      "community": 57,
+      "community": 52,
       "norm_label": "\u110b\u1175\u1106\u1175\u110c\u1175 1\u110c\u1161\u11bc = 1\u1112\u116c, \u1100\u1166\u1109\u1175\u1106\u116e\u11af\u00b7\u110e\u1162\u1110\u1175\u11bc \u1112\u1161\u11b8\u1109\u1161\u11ab (vision-01). [(\u110f\u1175, \u1112\u1161\u11ab\u1103\u1169, ttl), ...]"
     },
     {
@@ -4740,7 +4740,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "app_services_quota_rationale_47",
-      "community": 57,
+      "community": 52,
       "norm_label": "\u110b\u1167\u11bc\u1109\u1161\u11bc \u110b\u1165\u11b8\u1105\u1169\u1103\u1173 = 1\u1112\u116c \u110e\u1161\u1100\u1161\u11b7, \u1100\u1166\u1109\u1175\u1106\u116e\u11af\u00b7\u110e\u1162\u1110\u1175\u11bc \u1112\u1161\u11b8\u1109\u1161\u11ab (caption-01)."
     },
     {
@@ -4840,7 +4840,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_safety",
-      "community": 10,
+      "community": 54,
       "norm_label": "safety.py"
     },
     {
@@ -4850,7 +4850,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "app_services_safety_safetyunavailable",
-      "community": 10,
+      "community": 54,
       "norm_label": "safetyunavailable"
     },
     {
@@ -4880,7 +4880,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "app_services_safety_get_safety_client",
-      "community": 10,
+      "community": 54,
       "norm_label": "get_safety_client()"
     },
     {
@@ -4890,7 +4890,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_safety_rationale_1",
-      "community": 10,
+      "community": 54,
       "norm_label": "safe-01 \u2014 \u110c\u1161\u110e\u1166 \u110b\u1161\u11ab\u110c\u1165\u11ab \u1106\u1169\u1103\u1166\u11af http \u110f\u1173\u11af\u1105\u1161\u110b\u1175\u110b\u1165\u11ab\u1110\u1173 (\u1107\u1167\u11af\u1103\u1169 \u1106\u1169\u1103\u1166\u11af \u1109\u1165\u1107\u1165 \u1100\u1167\u11bc\u1100\u1168, ai \u1110\u1175\u11b7 \u1103\u1161\u11b7\u1103\u1161\u11bc).  \u1110\u1166\u11a8\u1109\u1173\u1110\u1173 \u110b\u1171\u1112\u1165\u11b7 \u1111\u1161\u11ab\u110c\u1165\u11bc\u110b\u1166\u1102\u1173\u11ab \u110b\u116c\u1107\u116e ai\u1105\u1173\u11af \u1109\u1161\u110b\u116d\u11bc\u1112\u1161\u110c\u1175 \u110b\u1161\u11ad"
     },
     {
@@ -4900,7 +4900,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "app_services_safety_rationale_13",
-      "community": 10,
+      "community": 54,
       "norm_label": "\u1106\u1169\u1103\u1166\u11af \u1109\u1165\u1107\u1165 \u110c\u1161\u11bc\u110b\u1162\u00b7\u110c\u1175\u110b\u1167\u11ab \u2014 \u110e\u1175\u11ab\u1100\u116e \u1110\u1166\u11a8\u1109\u1173\u1110\u1173\u1102\u1173\u11ab unanalyzed \u110c\u1165\u11ab\u1103\u1161\u11af, \u1107\u1175\u110e\u1175\u11ab\u1100\u116e\u1102\u1173\u11ab pending \u1107\u1169\u1105\u1172."
     },
     {
@@ -4920,7 +4920,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "app_services_safety_rationale_35",
-      "community": 10,
+      "community": 54,
       "norm_label": "fastapi \u110b\u1174\u110c\u1169\u11ab\u1109\u1165\u11bc \u2014 \u1110\u1166\u1109\u1173\u1110\u1173\u110b\u1166\u1109\u1165 fake\u1105\u1169 override."
     },
     {
@@ -4930,7 +4930,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_scheduler",
-      "community": 54,
+      "community": 53,
       "norm_label": "scheduler.py"
     },
     {
@@ -4940,7 +4940,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_services_scheduler_cleanup_stale_drafts",
-      "community": 54,
+      "community": 53,
       "norm_label": "cleanup_stale_drafts()"
     },
     {
@@ -4960,7 +4960,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "app_services_scheduler_start_scheduler",
-      "community": 54,
+      "community": 53,
       "norm_label": "start_scheduler()"
     },
     {
@@ -4970,7 +4970,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "asyncioscheduler",
-      "community": 54,
+      "community": 53,
       "norm_label": "asyncioscheduler"
     },
     {
@@ -4980,7 +4980,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "app_services_scheduler_stop_scheduler",
-      "community": 54,
+      "community": 53,
       "norm_label": "stop_scheduler()"
     },
     {
@@ -4990,7 +4990,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_scheduler_rationale_1",
-      "community": 54,
+      "community": 53,
       "norm_label": "apscheduler \u110b\u1175\u11ab\u1111\u1173\u1105\u1169\u1109\u1166\u1109\u1173 \u110f\u1173\u1105\u1169\u11ab \u2014 24h \u1103\u1173\u1105\u1162\u1111\u1173\u1110\u1173 \u110e\u1165\u11bc\u1109\u1169 (+ task 11\u110b\u1166\u1109\u1165 \u1106\u1175\u1107\u116e\u11ab\u1109\u1165\u11a8 \u110c\u1162\u1107\u116e\u11ab\u1109\u1165\u11a8 \u110e\u116e\u1100\u1161)."
     },
     {
@@ -5000,7 +5000,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "app_services_scheduler_rationale_17",
-      "community": 54,
+      "community": 53,
       "norm_label": "caption-01: \u110b\u1165\u11b8\u1105\u1169\u1103\u1173 \u1112\u116e 24\u1109\u1175\u1100\u1161\u11ab \u1106\u1175\u1100\u1166\u1109\u1175 \u1102\u1162\u1107\u116e \u1103\u1173\u1105\u1162\u1111\u1173\u1110\u1173\u1105\u1173\u11af \u110b\u1167\u11bc\u1109\u1161\u11bc\u00b7\u110c\u1161\u1106\u1161\u11a8\u1100\u116a \u1112\u1161\u11b7\u1101\u1166 \u1109\u1161\u11a8\u110c\u1166.      \u110b\u1175\u1106\u1175 \u1109\u1165\u11bc\u1100\u1169\u11bc\u1112\u1161\u11ab \u110c\u1161\u1106\u1161\u11a8 \u1109\u1162\u11bc\u1109\u1165\u11bc\u110b\u1174 \u110b\u1175\u11af\u110b\u1175\u11af \u1112\u116c\u11ba\u1109\u116e \u110e\u1161\u1100\u1161\u11b7\u110b\u1173\u11ab \u1107\u1169\u11a8"
     },
     {
@@ -5100,7 +5100,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_vision",
-      "community": 57,
+      "community": 52,
       "norm_label": "vision.py"
     },
     {
@@ -5110,7 +5110,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "app_services_vision_get_client",
-      "community": 57,
+      "community": 52,
       "norm_label": "_get_client()"
     },
     {
@@ -5120,7 +5120,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_vision_py_asyncopenai",
-      "community": 57,
+      "community": 52,
       "norm_label": "asyncopenai"
     },
     {
@@ -5130,7 +5130,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "app_services_vision_generate_description",
-      "community": 57,
+      "community": 52,
       "norm_label": "generate_description()"
     },
     {
@@ -5140,7 +5140,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_vision_rationale_1",
-      "community": 57,
+      "community": 52,
       "norm_label": "gpt-4o vision \u110b\u1175\u1106\u1175\u110c\u1175 \u1112\u1162\u1109\u1165\u11af \u1109\u1165\u1107\u1175\u1109\u1173 (f02_s04 \u1109\u1175\u1100\u1161\u11a8\u110c\u1161\u11bc\u110b\u1162 \u1106\u1169\u1103\u1173).  \u110b\u1166\u11ab\u1103\u1173\u1111\u1169\u110b\u1175\u11ab\u1110\u1173\u1102\u1173\u11ab `vision.generate_description"
     },
     {
@@ -5150,7 +5150,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "app_services_vision_rationale_32",
-      "community": 57,
+      "community": 52,
       "norm_label": "\u110b\u1175\u1106\u1175\u110c\u1175 \u1107\u1161\u110b\u1175\u1110\u1173 \u2192 \u1112\u1161\u11ab\u1100\u116e\u11a8\u110b\u1165 \u1112\u1162\u1109\u1165\u11af \u1110\u1166\u11a8\u1109\u1173\u1110\u1173. (\u1109\u1175\u11af\u110c\u1166 gpt-4o \u1112\u1169\u110e\u116e\u11af)"
     },
     {
@@ -5160,7 +5160,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_withdrawal",
-      "community": 3,
+      "community": 10,
       "norm_label": "withdrawal.py"
     },
     {
@@ -5170,7 +5170,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "app_services_withdrawal_withdraw",
-      "community": 3,
+      "community": 10,
       "norm_label": "withdraw()"
     },
     {
@@ -5180,7 +5180,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_withdrawal_py_asyncsession",
-      "community": 3,
+      "community": 10,
       "norm_label": "asyncsession"
     },
     {
@@ -5190,7 +5190,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "postsaction",
-      "community": 3,
+      "community": 10,
       "norm_label": "postsaction"
     },
     {
@@ -5200,7 +5200,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_withdrawal_rationale_1",
-      "community": 3,
+      "community": 10,
       "norm_label": "\u00a715 \u1112\u116c\u110b\u116f\u11ab \u1110\u1161\u11af\u1110\u116c.  - \u1100\u1168\u110c\u1165\u11bc\u00b7\u1111\u1173\u1105\u1169\u1111\u1175\u11af \u110c\u1173\u11a8\u1109\u1175 \u1109\u1161\u11a8\u110c\u1166 (users hard delete) - \u1100\u1166\u1109\u1175\u1106\u116e\u11af\u00b7\u1103\u1162\u11ba\u1100\u1173\u11af: \u1109\u1161\u110b\u116d\u11bc\u110c\u1161\u1100\u1161 \u110b\u1175\u11a8\u1106\u1167\u11bc\u1112\u116a/\u1109\u1161\u11a8\u110c\u1166 \u1109\u1165\u11ab\u1110\u1162\u11a8 - \u110e\u1162\u1110\u1175\u11bc \u1106\u1166\u1109\u1175\u110c\u1175"
     },
     {
@@ -5333,7 +5333,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_conftest",
-      "community": 52,
+      "community": 58,
       "norm_label": "conftest.py"
     },
     {
@@ -5343,7 +5343,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "tests_conftest_test_redis_url",
-      "community": 52,
+      "community": 58,
       "norm_label": "_test_redis_url()"
     },
     {
@@ -5353,7 +5353,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "tests_conftest_conn",
-      "community": 52,
+      "community": 58,
       "norm_label": "_conn()"
     },
     {
@@ -5363,7 +5363,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "tests_conftest_session_factory",
-      "community": 57,
+      "community": 52,
       "norm_label": "_session_factory()"
     },
     {
@@ -5373,7 +5373,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "tests_conftest_db",
-      "community": 57,
+      "community": 52,
       "norm_label": "db()"
     },
     {
@@ -5383,7 +5383,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "tests_conftest_test_redis",
-      "community": 52,
+      "community": 58,
       "norm_label": "test_redis()"
     },
     {
@@ -5393,7 +5393,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "tests_conftest_client",
-      "community": 52,
+      "community": 58,
       "norm_label": "client()"
     },
     {
@@ -5413,7 +5413,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "asyncclient",
-      "community": 52,
+      "community": 58,
       "norm_label": "asyncclient"
     },
     {
@@ -5433,7 +5433,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_conftest_rationale_1",
-      "community": 52,
+      "community": 58,
       "norm_label": "\u1110\u1166\u1109\u1173\u1110\u1173 \u1100\u1169\u11bc\u110b\u116d\u11bc \u1111\u1175\u11a8\u1109\u1173\u110e\u1165.  \u1100\u1161\u11a8 \u1110\u1166\u1109\u1173\u1110\u1173\u1102\u1173\u11ab \u1103\u1161\u11ab\u110b\u1175\u11af \u110f\u1165\u1102\u1166\u11a8\u1109\u1167\u11ab \u110b\u1171\u110b\u1174 \u110b\u116c\u1107\u116e \u1110\u1173\u1105\u1162\u11ab\u110c\u1162\u11a8\u1109\u1167\u11ab\u110b\u1166\u1109\u1165 \u1109\u1175\u11af\u1112\u1162\u11bc\u1103\u116c\u1100\u1169 \u1101\u1173\u11c0\u1102\u1161\u1106\u1167\u11ab \u1105\u1169\u11af\u1107\u1162\u11a8\u1103\u116c\u11ab\u1103\u1161. \u110b\u1162\u11b8 \u110f\u1169\u1103\u1173\u1100\u1161 `await db.commit()`"
     },
     {
@@ -5443,7 +5443,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "tests_conftest_rationale_49",
-      "community": 57,
+      "community": 52,
       "norm_label": "\u1110\u1166\u1109\u1173\u1110\u1173\u1100\u1161 \u110c\u1175\u11a8\u110c\u1165\u11b8 db\u1105\u1173\u11af \u1106\u1161\u11ab\u110c\u1175\u11af \u1104\u1162 \u1109\u1161\u110b\u116d\u11bc \u2014 client\u110b\u116a \u1100\u1161\u11c0\u110b\u1173\u11ab \u110f\u1165\u1102\u1166\u11a8\u1109\u1167\u11ab\u110b\u1173\u11af \u1100\u1169\u11bc\u110b\u1172\u1112\u1161\u11ab\u1103\u1161."
     },
     {
@@ -5663,7 +5663,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_chat",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_chat.py"
     },
     {
@@ -5673,7 +5673,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "tests_test_chat_fakesafety",
-      "community": 10,
+      "community": 54,
       "norm_label": "fakesafety"
     },
     {
@@ -5683,7 +5683,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "tests_test_chat_fakesafety_init",
-      "community": 10,
+      "community": 54,
       "norm_label": ".__init__()"
     },
     {
@@ -5693,7 +5693,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "tests_test_chat_fakesafety_analyze",
-      "community": 10,
+      "community": 54,
       "norm_label": ".analyze()"
     },
     {
@@ -5703,7 +5703,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "tests_test_chat_safety",
-      "community": 10,
+      "community": 54,
       "norm_label": "safety()"
     },
     {
@@ -5713,7 +5713,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tests_test_chat_describe_fake",
-      "community": 38,
+      "community": 2,
       "norm_label": "_describe_fake()"
     },
     {
@@ -5723,7 +5723,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "tests_test_chat_make_friends",
-      "community": 38,
+      "community": 2,
       "norm_label": "make_friends()"
     },
     {
@@ -5733,7 +5733,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "tests_test_chat_room",
-      "community": 38,
+      "community": 2,
       "norm_label": "_room()"
     },
     {
@@ -5743,7 +5743,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "tests_test_chat_send",
-      "community": 38,
+      "community": 2,
       "norm_label": "_send()"
     },
     {
@@ -5753,7 +5753,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "tests_test_chat_test_friend_chat_roundtrip",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_friend_chat_roundtrip()"
     },
     {
@@ -5763,7 +5763,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "tests_test_chat_test_stranger_request_flow",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_stranger_request_flow()"
     },
     {
@@ -5773,7 +5773,7 @@
       "source_location": "L100",
       "_origin": "ast",
       "id": "tests_test_chat_test_minor_default_blocks_adult_stranger",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_minor_default_blocks_adult_stranger()"
     },
     {
@@ -5783,7 +5783,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "tests_test_chat_test_media_only_between_adult_friends",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_media_only_between_adult_friends()"
     },
     {
@@ -5793,7 +5793,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "tests_test_chat_test_media_blocked_in_request_room",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_media_blocked_in_request_room()"
     },
     {
@@ -5803,7 +5803,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_chat_rationale_1",
-      "community": 38,
+      "community": 2,
       "norm_label": "chat-01 \u110e\u1175\u11ab\u1100\u116e \u110e\u1162\u1110\u1175\u11bc \u00b7 chat-02 \u1107\u1175\u110e\u1175\u11ab\u1100\u116e \u110b\u116d\u110e\u1165\u11bc \u00b7 \u1106\u1175\u1103\u1175\u110b\u1165 \u110c\u1166\u1112\u1161\u11ab (\u00a74.5)."
     },
     {
@@ -5813,7 +5813,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "tests_test_chat_rationale_14",
-      "community": 10,
+      "community": 54,
       "norm_label": "\u1103\u1169\u11ab' \u1111\u1169\u1112\u1161\u11b7 \u2192 flagged. fail=true \u2192 safetyunavailable (\u00a718.3)."
     },
     {
@@ -5823,7 +5823,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_comm",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_comm.py"
     },
     {
@@ -5903,7 +5903,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "tests_test_comm_test_simplify_and_complete",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_simplify_and_complete()"
     },
     {
@@ -5913,7 +5913,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "tests_test_comm_test_replies_use_last_10_messages_only",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_replies_use_last_10_messages_only()"
     },
     {
@@ -5923,7 +5923,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "tests_test_comm_test_replies_exclude_unrevealed_flagged",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_replies_exclude_unrevealed_flagged()"
     },
     {
@@ -5933,7 +5933,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "tests_test_comm_test_non_participant_rejected",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_non_participant_rejected()"
     },
     {
@@ -5943,7 +5943,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_comm_rationale_1",
-      "community": 38,
+      "community": 2,
       "norm_label": "comm-01~05 \u2014 \u1109\u1171\u110b\u116e\u11ab \u1106\u116e\u11ab\u110c\u1161\u11bc\u00b7\u1106\u116e\u11ab\u110c\u1161\u11bc \u110b\u116a\u11ab\u1109\u1165\u11bc\u00b7\u1103\u1161\u11b8\u110c\u1161\u11bc \u110e\u116e\u110e\u1165\u11ab\u00b7\u1103\u1162\u1112\u116a \u1112\u1175\u11ab\u1110\u1173 (\u1107\u1165\u1110\u1173\u11ab \u1109\u1175\u11af\u1112\u1162\u11bc \u1109\u1175\u110b\u1166\u1106\u1161\u11ab, \u110e\u116c\u1100\u1173\u11ab n=10)."
     },
     {
@@ -5953,7 +5953,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_config",
-      "community": 54,
+      "community": 53,
       "norm_label": "test_config.py"
     },
     {
@@ -5963,7 +5963,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "tests_test_config_test_v2_1_settings_defaults",
-      "community": 54,
+      "community": 53,
       "norm_label": "test_v2_1_settings_defaults()"
     },
     {
@@ -5973,7 +5973,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_config_rationale_1",
-      "community": 54,
+      "community": 53,
       "norm_label": "v2.1 \u1106\u1167\u11bc\u1109\u1166 \u1100\u1169\u110c\u1165\u11bc\u1100\u1161\u11b9\u110b\u1175 settings\u110b\u1166 \u1107\u1161\u11ab\u110b\u1167\u11bc\u1103\u116c\u110b\u1165 \u110b\u1175\u11bb\u1102\u1173\u11ab\u110c\u1175 \u1100\u1165\u11b7\u110c\u1173\u11bc."
     },
     {
@@ -5983,7 +5983,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_friends",
-      "community": 71,
+      "community": 56,
       "norm_label": "test_friends.py"
     },
     {
@@ -5993,7 +5993,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "tests_test_friends_pair",
-      "community": 71,
+      "community": 56,
       "norm_label": "_pair()"
     },
     {
@@ -6003,7 +6003,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "tests_test_friends_request",
-      "community": 71,
+      "community": 56,
       "norm_label": "_request()"
     },
     {
@@ -6013,7 +6013,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "tests_test_friends_test_request_accept_creates_mutual_friendship",
-      "community": 71,
+      "community": 56,
       "norm_label": "test_request_accept_creates_mutual_friendship()"
     },
     {
@@ -6023,7 +6023,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tests_test_friends_test_decline_records_and_duplicate_pending_rejected",
-      "community": 71,
+      "community": 56,
       "norm_label": "test_decline_records_and_duplicate_pending_rejected()"
     },
     {
@@ -6033,7 +6033,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "tests_test_friends_test_cancel_only_by_sender",
-      "community": 71,
+      "community": 56,
       "norm_label": "test_cancel_only_by_sender()"
     },
     {
@@ -6043,7 +6043,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "tests_test_friends_test_unfriend",
-      "community": 71,
+      "community": 56,
       "norm_label": "test_unfriend()"
     },
     {
@@ -6053,7 +6053,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "tests_test_friends_test_block_removes_friendship_and_hides_everything",
-      "community": 71,
+      "community": 56,
       "norm_label": "test_block_removes_friendship_and_hides_everything()"
     },
     {
@@ -6063,7 +6063,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "tests_test_friends_test_self_request_rejected",
-      "community": 71,
+      "community": 56,
       "norm_label": "test_self_request_rejected()"
     },
     {
@@ -6073,7 +6073,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_friends_rationale_1",
-      "community": 71,
+      "community": 56,
       "norm_label": "friend-01/02 \u110e\u1175\u11ab\u1100\u116e \u110b\u116d\u110e\u1165\u11bc\u00b7\u1100\u116a\u11ab\u1105\u1175 \u00b7 block-01 \u110e\u1161\u1103\u1161\u11ab."
     },
     {
@@ -6183,7 +6183,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "tests_test_media_callcounter",
-      "community": 58,
+      "community": 64,
       "norm_label": "callcounter"
     },
     {
@@ -6193,7 +6193,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "tests_test_media_callcounter_init",
-      "community": 58,
+      "community": 64,
       "norm_label": ".__init__()"
     },
     {
@@ -6203,7 +6203,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "tests_test_media_callcounter_call",
-      "community": 58,
+      "community": 64,
       "norm_label": ".__call__()"
     },
     {
@@ -6213,7 +6213,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tests_test_media_fake_ai",
-      "community": 58,
+      "community": 64,
       "norm_label": "fake_ai()"
     },
     {
@@ -6333,7 +6333,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "tests_test_media_rationale_34",
-      "community": 58,
+      "community": 64,
       "norm_label": "\u110b\u116c\u1107\u116e ai caller\u1105\u1173\u11af fake\u1105\u1169 \u1103\u1162\u110e\u1166 \u2014 \u1109\u1175\u11af\u1112\u1169\u110e\u116e\u11af \u1100\u1173\u11b7\u110c\u1175 (global constraints)."
     },
     {
@@ -6343,7 +6343,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_notifications",
-      "community": 55,
+      "community": 62,
       "norm_label": "test_notifications.py"
     },
     {
@@ -6353,7 +6353,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "tests_test_notifications_notis",
-      "community": 55,
+      "community": 62,
       "norm_label": "_notis()"
     },
     {
@@ -6363,7 +6363,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "tests_test_notifications_test_comment_and_like_notify_author_not_self",
-      "community": 55,
+      "community": 62,
       "norm_label": "test_comment_and_like_notify_author_not_self()"
     },
     {
@@ -6373,7 +6373,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "tests_test_notifications_test_friend_request_and_accept_notifications",
-      "community": 55,
+      "community": 62,
       "norm_label": "test_friend_request_and_accept_notifications()"
     },
     {
@@ -6383,7 +6383,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "tests_test_notifications_test_flagged_and_restriction_notify_receiver",
-      "community": 55,
+      "community": 62,
       "norm_label": "test_flagged_and_restriction_notify_receiver()"
     },
     {
@@ -6393,7 +6393,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "tests_test_notifications_test_mark_read",
-      "community": 55,
+      "community": 62,
       "norm_label": "test_mark_read()"
     },
     {
@@ -6403,7 +6403,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_notifications_rationale_1",
-      "community": 55,
+      "community": 62,
       "norm_label": "\u00a716 \u110b\u1161\u11af\u1105\u1175\u11b7 \u2014 \u1109\u1162\u11bc\u1109\u1165\u11bc \u1112\u116e\u11a8\u00b7\u1106\u1169\u11a8\u1105\u1169\u11a8\u00b7\u110b\u1175\u11b0\u110b\u1173\u11b7. ws \u1111\u116e\u1109\u1175\u1102\u1173\u11ab test_ws\u110b\u1166\u1109\u1165 \u1100\u1165\u11b7\u110c\u1173\u11bc."
     },
     {
@@ -6513,7 +6513,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_quota",
-      "community": 57,
+      "community": 52,
       "norm_label": "test_quota.py"
     },
     {
@@ -6523,7 +6523,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "tests_test_quota_redis",
-      "community": 57,
+      "community": 52,
       "norm_label": "redis()"
     },
     {
@@ -6533,7 +6533,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "tests_test_quota_test_try_consume_respects_limit",
-      "community": 57,
+      "community": 52,
       "norm_label": "test_try_consume_respects_limit()"
     },
     {
@@ -6543,7 +6543,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "tests_test_quota_test_refund_restores_slot",
-      "community": 57,
+      "community": 52,
       "norm_label": "test_refund_restores_slot()"
     },
     {
@@ -6553,7 +6553,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "tests_test_quota_test_key_builders",
-      "community": 57,
+      "community": 52,
       "norm_label": "test_key_builders()"
     },
     {
@@ -6563,7 +6563,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_quota_rationale_1",
-      "community": 57,
+      "community": 52,
       "norm_label": "redis ttl \u110f\u116f\u1110\u1165 (vision-01\u00b7caption-01 \u1112\u1169\u110e\u116e\u11af \u1112\u1161\u11ab\u1103\u1169)."
     },
     {
@@ -6573,7 +6573,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_safe",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_safe.py"
     },
     {
@@ -6583,7 +6583,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "tests_test_safe_safety",
-      "community": 10,
+      "community": 54,
       "norm_label": "safety()"
     },
     {
@@ -6593,7 +6593,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "tests_test_safe_friend_room",
-      "community": 38,
+      "community": 2,
       "norm_label": "_friend_room()"
     },
     {
@@ -6603,7 +6603,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "tests_test_safe_test_flagged_message_blurred_until_reveal",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_flagged_message_blurred_until_reveal()"
     },
     {
@@ -6613,7 +6613,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "tests_test_safe_test_degraded_mode_friend_vs_request",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_degraded_mode_friend_vs_request()"
     },
     {
@@ -6623,7 +6623,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "tests_test_safe_test_safe05_restriction_cycle",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_safe05_restriction_cycle()"
     },
     {
@@ -6633,7 +6633,7 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "tests_test_safe_test_reveal_still_counts_for_safe05",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_reveal_still_counts_for_safe05()"
     },
     {
@@ -6643,7 +6643,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "tests_test_safe_test_reanalysis_applies_retroactive_blur",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_reanalysis_applies_retroactive_blur()"
     },
     {
@@ -6653,7 +6653,7 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "tests_test_safe_test_block_overrides_restriction",
-      "community": 38,
+      "community": 2,
       "norm_label": "test_block_overrides_restriction()"
     },
     {
@@ -6663,7 +6663,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_safe_rationale_1",
-      "community": 38,
+      "community": 2,
       "norm_label": "safe-01~05 \u2014 \u1103\u1169\u11bc\u1100\u1175 \u1107\u116e\u11ab\u1109\u1165\u11a8\u00b7\u1107\u1173\u11af\u1105\u1165\u00b7\u1102\u1162\u110b\u116d\u11bc \u1107\u1169\u1100\u1175\u00b7\u1109\u1165\u11bc\u1102\u1173\u11bc\u110c\u1165\u1112\u1161 \u1106\u1169\u1103\u1173\u00b7\u1100\u116a\u11ab\u1100\u1168 \u1103\u1161\u11ab\u110b\u1171 \u110c\u1165\u11ab\u1109\u1169\u11bc \u110c\u1166\u1112\u1161\u11ab."
     },
     {
@@ -6673,7 +6673,7 @@
       "source_location": "L99",
       "_origin": "ast",
       "id": "tests_test_safe_rationale_99",
-      "community": 38,
+      "community": 2,
       "norm_label": "\u1109\u116e\u1109\u1175\u11ab\u110c\u1161\u1100\u1161 '\u1102\u1162\u110b\u116d\u11bc \u1107\u1169\u1100\u1175'\u1105\u1173\u11af \u1109\u1175\u11af\u1112\u1162\u11bc\u1112\u1161\u11ab \u1106\u1166\u1109\u1175\u110c\u1175\u1103\u1169 \u1102\u116e\u110c\u1165\u11a8 \u110c\u1175\u11b8\u1100\u1168\u110b\u1166 \u1111\u1169\u1112\u1161\u11b7 (safe-05-6)."
     },
     {
@@ -6683,7 +6683,7 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "tests_test_safe_rationale_111",
-      "community": 38,
+      "community": 2,
       "norm_label": "\u00a718.3: \u1107\u1169\u11a8\u1100\u116e \u1112\u116e \u110c\u1162\u1107\u116e\u11ab\u1109\u1165\u11a8 \u2014 flagged\u1106\u1167\u11ab \u1109\u1169\u1100\u1173\u11b8 \u1107\u1173\u11af\u1105\u1165 + \u1109\u116e\u1109\u1175\u11ab\u110c\u1161 \u110b\u1161\u11af\u1105\u1175\u11b7."
     },
     {
@@ -6833,7 +6833,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_withdrawal",
-      "community": 64,
+      "community": 57,
       "norm_label": "test_withdrawal.py"
     },
     {
@@ -6843,7 +6843,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "tests_test_withdrawal_make_post",
-      "community": 64,
+      "community": 57,
       "norm_label": "_make_post()"
     },
     {
@@ -6853,7 +6853,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_test_withdrawal_py_uuid",
-      "community": 64,
+      "community": 57,
       "norm_label": "uuid"
     },
     {
@@ -6863,7 +6863,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "tests_test_withdrawal_make_chat",
-      "community": 64,
+      "community": 57,
       "norm_label": "_make_chat()"
     },
     {
@@ -6873,7 +6873,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "tests_test_withdrawal_test_withdraw_anonymize_keeps_posts_and_chat",
-      "community": 64,
+      "community": 57,
       "norm_label": "test_withdraw_anonymize_keeps_posts_and_chat()"
     },
     {
@@ -6883,7 +6883,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "tests_test_withdrawal_test_withdraw_delete_removes_posts",
-      "community": 64,
+      "community": 57,
       "norm_label": "test_withdraw_delete_removes_posts()"
     },
     {
@@ -6893,7 +6893,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "tests_test_withdrawal_test_withdraw_invalidates_token_and_blocks_rejoin",
-      "community": 64,
+      "community": 57,
       "norm_label": "test_withdraw_invalidates_token_and_blocks_rejoin()"
     },
     {
@@ -6903,7 +6903,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_withdrawal_rationale_1",
-      "community": 64,
+      "community": 57,
       "norm_label": "\u00a715 \u1112\u116c\u110b\u116f\u11ab \u1110\u1161\u11af\u1110\u116c \u2014 \u110b\u1175\u11a8\u1106\u1167\u11bc\u1112\u116a/\u1109\u1161\u11a8\u110c\u1166 \u1109\u1165\u11ab\u1110\u1162\u11a8, \u110e\u1162\u1110\u1175\u11bc \u1107\u1169\u110c\u1169\u11ab, 30\u110b\u1175\u11af \u110c\u1162\u1100\u1161\u110b\u1175\u11b8 \u110c\u1166\u1112\u1161\u11ab."
     },
     {
@@ -6913,7 +6913,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_ws",
-      "community": 10,
+      "community": 54,
       "norm_label": "test_ws.py"
     },
     {
@@ -6923,7 +6923,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "tests_test_ws_test_ws_rejects_invalid_token",
-      "community": 10,
+      "community": 54,
       "norm_label": "test_ws_rejects_invalid_token()"
     },
     {
@@ -6933,7 +6933,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "tests_test_ws_test_ws_relays_published_event",
-      "community": 2,
+      "community": 3,
       "norm_label": "test_ws_relays_published_event()"
     },
     {
@@ -6943,7 +6943,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "tests_test_ws_safety",
-      "community": 10,
+      "community": 54,
       "norm_label": "safety()"
     },
     {
@@ -6953,7 +6953,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "tests_test_ws_test_chat_send_publishes_event",
-      "community": 10,
+      "community": 54,
       "norm_label": "test_chat_send_publishes_event()"
     },
     {
@@ -6963,7 +6963,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_ws_rationale_1",
-      "community": 10,
+      "community": 54,
       "norm_label": "ws \u1111\u116e\u1109\u1175 \u2014 \u1110\u1169\u110f\u1173\u11ab \u1100\u1165\u11b7\u110c\u1173\u11bc, pub/sub \u1105\u1175\u11af\u1105\u1166\u110b\u1175, \u110e\u1162\u1110\u1175\u11bc \u110c\u1165\u11ab\u1109\u1169\u11bc \u110b\u1175\u1107\u1166\u11ab\u1110\u1173."
     },
     {
@@ -6973,7 +6973,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "tests_test_ws_rationale_30",
-      "community": 2,
+      "community": 3,
       "norm_label": "\u110b\u116e\u11ab\u110b\u1167\u11bc redis(db 0)\u110b\u1166 \u110c\u1175\u11a8\u110c\u1165\u11b8 publish \u2014 pub/sub\u110b\u1173\u11ab \u110c\u1161\u11ab\u110c\u1169\u11ab \u1103\u1166\u110b\u1175\u1110\u1165\u1100\u1161 \u110b\u1165\u11b9\u110b\u1165 \u110b\u1161\u11ab\u110c\u1165\u11ab."
     },
     {
@@ -33244,5 +33244,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ed316f8449333c9a50e00baf822c943846714070"
+  "built_at_commit": "05adf88db247ecfeedfce2719c19ac00a0941c13"
 }

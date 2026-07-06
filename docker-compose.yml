@@ -48,24 +48,50 @@ services:
       retries: 10
     restart: unless-stopped
 
-  # ── AI 모델 서버 (AI 팀 담당 — 현재 mock, 실모델 교체 시 이미지만 변경) ──
+  # ── AI 모델 서버 (AI 팀 담당) ──
   # app의 depends_on에 넣지 않는다: SAFE 장애 대응(§18.3) 시연을 위해 독립 기동.
   # ports 미노출 — app이 내부 네트워크로 safety-model:9001 / match-model:9002 접근.
+  # 모델은 이미지에 없고 기동 시 HF private repo에서 다운로드(HF_TOKEN 필요) → hf_cache 볼륨에 캐싱.
+  #
+  # 롤백/장애 시연(§18.3 영상 폴백)용 mock — 삭제 금지. 실모델 문제 시 아래 주석 해제하고
+  # 실모델 블록을 주석 처리한 뒤 `docker compose up -d safety-model match-model` 재기동.
+  #   safety-model:
+  #     build: .
+  #     command: ["uvicorn", "mocks.safety_model:app", "--host", "0.0.0.0", "--port", "9001"]
+  #     volumes:
+  #       - ./mocks:/app/mocks
+  #     restart: unless-stopped
+  #   match-model:
+  #     build: .
+  #     command: ["uvicorn", "mocks.match_model:app", "--host", "0.0.0.0", "--port", "9002"]
+  #     volumes:
+  #       - ./mocks:/app/mocks
+  #     restart: unless-stopped
   safety-model:
-    build: .
-    command: ["uvicorn", "mocks.safety_model:app", "--host", "0.0.0.0", "--port", "9001"]
+    build:
+      context: ../thisabled-ai
+      dockerfile: serving/safety_server/Dockerfile
+    environment:
+      SAFE_MODEL_DIR: soyuncj/thisabled-safety-kcelectra
+      HF_TOKEN: ${HF_TOKEN}
     volumes:
-      - ./mocks:/app/mocks
+      - hf_cache_safety:/srv/hf-cache
     restart: unless-stopped
 
   match-model:
-    build: .
-    command: ["uvicorn", "mocks.match_model:app", "--host", "0.0.0.0", "--port", "9002"]
+    build:
+      context: ../thisabled-ai
+      dockerfile: serving/match_server/Dockerfile
+    environment:
+      MATCH_HF_REPO: soyuncj/thisabled-match-lambdamart
+      HF_TOKEN: ${HF_TOKEN}
     volumes:
-      - ./mocks:/app/mocks
+      - hf_cache_match:/srv/hf-cache
     restart: unless-stopped
 
 volumes:
   postgres_data:
   redis_data:
   uploads:
+  hf_cache_safety:
+  hf_cache_match:

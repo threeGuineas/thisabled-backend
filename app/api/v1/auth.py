@@ -9,6 +9,7 @@ import secrets
 import uuid
 from datetime import datetime, timedelta, timezone
 
+import httpx
 from fastapi import APIRouter, Cookie, Depends, HTTPException, Response
 from jose import JWTError
 from sqlalchemy import select
@@ -59,7 +60,10 @@ async def callback(provider: str, code: str, response: Response, db: AsyncSessio
     try:
         info = await p.exchange_code(code)
     except ValueError:
+        # 만료·재사용된 code 등 제공자가 거부한 요청
         raise HTTPException(status_code=400, detail="소셜 인증에 실패했습니다. 다시 시도해 주세요")
+    except httpx.RequestError:
+        raise HTTPException(status_code=502, detail="소셜 로그인 제공자에 연결할 수 없습니다")
 
     identity = (
         await db.execute(

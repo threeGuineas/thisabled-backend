@@ -6,6 +6,7 @@
 (forbidden_nicknames·interest_tags 시드처럼 이미 커밋된 데이터는 그대로 보인다.)
 """
 
+import pytest
 import pytest_asyncio
 import redis.asyncio as aioredis
 from httpx import ASGITransport, AsyncClient
@@ -16,6 +17,16 @@ from app.core.config import settings
 from app.db.redis import get_redis
 from app.db.session import get_db, get_session_factory
 from app.main import app
+
+
+@pytest.fixture(autouse=True)
+def _force_oauth_mock():
+    """.env의 실키·OAUTH_MOCK=false는 배포용 — 테스트는 항상 mock 제공자로 결정론적으로 실행한다.
+    개별 테스트(test_oauth_real)가 monkeypatch로 다시 False를 켜는 것은 정상 동작."""
+    original = settings.OAUTH_MOCK
+    settings.OAUTH_MOCK = True
+    yield
+    settings.OAUTH_MOCK = original
 
 
 def _test_redis_url() -> str:

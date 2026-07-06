@@ -48,6 +48,23 @@ services:
       retries: 10
     restart: unless-stopped
 
+  # ── AI 모델 서버 (AI 팀 담당 — 현재 mock, 실모델 교체 시 이미지만 변경) ──
+  # app의 depends_on에 넣지 않는다: SAFE 장애 대응(§18.3) 시연을 위해 독립 기동.
+  # ports 미노출 — app이 내부 네트워크로 safety-model:9001 / match-model:9002 접근.
+  safety-model:
+    build: .
+    command: ["uvicorn", "mocks.safety_model:app", "--host", "0.0.0.0", "--port", "9001"]
+    volumes:
+      - ./mocks:/app/mocks
+    restart: unless-stopped
+
+  match-model:
+    build: .
+    command: ["uvicorn", "mocks.match_model:app", "--host", "0.0.0.0", "--port", "9002"]
+    volumes:
+      - ./mocks:/app/mocks
+    restart: unless-stopped
+
 volumes:
   postgres_data:
   redis_data:

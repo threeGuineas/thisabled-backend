@@ -69,9 +69,5 @@
   "67": "0. 문서 정보",
   "68": "stt.py",
   "69": "nickname.py",
-  "70": "async_sessionmaker",
-  "71": "test_friends.py",
-  "72": "AsyncSession",
-  "73": "User",
-  "74": "UUID"
+  "71": "test_friends.py"
 }

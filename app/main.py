@@ -28,9 +28,10 @@ tags_metadata = [
     {
         "name": "auth",
         "description": (
-            "소셜 OAuth 전용 인증 (ACC-01/02). authorize → callback → "
-            "기가입자는 즉시 로그인, 신규는 signup_token(30분)으로 추가 정보 입력. "
-            "**access_token**(24h)은 body, **refresh_token**(30d)은 httpOnly 쿠키. "
+            "소셜 OAuth 전용 인증 (ACC-01/02). authorize → callback → FRONTEND_URL로 302 "
+            "(기가입자 `?is_new_user=false&access_token=…`, 신규 `?is_new_user=true&signup_token=…`(30분), "
+            "오류·거부 `?error={provider}_failed`). "
+            "**access_token**(24h)은 쿼리/body, **refresh_token**(30d)은 httpOnly 쿠키. "
             "dev는 mock 제공자(code=`mock:<uid>`), 실키는 환경변수 교체."
         ),
     },
@@ -78,8 +79,8 @@ description = """
 **ThisAbled** — 장애 유형별 적응형 UI 소셜 플랫폼 백엔드 API (기능명세서 v2.1 정합).
 
 ### 인증 흐름
-1. `GET /api/v1/auth/{provider}/authorize` → 제공자 로그인 → `GET /api/v1/auth/{provider}/callback`
-2. 기가입자: `access_token` 즉시 발급 / 신규: `signup_token`으로 `POST /api/v1/auth/signup`
+1. `GET /api/v1/auth/{provider}/authorize` → 제공자 로그인 → `GET /api/v1/auth/{provider}/callback` → `FRONTEND_URL`로 302
+2. 기가입자: `?access_token=…` 쿼리로 즉시 발급 / 신규: `?signup_token=…`으로 `POST /api/v1/auth/signup`
 3. 보호된 엔드포인트는 `Authorization: Bearer <access_token>` 헤더 필수.
 4. access 만료(24h) 시 `POST /api/v1/auth/refresh` (httpOnly 쿠키 자동 전송).
 

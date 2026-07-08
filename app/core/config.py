@@ -36,6 +36,8 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_ID: str | None = None
     GOOGLE_CLIENT_SECRET: str | None = None
     OAUTH_REDIRECT_BASE: str = "http://localhost:8000"
+    # 콜백 결과를 302로 돌려보낼 프론트 SPA 오리진
+    FRONTEND_URL: str = "http://localhost:5173"
     SIGNUP_TOKEN_EXPIRE_MINUTES: int = 30
     REJOIN_BLOCK_DAYS: int = 30  # §15 탈퇴 후 재가입 제한
 

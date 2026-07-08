@@ -11,7 +11,7 @@ import pytest
 
 from app.core.config import settings
 from app.services import oauth as oauth_mod
-from tests.conftest import auth_header
+from tests.conftest import auth_header, callback_params
 
 
 @pytest.fixture
@@ -84,17 +84,16 @@ async def test_google_authorize_url_has_openid_scope(client, real_oauth):
 async def test_kakao_callback_signup_then_login(client, real_oauth):
     real_oauth.setattr(oauth_mod, "_transport", _kakao_transport())
 
-    # 1) 최초 콜백 → 신규 사용자, signup_token 발급
+    # 1) 최초 콜백 → 신규 사용자, signup_token을 담아 프론트로 302
     cb = await client.get("/api/v1/auth/kakao/callback?code=kakao-auth-code")
-    assert cb.status_code == 200, cb.text
-    body = cb.json()
-    assert body["is_new_user"] is True
+    params = callback_params(cb)
+    assert params["is_new_user"] == "true"
 
     # 2) 추가 정보 입력으로 가입 완료
     signup = await client.post(
         "/api/v1/auth/signup",
         json={
-            "signup_token": body["signup_token"],
+            "signup_token": params["signup_token"],
             "nickname": "카카오유저",
             "birth_date": "2000-01-01",
             "ui_mode": "visual",
@@ -106,33 +105,39 @@ async def test_kakao_callback_signup_then_login(client, real_oauth):
     me = await client.get("/api/v1/users/me", headers=auth_header(token))
     assert me.json()["nickname"] == "카카오유저"
 
-    # 3) 같은 카카오 계정 재콜백 → 즉시 로그인
+    # 3) 같은 카카오 계정 재콜백 → 즉시 로그인 리다이렉트
     again = await client.get("/api/v1/auth/kakao/callback?code=kakao-auth-code")
-    assert again.status_code == 200
-    assert again.json()["is_new_user"] is False
-    assert again.json()["access_token"]
+    params = callback_params(again)
+    assert params["is_new_user"] == "false"
+    assert params["access_token"]
+    assert "refresh_token" in again.cookies
 
 
 async def test_google_callback_uses_oidc_sub(client, real_oauth):
     real_oauth.setattr(oauth_mod, "_transport", _google_transport())
     cb = await client.get("/api/v1/auth/google/callback?code=google-auth-code")
-    assert cb.status_code == 200, cb.text
-    assert cb.json()["is_new_user"] is True
+    assert callback_params(cb)["is_new_user"] == "true"
 
 
-async def test_invalid_code_maps_to_400(client, real_oauth):
-    """제공자가 거부한 code(만료·재사용)는 500이 아니라 400."""
+async def test_invalid_code_redirects_with_error(client, real_oauth):
+    """제공자가 거부한 code(만료·재사용)도 프론트로 error 리다이렉트."""
     real_oauth.setattr(oauth_mod, "_transport", _kakao_transport())
     cb = await client.get("/api/v1/auth/kakao/callback?code=expired-code")
-    assert cb.status_code == 400
+    assert callback_params(cb)["error"] == "kakao_failed"
 
 
-async def test_provider_network_error_maps_to_502(client, real_oauth):
-    """제공자 연결 불가(네트워크 장애)는 502."""
+async def test_provider_network_error_redirects_with_error(client, real_oauth):
+    """제공자 연결 불가(네트워크 장애)도 프론트로 error 리다이렉트."""
 
     def down(request: httpx.Request) -> httpx.Response:
         raise httpx.ConnectError("connection refused")
 
     real_oauth.setattr(oauth_mod, "_transport", httpx.MockTransport(down))
     cb = await client.get("/api/v1/auth/kakao/callback?code=whatever")
-    assert cb.status_code == 502
+    assert callback_params(cb)["error"] == "kakao_failed"
+
+
+async def test_user_denial_redirects_with_error(client, real_oauth):
+    """사용자가 제공자 동의 화면에서 거부하면 code 없이 error만 돌아온다."""
+    cb = await client.get("/api/v1/auth/kakao/callback?error=access_denied")
+    assert callback_params(cb)["error"] == "kakao_failed"

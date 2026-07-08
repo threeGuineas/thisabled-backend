@@ -6,20 +6,19 @@ from datetime import datetime, timedelta, timezone
 from sqlalchemy import insert
 
 from app.models import WithdrawnSocial
-from tests.conftest import auth_header, register
+from tests.conftest import auth_header, callback_params, register
 
 AGREE = {"terms": True, "privacy": True, "ai_notice": True}
 
 
 async def _signup_token(client, uid: str) -> str:
     resp = await client.get(f"/api/v1/auth/mock/callback?code=mock:{uid}")
-    assert resp.status_code == 200, resp.text
-    body = resp.json()
-    assert body["is_new_user"] is True
-    return body["signup_token"]
+    params = callback_params(resp)
+    assert params["is_new_user"] == "true"
+    return params["signup_token"]
 
 
-async def test_callback_new_user_returns_signup_token(client):
+async def test_callback_new_user_redirects_with_signup_token(client):
     token = await _signup_token(client, "newbie")
     assert token
 
@@ -92,10 +91,11 @@ async def test_signup_requires_all_agreements(client):
 async def test_existing_user_callback_logs_in(client):
     await register(client, "재로그인", uid="relogin")
     resp = await client.get("/api/v1/auth/mock/callback?code=mock:relogin")
-    assert resp.status_code == 200
-    body = resp.json()
-    assert body["is_new_user"] is False
-    assert body["access_token"]
+    params = callback_params(resp)
+    assert params["is_new_user"] == "false"
+    assert params["access_token"]
+    # 리다이렉트 응답에도 refresh 쿠키가 실려야 한다
+    assert "refresh_token" in resp.cookies
 
 
 async def test_rejoin_blocked_within_30_days(client, db):
@@ -120,6 +120,6 @@ async def test_refresh_rotates_access_token(client):
     assert resp.json()["access_token"]
 
 
-async def test_invalid_mock_code_rejected(client):
+async def test_invalid_mock_code_redirects_with_error(client):
     resp = await client.get("/api/v1/auth/mock/callback?code=garbage")
-    assert resp.status_code == 400
+    assert callback_params(resp)["error"] == "mock_failed"

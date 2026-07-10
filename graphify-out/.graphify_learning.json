@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-10T07:17:21.928304+00:00",
+  "generated_at": "2026-07-10T07:35:30.320033+00:00",
   "nodes": {
     "app_api_v1_notifications_mark_read": {
       "code_fingerprint": "a848616e73e5fb5ecccd00c75887c6994abda62128c67c3f18c62136d0d06a9a",
@@ -12,7 +12,7 @@
           "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
         }
       ],
-      "score": 0.999942466,
+      "score": 0.99965147,
       "source_file": "app/api/v1/notifications.py",
       "status": "tentative",
       "uses": 1
@@ -28,7 +28,7 @@
           "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
         }
       ],
-      "score": 0.999942466,
+      "score": 0.99965147,
       "source_file": "app/models/chat.py",
       "status": "tentative",
       "uses": 1
@@ -44,8 +44,72 @@
           "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
         }
       ],
-      "score": 0.999942466,
+      "score": 0.99965147,
       "source_file": "app/models/misc.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "app_services_ai_media_caption_chat_message_job": {
+      "code_fingerprint": "722698245825e34884fce0e78a42408dcc25c7d004968b5b1146e9b69f441ef0",
+      "label": "caption_chat_message_job()",
+      "last": "2026-07-10T07:18:02.862158+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-10T07:18:02.862158+00:00",
+          "outcome": "useful",
+          "q": "백엔드 핵심 소스코드 2개와 설명"
+        }
+      ],
+      "score": 0.99971993,
+      "source_file": "app/services/ai_media.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "app_services_ai_media_describe_image": {
+      "code_fingerprint": "722698245825e34884fce0e78a42408dcc25c7d004968b5b1146e9b69f441ef0",
+      "label": "describe_image()",
+      "last": "2026-07-10T07:18:02.862158+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-10T07:18:02.862158+00:00",
+          "outcome": "useful",
+          "q": "백엔드 핵심 소스코드 2개와 설명"
+        }
+      ],
+      "score": 0.99971993,
+      "source_file": "app/services/ai_media.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "app_services_chat_reanalyze_unanalyzed": {
+      "code_fingerprint": "7866fb6a04d7b1202a3454fa537f61ba1e9bba6fd3c3068b32ee0e9ecba87158",
+      "label": "reanalyze_unanalyzed()",
+      "last": "2026-07-10T07:18:02.862158+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-10T07:18:02.862158+00:00",
+          "outcome": "useful",
+          "q": "백엔드 핵심 소스코드 2개와 설명"
+        }
+      ],
+      "score": 0.99971993,
+      "source_file": "app/services/chat.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "app_services_chat_send_text": {
+      "code_fingerprint": "7866fb6a04d7b1202a3454fa537f61ba1e9bba6fd3c3068b32ee0e9ecba87158",
+      "label": "send_text()",
+      "last": "2026-07-10T07:18:02.862158+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-10T07:18:02.862158+00:00",
+          "outcome": "useful",
+          "q": "백엔드 핵심 소스코드 2개와 설명"
+        }
+      ],
+      "score": 0.99971993,
+      "source_file": "app/services/chat.py",
       "status": "tentative",
       "uses": 1
     }

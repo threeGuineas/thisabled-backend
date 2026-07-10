@@ -71,3 +71,29 @@ async def test_chat_send_publishes_event(client, test_redis, safety):
     finally:
         await pubsub.unsubscribe(user_channel(b["user_id"]))
         await pubsub.aclose()
+
+
+async def test_opening_messages_publishes_read_event(client, test_redis, safety):
+    a = await register(client, "이벤트읽음발신")
+    b = await register(client, "이벤트읽음수신")
+    ha, hb = auth_header(a["access_token"]), auth_header(b["access_token"])
+    await make_friends(client, ha, hb, b["user_id"])
+    room_id = (await _room(client, ha, b["user_id"])).json()["id"]
+    sent = (await _send(client, ha, room_id, "읽음 이벤트")).json()
+    pubsub = test_redis.pubsub()
+    await pubsub.subscribe(user_channel(a["user_id"]))
+    try:
+        await client.get(f"/api/v1/chat/rooms/{room_id}/messages", headers=hb)
+        event = None
+        for _ in range(5):
+            event = await pubsub.get_message(ignore_subscribe_messages=True, timeout=1)
+            if event is not None:
+                break
+        assert event is not None
+        assert json.loads(event["data"]) == {
+            "type": "chat.read",
+            "payload": {"room_id": room_id, "message_id": sent["id"]},
+        }
+    finally:
+        await pubsub.unsubscribe(user_channel(a["user_id"]))
+        await pubsub.aclose()

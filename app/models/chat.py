@@ -85,6 +85,26 @@ class ChatMessage(Base):
     )
 
 
+class ChatReadState(Base):
+    """사용자별 채팅방 읽음 커서."""
+
+    __tablename__ = "chat_read_states"
+    __table_args__ = (
+        UniqueConstraint("room_id", "user_id"),
+        Index("ix_chat_read_states_user_room", "user_id", "room_id"),
+    )
+
+    id: Mapped[uuid.UUID] = mapped_column(Uuid, primary_key=True, default=uuid.uuid4)
+    room_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("chat_rooms.id", ondelete="CASCADE"), nullable=False
+    )
+    user_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("users.id", ondelete="CASCADE"), nullable=False
+    )
+    last_read_message_id: Mapped[uuid.UUID | None] = mapped_column(Uuid, nullable=True)
+    last_read_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
+
 class SendRestriction(Base):
     """SAFE-05 관계 단위 자동 전송 제한.
 

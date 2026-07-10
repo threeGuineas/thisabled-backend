@@ -212,6 +212,19 @@ Table chat_messages {
   }
 }
 
+Table chat_read_states {
+  id                   uuid        [pk, default: `gen_random_uuid()`]
+  room_id              uuid        [not null, ref: > chat_rooms.id]
+  user_id              uuid        [not null, ref: > users.id]
+  last_read_message_id uuid        [null, note: '수신자가 마지막으로 읽은 메시지']
+  last_read_at         timestamptz [null, note: '메시지 정렬 위치 비교용 시각']
+
+  indexes {
+    (room_id, user_id) [unique]
+    (user_id, room_id)
+  }
+}
+
 Table send_restrictions {
   id          uuid        [pk, default: `gen_random_uuid()`]
   sender_id   uuid        [not null, ref: > users.id]

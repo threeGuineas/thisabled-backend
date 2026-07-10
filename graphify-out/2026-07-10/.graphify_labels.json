@@ -118,16 +118,6 @@
   "116": "test_chat.py",
   "117": "auth.py",
   "118": "test_friends.py",
-  "119": "match.py",
-  "120": "is_minor",
-  "121": "ws.py",
-  "122": "Chat Read Status Implementation Plan",
-  "123": "Task 1 — Failing behavior tests",
-  "124": "Task 2 report — persistence and cursor helpers",
-  "125": "f7b9114a3c2e_chat_read_states.py",
-  "126": "progress.md",
   "127": "Q: 기능명세에 채팅 기능에 읽음/안읽음 표시 있나?",
-  "128": "Q: 백엔드 핵심 소스코드 2개와 설명",
-  "129": "task-1-brief.md",
-  "130": "task-2-brief.md"
+  "128": "Q: 백엔드 핵심 소스코드 2개와 설명"
 }

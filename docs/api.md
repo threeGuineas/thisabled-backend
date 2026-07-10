@@ -63,14 +63,16 @@
 
 | 메서드·경로 | 동작 |
 | --- | --- |
-| `GET /chat/rooms` / `GET /chat/requests` | active 방 / 요청함(request 방) |
+| `GET /chat/rooms` / `GET /chat/requests` | active 방 / 요청함(request 방). 각 방의 `unread_count`, 응답 전체의 `unread_total` 포함 |
 | `POST /chat/rooms` | `{user_id}` — 친구=active, 비친구=request(수신자 허용 설정·미성년 보호 검증, 사유 비노출 404) |
 | `POST /chat/rooms/{id}/messages` | 텍스트 전송 — SAFE 동기 분석 후 저장·전달. 발신자 응답에 판정 없음. request 방은 수락 전 1건 제한. SAFE-05 제한 중 403 `메시지를 보낼 수 없습니다` |
 | `POST /chat/rooms/{id}/media` | 사진·영상 — 친구 방만, 미성년-성인 403(§4.5). 즉시 전달 후 설명·자막 비동기 부착 |
-| `GET /chat/rooms/{id}/messages?cursor=` | 수신자 관점: flagged & 미열람 → `content:null, blurred:true` |
+| `GET /chat/rooms/{id}/messages?cursor=` | 수신자 관점: flagged & 미열람 → `content:null, blurred:true`. 최신 페이지 조회는 표시 가능한 수신 메시지를 읽음 처리하며, 발신자 메시지 중 상대의 마지막 읽음 메시지만 `is_read:true` |
 | `POST /chat/messages/{id}/reveal` | 내용 보기(수신자만) → 원문 반환 |
 | `POST /chat/requests/{room_id}/accept` | 요청 수락 → active |
 | `POST /chat/restrictions/{sender_id}/release` | 수신자의 전송 제한 해제(카운터 리셋) |
+
+실시간 `chat.read` 이벤트는 `{room_id, message_id}`만 포함하며 채팅 원문은 전송하지 않는다.
 
 SAFE 장애 시(§18.3): 친구 텍스트=`unanalyzed`로 전달, 비친구=`pending` 보류. 복구 후 재분석·소급 블러.
 

@@ -205,6 +205,7 @@ Table chat_messages {
   caption_status     varchar(20)   [not null, default: 'none']
   safety_status      safety_status [not null, note: '텍스트만 분석. 발신자에게 판정 비노출 (SAFE-03)']
   revealed_at        timestamptz   [null, note: '내용 보기 실행 시각. 실행해도 SAFE-05 집계 포함']
+  available_at       timestamptz   [null, note: '수신자에게 표시 가능해진 시각. pending은 재분석 완료 시 설정']
   created_at         timestamptz   [not null, default: `now()`]
 
   indexes {
@@ -217,7 +218,7 @@ Table chat_read_states {
   room_id              uuid        [not null, ref: > chat_rooms.id]
   user_id              uuid        [not null, ref: > users.id]
   last_read_message_id uuid        [null, note: '수신자가 마지막으로 읽은 메시지']
-  last_read_at         timestamptz [null, note: '메시지 정렬 위치 비교용 시각']
+  last_read_available_at timestamptz [null, note: '표시 가능 시각 기준 읽음 위치']
 
   indexes {
     (room_id, user_id) [unique]

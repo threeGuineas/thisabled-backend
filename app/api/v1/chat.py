@@ -409,6 +409,7 @@ async def send_media(
         media_url=url,
         # 사진·동영상은 안전 분석 대상이 아님(SAFE-02) — 재분석 잡은 type=text만 다룬다
         safety_status=SafetyStatus.unanalyzed.value,
+        available_at=datetime.now(timezone.utc),
         description_status=(
             AiStatus.processing.value if media_type == MediaType.image.value else AiStatus.none.value
         ),

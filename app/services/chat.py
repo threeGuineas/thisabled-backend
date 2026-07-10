@@ -49,12 +49,12 @@ async def unread_count(db: AsyncSession, room_id: uuid.UUID, user_id: uuid.UUID)
         ChatMessage.sender_id.is_distinct_from(user_id),
         ChatMessage.safety_status != SafetyStatus.pending.value,
     )
-    if state is not None and state.last_read_at is not None and state.last_read_message_id is not None:
+    if state is not None and state.last_read_available_at is not None and state.last_read_message_id is not None:
         query = query.where(
             or_(
-                ChatMessage.created_at > state.last_read_at,
+                ChatMessage.available_at > state.last_read_available_at,
                 and_(
-                    ChatMessage.created_at == state.last_read_at,
+                    ChatMessage.available_at == state.last_read_available_at,
                     ChatMessage.id > state.last_read_message_id,
                 ),
             )
@@ -82,8 +82,9 @@ async def advance_read_cursor(
                 ChatMessage.room_id == room.id,
                 ChatMessage.sender_id.is_distinct_from(user_id),
                 ChatMessage.safety_status != SafetyStatus.pending.value,
+                ChatMessage.available_at.is_not(None),
             )
-            .order_by(ChatMessage.created_at.desc(), ChatMessage.id.desc())
+            .order_by(ChatMessage.available_at.desc(), ChatMessage.id.desc())
             .limit(1)
         )
     ).scalar_one_or_none()
@@ -95,18 +96,18 @@ async def advance_read_cursor(
         room_id=room.id,
         user_id=user_id,
         last_read_message_id=latest.id,
-        last_read_at=latest.created_at,
+        last_read_available_at=latest.available_at,
     )
     statement = statement.on_conflict_do_update(
         index_elements=[ChatReadState.room_id, ChatReadState.user_id],
         set_={
             "last_read_message_id": statement.excluded.last_read_message_id,
-            "last_read_at": statement.excluded.last_read_at,
+            "last_read_available_at": statement.excluded.last_read_available_at,
         },
         where=tuple_(
-            ChatReadState.last_read_at, ChatReadState.last_read_message_id
+            ChatReadState.last_read_available_at, ChatReadState.last_read_message_id
         )
-        < tuple_(statement.excluded.last_read_at, statement.excluded.last_read_message_id),
+        < tuple_(statement.excluded.last_read_available_at, statement.excluded.last_read_message_id),
     ).returning(ChatReadState.last_read_message_id)
     advanced_message_id = (await db.execute(statement)).scalar_one_or_none()
     await db.commit()
@@ -237,6 +238,7 @@ async def send_text(
         type=MessageType.text.value,
         content=content,
         safety_status=status,
+        available_at=None if status == SafetyStatus.pending.value else datetime.now(timezone.utc),
     )
     db.add(message)
     await db.flush()
@@ -288,11 +290,19 @@ async def reanalyze_unanalyzed(session_factory, redis, safety: SafetyClient) -> 
                 )
             except SafetyUnavailable:
                 continue  # 아직 복구 전 — 다음 주기에 재시도
+            previous_status = msg.safety_status
             msg.safety_status = (
                 SafetyStatus.safe.value if verdict == "safe" else SafetyStatus.flagged.value
             )
+            if previous_status == SafetyStatus.pending.value:
+                msg.available_at = datetime.now(timezone.utc)
             await db.commit()
             processed += 1
+            if previous_status == SafetyStatus.pending.value:
+                await publish_to_user(
+                    redis, other_id,
+                    {"type": "chat.message", "payload": {"room_id": str(msg.room_id), "message_id": str(msg.id)}},
+                )
             if msg.safety_status == SafetyStatus.flagged.value:
                 # 소급 블러 + 추가 알림 (§18.3)
                 await noti.notify(

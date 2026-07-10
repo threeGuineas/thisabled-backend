@@ -73,6 +73,7 @@
 | `POST /chat/restrictions/{sender_id}/release` | 수신자의 전송 제한 해제(카운터 리셋) |
 
 실시간 `chat.read` 이벤트는 `{room_id, message_id}`만 포함하며 채팅 원문은 전송하지 않는다.
+SAFE `pending` 메시지가 재분석 완료되어 표시 가능해지면 `chat.message` 이벤트를 다시 보내며, 이 시각부터 미읽음으로 계산한다.
 
 SAFE 장애 시(§18.3): 친구 텍스트=`unanalyzed`로 전달, 비친구=`pending` 보류. 복구 후 재분석·소급 블러.
 

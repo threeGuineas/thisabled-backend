@@ -46,7 +46,7 @@
 
 - [ ] **Step 3: Create the fixture**
 
-  Add 24 detection cases across `intimacy`, `isolation`, `dependency`, `secrecy_boundary`, and `combined`, plus 12 boundary cases across `mutual_friendship`, `professional_help`, and `ordinary_encouragement`. Keep at least 30% of positive cases in a disability-support context and include adult/minor receiver variants.
+  Add 26 detection cases across `intimacy`, `isolation`, `dependency`, `secrecy_boundary`, `combined`, and `minimal_signal`, plus 12 boundary cases across `mutual_friendship`, `professional_help`, and `ordinary_encouragement`. Keep at least 30% of positive cases in a disability-support context and include adult/minor receiver variants.
 
 ### Task 2: Implement the pure evaluator and CLI
 

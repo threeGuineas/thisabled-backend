@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-07-10T07:17:21.928304+00:00",
+  "nodes": {
+    "app_api_v1_notifications_mark_read": {
+      "code_fingerprint": "a848616e73e5fb5ecccd00c75887c6994abda62128c67c3f18c62136d0d06a9a",
+      "label": "mark_read()",
+      "last": "2026-07-10T07:13:46.775840+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-10T07:13:46.775840+00:00",
+          "outcome": "useful",
+          "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
+        }
+      ],
+      "score": 0.999942466,
+      "source_file": "app/api/v1/notifications.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "app_models_chat_chatmessage": {
+      "code_fingerprint": "8631c8d7c7c6d780414285058f10707a2681b7b22b7ff4d688044c618712a22b",
+      "label": "ChatMessage",
+      "last": "2026-07-10T07:13:46.775840+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-10T07:13:46.775840+00:00",
+          "outcome": "useful",
+          "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
+        }
+      ],
+      "score": 0.999942466,
+      "source_file": "app/models/chat.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "app_models_misc_notification": {
+      "code_fingerprint": "dc0eca9874447459e22e54b1ea4dc36927ba197a775a56c5e83e591b420d878a",
+      "label": "Notification",
+      "last": "2026-07-10T07:13:46.775840+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-10T07:13:46.775840+00:00",
+          "outcome": "useful",
+          "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
+        }
+      ],
+      "score": 0.999942466,
+      "source_file": "app/models/misc.py",
+      "status": "tentative",
+      "uses": 1
+    }
+  },
+  "version": 1
+}

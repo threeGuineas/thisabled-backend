@@ -35,9 +35,9 @@
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "app/core/config.py": {
-    "mtime": 1783497205.4963634,
-    "ast_hash": "801842b923097f7a209d9467bdaa1e5e",
-    "semantic_hash": ""
+    "mtime": 1783319445.479321,
+    "ast_hash": "06427590a37bea0bf0ad1853f49a453a",
+    "semantic_hash": "06427590a37bea0bf0ad1853f49a453a"
   },
   "app/core/deps.py": {
     "mtime": 1782416629.5112295,
@@ -70,9 +70,9 @@
     "semantic_hash": "2ea2262338274dcc19cb39ab2f8fee7c"
   },
   "app/main.py": {
-    "mtime": 1783497248.1229362,
-    "ast_hash": "501506b15ef71ad837f26538968a4a4d",
-    "semantic_hash": ""
+    "mtime": 1783316187.0012474,
+    "ast_hash": "e2f213ccf7ff285a17cd31b6d163f6ab",
+    "semantic_hash": "e2f213ccf7ff285a17cd31b6d163f6ab"
   },
   "app/models/__init__.py": {
     "mtime": 1783316187.0014136,
@@ -115,9 +115,9 @@
     "semantic_hash": "d740876a5b0326b122e56844ddb51283"
   },
   "tests/conftest.py": {
-    "mtime": 1783497127.8207324,
-    "ast_hash": "4f37f64f28f3b900af03b9066b5df00b",
-    "semantic_hash": ""
+    "mtime": 1783319445.4798682,
+    "ast_hash": "302e737048aaed104324d57fcd08a703",
+    "semantic_hash": "302e737048aaed104324d57fcd08a703"
   },
   "CLAUDE.md": {
     "mtime": 1783254961.7327106,
@@ -125,9 +125,9 @@
     "semantic_hash": "46b8b17bf1edf0224ef81156559bc5bb"
   },
   "docker-compose.yml": {
-    "mtime": 1783442590.67314,
-    "ast_hash": "950580009bdbd0f2f90f994960875512",
-    "semantic_hash": ""
+    "mtime": 1783316187.0053763,
+    "ast_hash": "8f26686a2b0286dfdb743a8318c9b593",
+    "semantic_hash": "8f26686a2b0286dfdb743a8318c9b593"
   },
   "docs/deploy-tailscale-funnel.md": {
     "mtime": 1782426109.6051075,
@@ -230,14 +230,14 @@
     "semantic_hash": "30d85d79e528533197c5e433afe7a05e"
   },
   "app/api/v1/auth.py": {
-    "mtime": 1783497224.730572,
-    "ast_hash": "546b07cb6a5b903d5334d0d10eec9b0c",
-    "semantic_hash": ""
+    "mtime": 1783319445.479132,
+    "ast_hash": "c14c9868a1c59351100b77fa5eecad9b",
+    "semantic_hash": "c14c9868a1c59351100b77fa5eecad9b"
   },
   "app/schemas/auth.py": {
-    "mtime": 1783497226.8131313,
-    "ast_hash": "fe2c62efdc742585941082787114591d",
-    "semantic_hash": ""
+    "mtime": 1783316187.002561,
+    "ast_hash": "faa35d164885469bf2388fbd59a98695",
+    "semantic_hash": "faa35d164885469bf2388fbd59a98695"
   },
   "app/services/nickname.py": {
     "mtime": 1783316187.0040524,
@@ -250,9 +250,9 @@
     "semantic_hash": "8ef9d7f192cdf51eb54d984d360de41b"
   },
   "tests/test_auth.py": {
-    "mtime": 1783497143.3178456,
-    "ast_hash": "d0554ac0a28cf9444aad510cb35c227a",
-    "semantic_hash": ""
+    "mtime": 1783316187.0128846,
+    "ast_hash": "58354a8976e95e19d7fd8094103c4378",
+    "semantic_hash": "58354a8976e95e19d7fd8094103c4378"
   },
   "app/api/v1/users.py": {
     "mtime": 1783316186.999771,
@@ -280,9 +280,9 @@
     "semantic_hash": "30f3865b2e8404c894b555c136e9f322"
   },
   "tests/test_withdrawal.py": {
-    "mtime": 1783497183.2645056,
-    "ast_hash": "2a17430bad244f37db69598362f98177",
-    "semantic_hash": ""
+    "mtime": 1783316187.0148327,
+    "ast_hash": "20c91f3df9f4631fa890a36ec0372870",
+    "semantic_hash": "20c91f3df9f4631fa890a36ec0372870"
   },
   "app/api/v1/posts.py": {
     "mtime": 1783316186.999298,
@@ -450,9 +450,9 @@
     "semantic_hash": "46b8b17bf1edf0224ef81156559bc5bb"
   },
   "tests/test_oauth_real.py": {
-    "mtime": 1783497166.44886,
-    "ast_hash": "7ee5b0b914b7b6a4ee7daf0254ab27b4",
-    "semantic_hash": ""
+    "mtime": 1783319445.4801736,
+    "ast_hash": "5bbe6d729934fc9e0838533de110bb50",
+    "semantic_hash": "5bbe6d729934fc9e0838533de110bb50"
   },
   "docs/oauth-setup.md": {
     "mtime": 1783319445.4797225,

@@ -114,16 +114,5 @@
   "112": "OAuth Redirect URI Decision",
   "113": "Definition of Done 체크리스트",
   "114": "Redis TTL 호출 한도 카운터(vision·caption)",
-  "115": "users 테이블",
-  "116": "test_chat.py",
-  "117": "auth.py",
-  "118": "test_friends.py",
-  "119": "conftest.py",
-  "120": "security.py",
-  "121": "test_withdrawal.py",
-  "122": "test_notifications.py",
-  "123": "redis.py",
-  "124": "CallCounter",
-  "125": "AsyncSession",
-  "126": "AsyncClient"
+  "115": "users 테이블"
 }

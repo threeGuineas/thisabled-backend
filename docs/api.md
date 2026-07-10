@@ -1,7 +1,7 @@
-# ThisAbled API 명세 요약 (v2.1)
+# ThisAbled API 명세 요약 (v2.2)
 
 > **정본은 FastAPI OpenAPI**(`/docs`, `/api/v1/openapi.json`)이다. 이 문서는 프론트 온보딩용 요약.
-> 기준 명세: `docs/ThisAbled_기능명세서_v2_1.md` / 설계: `docs/superpowers/specs/2026-07-05-v2_1-refactor-design.md`
+> 기준 명세: `docs/ThisAbled_기능명세서_v2_2.md` / 설계: `docs/superpowers/specs/2026-07-05-v2_1-refactor-design.md`
 
 공통: prefix `/api/v1` · 인증 `Authorization: Bearer <access_token>` · 에러 `{"detail": "..."}` · 시간 UTC ISO-8601 · ID는 UUID.
 

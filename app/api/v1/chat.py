@@ -239,9 +239,14 @@ async def list_messages(
     redis: aioredis.Redis = Depends(get_redis),
 ):
     room = await _get_my_room(db, user, room_id)
-    if cursor is None:
+    other_id = counterpart_id(room, user.id)
+    relationship_hidden = other_id is None or await is_blocked_either(db, user.id, other_id)
+    if other_id is not None:
+        relationship_hidden = relationship_hidden or await has_active_restriction(db, user.id, other_id)
+        relationship_hidden = relationship_hidden or await has_active_restriction(db, other_id, user.id)
+    receipt_hidden = relationship_hidden or room.state == RoomState.request.value
+    if cursor is None and not receipt_hidden:
         read_message_id = await advance_read_cursor(db, room, user.id)
-        other_id = counterpart_id(room, user.id)
         if read_message_id is not None and other_id is not None:
             await publish_to_user(
                 redis,
@@ -254,7 +259,7 @@ async def list_messages(
                     },
                 },
             )
-    counterpart_read_id = await counterpart_read_message_id(db, room, user.id)
+    counterpart_read_id = None if receipt_hidden else await counterpart_read_message_id(db, room, user.id)
     q = (
         select(ChatMessage, User)
         .outerjoin(User, User.id == ChatMessage.sender_id)

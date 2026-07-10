@@ -22,7 +22,7 @@ from app.api.v1 import (
 from app.core.config import settings
 
 # Swagger 사이드바 그룹 설명 — 프론트가 어떤 묶음을 봐야 하는지 한눈에.
-# SSOT: docs/ThisAbled_기능명세서_v2_1.md / 요약: docs/api.md
+# SSOT: docs/ThisAbled_기능명세서_v2_2.md / 요약: docs/api.md
 tags_metadata = [
     {"name": "health", "description": "서버·DB·Redis 헬스체크. 배포/모니터링용."},
     {
@@ -76,7 +76,7 @@ tags_metadata = [
 ]
 
 description = """
-**ThisAbled** — 장애 유형별 적응형 UI 소셜 플랫폼 백엔드 API (기능명세서 v2.1 정합).
+**ThisAbled** — 장애 유형별 적응형 UI 소셜 플랫폼 백엔드 API (기능명세서 v2.2 정합).
 
 ### 인증 흐름
 1. `GET /api/v1/auth/{provider}/authorize` → 제공자 로그인 → `GET /api/v1/auth/{provider}/callback` → `FRONTEND_URL`로 302

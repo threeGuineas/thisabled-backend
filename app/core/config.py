@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     STT_MODEL: str = "whisper-1"
     MAX_AUDIO_MB: int = 25  # Whisper API 업로드 상한
 
-    # ── v2.1 (docs/ThisAbled_기능명세서_v2_1.md) ──────────────────────
+    # ── v2.2 (docs/ThisAbled_기능명세서_v2_2.md) ──────────────────────
     # OAuth (ACC-01): dev는 mock 제공자, 실키 발급 후 환경변수 교체
     OAUTH_MOCK: bool = True
     KAKAO_CLIENT_ID: str | None = None

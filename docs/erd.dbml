@@ -1,11 +1,11 @@
-// ThisAbled — ERD v3 (기능명세서 v2.1 정합)
+// ThisAbled — ERD v3 (기능명세서 v2.2 정합)
 // dbdiagram.io 에서 https://dbdiagram.io/d 에 붙여넣기하면 시각화됩니다.
 // 정본 마이그레이션: alembic/versions/84e58e0eefae_schema_v3_baseline.py
 
 Project ThisAbled {
   database_type: 'PostgreSQL'
   Note: '''
-    장애 유형별 적응형 UI 소셜 플랫폼 — 명세 v2.1 (docs/ThisAbled_기능명세서_v2_1.md)
+    장애 유형별 적응형 UI 소셜 플랫폼 — 명세 v2.2 (docs/ThisAbled_기능명세서_v2_2.md)
     - PK·FK 전부 UUID (forbidden_nicknames.id serial 예외)
     - enum은 DB에 varchar로 저장 (app/core/enums.py 가 정본)
     - 신고(reports)는 MVP 제외 (§3.2)
@@ -16,6 +16,7 @@ Enum ui_mode {
   visual        [note: '시각장애 모드']
   hearing       [note: '청각장애 모드']
   developmental [note: '발달장애 모드']
+  default       [note: '기본 모드 (GEN-01)']
 }
 
 Enum post_status {

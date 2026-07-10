@@ -2,7 +2,7 @@
 
 ## 프로젝트
 2026 한이음 드림업 / 장애 유형별 적응형 UI 소셜 플랫폼. 팀: FE 1 + BE 1(나) + AI 1.
-기능 축(명세 v2.1): MODE(시각·청각·발달 UI) · SAFE(채팅 텍스트 위험 감지, 자체 모델) · COMM(LLM 소통 코치) · MATCH(SBERT+LightGBM 친구 추천) · CAPTION(Whisper 자막) · VISION(사진 설명).
+기능 축(명세 v2.2): MODE(시각·청각·발달·기본 UI) · SAFE(채팅 텍스트 위험 감지, 자체 모델) · COMM(LLM 소통 코치) · MATCH(SBERT+LightGBM 친구 추천) · CAPTION(Whisper 자막) · VISION(사진 설명).
 
 ## 기술 스택
 Python 3.11 · FastAPI · PostgreSQL 15 · Redis 7 · Docker Compose · Alembic · WebSocket(+Redis pub/sub).
@@ -21,7 +21,7 @@ main은 항상 `pytest` 그린 유지.
 ## DB 스키마 (v3)
 - **PK·FK 전부 UUID.** 정본은 v3 baseline 마이그레이션: `alembic/versions/*_schema_v3_baseline.py` (v2 체인 폐기, drop & recreate)
 - 테이블: `users` `social_identities` `withdrawn_socials` `interest_tags` `user_interest_tags` `forbidden_nicknames` `user_mode_history` `posts` `post_media` `comments` `post_likes` `friend_requests` `friendships` `blocks` `chat_rooms` `chat_messages` `send_restrictions` `notifications` `ai_result_cache`
-- `ui_mode`: `visual` | `hearing` | `developmental` (v2.1에 'default' 없음, 가입 완료 시 필수)
+- `ui_mode`: `visual` | `hearing` | `developmental` | `default` (가입 완료 시 필수)
 - 신고(reports)는 MVP 제외(명세 §3.2) — 테이블·코드 없음. 만 나이·연령대는 저장하지 않고 `birth_date`로 매번 계산.
 - ERD 산출물: `docs/erd.dbml` / 설계 근거: `docs/superpowers/specs/2026-07-05-v2_1-refactor-design.md`
 
@@ -31,7 +31,7 @@ main은 항상 `pytest` 그린 유지.
 - **1 논리 변경 = 1 커밋**, 테스트 통과 후에만 커밋. 신규 엔드포인트·스키마 변경은 대응 테스트를 같은 커밋에.
 
 ## 명세 검증 (코드로 옮기기 전)
-**SSOT는 `docs/ThisAbled_기능명세서_v2_1.md`** (식별자: ACC/TAG/FEED/POST/VISION/CAPTION/MATCH/FRIEND/BLOCK/CHAT/SAFE/COMM). 새 기능·엔드포인트·스키마는 착수 전 `brainstorming` 스킬로 의도·설계를 먼저 끌어내고, 해당 식별자 절을 읽어 모호함을 제거한다. 코드부터 뛰어들지 않는다.
+**SSOT는 `docs/ThisAbled_기능명세서_v2_2.md`** (식별자: ACC/TAG/FEED/POST/VISION/CAPTION/MATCH/FRIEND/BLOCK/CHAT/SAFE/COMM). 새 기능·엔드포인트·스키마는 착수 전 `brainstorming` 스킬로 의도·설계를 먼저 끌어내고, 해당 식별자 절을 읽어 모호함을 제거한다. 코드부터 뛰어들지 않는다.
 명세 읽을 때 의심할 것: 수치 정합(한도·기간·길이) / 단정문 속 [TBD] / 식별자 중복 / 문서 간 동기화 / 시점 모순 / 코드–명세 드리프트.
 발견한 결함은 **코드에서 임의 우회 금지** — 명세서를 고치거나 팀 안건으로 올린다.
 
@@ -54,7 +54,7 @@ Conventional Commits: `<type>(<scope>): <subject>`
 `10/30` 🎯 최종 제출
 
 ## 링크
-- 기능명세서(SSOT): `docs/ThisAbled_기능명세서_v2_1.md`
+- 기능명세서(SSOT): `docs/ThisAbled_기능명세서_v2_2.md`
 - 노션 프로젝트: https://app.notion.com/p/2026-89bcd5876410821fa56c010112bf543c
 
 ## graphify

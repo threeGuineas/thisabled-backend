@@ -33,11 +33,14 @@ from app.services.events import publish_to_user
 from app.services.chat import (
     ChatPolicyError,
     SendRestricted,
+    advance_read_cursor,
+    counterpart_read_message_id,
     counterpart_id,
     get_or_create_room,
     has_active_restriction,
     release_restriction,
     send_text,
+    unread_count,
 )
 from app.services.quota import caption_key, try_consume
 from app.services.relations import are_friends, is_blocked_either
@@ -64,7 +67,12 @@ async def _get_my_room(db: AsyncSession, me: User, room_id: uuid.UUID) -> ChatRo
     return room
 
 
-def _message_out(m: ChatMessage, me_id: uuid.UUID, sender: User | None) -> MessageOut:
+def _message_out(
+    m: ChatMessage,
+    me_id: uuid.UUID,
+    sender: User | None,
+    counterpart_read_message_id: uuid.UUID | None = None,
+) -> MessageOut:
     mine = m.sender_id == me_id
     blurred = False
     content = m.content
@@ -81,6 +89,7 @@ def _message_out(m: ChatMessage, me_id: uuid.UUID, sender: User | None) -> Messa
         media_url=m.media_url, description=m.description,
         description_status=m.description_status, caption=m.caption,
         caption_status=m.caption_status, created_at=m.created_at,
+        is_read=mine and m.id == counterpart_read_message_id,
     )
 
 
@@ -94,6 +103,7 @@ async def _room_out(db: AsyncSession, me: User, room: ChatRoom) -> RoomOut:
         id=room.id, state=room.state, counterpart=_author(other),
         requested_by=room.requested_by, restricted_sender=restricted,
         accepted_at=room.accepted_at, created_at=room.created_at,
+        unread_count=await unread_count(db, room.id, me.id),
     )
 
 
@@ -130,7 +140,8 @@ async def list_rooms(
             .order_by(ChatRoom.created_at.desc())
         )
     ).scalars().all()
-    return RoomListOut(items=[await _room_out(db, user, r) for r in rooms])
+    items = [await _room_out(db, user, r) for r in rooms]
+    return RoomListOut(items=items, unread_total=sum(item.unread_count for item in items))
 
 
 @router.get("/requests", response_model=RoomListOut)
@@ -162,7 +173,10 @@ async def list_requests(
         ).scalar_one()
         if analyzed > 0:
             visible.append(await _room_out(db, user, room))
-    return RoomListOut(items=visible)
+    return RoomListOut(
+        items=visible,
+        unread_total=sum(item.unread_count for item in visible),
+    )
 
 
 @router.post("/rooms/{room_id}/messages", response_model=MessageOut, status_code=201)
@@ -222,8 +236,30 @@ async def list_messages(
     limit: int = Query(default=30, ge=1, le=100),
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
 ):
     room = await _get_my_room(db, user, room_id)
+    other_id = counterpart_id(room, user.id)
+    relationship_hidden = other_id is None or await is_blocked_either(db, user.id, other_id)
+    if other_id is not None:
+        relationship_hidden = relationship_hidden or await has_active_restriction(db, user.id, other_id)
+        relationship_hidden = relationship_hidden or await has_active_restriction(db, other_id, user.id)
+    receipt_hidden = relationship_hidden or room.state == RoomState.request.value
+    if cursor is None and not receipt_hidden:
+        read_message_id = await advance_read_cursor(db, room, user.id)
+        if read_message_id is not None and other_id is not None:
+            await publish_to_user(
+                redis,
+                other_id,
+                {
+                    "type": "chat.read",
+                    "payload": {
+                        "room_id": str(room.id),
+                        "message_id": str(read_message_id),
+                    },
+                },
+            )
+    counterpart_read_id = None if receipt_hidden else await counterpart_read_message_id(db, room, user.id)
     q = (
         select(ChatMessage, User)
         .outerjoin(User, User.id == ChatMessage.sender_id)
@@ -257,7 +293,11 @@ async def list_messages(
         last_msg = rows[-1][0]
         next_cursor = quote(f"{last_msg.created_at.isoformat()}|{last_msg.id}")
     return MessageListOut(
-        items=[_message_out(m, user.id, sender) for m, sender in rows], next_cursor=next_cursor
+        items=[
+            _message_out(m, user.id, sender, counterpart_read_id)
+            for m, sender in rows
+        ],
+        next_cursor=next_cursor,
     )
 
 
@@ -374,6 +414,7 @@ async def send_media(
         media_url=url,
         # 사진·동영상은 안전 분석 대상이 아님(SAFE-02) — 재분석 잡은 type=text만 다룬다
         safety_status=SafetyStatus.unanalyzed.value,
+        available_at=datetime.now(timezone.utc),
         description_status=(
             AiStatus.processing.value if media_type == MediaType.image.value else AiStatus.none.value
         ),

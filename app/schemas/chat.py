@@ -19,10 +19,12 @@ class RoomOut(BaseModel):
     restricted_sender: bool = False
     accepted_at: datetime | None
     created_at: datetime
+    unread_count: int = 0
 
 
 class RoomListOut(BaseModel):
     items: list[RoomOut]
+    unread_total: int = 0
 
 
 class MessageIn(BaseModel):
@@ -49,6 +51,7 @@ class MessageOut(BaseModel):
     caption: list | None = None
     caption_status: str = "none"
     created_at: datetime
+    is_read: bool = False
 
 
 class MessageListOut(BaseModel):

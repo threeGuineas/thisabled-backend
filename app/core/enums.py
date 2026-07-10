@@ -1,14 +1,15 @@
-"""v2.1 도메인 enum. DB에는 String으로 저장한다 (PG enum 마이그레이션 부담 회피)."""
+"""v2.2 도메인 enum. DB에는 String으로 저장한다 (PG enum 마이그레이션 부담 회피)."""
 
 from enum import StrEnum
 
 
 class UiMode(StrEnum):
-    """§5.2 — 가입 시 3종 중 하나 필수 선택. 'default' 없음."""
+    """§5.2·GEN-01 — 가입 시 4종 중 하나 필수 선택."""
 
     visual = "visual"
     hearing = "hearing"
     developmental = "developmental"
+    default = "default"
 
 
 class PostStatus(StrEnum):

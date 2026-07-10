@@ -6,6 +6,8 @@
 (forbidden_nicknames·interest_tags 시드처럼 이미 커밋된 데이터는 그대로 보인다.)
 """
 
+from urllib.parse import parse_qs, urlsplit
+
 import pytest
 import pytest_asyncio
 import redis.asyncio as aioredis
@@ -89,6 +91,14 @@ async def client(_session_factory, test_redis):
     await test_redis.aclose()
 
 
+def callback_params(resp) -> dict:
+    """콜백 302 리다이렉트(Location=FRONTEND_URL?…)의 쿼리 파라미터 → 단일값 dict."""
+    assert resp.status_code == 302, resp.text
+    location = resp.headers["location"]
+    assert location.startswith(settings.FRONTEND_URL), location
+    return {k: v[0] for k, v in parse_qs(urlsplit(location).query).items()}
+
+
 async def register(
     client: AsyncClient,
     nickname: str,
@@ -99,14 +109,14 @@ async def register(
 ) -> dict:
     """mock OAuth 가입 헬퍼 → {access_token, user_id, ...}."""
     cb = await client.get(f"/api/v1/auth/mock/callback?code=mock:{uid or nickname}")
-    assert cb.status_code == 200, cb.text
-    body = cb.json()
-    if not body["is_new_user"]:
-        return body
+    params = callback_params(cb)
+    if params["is_new_user"] == "false":
+        # 기가입자 — 리다이렉트 쿼리로 전달된 access_token만 보장된다
+        return {"is_new_user": False, "access_token": params["access_token"]}
     resp = await client.post(
         "/api/v1/auth/signup",
         json={
-            "signup_token": body["signup_token"],
+            "signup_token": params["signup_token"],
             "nickname": nickname,
             "birth_date": birth,
             "ui_mode": mode,

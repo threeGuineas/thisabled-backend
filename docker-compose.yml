@@ -73,6 +73,7 @@ services:
       dockerfile: serving/safety_server/Dockerfile
     environment:
       SAFE_MODEL_DIR: soyuncj/thisabled-safety-kcelectra
+      SAFE_MODEL_REVISION: ${SAFE_MODEL_REVISION:-}  # 특정 HF 커밋 핀 (빈값=main 최신)
       HF_TOKEN: ${HF_TOKEN}
     volumes:
       - hf_cache_safety:/srv/hf-cache

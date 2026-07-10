@@ -150,3 +150,50 @@ async def test_media_blocked_in_request_room(client, safety):
         files={"file": ("c.png", PNG, "image/png")}, headers=ha,
     )
     assert resp.status_code == 403  # 수락 전 사진·동영상 불가 (CHAT-02)
+
+
+async def test_opening_latest_messages_marks_unread_and_receipt(client, safety):
+    a = await register(client, "읽음발신")
+    b = await register(client, "읽음수신")
+    ha, hb = auth_header(a["access_token"]), auth_header(b["access_token"])
+    await make_friends(client, ha, hb, b["user_id"])
+    room_id = (await _room(client, ha, b["user_id"])).json()["id"]
+    await _send(client, ha, room_id, "첫 메시지")
+    await _send(client, ha, room_id, "두 번째 메시지")
+
+    inbox = (await client.get("/api/v1/chat/rooms", headers=hb)).json()
+    assert inbox["unread_total"] == 2
+    assert inbox["items"][0]["unread_count"] == 2
+    before = (await client.get(f"/api/v1/chat/rooms/{room_id}/messages", headers=ha)).json()
+    assert [item["is_read"] for item in before["items"]] == [False, False]
+
+    await client.get(f"/api/v1/chat/rooms/{room_id}/messages", headers=hb)
+    after = (await client.get(f"/api/v1/chat/rooms/{room_id}/messages", headers=ha)).json()
+    assert (await client.get("/api/v1/chat/rooms", headers=hb)).json()["unread_total"] == 0
+    assert [item["is_read"] for item in after["items"]] == [True, False]
+
+
+async def test_message_made_available_after_read_cursor_is_unread(client, db, safety):
+    a = await register(client, "보류발신")
+    b = await register(client, "보류수신")
+    ha, hb = auth_header(a["access_token"]), auth_header(b["access_token"])
+    await make_friends(client, ha, hb, b["user_id"])
+    room_id = (await _room(client, ha, b["user_id"])).json()["id"]
+
+    from app.models import ChatMessage
+    from datetime import datetime, timezone
+
+    delayed = ChatMessage(
+        room_id=__import__("uuid").UUID(room_id), sender_id=__import__("uuid").UUID(a["user_id"]),
+        type="text", content="나중에 표시되는 메시지", safety_status="pending",
+    )
+    db.add(delayed)
+    await db.commit()
+    await _send(client, ha, room_id, "먼저 읽은 메시지")
+    await client.get(f"/api/v1/chat/rooms/{room_id}/messages", headers=hb)
+    delayed.safety_status = "safe"
+    delayed.available_at = datetime.now(timezone.utc)
+    await db.commit()
+
+    inbox = (await client.get("/api/v1/chat/rooms", headers=hb)).json()
+    assert inbox["unread_total"] == 1

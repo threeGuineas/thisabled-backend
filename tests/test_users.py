@@ -59,6 +59,14 @@ async def test_mode_change_records_history(client, db):
     assert count == 1
 
 
+async def test_default_mode_is_accepted_at_signup_and_mode_change(client):
+    body = await register(client, "기본모드", mode="default")
+    h = auth_header(body["access_token"])
+    assert (await client.get("/api/v1/users/me", headers=h)).json()["ui_mode"] == "default"
+    changed = await client.put("/api/v1/users/me/mode", json={"ui_mode": "visual"}, headers=h)
+    assert changed.status_code == 200
+
+
 async def test_settings_update(client):
     body = await register(client, "설정유저")
     h = auth_header(body["access_token"])

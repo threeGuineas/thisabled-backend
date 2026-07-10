@@ -6,7 +6,7 @@ from sqlalchemy import select
 
 from app.models import ChatMessage, ChatRoom, Post, User, WithdrawnSocial
 from app.core.pairs import normalize_pair
-from tests.conftest import auth_header, register
+from tests.conftest import auth_header, callback_params, register
 
 
 async def _make_post(db, author_id) -> uuid.UUID:
@@ -81,7 +81,7 @@ async def test_withdraw_invalidates_token_and_blocks_rejoin(client):
     # 동일 소셜 계정 30일 재가입 제한 (§15)
     cb = await client.get("/api/v1/auth/mock/callback?code=mock:wd-d")
     signup = await client.post("/api/v1/auth/signup", json={
-        "signup_token": cb.json()["signup_token"], "nickname": "재가입D",
+        "signup_token": callback_params(cb)["signup_token"], "nickname": "재가입D",
         "birth_date": "2000-01-01", "ui_mode": "visual",
         "agreements": {"terms": True, "privacy": True, "ai_notice": True},
     })

@@ -3,14 +3,15 @@
 import uuid
 from datetime import datetime, timedelta, timezone
 
-from sqlalchemy import func, select
+from sqlalchemy import and_, func, or_, select, tuple_
+from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.age import is_minor
 from app.core.config import settings
 from app.core.enums import MessageType, RoomState, SafetyStatus
 from app.core.pairs import normalize_pair
-from app.models import ChatMessage, ChatRoom, SendRestriction, User
+from app.models import ChatMessage, ChatReadState, ChatRoom, SendRestriction, User
 from app.services.relations import are_friends, is_blocked_either
 from app.services.safety import SafetyClient, SafetyUnavailable
 
@@ -25,6 +26,92 @@ class SendRestricted(Exception):
 
 def counterpart_id(room: ChatRoom, me_id: uuid.UUID) -> uuid.UUID | None:
     return room.user_b if room.user_a == me_id else room.user_a
+
+
+async def _read_state(
+    db: AsyncSession, room_id: uuid.UUID, user_id: uuid.UUID
+) -> ChatReadState | None:
+    return (
+        await db.execute(
+            select(ChatReadState).where(
+                ChatReadState.room_id == room_id,
+                ChatReadState.user_id == user_id,
+            )
+        )
+    ).scalar_one_or_none()
+
+
+async def unread_count(db: AsyncSession, room_id: uuid.UUID, user_id: uuid.UUID) -> int:
+    """사용자의 읽음 커서 뒤에 있는 표시 가능한 수신 메시지 수."""
+    state = await _read_state(db, room_id, user_id)
+    query = select(func.count()).select_from(ChatMessage).where(
+        ChatMessage.room_id == room_id,
+        ChatMessage.sender_id.is_distinct_from(user_id),
+        ChatMessage.safety_status != SafetyStatus.pending.value,
+    )
+    if state is not None and state.last_read_available_at is not None and state.last_read_message_id is not None:
+        query = query.where(
+            or_(
+                ChatMessage.available_at > state.last_read_available_at,
+                and_(
+                    ChatMessage.available_at == state.last_read_available_at,
+                    ChatMessage.id > state.last_read_message_id,
+                ),
+            )
+        )
+    return (await db.execute(query)).scalar_one()
+
+
+async def counterpart_read_message_id(
+    db: AsyncSession, room: ChatRoom, user_id: uuid.UUID
+) -> uuid.UUID | None:
+    other_id = counterpart_id(room, user_id)
+    if other_id is None:
+        return None
+    state = await _read_state(db, room.id, other_id)
+    return state.last_read_message_id if state is not None else None
+
+
+async def advance_read_cursor(
+    db: AsyncSession, room: ChatRoom, user_id: uuid.UUID
+) -> uuid.UUID | None:
+    latest = (
+        await db.execute(
+            select(ChatMessage)
+            .where(
+                ChatMessage.room_id == room.id,
+                ChatMessage.sender_id.is_distinct_from(user_id),
+                ChatMessage.safety_status != SafetyStatus.pending.value,
+                ChatMessage.available_at.is_not(None),
+            )
+            .order_by(ChatMessage.available_at.desc(), ChatMessage.id.desc())
+            .limit(1)
+        )
+    ).scalar_one_or_none()
+    if latest is None:
+        return None
+
+    statement = insert(ChatReadState).values(
+        id=uuid.uuid4(),
+        room_id=room.id,
+        user_id=user_id,
+        last_read_message_id=latest.id,
+        last_read_available_at=latest.available_at,
+    )
+    statement = statement.on_conflict_do_update(
+        index_elements=[ChatReadState.room_id, ChatReadState.user_id],
+        set_={
+            "last_read_message_id": statement.excluded.last_read_message_id,
+            "last_read_available_at": statement.excluded.last_read_available_at,
+        },
+        where=tuple_(
+            ChatReadState.last_read_available_at, ChatReadState.last_read_message_id
+        )
+        < tuple_(statement.excluded.last_read_available_at, statement.excluded.last_read_message_id),
+    ).returning(ChatReadState.last_read_message_id)
+    advanced_message_id = (await db.execute(statement)).scalar_one_or_none()
+    await db.commit()
+    return advanced_message_id
 
 
 async def get_or_create_room(db: AsyncSession, me: User, other: User) -> ChatRoom:
@@ -151,6 +238,7 @@ async def send_text(
         type=MessageType.text.value,
         content=content,
         safety_status=status,
+        available_at=None if status == SafetyStatus.pending.value else datetime.now(timezone.utc),
     )
     db.add(message)
     await db.flush()
@@ -202,11 +290,19 @@ async def reanalyze_unanalyzed(session_factory, redis, safety: SafetyClient) -> 
                 )
             except SafetyUnavailable:
                 continue  # 아직 복구 전 — 다음 주기에 재시도
+            previous_status = msg.safety_status
             msg.safety_status = (
                 SafetyStatus.safe.value if verdict == "safe" else SafetyStatus.flagged.value
             )
+            if previous_status == SafetyStatus.pending.value:
+                msg.available_at = datetime.now(timezone.utc)
             await db.commit()
             processed += 1
+            if previous_status == SafetyStatus.pending.value:
+                await publish_to_user(
+                    redis, other_id,
+                    {"type": "chat.message", "payload": {"room_id": str(msg.room_id), "message_id": str(msg.id)}},
+                )
             if msg.safety_status == SafetyStatus.flagged.value:
                 # 소급 블러 + 추가 알림 (§18.3)
                 await noti.notify(

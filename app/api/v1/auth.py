@@ -1,16 +1,19 @@
 """ACC-01/02 — 소셜 OAuth 전용 인증.
 
-흐름: authorize → 제공자 로그인 → callback
-  - 기가입자: 즉시 로그인 (access body + refresh httpOnly 쿠키)
-  - 신규: signup_token(30분) → POST /signup (추가 정보 + 약관) → 가입 완료
+흐름: authorize → 제공자 로그인 → callback → FRONTEND_URL로 302
+  - 기가입자: ?is_new_user=false&access_token=… (+ refresh httpOnly 쿠키)
+  - 신규: ?is_new_user=true&signup_token=…(30분) → POST /signup (추가 정보 + 약관) → 가입 완료
+  - 오류·거부: ?error={provider}_failed
 """
 
 import secrets
 import uuid
 from datetime import datetime, timedelta, timezone
+from urllib.parse import urlencode
 
 import httpx
 from fastapi import APIRouter, Cookie, Depends, HTTPException, Response
+from fastapi.responses import RedirectResponse
 from jose import JWTError
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -26,7 +29,7 @@ from app.core.security import (
 )
 from app.db.session import get_db
 from app.models import SocialIdentity, User, WithdrawnSocial
-from app.schemas.auth import AccessTokenOut, AuthorizeOut, CallbackOut, SignupIn, TokenOut
+from app.schemas.auth import AccessTokenOut, AuthorizeOut, SignupIn, TokenOut
 from app.services.nickname import validate_nickname
 from app.services.oauth import get_provider
 
@@ -54,16 +57,29 @@ async def authorize(provider: str):
     return AuthorizeOut(authorize_url=p.authorize_url(state=secrets.token_urlsafe(16)))
 
 
-@router.get("/{provider}/callback", response_model=CallbackOut)
-async def callback(provider: str, code: str, response: Response, db: AsyncSession = Depends(get_db)):
+def _frontend_redirect(**params: str) -> RedirectResponse:
+    """콜백 결과를 프론트 SPA로 302 전달 — 브라우저가 직접 호출하므로 JSON 대신 리다이렉트."""
+    base = settings.FRONTEND_URL
+    sep = "&" if "?" in base else "?"
+    return RedirectResponse(f"{base}{sep}{urlencode(params)}", status_code=302)
+
+
+@router.get("/{provider}/callback")
+async def callback(
+    provider: str,
+    code: str | None = None,
+    error: str | None = None,
+    db: AsyncSession = Depends(get_db),
+):
     p = get_provider(provider)
+    if error is not None or code is None:
+        # 사용자가 동의 화면에서 거부했거나 제공자가 error로 돌려보낸 경우
+        return _frontend_redirect(error=f"{provider}_failed")
     try:
         info = await p.exchange_code(code)
-    except ValueError:
-        # 만료·재사용된 code 등 제공자가 거부한 요청
-        raise HTTPException(status_code=400, detail="소셜 인증에 실패했습니다. 다시 시도해 주세요")
-    except httpx.RequestError:
-        raise HTTPException(status_code=502, detail="소셜 로그인 제공자에 연결할 수 없습니다")
+    except (ValueError, httpx.RequestError):
+        # 만료·재사용 code 거부 또는 제공자 연결 불가 — 프론트에서 재시도 안내
+        return _frontend_redirect(error=f"{provider}_failed")
 
     identity = (
         await db.execute(
@@ -76,18 +92,19 @@ async def callback(provider: str, code: str, response: Response, db: AsyncSessio
 
     if identity is None:
         # 신규 — 추가 정보 입력 단계로 (ACC-01 시나리오 3)
-        return CallbackOut(
-            is_new_user=True,
+        return _frontend_redirect(
+            is_new_user="true",
             signup_token=create_signup_token(info.provider, info.provider_user_id),
         )
 
     user = await db.get(User, identity.user_id)
     user.last_login_at = datetime.now(timezone.utc)
     await db.commit()
-    _set_refresh_cookie(response, user.id)
-    return CallbackOut(
-        is_new_user=False, access_token=create_access_token(str(user.id)), user_id=user.id
+    redirect = _frontend_redirect(
+        is_new_user="false", access_token=create_access_token(str(user.id))
     )
+    _set_refresh_cookie(redirect, user.id)
+    return redirect
 
 
 @router.post("/signup", response_model=TokenOut, status_code=201)

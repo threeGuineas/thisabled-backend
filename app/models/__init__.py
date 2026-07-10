@@ -1,4 +1,4 @@
-from app.models.chat import ChatMessage, ChatRoom, SendRestriction
+from app.models.chat import ChatMessage, ChatReadState, ChatRoom, SendRestriction
 from app.models.misc import AiResultCache, Notification
 from app.models.post import Comment, Post, PostLike, PostMedia
 from app.models.social import Block, FriendRequest, Friendship
@@ -29,6 +29,7 @@ __all__ = [
     "Block",
     "ChatRoom",
     "ChatMessage",
+    "ChatReadState",
     "SendRestriction",
     "Notification",
     "AiResultCache",

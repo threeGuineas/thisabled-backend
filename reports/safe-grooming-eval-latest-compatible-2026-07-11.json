@@ -1,0 +1,814 @@
+{
+  "evaluation": "safe_grooming_synthetic_v1",
+  "input": "/app/tests/fixtures/safe_grooming_cases.jsonl",
+  "server": "http://thisabled-safe-current-compat:9001",
+  "limitations": [
+    "synthetic evaluation only; it does not replace real-data validation",
+    "single-message cases cannot measure multi-turn grooming context"
+  ],
+  "summary": {
+    "counts": {
+      "total": 38,
+      "valid": 38,
+      "errors": 0
+    },
+    "overall": {
+      "support": 38,
+      "flagged": 27,
+      "positive_support": 26,
+      "recall": 0.8846,
+      "fnr": 0.1154,
+      "boundary_support": 12,
+      "fpr": 0.3333
+    },
+    "by_subcategory": {
+      "combined": {
+        "support": 5,
+        "flagged": 5,
+        "positive_support": 5,
+        "recall": 1.0,
+        "fnr": 0.0,
+        "boundary_support": 0,
+        "fpr": null
+      },
+      "dependency": {
+        "support": 5,
+        "flagged": 5,
+        "positive_support": 5,
+        "recall": 1.0,
+        "fnr": 0.0,
+        "boundary_support": 0,
+        "fpr": null
+      },
+      "intimacy": {
+        "support": 5,
+        "flagged": 4,
+        "positive_support": 5,
+        "recall": 0.8,
+        "fnr": 0.2,
+        "boundary_support": 0,
+        "fpr": null
+      },
+      "isolation": {
+        "support": 5,
+        "flagged": 5,
+        "positive_support": 5,
+        "recall": 1.0,
+        "fnr": 0.0,
+        "boundary_support": 0,
+        "fpr": null
+      },
+      "minimal_signal": {
+        "support": 2,
+        "flagged": 0,
+        "positive_support": 2,
+        "recall": 0.0,
+        "fnr": 1.0,
+        "boundary_support": 0,
+        "fpr": null
+      },
+      "mutual_friendship": {
+        "support": 4,
+        "flagged": 2,
+        "positive_support": 0,
+        "recall": null,
+        "fnr": null,
+        "boundary_support": 4,
+        "fpr": 0.5
+      },
+      "ordinary_encouragement": {
+        "support": 4,
+        "flagged": 1,
+        "positive_support": 0,
+        "recall": null,
+        "fnr": null,
+        "boundary_support": 4,
+        "fpr": 0.25
+      },
+      "professional_help": {
+        "support": 4,
+        "flagged": 1,
+        "positive_support": 0,
+        "recall": null,
+        "fnr": null,
+        "boundary_support": 4,
+        "fpr": 0.25
+      },
+      "secrecy_boundary": {
+        "support": 4,
+        "flagged": 4,
+        "positive_support": 4,
+        "recall": 1.0,
+        "fnr": 0.0,
+        "boundary_support": 0,
+        "fpr": null
+      }
+    },
+    "by_receiver": {
+      "minor": {
+        "support": 23,
+        "flagged": 19,
+        "positive_support": 17,
+        "recall": 0.8824,
+        "fnr": 0.1176,
+        "boundary_support": 6,
+        "fpr": 0.6667
+      },
+      "adult": {
+        "support": 15,
+        "flagged": 8,
+        "positive_support": 9,
+        "recall": 0.8889,
+        "fnr": 0.1111,
+        "boundary_support": 6,
+        "fpr": 0.0
+      }
+    }
+  },
+  "results": [
+    {
+      "case_id": "intimacy-01",
+      "expected_risk": true,
+      "subcategory": "intimacy",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9961,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0039,
+          "주의": 0.9961
+        },
+        "latency_ms": 62.7
+      }
+    },
+    {
+      "case_id": "intimacy-02",
+      "expected_risk": true,
+      "subcategory": "intimacy",
+      "receiver_is_minor": false,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9141,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0859,
+          "주의": 0.9141
+        },
+        "latency_ms": 56.4
+      }
+    },
+    {
+      "case_id": "intimacy-03",
+      "expected_risk": true,
+      "subcategory": "intimacy",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9976,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0024,
+          "주의": 0.9976
+        },
+        "latency_ms": 56.4
+      }
+    },
+    {
+      "case_id": "intimacy-04",
+      "expected_risk": true,
+      "subcategory": "intimacy",
+      "receiver_is_minor": false,
+      "verdict": "safe",
+      "response": {
+        "verdict": "safe",
+        "rule_assist": false,
+        "risk_prob": 0.3759,
+        "level": "정상",
+        "probs": {
+          "정상": 0.6241,
+          "주의": 0.3759
+        },
+        "latency_ms": 58.0
+      }
+    },
+    {
+      "case_id": "intimacy-05",
+      "expected_risk": true,
+      "subcategory": "intimacy",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9972,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0028,
+          "주의": 0.9972
+        },
+        "latency_ms": 56.4
+      }
+    },
+    {
+      "case_id": "isolation-01",
+      "expected_risk": true,
+      "subcategory": "isolation",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9902,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0098,
+          "주의": 0.9902
+        },
+        "latency_ms": 55.8
+      }
+    },
+    {
+      "case_id": "isolation-02",
+      "expected_risk": true,
+      "subcategory": "isolation",
+      "receiver_is_minor": false,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9962,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0038,
+          "주의": 0.9962
+        },
+        "latency_ms": 55.1
+      }
+    },
+    {
+      "case_id": "isolation-03",
+      "expected_risk": true,
+      "subcategory": "isolation",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9968,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0032,
+          "주의": 0.9968
+        },
+        "latency_ms": 54.8
+      }
+    },
+    {
+      "case_id": "isolation-04",
+      "expected_risk": true,
+      "subcategory": "isolation",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9435,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0565,
+          "주의": 0.9435
+        },
+        "latency_ms": 55.2
+      }
+    },
+    {
+      "case_id": "isolation-05",
+      "expected_risk": true,
+      "subcategory": "isolation",
+      "receiver_is_minor": false,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9975,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0025,
+          "주의": 0.9975
+        },
+        "latency_ms": 56.5
+      }
+    },
+    {
+      "case_id": "dependency-01",
+      "expected_risk": true,
+      "subcategory": "dependency",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9975,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0025,
+          "주의": 0.9975
+        },
+        "latency_ms": 55.5
+      }
+    },
+    {
+      "case_id": "dependency-02",
+      "expected_risk": true,
+      "subcategory": "dependency",
+      "receiver_is_minor": false,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9979,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0021,
+          "주의": 0.9979
+        },
+        "latency_ms": 57.6
+      }
+    },
+    {
+      "case_id": "dependency-03",
+      "expected_risk": true,
+      "subcategory": "dependency",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9979,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0021,
+          "주의": 0.9979
+        },
+        "latency_ms": 62.7
+      }
+    },
+    {
+      "case_id": "dependency-04",
+      "expected_risk": true,
+      "subcategory": "dependency",
+      "receiver_is_minor": false,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9978,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0022,
+          "주의": 0.9978
+        },
+        "latency_ms": 61.9
+      }
+    },
+    {
+      "case_id": "dependency-05",
+      "expected_risk": true,
+      "subcategory": "dependency",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9973,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0027,
+          "주의": 0.9973
+        },
+        "latency_ms": 60.0
+      }
+    },
+    {
+      "case_id": "secrecy-01",
+      "expected_risk": true,
+      "subcategory": "secrecy_boundary",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9976,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0024,
+          "주의": 0.9976
+        },
+        "latency_ms": 57.1
+      }
+    },
+    {
+      "case_id": "secrecy-02",
+      "expected_risk": true,
+      "subcategory": "secrecy_boundary",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.998,
+        "level": "주의",
+        "probs": {
+          "정상": 0.002,
+          "주의": 0.998
+        },
+        "latency_ms": 56.6
+      }
+    },
+    {
+      "case_id": "secrecy-03",
+      "expected_risk": true,
+      "subcategory": "secrecy_boundary",
+      "receiver_is_minor": false,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.998,
+        "level": "주의",
+        "probs": {
+          "정상": 0.002,
+          "주의": 0.998
+        },
+        "latency_ms": 57.9
+      }
+    },
+    {
+      "case_id": "secrecy-04",
+      "expected_risk": true,
+      "subcategory": "secrecy_boundary",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9977,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0023,
+          "주의": 0.9977
+        },
+        "latency_ms": 56.1
+      }
+    },
+    {
+      "case_id": "combined-01",
+      "expected_risk": true,
+      "subcategory": "combined",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.998,
+        "level": "주의",
+        "probs": {
+          "정상": 0.002,
+          "주의": 0.998
+        },
+        "latency_ms": 58.4
+      }
+    },
+    {
+      "case_id": "combined-02",
+      "expected_risk": true,
+      "subcategory": "combined",
+      "receiver_is_minor": false,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9978,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0022,
+          "주의": 0.9978
+        },
+        "latency_ms": 58.1
+      }
+    },
+    {
+      "case_id": "combined-03",
+      "expected_risk": true,
+      "subcategory": "combined",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.998,
+        "level": "주의",
+        "probs": {
+          "정상": 0.002,
+          "주의": 0.998
+        },
+        "latency_ms": 55.4
+      }
+    },
+    {
+      "case_id": "combined-04",
+      "expected_risk": true,
+      "subcategory": "combined",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9977,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0023,
+          "주의": 0.9977
+        },
+        "latency_ms": 57.3
+      }
+    },
+    {
+      "case_id": "combined-05",
+      "expected_risk": true,
+      "subcategory": "combined",
+      "receiver_is_minor": false,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9975,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0025,
+          "주의": 0.9975
+        },
+        "latency_ms": 58.7
+      }
+    },
+    {
+      "case_id": "minimal-01",
+      "expected_risk": true,
+      "subcategory": "minimal_signal",
+      "receiver_is_minor": true,
+      "verdict": "safe",
+      "response": {
+        "verdict": "safe",
+        "rule_assist": false,
+        "risk_prob": 0.0614,
+        "level": "정상",
+        "probs": {
+          "정상": 0.9386,
+          "주의": 0.0614
+        },
+        "latency_ms": 54.5
+      }
+    },
+    {
+      "case_id": "minimal-02",
+      "expected_risk": true,
+      "subcategory": "minimal_signal",
+      "receiver_is_minor": true,
+      "verdict": "safe",
+      "response": {
+        "verdict": "safe",
+        "rule_assist": false,
+        "risk_prob": 0.0333,
+        "level": "정상",
+        "probs": {
+          "정상": 0.9667,
+          "주의": 0.0333
+        },
+        "latency_ms": 53.5
+      }
+    },
+    {
+      "case_id": "friendship-01",
+      "expected_risk": false,
+      "subcategory": "mutual_friendship",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9562,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0438,
+          "주의": 0.9562
+        },
+        "latency_ms": 55.4
+      }
+    },
+    {
+      "case_id": "friendship-02",
+      "expected_risk": false,
+      "subcategory": "mutual_friendship",
+      "receiver_is_minor": false,
+      "verdict": "safe",
+      "response": {
+        "verdict": "safe",
+        "rule_assist": false,
+        "risk_prob": 0.0044,
+        "level": "정상",
+        "probs": {
+          "정상": 0.9956,
+          "주의": 0.0044
+        },
+        "latency_ms": 55.1
+      }
+    },
+    {
+      "case_id": "friendship-03",
+      "expected_risk": false,
+      "subcategory": "mutual_friendship",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.841,
+        "level": "주의",
+        "probs": {
+          "정상": 0.159,
+          "주의": 0.841
+        },
+        "latency_ms": 55.7
+      }
+    },
+    {
+      "case_id": "friendship-04",
+      "expected_risk": false,
+      "subcategory": "mutual_friendship",
+      "receiver_is_minor": false,
+      "verdict": "safe",
+      "response": {
+        "verdict": "safe",
+        "rule_assist": false,
+        "risk_prob": 0.0103,
+        "level": "정상",
+        "probs": {
+          "정상": 0.9897,
+          "주의": 0.0103
+        },
+        "latency_ms": 55.4
+      }
+    },
+    {
+      "case_id": "professional-01",
+      "expected_risk": false,
+      "subcategory": "professional_help",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9889,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0111,
+          "주의": 0.9889
+        },
+        "latency_ms": 58.4
+      }
+    },
+    {
+      "case_id": "professional-02",
+      "expected_risk": false,
+      "subcategory": "professional_help",
+      "receiver_is_minor": false,
+      "verdict": "safe",
+      "response": {
+        "verdict": "safe",
+        "rule_assist": false,
+        "risk_prob": 0.009,
+        "level": "정상",
+        "probs": {
+          "정상": 0.991,
+          "주의": 0.009
+        },
+        "latency_ms": 61.1
+      }
+    },
+    {
+      "case_id": "professional-03",
+      "expected_risk": false,
+      "subcategory": "professional_help",
+      "receiver_is_minor": true,
+      "verdict": "safe",
+      "response": {
+        "verdict": "safe",
+        "rule_assist": false,
+        "risk_prob": 0.0644,
+        "level": "정상",
+        "probs": {
+          "정상": 0.9356,
+          "주의": 0.0644
+        },
+        "latency_ms": 63.4
+      }
+    },
+    {
+      "case_id": "professional-04",
+      "expected_risk": false,
+      "subcategory": "professional_help",
+      "receiver_is_minor": false,
+      "verdict": "safe",
+      "response": {
+        "verdict": "safe",
+        "rule_assist": false,
+        "risk_prob": 0.4167,
+        "level": "정상",
+        "probs": {
+          "정상": 0.5833,
+          "주의": 0.4167
+        },
+        "latency_ms": 61.2
+      }
+    },
+    {
+      "case_id": "encouragement-01",
+      "expected_risk": false,
+      "subcategory": "ordinary_encouragement",
+      "receiver_is_minor": true,
+      "verdict": "flagged",
+      "response": {
+        "verdict": "flagged",
+        "rule_assist": false,
+        "risk_prob": 0.9977,
+        "level": "주의",
+        "probs": {
+          "정상": 0.0023,
+          "주의": 0.9977
+        },
+        "latency_ms": 60.4
+      }
+    },
+    {
+      "case_id": "encouragement-02",
+      "expected_risk": false,
+      "subcategory": "ordinary_encouragement",
+      "receiver_is_minor": false,
+      "verdict": "safe",
+      "response": {
+        "verdict": "safe",
+        "rule_assist": false,
+        "risk_prob": 0.0062,
+        "level": "정상",
+        "probs": {
+          "정상": 0.9938,
+          "주의": 0.0062
+        },
+        "latency_ms": 59.8
+      }
+    },
+    {
+      "case_id": "encouragement-03",
+      "expected_risk": false,
+      "subcategory": "ordinary_encouragement",
+      "receiver_is_minor": true,
+      "verdict": "safe",
+      "response": {
+        "verdict": "safe",
+        "rule_assist": false,
+        "risk_prob": 0.0089,
+        "level": "정상",
+        "probs": {
+          "정상": 0.9911,
+          "주의": 0.0089
+        },
+        "latency_ms": 58.1
+      }
+    },
+    {
+      "case_id": "encouragement-04",
+      "expected_risk": false,
+      "subcategory": "ordinary_encouragement",
+      "receiver_is_minor": false,
+      "verdict": "safe",
+      "response": {
+        "verdict": "safe",
+        "rule_assist": false,
+        "risk_prob": 0.0782,
+        "level": "정상",
+        "probs": {
+          "정상": 0.9218,
+          "주의": 0.0782
+        },
+        "latency_ms": 57.8
+      }
+    }
+  ]
+}

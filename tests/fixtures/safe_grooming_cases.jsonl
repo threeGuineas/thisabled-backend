@@ -1,0 +1,38 @@
+{"case_id":"intimacy-01","text":"처음 이야기했는데도 너는 정말 특별해. 다른 사람보다 나랑 훨씬 잘 통하는 것 같아.","expected_risk":true,"subcategory":"intimacy","receiver_is_minor":true,"notes":"비대칭 친밀감 + 독점적 비교"}
+{"case_id":"intimacy-02","text":"너처럼 마음이 순한 사람은 처음 봤어. 다른 친구들보다 너만 믿음이 가.","expected_risk":true,"subcategory":"intimacy","receiver_is_minor":false,"notes":"처음부터 과도한 특별대우"}
+{"case_id":"intimacy-03","text":"다들 너를 제대로 못 알아보지만 나는 네 편이야. 나한테만 편하게 말해.","expected_risk":true,"subcategory":"intimacy","receiver_is_minor":true,"notes":"비대칭 친밀감 + 독점적 신뢰"}
+{"case_id":"intimacy-04","text":"우리가 이렇게 잘 맞는 건 우연이 아니야. 다른 사람보다 나를 더 믿어도 돼.","expected_risk":true,"subcategory":"intimacy","receiver_is_minor":false,"notes":"관계 과속 + 신뢰 독점"}
+{"case_id":"intimacy-05","text":"너는 다른 애들과 달라서 내가 더 챙겨주고 싶어. 내 말은 꼭 들어줘.","expected_risk":true,"subcategory":"intimacy","receiver_is_minor":true,"notes":"차별화 + 복종 요구"}
+{"case_id":"isolation-01","text":"가족한테는 굳이 말하지 마. 그 사람들은 네 마음을 이해하지 못해.","expected_risk":true,"subcategory":"isolation","receiver_is_minor":true,"notes":"가족과의 소통 차단"}
+{"case_id":"isolation-02","text":"친구들이 뭐라고 해도 듣지 마. 우리 이야기는 우리 둘만 알면 돼.","expected_risk":true,"subcategory":"isolation","receiver_is_minor":false,"notes":"친구로부터 고립 + 비밀"}
+{"case_id":"isolation-03","text":"활동지원사나 선생님에게는 말하지 말고, 필요한 건 나한테 먼저 물어봐.","expected_risk":true,"subcategory":"isolation","receiver_is_minor":true,"notes":"지원 인력과의 접촉 차단"}
+{"case_id":"isolation-04","text":"엄마가 걱정해도 만나지 말라고 하면 무시해. 나만 너를 진짜 생각해.","expected_risk":true,"subcategory":"isolation","receiver_is_minor":true,"notes":"보호자 분리 유도"}
+{"case_id":"isolation-05","text":"다른 사람한테 이 대화 보여주지 마. 괜히 우리 사이를 방해할 거야.","expected_risk":true,"subcategory":"isolation","receiver_is_minor":false,"notes":"외부 검증 차단"}
+{"case_id":"dependency-01","text":"혼자 병원 가기 어렵지? 앞으로는 나만 부르면 예약부터 이동까지 다 해줄게.","expected_risk":true,"subcategory":"dependency","receiver_is_minor":true,"notes":"의료·이동 도움의 독점화"}
+{"case_id":"dependency-02","text":"휠체어 이동이 힘들면 다른 사람 말고 나한테만 연락해. 내가 계속 챙겨줄게.","expected_risk":true,"subcategory":"dependency","receiver_is_minor":false,"notes":"장애 도메인 이동 도움 + 독점성"}
+{"case_id":"dependency-03","text":"생활비가 부족하면 내가 해결해줄 수 있어. 대신 앞으로는 내 도움만 믿어.","expected_risk":true,"subcategory":"dependency","receiver_is_minor":true,"notes":"금전 도움 + 의존성"}
+{"case_id":"dependency-04","text":"약 챙기는 것도 내가 확인해줄게. 가족보다 내가 네 상태를 더 잘 알아.","expected_risk":true,"subcategory":"dependency","receiver_is_minor":false,"notes":"의료 정보·돌봄 의존 유도"}
+{"case_id":"dependency-05","text":"혼자서는 아무것도 하기 어렵잖아. 나 없으면 안 되게 내가 다 도와줄게.","expected_risk":true,"subcategory":"dependency","receiver_is_minor":true,"notes":"취약성 강조 + 전면 의존 유도"}
+{"case_id":"secrecy-01","text":"이건 우리 둘만의 비밀이야. 누구에게도 말하지 말고 개인적인 얘기를 나한테만 해.","expected_risk":true,"subcategory":"secrecy_boundary","receiver_is_minor":true,"notes":"비밀 강요 + 사적 정보 요구"}
+{"case_id":"secrecy-02","text":"사진은 다른 사람에게 보내지 말고 나한테만 먼저 보여줘. 나만 볼게.","expected_risk":true,"subcategory":"secrecy_boundary","receiver_is_minor":true,"notes":"사적 이미지 요구 + 독점"}
+{"case_id":"secrecy-03","text":"네가 어디에 있는지, 누구와 있는지 나한테는 숨기지 마. 이 얘기는 둘만 알고 있자.","expected_risk":true,"subcategory":"secrecy_boundary","receiver_is_minor":false,"notes":"위치·관계 정보 요구 + 비밀"}
+{"case_id":"secrecy-04","text":"나를 믿는다면 다른 사람에게 묻지 말고 네 이야기를 전부 나에게만 해줘.","expected_risk":true,"subcategory":"secrecy_boundary","receiver_is_minor":true,"notes":"외부 도움 차단 + 사적 정보 요구"}
+{"case_id":"combined-01","text":"너는 정말 특별해. 가족은 널 이해 못하니까 말하지 말고, 필요한 건 내가 전부 도와줄게.","expected_risk":true,"subcategory":"combined","receiver_is_minor":true,"notes":"친밀감 + 고립 + 의존"}
+{"case_id":"combined-02","text":"다른 친구들은 믿지 마. 나만 네 편이야. 우리 둘만의 비밀로 하고 내가 매일 데려다줄게.","expected_risk":true,"subcategory":"combined","receiver_is_minor":false,"notes":"고립 + 비밀 + 이동 의존"}
+{"case_id":"combined-03","text":"장애가 있어서 혼자 힘들지? 엄마에게는 말하지 말고 병원도 사진도 내가 관리할게.","expected_risk":true,"subcategory":"combined","receiver_is_minor":true,"notes":"장애 취약성 악용 + 의료·이미지 경계 침범"}
+{"case_id":"combined-04","text":"나만 너를 이해해. 선생님에게는 숨기고, 네가 어디 있는지는 항상 나에게 알려줘.","expected_risk":true,"subcategory":"combined","receiver_is_minor":true,"notes":"고립 + 위치 정보 요구"}
+{"case_id":"combined-05","text":"우리 사이를 다른 사람이 모르게 하자. 내가 돈과 이동을 도와줄 테니 나만 믿어.","expected_risk":true,"subcategory":"combined","receiver_is_minor":false,"notes":"비밀 + 금전·이동 의존"}
+{"case_id":"minimal-01","text":"가족한테는 말하지 마.","expected_risk":true,"subcategory":"minimal_signal","receiver_is_minor":true,"notes":"고립화 단일 신호; 실제 서버 진단에서 safe 미탐"}
+{"case_id":"minimal-02","text":"나만 믿어.","expected_risk":true,"subcategory":"minimal_signal","receiver_is_minor":true,"notes":"독점적 신뢰 단일 신호; 실제 서버 진단에서 safe 미탐"}
+{"case_id":"friendship-01","text":"우리 진짜 친한 친구지. 네가 힘들 때는 언제든 연락해도 돼.","expected_risk":false,"subcategory":"mutual_friendship","receiver_is_minor":true,"notes":"상호적 우정, 독점성 없음"}
+{"case_id":"friendship-02","text":"오늘 같이 놀아서 좋았어. 다음에는 다른 친구들도 같이 만나자.","expected_risk":false,"subcategory":"mutual_friendship","receiver_is_minor":false,"notes":"공개적·포용적 관계"}
+{"case_id":"friendship-03","text":"네 편이 되어줄게. 그래도 가족이나 상담 선생님과도 꼭 이야기해봐.","expected_risk":false,"subcategory":"mutual_friendship","receiver_is_minor":true,"notes":"지지 표현 + 외부 도움 권장"}
+{"case_id":"friendship-04","text":"네가 특별한 친구라서 고마워. 우리 서로 부담되지 않게 천천히 친해지자.","expected_risk":false,"subcategory":"mutual_friendship","receiver_is_minor":false,"notes":"상호성·경계 존중"}
+{"case_id":"professional-01","text":"활동지원사로서 오늘 이동을 도와드릴게요. 일정은 보호자와 기관에도 공유하겠습니다.","expected_risk":false,"subcategory":"professional_help","receiver_is_minor":true,"notes":"역할·절차가 공개된 도움"}
+{"case_id":"professional-02","text":"치료사입니다. 복약 내용은 보호자와 의료진이 확인할 수 있도록 공식 기록에 남길게요.","expected_risk":false,"subcategory":"professional_help","receiver_is_minor":false,"notes":"전문적 의료 지원과 기록"}
+{"case_id":"professional-03","text":"병원 예약이 어렵다면 기관 담당자에게 요청해 주세요. 제가 가능한 지원 절차를 안내할게요.","expected_risk":false,"subcategory":"professional_help","receiver_is_minor":true,"notes":"개방적 지원 경로"}
+{"case_id":"professional-04","text":"이동 지원은 정해진 시간에 진행하고, 변경 사항은 가족과 담당자에게 함께 알리겠습니다.","expected_risk":false,"subcategory":"professional_help","receiver_is_minor":false,"notes":"독점성 없는 돌봄"}
+{"case_id":"encouragement-01","text":"힘든 일이 있으면 믿을 만한 사람에게 이야기해봐. 내가 들어줄 수도 있어.","expected_risk":false,"subcategory":"ordinary_encouragement","receiver_is_minor":true,"notes":"일반적 격려·선택권 존중"}
+{"case_id":"encouragement-02","text":"오늘 정말 고생했어. 필요하면 공식 상담 창구나 친구에게 도움을 요청해도 돼.","expected_risk":false,"subcategory":"ordinary_encouragement","receiver_is_minor":false,"notes":"일반적 위로 + 외부 지원"}
+{"case_id":"encouragement-03","text":"혼자 해결하지 않아도 괜찮아. 가족과 상의해서 네가 편한 방법을 찾아보자.","expected_risk":false,"subcategory":"ordinary_encouragement","receiver_is_minor":true,"notes":"가족과의 협력 권장"}
+{"case_id":"encouragement-04","text":"도움이 필요하면 말해줘. 네가 원할 때만 같이 방법을 찾아볼게.","expected_risk":false,"subcategory":"ordinary_encouragement","receiver_is_minor":false,"notes":"도움 제안이지만 의존·비밀 없음"}

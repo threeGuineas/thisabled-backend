@@ -125,7 +125,7 @@
     "semantic_hash": ""
   },
   "docker-compose.yml": {
-    "mtime": 1785255837.1397603,
+    "mtime": 1783754798.310697,
     "ast_hash": "a2de99c11319814f152776cf073d9d89",
     "semantic_hash": ""
   },
@@ -515,67 +515,67 @@
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-07-11-safe-grooming-evaluation.md": {
-    "mtime": 1785255827.2156136,
+    "mtime": 1783703786.403481,
     "ast_hash": "dc77afdd367e609f485bb45795025656",
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-07-11-safe-grooming-evaluation-design.md": {
-    "mtime": 1785255827.2158916,
+    "mtime": 1783703706.5782325,
     "ast_hash": "c593b7bda52b0039c6fac8b82fd7f86f",
     "semantic_hash": ""
   },
   "reports/safe-grooming-eval-2026-07-11.json": {
-    "mtime": 1785255827.2219687,
+    "mtime": 1783703721.0,
     "ast_hash": "1735b2ef3f7beabb5b31d3c36c1a9394",
     "semantic_hash": ""
   },
   "reports/safe-grooming-existing-3a-2026-07-11.json": {
-    "mtime": 1785255827.2222395,
+    "mtime": 1783703510.0,
     "ast_hash": "197ccabc59aa002775ffef493228d3bb",
     "semantic_hash": ""
   },
   "tests/test_safe_grooming_eval.py": {
-    "mtime": 1785255827.222723,
+    "mtime": 1783703706.3647676,
     "ast_hash": "8871b56ef0e98f6761b8cce8404a16d3",
     "semantic_hash": ""
   },
   "tools/__init__.py": {
-    "mtime": 1785255827.2228763,
+    "mtime": 1783703303.121874,
     "ast_hash": "7b5e27daf197bfd1da31e5c520c9e948",
     "semantic_hash": ""
   },
   "tools/safe_grooming_eval.py": {
-    "mtime": 1785255827.2230778,
+    "mtime": 1783703303.2408028,
     "ast_hash": "b9e724902889fe558e08275251f7390a",
     "semantic_hash": ""
   },
   "reports/safe-grooming-eval-2026-07-11.md": {
-    "mtime": 1785255827.2221115,
+    "mtime": 1783703760.9567244,
     "ast_hash": "768a8552e3ce503eb942fa6b7bc8ff67",
     "semantic_hash": ""
   },
   "reports/safe-grooming-eval-latest-compatible-2026-07-11.json": {
-    "mtime": 1785255837.1454365,
+    "mtime": 1783753140.0,
     "ast_hash": "8ef8d16b30276d7a786b25a656aa5cbf",
     "semantic_hash": ""
   },
   "reports/safe-grooming-eval-v6-31b33415-2026-07-11.json": {
-    "mtime": 1785255837.1457858,
+    "mtime": 1783754646.0,
     "ast_hash": "293cceece296a16c2b3fe3f01cfd8f24",
     "semantic_hash": ""
   },
   "reports/safe-grooming-existing-3a-v6-31b33415-2026-07-11.json": {
-    "mtime": 1785255837.1459289,
+    "mtime": 1783754671.0,
     "ast_hash": "3af77419e8c6342f0b15e31b9df2151f",
     "semantic_hash": ""
   },
   "reports/safe-grooming-eval-latest-compatible-2026-07-11.md": {
-    "mtime": 1785255837.1456175,
+    "mtime": 1783753218.4150083,
     "ast_hash": "fe2ceac010dabf070827cb450f5dda2b",
     "semantic_hash": ""
   },
   "reports/safe-v6-deployment-2026-07-11.md": {
-    "mtime": 1785255837.1460583,
+    "mtime": 1783754922.0677757,
     "ast_hash": "5aebe6c5b994f4cbffe2f0905ad585a7",
     "semantic_hash": ""
   }

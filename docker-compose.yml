@@ -84,7 +84,6 @@ services:
       context: ../thisabled-ai
       dockerfile: serving/match_server/Dockerfile
     environment:
-      MATCH_HF_REPO: soyuncj/thisabled-match-lambdamart
       HF_TOKEN: ${HF_TOKEN}
     volumes:
       - hf_cache_match:/srv/hf-cache

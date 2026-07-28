@@ -53,6 +53,8 @@
   "51": "friendships 테이블(정규화 쌍)",
   "52": "WebSocket + Redis pub/sub 팬아웃",
   "53": "withdrawn_socials 테이블",
+  "54": "test_withdrawal.py",
+  "55": "test_schema.py",
   "56": "__init__.py",
   "57": "__init__.py",
   "58": "__init__.py",

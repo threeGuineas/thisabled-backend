@@ -125,8 +125,8 @@
     "semantic_hash": ""
   },
   "docker-compose.yml": {
-    "mtime": 1785255934.0150487,
-    "ast_hash": "57c27edb2dc1f719532d226bb9fb59ed",
+    "mtime": 1783442590.67314,
+    "ast_hash": "950580009bdbd0f2f90f994960875512",
     "semantic_hash": ""
   },
   "docs/deploy-tailscale-funnel.md": {
@@ -512,11 +512,6 @@
   "docs/ThisAbled_\uae30\ub2a5\uba85\uc138\uc11c_v2_2.md": {
     "mtime": 1783691112.8272462,
     "ast_hash": "9ba8f15428ba497a849a746de749aade",
-    "semantic_hash": ""
-  },
-  "reports/match-v2-deployment-2026-07-29.md": {
-    "mtime": 1785255955.043696,
-    "ast_hash": "e7b8c964d9744afc7c3862c6fa990f72",
     "semantic_hash": ""
   }
 }

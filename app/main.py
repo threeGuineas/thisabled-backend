@@ -51,7 +51,7 @@ tags_metadata = [
         "name": "media",
         "description": (
             "사진≤3장·영상 1개(≤200MB·≤3분). 영상 업로드=드래프트 생성+자막 시작(CAPTION-01), "
-            "VIS-03 음성 입력. 한도: vision 20/일·5/분, caption 5/일 (게시물·채팅 합산)."
+            "VIS-03 음성 입력. 한도: vision 20/일·5/분, caption 사용자 5/일·서비스 전체 기본 100/일."
         ),
     },
     {"name": "friends", "description": "친구 요청·수락·거절·취소·해제 (FRIEND-01/02). 거절 후 30일 추천 제외."},
@@ -114,6 +114,8 @@ description = """
 - 추천 API는 후보 부족·MATCH 장애도 HTTP 200으로 반환합니다. `items=[]`이면 반드시 `message`를 표시하고 로딩을 끝냅니다.
 - 소통 코치의 문장·후보는 JSON 코드블록이 아닌 평문입니다. 사용자가 선택하기 전 자동 입력·게시·전송하지 않습니다.
 - AI 미디어 상태는 `none | processing | done | failed`입니다. failed를 무한 폴링하지 마세요.
+- 영상 자막이 `failed`이면 `/posts/{post_id}/caption/retry`로 재시도하거나 사용자 확인 후 자막 없이 게시합니다.
+- 자막 완료·실패 알림은 `media.caption_done | media.caption_failed`이며 게시물은 post_id/media_id, 채팅은 room_id/message_id를 포함합니다.
 
 ## WebSocket (OpenAPI 비지원 영역)
 

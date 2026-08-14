@@ -208,6 +208,19 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
         "200과 `caption_status`를 반환합니다.",
         errors={404: "본인 게시물이 아니거나 영상이 없습니다."},
     ),
+    ("post", "/api/v1/posts/{post_id}/caption/retry"): _guide(
+        "실패한 영상 자막 재시도",
+        "작성자 본인의 비공개 영상 드래프트에서 `caption_status=failed`일 때만 호출합니다. 성공하면 상태를 "
+        "`processing`으로 바꾸고 사용자·서비스 전체 일일 한도를 새로 예약합니다. 202를 받은 뒤 기존 "
+        "caption-status API를 다시 폴링하고, 중복 클릭으로 병렬 호출하지 마세요.",
+        "202와 `caption_status=processing`을 반환하며 자막 작업을 다시 시작합니다.",
+        errors={
+            404: "본인 드래프트가 아니거나 영상이 없습니다.",
+            409: "실패 상태가 아니거나 이미 공개됐거나 원본 파일이 없습니다.",
+            429: "게시물·채팅 합산 사용자 일일 영상 한도 초과.",
+            503: "서비스 전체 일일 STT 예산 상한 초과. detail.code를 표시하고 다음 날 재시도합니다.",
+        },
+    ),
     ("post", "/api/v1/posts/{post_id}/publish"): _guide(
         "영상 드래프트 게시",
         "자막 생성이 끝난 영상 드래프트를 공개합니다. `processing`이면 게시 버튼을 잠시 비활성화하세요. "
@@ -264,10 +277,17 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ),
     ("post", "/api/v1/media/videos"): _guide(
         "게시물 영상 업로드·자막 시작",
-        "`file`과 프론트가 측정한 `duration_seconds`를 multipart로 보냅니다. 성공 즉시 `processing` 드래프트가 "
-        "생성되며, `post_id`로 자막 상태를 폴링한 뒤 별도 publish를 호출해야 공개됩니다.",
+        "`file`과 프론트가 측정한 1 이상 `duration_seconds`를 multipart로 보냅니다. 서버가 MIME·실제 컨테이너·"
+        "비디오 트랙·길이를 다시 검증하며 MP4·WebM·QuickTime을 지원합니다. STT에는 원본 영상 대신 "
+        "25MB 이하 M4A 음성을 보냅니다. 성공 즉시 `processing` 드래프트가 생성되고, "
+        "`post_id`로 자막 상태를 폴링한 뒤 별도 publish를 호출해야 공개됩니다.",
         "201과 드래프트 `post_id`, `media_id`, 초기 자막 상태를 반환합니다.",
-        errors={400: "3분 초과 또는 지원하지 않는 영상 MIME 형식.", 413: "200MB 초과.", 429: "게시물·채팅 합산 일일 영상 한도 초과."},
+        errors={
+            400: "길이 값 오류, 실제 3분 초과, MIME·콘테이너 불일치, 비디오 트랙 없음 또는 손상된 영상.",
+            413: "200MB 초과.",
+            429: "게시물·채팅 합산 사용자 일일 영상 한도 초과.",
+            503: "서비스 전체 일일 STT 예산 상한 초과. detail.code=STT_DAILY_BUDGET_EXCEEDED.",
+        },
     ),
     ("post", "/api/v1/media/transcribe"): _guide(
         "음성 입력을 텍스트로 변환",
@@ -393,9 +413,17 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ("post", "/api/v1/chat/rooms/{room_id}/media"): _guide(
         "채팅 사진·영상 전송",
         "active 상태의 친구 채팅에서만 multipart `file`을 전송합니다. 영상은 `duration_seconds`도 필요하며 자막 한도를 "
-        "차감합니다. 미성년자–성인 간 채팅에서는 텍스트만 허용됩니다.",
-        "201과 미디어 메시지를 반환하며 상대에게 WebSocket 이벤트를 발행합니다.",
-        errors={400: "지원하지 않는 형식 또는 영상 3분 초과.", 403: "친구·방 상태·차단·연령·전송 제한 정책 위반.", 413: "파일 크기 제한 초과.", 429: "일일 영상 한도 초과."},
+        "차감합니다. 서버가 MIME·실제 컨테이너·비디오 트랙·길이를 검증하고, STT에는 M4A 음성만 전송합니다. "
+        "자막 완료·실패 시 송수신자 모두에게 `media.caption_done` "
+        "또는 `media.caption_failed` 알림을 보냅니다. 미성년자–성인 간 채팅에서는 텍스트만 허용됩니다.",
+        "201과 미디어 메시지를 반환하며 상대에게 WebSocket 이벤트를 발행합니다. 초기 caption_status는 processing입니다.",
+        errors={
+            400: "지원하지 않거나 손상된 형식, MIME·콘테이너 불일치, 비디오 트랙 없음, 길이 값 오류 또는 실제 3분 초과.",
+            403: "친구·방 상태·차단·연령·전송 제한 정책 위반.",
+            413: "파일 크기 제한 초과.",
+            429: "사용자 일일 영상 한도 초과.",
+            503: "서비스 전체 일일 STT 예산 상한 초과.",
+        },
     ),
     ("get", "/api/v1/notifications"): _guide(
         "알림 목록 조회",

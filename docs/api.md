@@ -36,6 +36,7 @@
 | `POST /posts` | 텍스트·사진 게시물 `{content, media_ids?}` → 즉시 published. 사진 최대 3장 |
 | `GET /posts/{id}` / `PATCH` / `DELETE` | 상세·수정·삭제(작성자만) |
 | `POST /posts/{id}/publish` | 영상 드래프트 게시. 자막 done→공개(+사진 설명 생성 시점). failed면 `{allow_no_caption:true}` 필요(자막 없음 라벨) |
+| `POST /posts/{id}/caption/retry` | 자막 `failed`인 비공개 영상 드래프트만 재시도 → 202 `{caption_status:"processing"}`. 다시 일일 한도 예약 |
 | `POST /posts/{id}/like` / `DELETE .../like` | 멱등 좋아요 |
 | `GET /posts/{id}/comments` / `POST` / `PATCH /comments/{id}` / `DELETE` | 댓글 CRUD |
 
@@ -44,11 +45,11 @@
 | 메서드·경로 | 동작 |
 | --- | --- |
 | `POST /media/images` | multipart ≤3장 → `[{media_id, url}]` |
-| `POST /media/videos` | 1개 ≤200MB·≤3분 → processing 드래프트 post 생성 + 자막 시작(일 5회 차감, 실패 시 복원) → `{post_id, media_id, caption_status}` |
+| `POST /media/videos` | MP4·WebM·QuickTime 1개 ≤200MB·≤3분. 서버가 MIME·실제 컨테이너·비디오 트랙·길이 검증 → processing 드래프트+자막 시작 → `{post_id, media_id, caption_status}` |
 | `GET /posts/{id}/caption-status` | 드래프트 자막 상태 폴링 |
 | `POST /media/transcribe` | VIS-03 음성 입력 — 오디오 → `{text}` (자동 게시 없음) |
 
-한도: vision 20/일·5/분(이미지 1장=1회, 게시물·채팅 합산), caption 5/일. 동일 해시 캐싱. 드래프트 24h 미게시 자동 삭제.
+한도: vision 20/일·5/분(이미지 1장=1회, 게시물·채팅 합산), caption 사용자 5/일·서비스 전체 기본 100 STT 호출/일(내부 재시도 포함). 동일 해시 캐싱. STT에는 25MB 상한을 지키도록 음성만 M4A로 추출해 전송한다. 드래프트 24h 미게시 자동 삭제. 서비스 전체 상한은 503과 `detail.code=STT_DAILY_BUDGET_EXCEEDED`를 반환한다. 서버 재시작으로 유실된 processing 자막은 1분 내 복구한다.
 
 ## friends / blocks (FRIEND-01/02 · BLOCK-01)
 
@@ -66,7 +67,7 @@
 | `GET /chat/rooms` / `GET /chat/requests` | active 방 / 요청함(request 방). 각 방의 `unread_count`, 응답 전체의 `unread_total` 포함 |
 | `POST /chat/rooms` | `{user_id}` — 친구=active, 비친구=request(수신자 허용 설정·미성년 보호 검증, 사유 비노출 404) |
 | `POST /chat/rooms/{id}/messages` | 텍스트 전송 — SAFE 동기 분석 후 저장·전달. 발신자 응답에 판정 없음. request 방은 수락 전 1건 제한. SAFE-05 제한 중 403 `메시지를 보낼 수 없습니다` |
-| `POST /chat/rooms/{id}/media` | 사진·영상 — 친구 방만, 미성년-성인 403(§4.5). 즉시 전달 후 설명·자막 비동기 부착 |
+| `POST /chat/rooms/{id}/media` | 사진·영상 — 친구 방만, 미성년-성인 403(§4.5). 즉시 전달 후 설명·자막 비동기 부착. 완료·실패 시 송수신자 모두 알림 |
 | `GET /chat/rooms/{id}/messages?cursor=` | 수신자 관점: flagged & 미열람 → `content:null, blurred:true`. 최신 페이지 조회는 표시 가능한 수신 메시지를 읽음 처리하며, 발신자 메시지 중 상대의 마지막 읽음 메시지만 `is_read:true` |
 | `POST /chat/messages/{id}/reveal` | 내용 보기(수신자만) → 원문 반환 |
 | `POST /chat/requests/{room_id}/accept` | 요청 수락 → active |

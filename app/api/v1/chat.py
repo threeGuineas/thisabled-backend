@@ -14,7 +14,13 @@ from app.core.age import is_minor
 from app.core.config import settings
 from app.core.deps import get_current_user
 from app.core.enums import AiStatus, MediaType, MessageType, RoomState, SafetyStatus
-from app.core.storage import ALLOWED_CONTENT_TYPES, save_upload
+from app.core.storage import (
+    ALLOWED_CONTENT_TYPES,
+    UploadTooLarge,
+    delete_upload,
+    save_upload,
+    save_upload_stream,
+)
 from app.db.redis import get_redis
 from app.db.session import get_db, get_session_factory
 from app.models import ChatMessage, ChatRoom, User
@@ -28,7 +34,7 @@ from app.schemas.chat import (
     RoomOut,
 )
 from app.schemas.post import AuthorOut
-from app.services import ai_media
+from app.services import ai_media, media_probe
 from app.services import notify as noti
 from app.services.events import publish_to_user
 from app.services.chat import (
@@ -43,7 +49,12 @@ from app.services.chat import (
     send_text,
     unread_count,
 )
-from app.services.quota import caption_key, try_consume
+from app.services.quota import (
+    CAPTION_GLOBAL_LIMIT,
+    CAPTION_USER_LIMIT,
+    caption_key,
+    consume_caption,
+)
 from app.services.relations import are_friends, is_blocked_either
 from app.services.safety import SafetyClient, get_safety_client
 
@@ -367,6 +378,7 @@ async def send_media(
     session_factory: async_sessionmaker = Depends(get_session_factory),
     describe_caller=Depends(ai_media.get_describe_caller),
     caption_caller=Depends(ai_media.get_caption_caller),
+    video_probe=Depends(media_probe.get_video_probe),
 ):
     """CHAT-01: 사진·동영상은 친구 방에서만, 미성년-성인 쌍은 제한 (§4.5).
 
@@ -388,29 +400,60 @@ async def send_media(
         # 미성년-성인 채팅은 텍스트만 (§4.5 미디어 전송 제한)
         raise HTTPException(status_code=403, detail="이 채팅에서는 사진·동영상을 보낼 수 없습니다")
 
-    data = await file.read()
     if file.content_type in ALLOWED_CONTENT_TYPES:
+        data = await file.read()
         media_type = MediaType.image.value
         if len(data) > settings.MAX_UPLOAD_MB * 1024 * 1024:
             raise HTTPException(status_code=413, detail=f"이미지는 {settings.MAX_UPLOAD_MB}MB 이하만 가능합니다")
+        url = await save_upload(data, file.content_type)
+        media_hash = ai_media.media_hash_of(data)
     elif file.content_type in ALLOWED_VIDEO_TYPES:
         media_type = MediaType.video.value
-        if duration_seconds > settings.MAX_VIDEO_SECONDS:
+        if duration_seconds <= 0 or duration_seconds > settings.MAX_VIDEO_SECONDS:
             raise HTTPException(
-                status_code=400, detail=f"영상은 최대 {settings.MAX_VIDEO_SECONDS // 60}분까지 보낼 수 있습니다"
+                status_code=400,
+                detail=f"영상 길이는 1초 이상 {settings.MAX_VIDEO_SECONDS // 60}분 이하여야 합니다",
             )
-        if len(data) > settings.MAX_VIDEO_MB * 1024 * 1024:
+        try:
+            saved = await save_upload_stream(
+                file,
+                file.content_type,
+                max_bytes=settings.MAX_VIDEO_MB * 1024 * 1024,
+            )
+        except UploadTooLarge:
             raise HTTPException(status_code=413, detail=f"영상은 {settings.MAX_VIDEO_MB}MB 이하만 가능합니다")
-        key, limit, ttl = caption_key(user.id)
-        if not await try_consume(redis, key, limit, ttl):
+        try:
+            actual_duration = await video_probe(saved.path, file.content_type)
+        except media_probe.InvalidVideo as exc:
+            delete_upload(saved.url)
+            raise HTTPException(status_code=400, detail=str(exc))
+        if actual_duration > settings.MAX_VIDEO_SECONDS:
+            delete_upload(saved.url)
+            raise HTTPException(
+                status_code=400,
+                detail=f"영상은 최대 {settings.MAX_VIDEO_SECONDS // 60}분까지 보낼 수 있습니다",
+            )
+        quota_result = await consume_caption(redis, user.id)
+        if quota_result == CAPTION_USER_LIMIT:
+            delete_upload(saved.url)
+            limit = caption_key(user.id)[1]
             raise HTTPException(
                 status_code=429, detail=f"영상 업로드는 하루 {limit}회까지 가능합니다 (게시물·채팅 합산)"
             )
+        if quota_result == CAPTION_GLOBAL_LIMIT:
+            delete_upload(saved.url)
+            raise HTTPException(
+                status_code=503,
+                detail={
+                    "code": "STT_DAILY_BUDGET_EXCEEDED",
+                    "message": "오늘의 자막 생성 한도가 소진되었습니다. 내일 다시 시도해 주세요.",
+                },
+            )
+        url = saved.url
+        media_hash = saved.media_hash
     else:
         raise HTTPException(status_code=400, detail="지원하지 않는 파일 형식입니다")
 
-    url = await save_upload(data, file.content_type)
-    media_hash = ai_media.media_hash_of(data)
     message = ChatMessage(
         id=uuid.uuid4(),
         room_id=room.id,

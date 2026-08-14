@@ -55,6 +55,9 @@ class Settings(BaseSettings):
     VISION_DAILY_LIMIT: int = 20
     VISION_MINUTE_LIMIT: int = 5
     CAPTION_DAILY_LIMIT: int = 5
+    # 월 예산 30만원 방어용 운영 기본값. 실제 단가는 배포 환경에서 조정한다.
+    CAPTION_GLOBAL_DAILY_LIMIT: int = 100
+    CAPTION_JOB_LOCK_SECONDS: int = 15 * 60
     AI_RETRY_MAX: int = 2
     MAX_VIDEO_MB: int = 200
     MAX_VIDEO_SECONDS: int = 180

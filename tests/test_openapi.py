@@ -80,6 +80,15 @@ def test_frontend_critical_contracts_are_explicit():
     simplify = schema["paths"]["/api/v1/comm/simplify"]["post"]
     assert "일반 텍스트" in simplify["description"]
 
+    retry_caption = schema["paths"]["/api/v1/posts/{post_id}/caption/retry"]["post"]
+    assert retry_caption["responses"]["202"]
+    assert "503" in retry_caption["responses"]
+    assert "processing" in retry_caption["description"]
+
+    video_upload = schema["paths"]["/api/v1/media/videos"]["post"]
+    assert "실제" in video_upload["description"]
+    assert "STT_DAILY_BUDGET_EXCEEDED" in video_upload["responses"]["503"]["description"]
+
 
 def test_parameters_explain_opaque_ids_and_cursors():
     schema = _schema()

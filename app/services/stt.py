@@ -4,6 +4,10 @@
 테스트는 이 함수를 monkeypatch 해서 실제 OpenAI 호출 없이 검증한다.
 """
 
+import asyncio
+import tempfile
+from pathlib import Path
+
 from openai import AsyncOpenAI
 
 from app.core.config import settings
@@ -30,14 +34,54 @@ async def transcribe(audio_bytes: bytes, filename: str, content_type: str) -> st
     return (resp.text or "").strip()
 
 
-async def transcribe_segments(media_bytes: bytes, filename: str) -> list[dict]:
-    """영상/오디오 → 자막 세그먼트 [{start, end, text}] (CAPTION-01)."""
-    resp = await _get_client().audio.transcriptions.create(
-        model=settings.STT_MODEL,
-        file=(filename, media_bytes),
-        language="ko",
-        response_format="verbose_json",
+async def _extract_audio_to_m4a(media_path: Path) -> Path:
+    """최대 200MB 영상을 STT 상한 안의 단일 채널 M4A 음성으로 정규화한다."""
+    with tempfile.NamedTemporaryFile(suffix=".m4a", delete=False) as temp:
+        output_path = Path(temp.name)
+    process = await asyncio.create_subprocess_exec(
+        "ffmpeg",
+        "-y",
+        "-v",
+        "error",
+        "-i",
+        str(media_path),
+        "-map",
+        "0:a:0",
+        "-vn",
+        "-ac",
+        "1",
+        "-ar",
+        "16000",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "64k",
+        str(output_path),
+        stdout=asyncio.subprocess.DEVNULL,
+        stderr=asyncio.subprocess.PIPE,
     )
+    _stdout, stderr = await process.communicate()
+    if process.returncode != 0:
+        output_path.unlink(missing_ok=True)
+        raise RuntimeError(f"영상 오디오 추출 실패: {stderr.decode(errors='replace')[:200]}")
+    return output_path
+
+
+async def transcribe_segments(media_path: Path, content_type: str) -> list[dict]:
+    """영상/오디오 → 자막 세그먼트 [{start, end, text}] (CAPTION-01)."""
+    # MP4/WebM/MOV 및 과거 .bin 모두 ffmpeg가 실제 컨테이너를 판독한다.
+    # 영상 원본(최대 200MB)을 그대로 외부로 보내지 않아 STT 25MB 상한도 지킨다.
+    converted_path = await _extract_audio_to_m4a(media_path)
+    try:
+        with converted_path.open("rb") as media_file:
+            resp = await _get_client().audio.transcriptions.create(
+                model=settings.STT_MODEL,
+                file=(converted_path.name, media_file, "audio/mp4"),
+                language="ko",
+                response_format="verbose_json",
+            )
+    finally:
+        converted_path.unlink(missing_ok=True)
     return [
         {"start": seg.start, "end": seg.end, "text": seg.text.strip()}
         for seg in (resp.segments or [])

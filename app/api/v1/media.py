@@ -10,13 +10,24 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from app.core.config import settings
 from app.core.deps import get_current_user
 from app.core.enums import AiStatus, MediaType, PostStatus
-from app.core.storage import ALLOWED_CONTENT_TYPES, save_upload
+from app.core.storage import (
+    ALLOWED_CONTENT_TYPES,
+    UploadTooLarge,
+    delete_upload,
+    save_upload,
+    save_upload_stream,
+)
 from app.db.redis import get_redis
 from app.db.session import get_db, get_session_factory
 from app.models import Post, PostMedia, User
 from app.schemas.media import ImageUploadOut, TranscribeOut, UploadedMediaOut, VideoUploadOut
-from app.services import ai_media
-from app.services.quota import caption_key, try_consume
+from app.services import ai_media, media_probe
+from app.services.quota import (
+    CAPTION_GLOBAL_LIMIT,
+    CAPTION_USER_LIMIT,
+    caption_key,
+    consume_caption,
+)
 
 router = APIRouter(prefix="/media", tags=["media"])
 
@@ -65,29 +76,57 @@ async def upload_video(
     redis: aioredis.Redis = Depends(get_redis),
     session_factory: async_sessionmaker = Depends(get_session_factory),
     caption_caller=Depends(ai_media.get_caption_caller),
+    video_probe=Depends(media_probe.get_video_probe),
 ):
     """영상 첨부 = processing 내부 드래프트 생성 + 자막 생성 즉시 시작 (POST-01·CAPTION-01).
 
-    길이(≤3분)는 FE가 측정해 신고(서버에 ffprobe 없음), 크기(≤200MB)는 서버 실검증.
+    FE 길이는 빠른 거부용 힌트이며 서버가 ffprobe로 실제 길이·컨테이너를 다시 검증한다.
     업로드 = 일일 자막 횟수 1회 차감, 실패(재시도 소진) 시 복원.
     """
-    if duration_seconds > settings.MAX_VIDEO_SECONDS:
+    if duration_seconds <= 0 or duration_seconds > settings.MAX_VIDEO_SECONDS:
         raise HTTPException(
-            status_code=400, detail=f"영상은 최대 {settings.MAX_VIDEO_SECONDS // 60}분까지 올릴 수 있습니다"
+            status_code=400,
+            detail=f"영상 길이는 1초 이상 {settings.MAX_VIDEO_SECONDS // 60}분 이하여야 합니다",
         )
     if file.content_type not in ALLOWED_VIDEO_TYPES:
         raise HTTPException(status_code=400, detail="지원하지 않는 영상 형식입니다")
-    data = await file.read()
-    if len(data) > settings.MAX_VIDEO_MB * 1024 * 1024:
+    try:
+        saved = await save_upload_stream(
+            file,
+            file.content_type,
+            max_bytes=settings.MAX_VIDEO_MB * 1024 * 1024,
+        )
+    except UploadTooLarge:
         raise HTTPException(status_code=413, detail=f"영상은 {settings.MAX_VIDEO_MB}MB 이하만 가능합니다")
 
-    key, limit, ttl = caption_key(user.id)
-    if not await try_consume(redis, key, limit, ttl):
+    try:
+        actual_duration = await video_probe(saved.path, file.content_type)
+    except media_probe.InvalidVideo as exc:
+        delete_upload(saved.url)
+        raise HTTPException(status_code=400, detail=str(exc))
+    if actual_duration > settings.MAX_VIDEO_SECONDS:
+        delete_upload(saved.url)
+        raise HTTPException(
+            status_code=400, detail=f"영상은 최대 {settings.MAX_VIDEO_SECONDS // 60}분까지 올릴 수 있습니다"
+        )
+
+    quota_result = await consume_caption(redis, user.id)
+    if quota_result == CAPTION_USER_LIMIT:
+        delete_upload(saved.url)
+        limit = caption_key(user.id)[1]
         raise HTTPException(
             status_code=429, detail=f"영상 업로드는 하루 {limit}회까지 가능합니다 (게시물·채팅 합산)"
         )
+    if quota_result == CAPTION_GLOBAL_LIMIT:
+        delete_upload(saved.url)
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "STT_DAILY_BUDGET_EXCEEDED",
+                "message": "오늘의 자막 생성 한도가 소진되었습니다. 내일 다시 시도해 주세요.",
+            },
+        )
 
-    url = await save_upload(data, file.content_type)
     post = Post(id=uuid.uuid4(), author_id=user.id, content="", status=PostStatus.processing.value)
     db.add(post)
     await db.flush()
@@ -96,8 +135,8 @@ async def upload_video(
         post_id=post.id,
         uploader_id=user.id,
         media_type=MediaType.video.value,
-        url=url,
-        media_hash=ai_media.media_hash_of(data),
+        url=saved.url,
+        media_hash=saved.media_hash,
         caption_status=AiStatus.processing.value,
     )
     db.add(media)

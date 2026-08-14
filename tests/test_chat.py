@@ -3,7 +3,7 @@
 import pytest_asyncio
 
 from app.main import app
-from app.services import ai_media
+from app.services import ai_media, media_probe
 from app.services.safety import SafetyUnavailable, get_safety_client
 from tests.conftest import auth_header, register
 
@@ -138,6 +138,45 @@ async def test_media_only_between_adult_friends(client, safety):
         assert blocked.status_code == 403
     finally:
         app.dependency_overrides.pop(ai_media.get_describe_caller, None)
+
+
+async def test_chat_video_gets_caption_and_notifies_both_users(client, safety):
+    a = await register(client, "영상채팅갑")
+    b = await register(client, "영상채팅을")
+    ha, hb = auth_header(a["access_token"]), auth_header(b["access_token"])
+    await make_friends(client, ha, hb, b["user_id"])
+    room = (await _room(client, ha, b["user_id"])).json()
+
+    async def caption(_path, _content_type):
+        return [{"start": 0.0, "end": 1.0, "text": "채팅 영상 자막"}]
+
+    async def probe(_path, _content_type):
+        return 30.0
+
+    app.dependency_overrides[ai_media.get_caption_caller] = lambda: caption
+    app.dependency_overrides[media_probe.get_video_probe] = lambda: probe
+    try:
+        sent = await client.post(
+            f"/api/v1/chat/rooms/{room['id']}/media",
+            files={"file": ("chat.webm", b"chatvideo", "video/webm")},
+            data={"duration_seconds": "30"},
+            headers=ha,
+        )
+        assert sent.status_code == 201, sent.text
+        messages = (
+            await client.get(f"/api/v1/chat/rooms/{room['id']}/messages", headers=hb)
+        ).json()["items"]
+        assert messages[0]["caption_status"] == "done"
+        assert messages[0]["caption"][0]["text"] == "채팅 영상 자막"
+
+        for headers in (ha, hb):
+            notifications = (await client.get("/api/v1/notifications", headers=headers)).json()[
+                "items"
+            ]
+            assert "media.caption_done" in [item["type"] for item in notifications]
+    finally:
+        app.dependency_overrides.pop(ai_media.get_caption_caller, None)
+        app.dependency_overrides.pop(media_probe.get_video_probe, None)
 
 
 async def test_media_blocked_in_request_room(client, safety):

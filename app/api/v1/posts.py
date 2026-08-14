@@ -17,6 +17,13 @@ from app.models import Block, Comment, Post, PostLike, PostMedia, User
 from app.schemas.media import CaptionStatusOut, PublishIn
 from app.services import ai_media
 from app.services import notify as noti
+from app.services.quota import (
+    CAPTION_GLOBAL_LIMIT,
+    CAPTION_USER_LIMIT,
+    caption_key,
+    consume_caption,
+    reset_caption_refund_markers,
+)
 from app.schemas.post import (
     AuthorOut,
     CommentIn,
@@ -258,6 +265,70 @@ async def caption_status(
     if video is None:
         raise HTTPException(status_code=404, detail="영상이 없는 게시물입니다")
     return CaptionStatusOut(caption_status=video.caption_status)
+
+
+@router.post(
+    "/posts/{post_id}/caption/retry",
+    response_model=CaptionStatusOut,
+    status_code=202,
+)
+async def retry_caption(
+    post_id: uuid.UUID,
+    background: BackgroundTasks,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
+    session_factory: async_sessionmaker = Depends(get_session_factory),
+    caption_caller=Depends(ai_media.get_caption_caller),
+):
+    """실패한 영상 드래프트의 자막을 사용자가 명시적으로 다시 생성한다."""
+    post = await db.get(Post, post_id)
+    if post is None or post.author_id != user.id:
+        raise HTTPException(status_code=404, detail="게시물을 찾을 수 없습니다")
+    if post.status == PostStatus.published.value:
+        raise HTTPException(status_code=409, detail="이미 공개된 게시물은 자막을 다시 생성할 수 없습니다")
+    video = (
+        await db.execute(
+            select(PostMedia).where(
+                PostMedia.post_id == post_id, PostMedia.media_type == MediaType.video.value
+            ).with_for_update()
+        )
+    ).scalar_one_or_none()
+    if video is None:
+        raise HTTPException(status_code=404, detail="영상이 없는 게시물입니다")
+    if video.caption_status != AiStatus.failed.value:
+        raise HTTPException(status_code=409, detail="실패한 자막만 다시 생성할 수 있습니다")
+    if not ai_media.file_path_from_url(video.url).is_file():
+        raise HTTPException(status_code=409, detail="원본 영상이 없어 자막을 다시 생성할 수 없습니다")
+
+    quota_result = await consume_caption(redis, user.id)
+    if quota_result == CAPTION_USER_LIMIT:
+        limit = caption_key(user.id)[1]
+        raise HTTPException(
+            status_code=429, detail=f"영상 업로드는 하루 {limit}회까지 가능합니다 (게시물·채팅 합산)"
+        )
+    if quota_result == CAPTION_GLOBAL_LIMIT:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "STT_DAILY_BUDGET_EXCEEDED",
+                "message": "오늘의 자막 생성 한도가 소진되었습니다. 내일 다시 시도해 주세요.",
+            },
+        )
+
+    await reset_caption_refund_markers(redis, "post", video.id)
+    video.caption = None
+    video.caption_status = AiStatus.processing.value
+    await db.commit()
+    background.add_task(
+        ai_media.caption_post_media_job,
+        session_factory,
+        redis,
+        video.id,
+        user.id,
+        caption_caller,
+    )
+    return CaptionStatusOut(caption_status=AiStatus.processing.value)
 
 
 @router.post("/posts/{post_id}/publish", response_model=PostOut)

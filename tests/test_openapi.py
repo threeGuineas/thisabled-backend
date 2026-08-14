@@ -76,6 +76,7 @@ def test_frontend_critical_contracts_are_explicit():
     schema = _schema()
     info = schema["info"]
     assert info["version"] == "0.4.0"
+    assert "기능명세서 v2.3" in info["description"]
     assert "finally에서 로딩 상태를 해제" in info["description"]
     assert "WebSocket (OpenAPI 비지원 영역)" in info["description"]
     assert "422" in info["description"] and "배열" in info["description"]

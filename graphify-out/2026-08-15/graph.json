@@ -10,8 +10,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "alembic_env",
-      "community": 120,
-      "community_name": "env.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "env.py"
     },
     {
@@ -21,8 +21,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "alembic_env_run_migrations_offline",
-      "community": 120,
-      "community_name": "env.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "run_migrations_offline()"
     },
     {
@@ -32,8 +32,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "alembic_env_do_run_migrations",
-      "community": 120,
-      "community_name": "env.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "do_run_migrations()"
     },
     {
@@ -43,8 +43,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "alembic_env_run_async_migrations",
-      "community": 120,
-      "community_name": "env.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "run_async_migrations()"
     },
     {
@@ -54,8 +54,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "alembic_env_run_migrations_online",
-      "community": 120,
-      "community_name": "env.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "run_migrations_online()"
     },
     {
@@ -472,8 +472,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_blocks",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "blocks.py"
     },
     {
@@ -483,8 +483,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "app_api_v1_blocks_blockedout",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "blockedout"
     },
     {
@@ -494,8 +494,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_blocks_py_basemodel",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "basemodel"
     },
     {
@@ -505,8 +505,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "app_api_v1_blocks_create_block",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "create_block()"
     },
     {
@@ -516,8 +516,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_blocks_py_asyncsession",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "asyncsession"
     },
     {
@@ -527,8 +527,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_blocks_py_delete",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "delete"
     },
     {
@@ -538,8 +538,8 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "app_api_v1_blocks_remove_block",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "remove_block()"
     },
     {
@@ -549,8 +549,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_blocks_py_uuid",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "uuid"
     },
     {
@@ -560,8 +560,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_blocks_py_get",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "get"
     },
     {
@@ -571,8 +571,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "app_api_v1_blocks_list_blocks",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "list_blocks()"
     },
     {
@@ -582,8 +582,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_blocks_rationale_1",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "block-01 \u1109\u1161\u110b\u116d\u11bc\u110c\u1161 \u110e\u1161\u1103\u1161\u11ab \u2014 \u1100\u1166\u1109\u1175\u1106\u116e\u11af\u00b7\u1111\u1173\u1105\u1169\u1111\u1175\u11af\u00b7\u110b\u116d\u110e\u1165\u11bc\u00b7\u110e\u1162\u1110\u1175\u11bc\u00b7\u110e\u116e\u110e\u1165\u11ab \u1109\u1161\u11bc\u1112\u1169 \u110c\u1166\u1100\u1165."
     },
     {
@@ -593,7 +593,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_chat",
-      "community": 8,
+      "community": 42,
       "community_name": "v1/chat.py",
       "norm_label": "v1/chat.py"
     },
@@ -604,8 +604,8 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "app_api_v1_chat_restrictionreleaseout",
-      "community": 134,
-      "community_name": "RestrictionReleaseOut",
+      "community": 12,
+      "community_name": "v1/comm.py",
       "norm_label": "restrictionreleaseout"
     },
     {
@@ -615,8 +615,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_chat_py_basemodel",
-      "community": 134,
-      "community_name": "RestrictionReleaseOut",
+      "community": 12,
+      "community_name": "v1/comm.py",
       "norm_label": "basemodel"
     },
     {
@@ -626,7 +626,7 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "app_api_v1_chat_author",
-      "community": 8,
+      "community": 42,
       "community_name": "v1/chat.py",
       "norm_label": "_author()"
     },
@@ -637,8 +637,8 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "app_api_v1_chat_get_my_room",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "_get_my_room()"
     },
     {
@@ -648,8 +648,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_chat_py_asyncsession",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "asyncsession"
     },
     {
@@ -659,8 +659,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_chat_py_uuid",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "uuid"
     },
     {
@@ -670,8 +670,8 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "app_api_v1_chat_validate_call_room",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "_validate_call_room()"
     },
     {
@@ -681,8 +681,8 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "app_api_v1_chat_message_out",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "_message_out()"
     },
     {
@@ -692,7 +692,7 @@
       "source_location": "L142",
       "_origin": "ast",
       "id": "app_api_v1_chat_message_preview",
-      "community": 8,
+      "community": 42,
       "community_name": "v1/chat.py",
       "norm_label": "_message_preview()"
     },
@@ -703,8 +703,8 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "app_api_v1_chat_latest_messages",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "_latest_messages()"
     },
     {
@@ -714,7 +714,7 @@
       "source_location": "L191",
       "_origin": "ast",
       "id": "app_api_v1_chat_room_out",
-      "community": 8,
+      "community": 42,
       "community_name": "v1/chat.py",
       "norm_label": "_room_out()"
     },
@@ -725,8 +725,8 @@
       "source_location": "L212",
       "_origin": "ast",
       "id": "app_api_v1_chat_rooms_out",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "_rooms_out()"
     },
     {
@@ -736,8 +736,8 @@
       "source_location": "L259",
       "_origin": "ast",
       "id": "app_api_v1_chat_create_room",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "create_room()"
     },
     {
@@ -747,8 +747,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_chat_py_get",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "get"
     },
     {
@@ -758,8 +758,8 @@
       "source_location": "L278",
       "_origin": "ast",
       "id": "app_api_v1_chat_list_rooms",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "list_rooms()"
     },
     {
@@ -769,8 +769,8 @@
       "source_location": "L302",
       "_origin": "ast",
       "id": "app_api_v1_chat_list_requests",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "list_requests()"
     },
     {
@@ -780,8 +780,8 @@
       "source_location": "L343",
       "_origin": "ast",
       "id": "app_api_v1_chat_send_message",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "send_message()"
     },
     {
@@ -791,8 +791,8 @@
       "source_location": "L393",
       "_origin": "ast",
       "id": "app_api_v1_chat_list_messages",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "list_messages()"
     },
     {
@@ -802,8 +802,8 @@
       "source_location": "L465",
       "_origin": "ast",
       "id": "app_api_v1_chat_reveal_message",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "reveal_message()"
     },
     {
@@ -813,8 +813,8 @@
       "source_location": "L486",
       "_origin": "ast",
       "id": "app_api_v1_chat_accept_request",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "accept_request()"
     },
     {
@@ -824,8 +824,8 @@
       "source_location": "L502",
       "_origin": "ast",
       "id": "app_api_v1_chat_release_send_restriction",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "release_send_restriction()"
     },
     {
@@ -835,8 +835,8 @@
       "source_location": "L515",
       "_origin": "ast",
       "id": "app_api_v1_chat_start_call",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "start_call()"
     },
     {
@@ -846,8 +846,8 @@
       "source_location": "L551",
       "_origin": "ast",
       "id": "app_api_v1_chat_get_call",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "get_call()"
     },
     {
@@ -857,8 +857,8 @@
       "source_location": "L567",
       "_origin": "ast",
       "id": "app_api_v1_chat_send_call_signal",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "send_call_signal()"
     },
     {
@@ -868,8 +868,8 @@
       "source_location": "L610",
       "_origin": "ast",
       "id": "app_api_v1_chat_send_media",
-      "community": 64,
-      "community_name": "send_media",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "send_media()"
     },
     {
@@ -879,8 +879,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_chat_py_backgroundtasks",
-      "community": 64,
-      "community_name": "send_media",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "backgroundtasks"
     },
     {
@@ -890,8 +890,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_chat_py_uploadfile",
-      "community": 64,
-      "community_name": "send_media",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "uploadfile"
     },
     {
@@ -901,8 +901,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_chat_py_async_sessionmaker",
-      "community": 64,
-      "community_name": "send_media",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "async_sessionmaker"
     },
     {
@@ -912,7 +912,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_chat_rationale_1",
-      "community": 8,
+      "community": 42,
       "community_name": "v1/chat.py",
       "norm_label": "chat-01~05 \u2014 1:1 \u110e\u1162\u1110\u1175\u11bc \u00b7 \u110b\u116d\u110e\u1165\u11bc\u1112\u1161\u11b7 \u00b7 \u110b\u1175\u11b0\u110b\u1173\u11b7 \u00b7 webrtc \u1109\u1175\u1100\u1173\u1102\u1165\u11af\u1105\u1175\u11bc."
     },
@@ -923,8 +923,8 @@
       "source_location": "L307",
       "_origin": "ast",
       "id": "app_api_v1_chat_rationale_307",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "\u110b\u116d\u110e\u1165\u11bc\u1112\u1161\u11b7 (chat-02) \u2014 \u1107\u116e\u11ab\u1109\u1165\u11a8 \u110b\u116a\u11ab\u1105\u116d\u1103\u116c\u11ab \u1106\u1166\u1109\u1175\u110c\u1175\u1100\u1161 \u110b\u1175\u11bb\u1102\u1173\u11ab \u110b\u116d\u110e\u1165\u11bc\u1106\u1161\u11ab \u1111\u116d\u1109\u1175 (safe-01 \u1103\u1169\u11bc\u1100\u1175 \u110b\u116f\u11ab\u110e\u1175\u11a8)."
     },
     {
@@ -934,8 +934,8 @@
       "source_location": "L470",
       "_origin": "ast",
       "id": "app_api_v1_chat_rationale_470",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "safe-03 '\u1102\u1162\u110b\u116d\u11bc \u1107\u1169\u1100\u1175' \u2014 \u110b\u1167\u11af\u1105\u1161\u11b7\u1112\u1162\u1103\u1169 safe-05 \u110c\u1175\u11b8\u1100\u1168\u110b\u1166\u1102\u1173\u11ab \u1100\u1168\u1109\u1169\u11a8 \u1111\u1169\u1112\u1161\u11b7 (safe-05-6)."
     },
     {
@@ -945,8 +945,8 @@
       "source_location": "L507",
       "_origin": "ast",
       "id": "app_api_v1_chat_rationale_507",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "\u1109\u116e\u1109\u1175\u11ab\u110c\u1161\u1100\u1161 \u1103\u1162\u1112\u116a \u1100\u1168\u1109\u1169\u11a8\u110b\u1173\u11af \u110b\u116f\u11ab\u1112\u1161\u11af \u1104\u1162 \u110c\u1175\u11a8\u110c\u1165\u11b8 \u1112\u1162\u110c\u1166 \u2192 \u1102\u116e\u110c\u1165\u11a8 \u110f\u1161\u110b\u116e\u11ab\u1110\u1165 \u1105\u1175\u1109\u1166\u11ba (safe-05-3/7)."
     },
     {
@@ -956,8 +956,8 @@
       "source_location": "L522",
       "_origin": "ast",
       "id": "app_api_v1_chat_rationale_522",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "chat-05: \u110b\u1169\u11ab\u1105\u1161\u110b\u1175\u11ab \u110e\u1175\u11ab\u1100\u116e\u110b\u1166\u1100\u1166 \u110b\u1173\u11b7\u1109\u1165\u11bc\u00b7\u110b\u1167\u11bc\u1109\u1161\u11bc webrtc \u1110\u1169\u11bc\u1112\u116a \u110e\u1169\u1103\u1162\u1105\u1173\u11af \u1107\u1169\u1102\u1162\u11ab\u1103\u1161."
     },
     {
@@ -967,8 +967,8 @@
       "source_location": "L623",
       "_origin": "ast",
       "id": "app_api_v1_chat_rationale_623",
-      "community": 64,
-      "community_name": "send_media",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "chat-01: \u1109\u1161\u110c\u1175\u11ab\u00b7\u1103\u1169\u11bc\u110b\u1167\u11bc\u1109\u1161\u11bc\u110b\u1173\u11ab \u110e\u1175\u11ab\u1100\u116e \u1107\u1161\u11bc\u110b\u1166\u1109\u1165\u1106\u1161\u11ab, \u1106\u1175\u1109\u1165\u11bc\u1102\u1167\u11ab-\u1109\u1165\u11bc\u110b\u1175\u11ab \u110a\u1161\u11bc\u110b\u1173\u11ab \u110c\u1166\u1112\u1161\u11ab (\u00a74.5). \u110b\u1161\u11ab\u110c\u1165\u11ab \u1107\u116e\u11ab\u1109\u1165\u11a8 \u110b\u1165\u11b9\u110b\u1175 \u110c\u1173\u11a8\u1109\u1175 \u110c\u1165\u11ab\u1103\u1161\u11af(safe-02)\u1112\u1161\u1100\u1169..."
     },
     {
@@ -1408,7 +1408,7 @@
       "_origin": "ast",
       "id": "app_api_v1_health",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "health.py"
     },
     {
@@ -1419,7 +1419,7 @@
       "_origin": "ast",
       "id": "app_api_v1_health_healthout",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "healthout"
     },
     {
@@ -1430,7 +1430,7 @@
       "_origin": "ast",
       "id": "app_api_v1_health_py_basemodel",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "basemodel"
     },
     {
@@ -1441,7 +1441,7 @@
       "_origin": "ast",
       "id": "app_api_v1_health_py_get",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "get"
     },
     {
@@ -1452,7 +1452,7 @@
       "_origin": "ast",
       "id": "app_api_v1_health_health",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "health()"
     },
     {
@@ -1462,7 +1462,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_media",
-      "community": 89,
+      "community": 129,
       "community_name": "v1/media.py",
       "norm_label": "v1/media.py"
     },
@@ -1474,7 +1474,7 @@
       "_origin": "ast",
       "id": "app_api_v1_media_upload_images",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "upload_images()"
     },
     {
@@ -1485,7 +1485,7 @@
       "_origin": "ast",
       "id": "app_api_v1_media_py_uploadfile",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "uploadfile"
     },
     {
@@ -1496,7 +1496,7 @@
       "_origin": "ast",
       "id": "app_api_v1_media_py_asyncsession",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "asyncsession"
     },
     {
@@ -1507,7 +1507,7 @@
       "_origin": "ast",
       "id": "app_api_v1_media_upload_video",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "upload_video()"
     },
     {
@@ -1518,7 +1518,7 @@
       "_origin": "ast",
       "id": "app_api_v1_media_py_backgroundtasks",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "backgroundtasks"
     },
     {
@@ -1529,7 +1529,7 @@
       "_origin": "ast",
       "id": "app_api_v1_media_py_async_sessionmaker",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "async_sessionmaker"
     },
     {
@@ -1540,7 +1540,7 @@
       "_origin": "ast",
       "id": "app_api_v1_media_transcribe_voice",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "transcribe_voice()"
     },
     {
@@ -1550,7 +1550,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_media_rationale_1",
-      "community": 89,
+      "community": 129,
       "community_name": "v1/media.py",
       "norm_label": "\u1106\u1175\u1103\u1175\u110b\u1165 \u110b\u1165\u11b8\u1105\u1169\u1103\u1173 \u2014 \u1109\u1161\u110c\u1175\u11ab(\u22643\u110c\u1161\u11bc) \u00b7 \u110b\u1167\u11bc\u1109\u1161\u11bc(\u1103\u1173\u1105\u1162\u1111\u1173\u1110\u1173+\u110c\u1161\u1106\u1161\u11a8 \u1109\u1175\u110c\u1161\u11a8) \u00b7 vis-03 \u110b\u1173\u11b7\u1109\u1165\u11bc \u110b\u1175\u11b8\u1105\u1167\u11a8."
     },
@@ -1562,7 +1562,7 @@
       "_origin": "ast",
       "id": "app_api_v1_media_rationale_45",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "\u1109\u1161\u110c\u1175\u11ab \u110b\u1165\u11b8\u1105\u1169\u1103\u1173 (post \u1106\u1175\u110b\u1167\u11ab\u1100\u1167\u11af) \u2014 post /posts \u110b\u1174 media_ids\u1105\u1169 \u110b\u1167\u11ab\u1100\u1167\u11af\u1112\u1161\u11ab\u1103\u1161."
     },
     {
@@ -1573,7 +1573,7 @@
       "_origin": "ast",
       "id": "app_api_v1_media_rationale_93",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "\u110b\u1167\u11bc\u1109\u1161\u11bc \u110e\u1165\u11b7\u1107\u116e = processing \u1102\u1162\u1107\u116e \u1103\u1173\u1105\u1162\u1111\u1173\u1110\u1173 \u1109\u1162\u11bc\u1109\u1165\u11bc + \u110c\u1161\u1106\u1161\u11a8 \u1109\u1162\u11bc\u1109\u1165\u11bc \u110c\u1173\u11a8\u1109\u1175 \u1109\u1175\u110c\u1161\u11a8 (post-01\u00b7caption-01). fe \u1100\u1175\u11af\u110b\u1175\u1102\u1173\u11ab \u1108\u1161\u1105\u1173\u11ab \u1100\u1165\u1107\u116e\u110b\u116d\u11bc..."
     },
     {
@@ -1584,7 +1584,7 @@
       "_origin": "ast",
       "id": "app_api_v1_media_rationale_169",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "vis-03 \u110b\u1173\u11b7\u1109\u1165\u11bc \u110b\u1175\u11b8\u1105\u1167\u11a8 \u2014 \u1100\u1167\u11af\u1100\u116a\u1102\u1173\u11ab \u110b\u1175\u11b8\u1105\u1167\u11a8\u1105\u1161\u11ab \u1109\u1161\u11b8\u110b\u1175\u11b8\u110b\u116d\u11bc. \u110c\u1161\u1103\u1169\u11bc \u1100\u1166\u1109\u1175\u1112\u1161\u110c\u1175 \u110b\u1161\u11ad\u1102\u1173\u11ab\u1103\u1161 (\u00a720-4)."
     },
     {
@@ -1594,8 +1594,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_notifications",
-      "community": 90,
-      "community_name": "notifications.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "notifications.py"
     },
     {
@@ -1605,8 +1605,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "app_api_v1_notifications_notificationout",
-      "community": 90,
-      "community_name": "notifications.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "notificationout"
     },
     {
@@ -1616,8 +1616,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_notifications_py_basemodel",
-      "community": 90,
-      "community_name": "notifications.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "basemodel"
     },
     {
@@ -1627,8 +1627,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "app_api_v1_notifications_notificationlistout",
-      "community": 90,
-      "community_name": "notifications.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "notificationlistout"
     },
     {
@@ -1638,8 +1638,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "app_api_v1_notifications_readin",
-      "community": 90,
-      "community_name": "notifications.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "readin"
     },
     {
@@ -1649,8 +1649,8 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "app_api_v1_notifications_readout",
-      "community": 90,
-      "community_name": "notifications.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "readout"
     },
     {
@@ -1660,8 +1660,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_notifications_py_get",
-      "community": 90,
-      "community_name": "notifications.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "get"
     },
     {
@@ -1671,8 +1671,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "app_api_v1_notifications_list_notifications",
-      "community": 90,
-      "community_name": "notifications.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "list_notifications()"
     },
     {
@@ -1682,8 +1682,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_notifications_py_asyncsession",
-      "community": 90,
-      "community_name": "notifications.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "asyncsession"
     },
     {
@@ -1693,8 +1693,8 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "app_api_v1_notifications_mark_read",
-      "community": 90,
-      "community_name": "notifications.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "mark_read()"
     },
     {
@@ -2177,8 +2177,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_recommendations",
-      "community": 89,
-      "community_name": "v1/media.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "recommendations.py"
     },
     {
@@ -2188,8 +2188,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "app_api_v1_recommendations_recommendationout",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "recommendationout"
     },
     {
@@ -2199,8 +2199,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_recommendations_py_basemodel",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "basemodel"
     },
     {
@@ -2210,8 +2210,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "app_api_v1_recommendations_recommendationlistout",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "recommendationlistout"
     },
     {
@@ -2221,8 +2221,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_recommendations_py_get",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "get"
     },
     {
@@ -2232,8 +2232,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "app_api_v1_recommendations_recommendations",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "recommendations()"
     },
     {
@@ -2243,8 +2243,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_api_v1_recommendations_py_asyncsession",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "asyncsession"
     },
     {
@@ -2474,8 +2474,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_ws",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "ws.py"
     },
     {
@@ -2485,8 +2485,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "app_api_v1_ws_relay",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "_relay()"
     },
     {
@@ -2496,8 +2496,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "websocket",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "websocket"
     },
     {
@@ -2507,8 +2507,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "app_api_v1_ws_ws_endpoint",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "ws_endpoint()"
     },
     {
@@ -2518,8 +2518,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_v1_ws_rationale_1",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "ws /api/v1/ws?token=<access> \u2014 \u1109\u1162 \u1106\u1166\u1109\u1175\u110c\u1175\u00b7\u110b\u1161\u11af\u1105\u1175\u11b7\u00b7\u1110\u1169\u11bc\u1112\u116a \u1109\u1175\u1100\u1173\u1102\u1165\u11af \u1109\u1175\u11af\u1109\u1175\u1100\u1161\u11ab \u1111\u116e\u1109\u1175. \u110b\u1175\u11ab\u110c\u1173\u11bc\u110b\u1173\u11ab jwt \u1100\u1165\u11b7\u110c\u1173\u11bc\u1106\u1161\u11ab\u110b\u1173\u1105\u1169 \u110e\u1165\u1105\u1175(db..."
     },
     {
@@ -2540,8 +2540,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_core_age",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "age.py"
     },
     {
@@ -2551,8 +2551,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_core_age_full_age",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "full_age()"
     },
     {
@@ -2562,8 +2562,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "date",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "date"
     },
     {
@@ -2573,8 +2573,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "app_core_age_is_minor",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "is_minor()"
     },
     {
@@ -2584,8 +2584,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "app_core_age_age_band",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "age_band()"
     },
     {
@@ -2595,8 +2595,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_core_age_rationale_1",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "\u1106\u1161\u11ab \u1102\u1161\u110b\u1175 \u1100\u1168\u1109\u1161\u11ab (\u00a74.5 \u1106\u1175\u1109\u1165\u11bc\u1102\u1167\u11ab \u1107\u1169\u1112\u1169, match-02-5 \u110b\u1167\u11ab\u1105\u1167\u11bc\u1103\u1162). \u1109\u1162\u11bc\u1102\u1167\u11ab\u110b\u116f\u11af\u110b\u1175\u11af \u110b\u116f\u11ab\u1106\u116e\u11ab\u110b\u1173\u11ab \u110c\u1165\u110c\u1161\u11bc\u1106\u1161\u11ab \u1112\u1161\u1100\u1169 \u1111\u1161\u1109\u1162\u11bc\u1100\u1161\u11b9(\u1106\u1161\u11ab \u1102\u1161\u110b\u1175\u00b7\u110b\u1167\u11ab\u1105\u1167\u11bc\u1103\u1162\u00b7\u1106\u1175\u1109\u1165\u11bc\u1102\u1167\u11ab)\u110b\u1173\u11ab \u1112\u1161\u11bc\u1109\u1161\u11bc \u110b\u116d\u110e\u1165\u11bc..."
     },
     {
@@ -2606,8 +2606,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "app_core_age_rationale_24",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "\u1106\u1161\u11ab 14~18\u1109\u1166 \u1106\u1175\u1109\u1165\u11bc\u1102\u1167\u11ab \u1107\u1169\u1112\u1169 \u1103\u1162\u1109\u1161\u11bc \u110b\u1167\u1107\u116e (\u00a74.5). \u1106\u1161\u11ab 13 \u110b\u1175\u1112\u1161\u1102\u1173\u11ab \u1100\u1161\u110b\u1175\u11b8 \u110c\u1161\u110e\u1166\u1100\u1161 \u1107\u116e\u11af\u1100\u1161."
     },
     {
@@ -2617,8 +2617,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "app_core_age_rationale_29",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "match-02-5 \u110b\u1167\u11ab\u1105\u1167\u11bc\u1103\u1162. \u110e\u116e\u110e\u1165\u11ab \u1110\u1173\u11a8\u1109\u1165\u11bc\u110b\u1173\u1105\u1169\u1106\u1161\u11ab \u1109\u1161\u110b\u116d\u11bc, \u1109\u1162\u11bc\u1102\u1167\u11ab\u110b\u116f\u11af\u110b\u1175\u11af \u110b\u116f\u11ab\u1106\u116e\u11ab\u110b\u1173\u11ab \u1106\u1169\u1103\u1166\u11af\u110b\u1166 \u110c\u1165\u11ab\u1103\u1161\u11af\u1112\u1161\u110c\u1175 \u110b\u1161\u11ad\u1102\u1173\u11ab\u1103\u1161."
     },
     {
@@ -2628,8 +2628,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_core_config",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "config.py"
     },
     {
@@ -2639,8 +2639,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "app_core_config_settings",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "settings"
     },
     {
@@ -2650,8 +2650,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "basesettings",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "basesettings"
     },
     {
@@ -2661,8 +2661,8 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "app_core_config_settings_cors_origins",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": ".cors_origins()"
     },
     {
@@ -2672,8 +2672,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_core_deps",
-      "community": 89,
-      "community_name": "v1/media.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "deps.py"
     },
     {
@@ -2683,8 +2683,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_core_deps_get_current_user",
-      "community": 89,
-      "community_name": "v1/media.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "get_current_user()"
     },
     {
@@ -2694,8 +2694,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "httpauthorizationcredentials",
-      "community": 89,
-      "community_name": "v1/media.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "httpauthorizationcredentials"
     },
     {
@@ -2705,8 +2705,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_core_deps_py_asyncsession",
-      "community": 89,
-      "community_name": "v1/media.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "asyncsession"
     },
     {
@@ -2782,8 +2782,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "app_core_enums_aistatus",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 12,
+      "community_name": "v1/comm.py",
       "norm_label": "aistatus"
     },
     {
@@ -2805,7 +2805,7 @@
       "_origin": "ast",
       "id": "app_core_enums_roomstate",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "roomstate"
     },
     {
@@ -2838,7 +2838,7 @@
       "_origin": "ast",
       "id": "app_core_enums_callkind",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "callkind"
     },
     {
@@ -2849,7 +2849,7 @@
       "_origin": "ast",
       "id": "app_core_enums_callsignaltype",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "callsignaltype"
     },
     {
@@ -2914,8 +2914,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "app_core_enums_rationale_38",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 12,
+      "community_name": "v1/comm.py",
       "norm_label": "description_status / caption_status \u1100\u1169\u11bc\u110b\u116d\u11bc."
     },
     {
@@ -2937,7 +2937,7 @@
       "_origin": "ast",
       "id": "app_core_enums_rationale_56",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "\u00a7chat-02 \u2014 request=\u110b\u116d\u110e\u1165\u11bc\u1112\u1161\u11b7, active=\u110b\u1175\u11af\u1107\u1161\u11ab \u110e\u1162\u1110\u1175\u11bc."
     },
     {
@@ -3124,7 +3124,7 @@
       "_origin": "ast",
       "id": "app_core_storage",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "storage.py"
     },
     {
@@ -3135,7 +3135,7 @@
       "_origin": "ast",
       "id": "app_core_storage_uploadreader",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "uploadreader"
     },
     {
@@ -3146,7 +3146,7 @@
       "_origin": "ast",
       "id": "app_core_storage_py_protocol",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "protocol"
     },
     {
@@ -3157,7 +3157,7 @@
       "_origin": "ast",
       "id": "app_core_storage_uploadreader_read",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": ".read()"
     },
     {
@@ -3167,8 +3167,8 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "app_core_storage_uploadtoolarge",
-      "community": 134,
-      "community_name": "RestrictionReleaseOut",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "uploadtoolarge"
     },
     {
@@ -3178,8 +3178,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_core_storage_py_exception",
-      "community": 134,
-      "community_name": "RestrictionReleaseOut",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "exception"
     },
     {
@@ -3190,7 +3190,7 @@
       "_origin": "ast",
       "id": "app_core_storage_savedupload",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "savedupload"
     },
     {
@@ -3201,7 +3201,7 @@
       "_origin": "ast",
       "id": "app_core_storage_ext_from_content_type",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "_ext_from_content_type()"
     },
     {
@@ -3223,7 +3223,7 @@
       "_origin": "ast",
       "id": "app_core_storage_py_path",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "path"
     },
     {
@@ -3234,7 +3234,7 @@
       "_origin": "ast",
       "id": "app_core_storage_save_upload",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "save_upload()"
     },
     {
@@ -3245,7 +3245,7 @@
       "_origin": "ast",
       "id": "app_core_storage_save_upload_stream",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "save_upload_stream()"
     },
     {
@@ -3256,7 +3256,7 @@
       "_origin": "ast",
       "id": "app_core_storage_delete_upload",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "delete_upload()"
     },
     {
@@ -3278,7 +3278,7 @@
       "_origin": "ast",
       "id": "app_core_storage_rationale_56",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "save file locally and return the public url path."
     },
     {
@@ -3289,7 +3289,7 @@
       "_origin": "ast",
       "id": "app_core_storage_rationale_76",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "\u110b\u1165\u11b8\u1105\u1169\u1103\u1173\u1105\u1173\u11af \u1106\u1166\u1106\u1169\u1105\u1175\u110b\u1166 \u1110\u1169\u11bc\u110d\u1162\u1105\u1169 \u110b\u1169\u11af\u1105\u1175\u110c\u1175 \u110b\u1161\u11ad\u1100\u1169 \u110c\u1165\u110c\u1161\u11bc\u1112\u1161\u1106\u1167 \u110f\u1173\u1100\u1175\u110b\u116a sha-256\u110b\u1173\u11af \u1100\u1168\u1109\u1161\u11ab\u1112\u1161\u11ab\u1103\u1161."
     },
     {
@@ -3310,8 +3310,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_db_redis",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "redis.py"
     },
     {
@@ -3321,8 +3321,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "app_db_redis_get_redis_client",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "get_redis_client()"
     },
     {
@@ -3332,8 +3332,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "app_db_redis_get_redis",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "get_redis()"
     },
     {
@@ -3344,7 +3344,7 @@
       "_origin": "ast",
       "id": "app_db_redis_close_redis_client",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "close_redis_client()"
     },
     {
@@ -3354,8 +3354,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "app_db_redis_rationale_12",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "\u1112\u1167\u11ab\u110c\u1162 \u110b\u1175\u1107\u1166\u11ab\u1110\u1173 \u1105\u116e\u1111\u1173 \u110c\u1165\u11ab\u110b\u116d\u11bc \u110f\u1173\u11af\u1105\u1161\u110b\u1175\u110b\u1165\u11ab\u1110\u1173. asyncio redis \u110b\u1167\u11ab\u1100\u1167\u11af\u110b\u1173\u11af \u1103\u1161\u1105\u1173\u11ab \u1105\u116e\u1111\u1173\u110b\u1166\u1109\u1165 \u110c\u1162\u1109\u1161\u110b\u116d\u11bc\u1112\u1161\u1106\u1167\u11ab future/transport\u1100\u1161 \u1101\u1162\u110c\u1175\u1106\u1173\u1105\u1169..."
     },
     {
@@ -3365,8 +3365,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "app_db_redis_rationale_26",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "fastapi \u110b\u1174\u110c\u1169\u11ab\u1109\u1165\u11bc. \u1110\u1166\u1109\u1173\u1110\u1173\u110b\u1166\u1109\u1165 override \u1100\u1161\u1102\u1173\u11bc\u1112\u1161\u1103\u1169\u1105\u1169\u11a8 \u1107\u116e\u11ab\u1105\u1175."
     },
     {
@@ -3377,7 +3377,7 @@
       "_origin": "ast",
       "id": "app_db_redis_rationale_31",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "\u1112\u1167\u11ab\u110c\u1162 \u110b\u116f\u110f\u1165 \u110b\u1175\u1107\u1166\u11ab\u1110\u1173 \u1105\u116e\u1111\u1173\u110b\u1174 \u110b\u1167\u11ab\u1100\u1167\u11af \u1111\u116e\u11af\u110b\u1173\u11af \u110b\u1162\u1111\u1173\u11af\u1105\u1175\u110f\u1166\u110b\u1175\u1109\u1167\u11ab \u110c\u1169\u11bc\u1105\u116d \u1109\u1175 \u110c\u1165\u11bc\u1105\u1175\u1112\u1161\u11ab\u1103\u1161."
     },
     {
@@ -3387,8 +3387,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_db_session",
-      "community": 89,
-      "community_name": "v1/media.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "session.py"
     },
     {
@@ -3398,8 +3398,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "app_db_session_base",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "base"
     },
     {
@@ -3409,8 +3409,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "declarativebase",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "declarativebase"
     },
     {
@@ -3420,8 +3420,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "app_db_session_get_db",
-      "community": 89,
-      "community_name": "v1/media.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "get_db()"
     },
     {
@@ -3431,7 +3431,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "app_db_session_get_session_factory",
-      "community": 89,
+      "community": 129,
       "community_name": "v1/media.py",
       "norm_label": "get_session_factory()"
     },
@@ -3442,7 +3442,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "app_db_session_rationale_20",
-      "community": 89,
+      "community": 129,
       "community_name": "v1/media.py",
       "norm_label": "\u1107\u1162\u11a8\u1100\u1173\u1105\u1161\u110b\u116e\u11ab\u1103\u1173 \u110c\u1161\u11a8\u110b\u1165\u11b8(\u110c\u1161\u1106\u1161\u11a8\u00b7\u1109\u1165\u11af\u1106\u1167\u11bc \u1107\u116e\u110e\u1161\u11a8)\u110b\u116d\u11bc \u1109\u1166\u1109\u1167\u11ab \u1111\u1162\u11a8\u1110\u1169\u1105\u1175. \u1110\u1166\u1109\u1173\u1110\u1173\u110b\u1166\u1109\u1165 override."
     },
@@ -3454,7 +3454,7 @@
       "_origin": "ast",
       "id": "app_main",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "main.py"
     },
     {
@@ -3465,7 +3465,7 @@
       "_origin": "ast",
       "id": "app_main_lifespan",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "lifespan()"
     },
     {
@@ -3476,7 +3476,7 @@
       "_origin": "ast",
       "id": "app_main_py_fastapi",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "fastapi"
     },
     {
@@ -3487,7 +3487,7 @@
       "_origin": "ast",
       "id": "middleware",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "middleware"
     },
     {
@@ -3498,7 +3498,7 @@
       "_origin": "ast",
       "id": "app_main_add_security_headers",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "add_security_headers()"
     },
     {
@@ -3509,7 +3509,7 @@
       "_origin": "ast",
       "id": "request",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "request"
     },
     {
@@ -3519,8 +3519,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_init",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "models/__init__.py"
     },
     {
@@ -3531,7 +3531,7 @@
       "_origin": "ast",
       "id": "app_models_chat",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "models/chat.py"
     },
     {
@@ -3542,7 +3542,7 @@
       "_origin": "ast",
       "id": "app_models_chat_utcnow",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "_utcnow()"
     },
     {
@@ -3553,7 +3553,7 @@
       "_origin": "ast",
       "id": "app_models_chat_py_datetime",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "datetime"
     },
     {
@@ -3564,7 +3564,7 @@
       "_origin": "ast",
       "id": "app_models_chat_chatroom",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "chatroom"
     },
     {
@@ -3575,7 +3575,7 @@
       "_origin": "ast",
       "id": "app_models_chat_chatmessage",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "chatmessage"
     },
     {
@@ -3586,7 +3586,7 @@
       "_origin": "ast",
       "id": "app_models_chat_chatreadstate",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "chatreadstate"
     },
     {
@@ -3597,7 +3597,7 @@
       "_origin": "ast",
       "id": "app_models_chat_sendrestriction",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "sendrestriction"
     },
     {
@@ -3608,7 +3608,7 @@
       "_origin": "ast",
       "id": "app_models_chat_rationale_27",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "1:1 \u110e\u1162\u1110\u1175\u11bc\u1107\u1161\u11bc (chat-01/02). request=\u110b\u116d\u110e\u1165\u11bc\u1112\u1161\u11b7, active=\u110b\u1175\u11af\u1107\u1161\u11ab \u110e\u1162\u1110\u1175\u11bc. \u110e\u1161\u11b7\u110b\u1167\u110c\u1161\u1102\u1173\u11ab \u110c\u1165\u11bc\u1100\u1172\u1112\u116a \u110a\u1161\u11bc(user_a < user_b,..."
     },
     {
@@ -3619,7 +3619,7 @@
       "_origin": "ast",
       "id": "app_models_chat_rationale_52",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "\u110e\u1162\u1110\u1175\u11bc \u1106\u1166\u1109\u1175\u110c\u1175 (safe-01~03). \u1110\u1166\u11a8\u1109\u1173\u1110\u1173\u1102\u1173\u11ab \u1103\u1169\u11bc\u1100\u1175 \u1107\u116e\u11ab\u1109\u1165\u11a8 \u1112\u116e \u110c\u1165\u110c\u1161\u11bc\u00b7\u110c\u1165\u11ab\u1103\u1161\u11af."
     },
     {
@@ -3630,7 +3630,7 @@
       "_origin": "ast",
       "id": "app_models_chat_rationale_110",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "safe-05 \u1100\u116a\u11ab\u1100\u1168 \u1103\u1161\u11ab\u110b\u1171 \u110c\u1161\u1103\u1169\u11bc \u110c\u1165\u11ab\u1109\u1169\u11bc \u110c\u1166\u1112\u1161\u11ab. \u1102\u116e\u110c\u1165\u11a8 \u110f\u1161\u110b\u116e\u11ab\u1110\u1165\u1102\u1173\u11ab \u1107\u1167\u11af\u1103\u1169 \u110f\u1165\u11af\u1105\u1165\u11b7 \u110b\u1165\u11b9\u110b\u1175 chat_messages\u110b\u1166\u1109\u1165 `flagged and..."
     },
     {
@@ -3640,8 +3640,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_misc",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "misc.py"
     },
     {
@@ -3652,7 +3652,7 @@
       "_origin": "ast",
       "id": "app_models_misc_notification",
       "community": 30,
-      "community_name": "Base",
+      "community_name": "notify",
       "norm_label": "notification"
     },
     {
@@ -3662,8 +3662,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "app_models_misc_airesultcache",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "airesultcache"
     },
     {
@@ -3674,7 +3674,7 @@
       "_origin": "ast",
       "id": "app_models_misc_rationale_12",
       "community": 30,
-      "community_name": "Base",
+      "community_name": "notify",
       "norm_label": "\u110b\u1161\u11af\u1105\u1175\u11b7 (\u00a716). ws \u1111\u116e\u1109\u1175\u110b\u116a \u1107\u1167\u11bc\u1112\u1162\u11bc \u110c\u1165\u110c\u1161\u11bc."
     },
     {
@@ -3684,8 +3684,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "app_models_misc_rationale_30",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "\u1103\u1169\u11bc\u110b\u1175\u11af \u1106\u1175\u1103\u1175\u110b\u1165 \u1112\u1162\u1109\u1175 \u110f\u1162\u1109\u1175\u11bc (vision-01\u00b7caption-01 \u110c\u116e\u11bc\u1107\u1169\u11a8 \u1112\u1169\u110e\u116e\u11af \u1107\u1161\u11bc\u110c\u1175, \u1107\u1175\u110b\u116d\u11bc \u1107\u1161\u11bc\u110b\u1165)."
     },
     {
@@ -3695,8 +3695,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_post",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "models/post.py"
     },
     {
@@ -3717,8 +3717,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "app_models_post_postmedia",
-      "community": 3,
-      "community_name": "ai_media.py",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "postmedia"
     },
     {
@@ -3761,8 +3761,8 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "app_models_post_rationale_46",
-      "community": 3,
-      "community_name": "ai_media.py",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "\u1100\u1166\u1109\u1175\u1106\u116e\u11af \u1106\u1175\u1103\u1175\u110b\u1165 (\u1109\u1161\u110c\u1175\u11ab\u22643\u00b7\u110b\u1167\u11bc\u1109\u1161\u11bc 1\u1100\u1162\u1102\u1173\u11ab \u110b\u1162\u11b8 \u1100\u1165\u11b7\u110c\u1173\u11bc). vision \u1109\u1165\u11af\u1106\u1167\u11bc\u00b7caption \u110c\u1161\u1106\u1161\u11a8 \u1107\u116e\u110e\u1161\u11a8."
     },
     {
@@ -3783,8 +3783,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_social",
-      "community": 30,
-      "community_name": "Base",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "models/social.py"
     },
     {
@@ -3816,8 +3816,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "app_models_social_block",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 18,
+      "community_name": "Block",
       "norm_label": "block"
     },
     {
@@ -3849,8 +3849,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "app_models_social_rationale_57",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 18,
+      "community_name": "Block",
       "norm_label": "\u110e\u1161\u1103\u1161\u11ab (block-01). \u1100\u1166\u1109\u1175\u1106\u116e\u11af\u00b7\u1111\u1173\u1105\u1169\u1111\u1175\u11af\u00b7\u110b\u116d\u110e\u1165\u11bc\u00b7\u110e\u1162\u1110\u1175\u11bc\u00b7\u110e\u116e\u110e\u1165\u11ab \u110c\u1165\u11b8\u110c\u1165\u11b7\u110b\u1173\u11af \u1109\u1161\u11bc\u1112\u1169 \u110c\u1166\u1100\u1165."
     },
     {
@@ -3860,8 +3860,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_user",
-      "community": 30,
-      "community_name": "Base",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "models/user.py"
     },
     {
@@ -3893,8 +3893,8 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "app_models_user_withdrawnsocial",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "withdrawnsocial"
     },
     {
@@ -3926,8 +3926,8 @@
       "source_location": "L112",
       "_origin": "ast",
       "id": "app_models_user_forbiddennickname",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "forbiddennickname"
     },
     {
@@ -3937,8 +3937,8 @@
       "source_location": "L124",
       "_origin": "ast",
       "id": "app_models_user_usermodehistory",
-      "community": 30,
-      "community_name": "Base",
+      "community": 9,
+      "community_name": "register",
       "norm_label": "usermodehistory"
     },
     {
@@ -3970,8 +3970,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "app_models_user_rationale_76",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "\u00a715: \u1110\u1161\u11af\u1110\u116c \u1112\u116e 30\u110b\u1175\u11af \u110c\u1162\u1100\u1161\u110b\u1175\u11b8 \u110c\u1166\u1112\u1161\u11ab \u1111\u1161\u11ab\u110c\u1165\u11bc\u110b\u116d\u11bc. users \u1112\u1162\u11bc\u110b\u1173\u11ab hard delete\u1112\u1161\u1100\u1169 \u110b\u1167\u1100\u1175\u110b\u1166\u1106\u1161\u11ab \u1112\u1173\u11ab\u110c\u1165\u11a8."
     },
     {
@@ -4003,8 +4003,8 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "app_models_user_rationale_113",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "\u110b\u116e\u11ab\u110b\u1167\u11bc\u110c\u1161 \u1100\u116a\u11ab\u1105\u1175 \u1100\u1173\u11b7\u110e\u1175\u11a8\u110b\u1165 \u1109\u1161\u110c\u1165\u11ab (acc-01 \u1102\u1175\u11a8\u1102\u1166\u110b\u1175\u11b7 \u110c\u1165\u11bc\u110e\u1162\u11a8)."
     },
     {
@@ -4014,8 +4014,8 @@
       "source_location": "L125",
       "_origin": "ast",
       "id": "app_models_user_rationale_125",
-      "community": 30,
-      "community_name": "Base",
+      "community": 9,
+      "community_name": "register",
       "norm_label": "\u1106\u1169\u1103\u1173 \u1107\u1167\u11ab\u1100\u1167\u11bc \u110b\u1175\u1105\u1167\u11a8 (\u00a75.2, \u1107\u1166\u1110\u1161\u1110\u1166\u1109\u1173\u1110\u1173 \u1107\u116e\u11ab\u1109\u1165\u11a8\u110b\u116d\u11bc)."
     },
     {
@@ -4213,7 +4213,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "schemas/chat.py"
     },
     {
@@ -4224,7 +4224,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_roomcreatein",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "roomcreatein"
     },
     {
@@ -4235,7 +4235,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_roommessagepreviewout",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "roommessagepreviewout"
     },
     {
@@ -4246,7 +4246,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_py_basemodel",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "basemodel"
     },
     {
@@ -4257,7 +4257,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_roomout",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "roomout"
     },
     {
@@ -4268,7 +4268,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_roomlistout",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "roomlistout"
     },
     {
@@ -4279,7 +4279,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_messagein",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "messagein"
     },
     {
@@ -4290,7 +4290,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_messageout",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "messageout"
     },
     {
@@ -4301,7 +4301,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_messagelistout",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "messagelistout"
     },
     {
@@ -4312,7 +4312,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_revealout",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "revealout"
     },
     {
@@ -4323,7 +4323,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_callcreatein",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "callcreatein"
     },
     {
@@ -4334,7 +4334,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_callout",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "callout"
     },
     {
@@ -4345,7 +4345,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_callsignalin",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "callsignalin"
     },
     {
@@ -4356,7 +4356,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_py_model_validator",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "model_validator"
     },
     {
@@ -4367,7 +4367,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_callsignalin_validate_data",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": ".validate_data()"
     },
     {
@@ -4378,7 +4378,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_callsignalout",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "callsignalout"
     },
     {
@@ -4389,7 +4389,7 @@
       "_origin": "ast",
       "id": "app_schemas_chat_rationale_54",
       "community": 8,
-      "community_name": "v1/chat.py",
+      "community_name": "StrictRequest",
       "norm_label": "\u1109\u116e\u1109\u1175\u11ab\u110c\u1161 \u1100\u116a\u11ab\u110c\u1165\u11b7: flagged & \u1106\u1175\u110b\u1167\u11af\u1105\u1161\u11b7 \u2192 content=none, blurred=true (safe-03). \u1107\u1161\u11af\u1109\u1175\u11ab\u110c\u1161 \u1100\u116a\u11ab\u110c\u1165\u11b7: \u110b\u116f\u11ab\u1106\u116e\u11ab \u110b\u1172\u110c\u1175,..."
     },
     {
@@ -4399,8 +4399,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_schemas_common",
-      "community": 2,
-      "community_name": "User",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "common.py"
     },
     {
@@ -4410,8 +4410,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "app_schemas_common_strictrequest",
-      "community": 2,
-      "community_name": "User",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "strictrequest"
     },
     {
@@ -4421,8 +4421,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_schemas_common_py_basemodel",
-      "community": 2,
-      "community_name": "User",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "basemodel"
     },
     {
@@ -4432,8 +4432,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_schemas_common_rationale_1",
-      "community": 2,
-      "community_name": "User",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "api \u110b\u116d\u110e\u1165\u11bc dto\u110b\u1174 \u1100\u1169\u11bc\u1110\u1169\u11bc \u1100\u1165\u11b7\u110c\u1173\u11bc \u110c\u1165\u11bc\u110e\u1162\u11a8."
     },
     {
@@ -4443,8 +4443,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "app_schemas_common_rationale_7",
-      "community": 2,
-      "community_name": "User",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "\u1111\u1173\u1105\u1169\u11ab\u1110\u1173 \u1111\u1175\u11af\u1103\u1173 \u110b\u1169\u1110\u1161\u1105\u1173\u11af \u110c\u1169\u110b\u116d\u11bc\u1112\u1175 \u1106\u116e\u1109\u1175\u1112\u1161\u110c\u1175 \u110b\u1161\u11ad\u1100\u1169 422\u1105\u1169 \u1103\u1173\u1105\u1165\u1102\u1162\u11ab\u1103\u1161."
     },
     {
@@ -4454,8 +4454,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_schemas_media",
-      "community": 2,
-      "community_name": "User",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "schemas/media.py"
     },
     {
@@ -4465,8 +4465,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "app_schemas_media_uploadedmediaout",
-      "community": 2,
-      "community_name": "User",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "uploadedmediaout"
     },
     {
@@ -4476,8 +4476,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_schemas_media_py_basemodel",
-      "community": 2,
-      "community_name": "User",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "basemodel"
     },
     {
@@ -4487,8 +4487,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_schemas_media_imageuploadout",
-      "community": 2,
-      "community_name": "User",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "imageuploadout"
     },
     {
@@ -4498,8 +4498,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "app_schemas_media_videouploadout",
-      "community": 2,
-      "community_name": "User",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "videouploadout"
     },
     {
@@ -4520,8 +4520,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "app_schemas_media_transcribeout",
-      "community": 2,
-      "community_name": "User",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "transcribeout"
     },
     {
@@ -4531,8 +4531,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "app_schemas_media_publishin",
-      "community": 2,
-      "community_name": "User",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "publishin"
     },
     {
@@ -4542,8 +4542,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "app_schemas_media_rationale_21",
-      "community": 2,
-      "community_name": "User",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "\u110b\u1167\u11bc\u1109\u1161\u11bc \u110b\u1165\u11b8\u1105\u1169\u1103\u1173 = \u1102\u1162\u1107\u116e \u1103\u1173\u1105\u1162\u1111\u1173\u1110\u1173 \u1109\u1162\u11bc\u1109\u1165\u11bc (post-01). post_id\u1105\u1169 \u110c\u1161\u1106\u1161\u11a8 \u1109\u1161\u11bc\u1110\u1162 \u1111\u1169\u11af\u1105\u1175\u11bc\u00b7\u1100\u1166\u1109\u1175."
     },
     {
@@ -4553,8 +4553,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "app_schemas_media_rationale_37",
-      "community": 2,
-      "community_name": "User",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "\u110c\u1161\u1106\u1161\u11a8 \u1109\u1175\u11af\u1111\u1162(\u110c\u1162\u1109\u1175\u1103\u1169 \u1109\u1169\u110c\u1175\u11ab) \u1109\u1175 '\u110c\u1161\u1106\u1161\u11a8 \u110b\u1165\u11b9\u110b\u1175 \u1100\u1166\u1109\u1175' \u1106\u1167\u11bc\u1109\u1175 \u1109\u1165\u11ab\u1110\u1162\u11a8 (caption-01 \u110b\u1168\u110b\u116c)."
     },
     {
@@ -4795,8 +4795,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "app_schemas_social_blockin",
-      "community": 6,
-      "community_name": "blocks.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "blockin"
     },
     {
@@ -5037,8 +5037,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "app_services_ai_media_media_hash_of",
-      "community": 129,
-      "community_name": "upload_video",
+      "community": 3,
+      "community_name": "ai_media.py",
       "norm_label": "media_hash_of()"
     },
     {
@@ -5092,8 +5092,8 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "app_services_ai_media_get_caption_caller",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 3,
+      "community_name": "ai_media.py",
       "norm_label": "get_caption_caller()"
     },
     {
@@ -5147,8 +5147,8 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "app_services_ai_media_consume_vision",
-      "community": 10,
-      "community_name": "quota.py",
+      "community": 6,
+      "community_name": "try_consume",
       "norm_label": "consume_vision()"
     },
     {
@@ -5323,8 +5323,8 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_65",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 3,
+      "community_name": "ai_media.py",
       "norm_label": "(media_path, content_type) -> [{start,end,text}] \u1109\u1166\u1100\u1173\u1106\u1165\u11ab\u1110\u1173. \u1109\u1175\u11af\u1100\u116e\u1112\u1167\u11ab: whisper."
     },
     {
@@ -5345,8 +5345,8 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "app_services_ai_media_rationale_95",
-      "community": 10,
-      "community_name": "quota.py",
+      "community": 6,
+      "community_name": "try_consume",
       "norm_label": "\u110b\u1175\u11af 20\u1112\u116c\u00b7\u1107\u116e\u11ab 5\u1112\u116c \u1103\u1169\u11bc\u1109\u1175 \u1100\u1165\u11b7\u110c\u1173\u11bc \u2014 \u1107\u116e\u11ab \u1112\u1161\u11ab\u1103\u1169 \u110e\u1169\u1100\u116a \u1109\u1175 \u110b\u1175\u11af \u110f\u1161\u110b\u116e\u11ab\u1110\u1165 \u1105\u1169\u11af\u1107\u1162\u11a8."
     },
     {
@@ -5400,8 +5400,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_call_signaling",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "call_signaling.py"
     },
     {
@@ -5411,8 +5411,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_services_call_signaling_callnotfound",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "callnotfound"
     },
     {
@@ -5422,8 +5422,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_call_signaling_py_exception",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "exception"
     },
     {
@@ -5433,8 +5433,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "app_services_call_signaling_callbusy",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "callbusy"
     },
     {
@@ -5444,8 +5444,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "app_services_call_signaling_invalidcallsignal",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "invalidcallsignal"
     },
     {
@@ -5455,8 +5455,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "app_services_call_signaling_call_key",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "call_key()"
     },
     {
@@ -5466,8 +5466,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_call_signaling_py_uuid",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "uuid"
     },
     {
@@ -5477,8 +5477,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "app_services_call_signaling_user_call_key",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "user_call_key()"
     },
     {
@@ -5488,8 +5488,8 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "app_services_call_signaling_now",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "_now()"
     },
     {
@@ -5499,8 +5499,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_call_signaling_py_datetime",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "datetime"
     },
     {
@@ -5510,8 +5510,8 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "app_services_call_signaling_serialize",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "_serialize()"
     },
     {
@@ -5521,8 +5521,8 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "app_services_call_signaling_public_call",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "public_call()"
     },
     {
@@ -5532,8 +5532,8 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "app_services_call_signaling_create_call",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "create_call()"
     },
     {
@@ -5543,8 +5543,8 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "app_services_call_signaling_get_call",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "get_call()"
     },
     {
@@ -5554,8 +5554,8 @@
       "source_location": "L142",
       "_origin": "ast",
       "id": "app_services_call_signaling_counterpart",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "counterpart()"
     },
     {
@@ -5565,8 +5565,8 @@
       "source_location": "L147",
       "_origin": "ast",
       "id": "app_services_call_signaling_validate_signal",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "validate_signal()"
     },
     {
@@ -5576,8 +5576,8 @@
       "source_location": "L167",
       "_origin": "ast",
       "id": "app_services_call_signaling_update_call_for_signal",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "update_call_for_signal()"
     },
     {
@@ -5587,8 +5587,8 @@
       "source_location": "L204",
       "_origin": "ast",
       "id": "app_services_call_signaling_close_call",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "close_call()"
     },
     {
@@ -5598,8 +5598,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_call_signaling_rationale_1",
-      "community": 66,
-      "community_name": "call_signaling.py",
+      "community": 8,
+      "community_name": "StrictRequest",
       "norm_label": "chat-05 webrtc \u1109\u1175\u1100\u1173\u1102\u1165\u11af\u1105\u1175\u11bc \u1109\u1166\u1109\u1167\u11ab. \u1106\u1175\u1103\u1175\u110b\u1165\u1102\u1173\u11ab \u110c\u1165\u11ab\u1103\u1161\u11af\u00b7\u110c\u1165\u110c\u1161\u11bc\u1112\u1161\u110c\u1175 \u110b\u1161\u11ad\u1102\u1173\u11ab\u1103\u1161. redis\u110b\u1166\u1102\u1173\u11ab \u110e\u1161\u11b7\u110b\u1167\u110c\u1161\u110b\u116a \u110d\u1161\u11b2\u110b\u1173\u11ab \u1109\u116e\u1106\u1167\u11bc\u110b\u1174 \u110b\u1167\u11ab\u1100\u1167\u11af \u1109\u1161\u11bc\u1110\u1162\u1106\u1161\u11ab \u1103\u116e\u11ab\u1103\u1161."
     },
     {
@@ -5610,7 +5610,7 @@
       "_origin": "ast",
       "id": "app_services_chat",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "services/chat.py"
     },
     {
@@ -5621,7 +5621,7 @@
       "_origin": "ast",
       "id": "app_services_chat_chatpolicyerror",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "chatpolicyerror"
     },
     {
@@ -5632,7 +5632,7 @@
       "_origin": "ast",
       "id": "app_services_chat_py_exception",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "exception"
     },
     {
@@ -5643,7 +5643,7 @@
       "_origin": "ast",
       "id": "app_services_chat_sendrestricted",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "sendrestricted"
     },
     {
@@ -5654,7 +5654,7 @@
       "_origin": "ast",
       "id": "app_services_chat_counterpart_id",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "counterpart_id()"
     },
     {
@@ -5665,7 +5665,7 @@
       "_origin": "ast",
       "id": "app_services_chat_py_uuid",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "uuid"
     },
     {
@@ -5676,7 +5676,7 @@
       "_origin": "ast",
       "id": "app_services_chat_read_state",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "_read_state()"
     },
     {
@@ -5687,7 +5687,7 @@
       "_origin": "ast",
       "id": "app_services_chat_py_asyncsession",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "asyncsession"
     },
     {
@@ -5698,7 +5698,7 @@
       "_origin": "ast",
       "id": "app_services_chat_unread_count",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "unread_count()"
     },
     {
@@ -5709,7 +5709,7 @@
       "_origin": "ast",
       "id": "app_services_chat_unread_counts",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "unread_counts()"
     },
     {
@@ -5720,7 +5720,7 @@
       "_origin": "ast",
       "id": "app_services_chat_counterpart_read_message_id",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "counterpart_read_message_id()"
     },
     {
@@ -5731,7 +5731,7 @@
       "_origin": "ast",
       "id": "app_services_chat_advance_read_cursor",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "advance_read_cursor()"
     },
     {
@@ -5742,7 +5742,7 @@
       "_origin": "ast",
       "id": "app_services_chat_get_or_create_room",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "get_or_create_room()"
     },
     {
@@ -5753,7 +5753,7 @@
       "_origin": "ast",
       "id": "app_services_chat_has_active_restriction",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "has_active_restriction()"
     },
     {
@@ -5764,7 +5764,7 @@
       "_origin": "ast",
       "id": "app_services_chat_flagged_count_since_reset",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "flagged_count_since_reset()"
     },
     {
@@ -5775,7 +5775,7 @@
       "_origin": "ast",
       "id": "app_services_chat_send_text",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "send_text()"
     },
     {
@@ -5786,7 +5786,7 @@
       "_origin": "ast",
       "id": "app_services_chat_reanalyze_unanalyzed",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "reanalyze_unanalyzed()"
     },
     {
@@ -5797,7 +5797,7 @@
       "_origin": "ast",
       "id": "app_services_chat_release_restriction",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "release_restriction()"
     },
     {
@@ -5808,7 +5808,7 @@
       "_origin": "ast",
       "id": "app_services_chat_rationale_1",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "1:1 \u110e\u1162\u1110\u1175\u11bc \u1103\u1169\u1106\u1166\u110b\u1175\u11ab \u1105\u1169\u110c\u1175\u11a8 \u2014 \u1107\u1161\u11bc \u1109\u1162\u11bc\u1109\u1165\u11bc \u110c\u1165\u11bc\u110e\u1162\u11a8, safe \u1103\u1169\u11bc\u1100\u1175 \u110c\u1165\u11ab\u1109\u1169\u11bc \u1111\u1161\u110b\u1175\u1111\u1173\u1105\u1161\u110b\u1175\u11ab, safe-05 \u110c\u1166\u1112\u1161\u11ab."
     },
     {
@@ -5819,7 +5819,7 @@
       "_origin": "ast",
       "id": "app_services_chat_rationale_20",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "\u110e\u1161\u1103\u1161\u11ab\u00b7\u110b\u1167\u11ab\u1105\u1167\u11bc \u1107\u1169\u1112\u1169 \u1103\u1173\u11bc \u2014 \u1105\u1161\u110b\u116e\u1110\u1165\u110b\u1166\u1109\u1165 404 + \u1109\u1161\u110b\u1172 \u1107\u1175\u1102\u1169\u110e\u116e\u11af \u1106\u1166\u1109\u1175\u110c\u1175\u1105\u1169 \u1107\u1167\u11ab\u1112\u116a\u11ab."
     },
     {
@@ -5830,7 +5830,7 @@
       "_origin": "ast",
       "id": "app_services_chat_rationale_24",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "safe-05 \u1112\u116a\u11af\u1109\u1165\u11bc \u110c\u1166\u1112\u1161\u11ab \u2014 \u1107\u1161\u11af\u1109\u1175\u11ab\u110c\u1161\u110b\u1166\u1100\u1166\u1102\u1173\u11ab '\u1106\u1166\u1109\u1175\u110c\u1175\u1105\u1173\u11af \u1107\u1169\u1102\u1162\u11af \u1109\u116e \u110b\u1165\u11b9\u1109\u1173\u11b8\u1102\u1175\u1103\u1161'\u1106\u1161\u11ab (403)."
     },
     {
@@ -5841,7 +5841,7 @@
       "_origin": "ast",
       "id": "app_services_chat_rationale_45",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "\u1109\u1161\u110b\u116d\u11bc\u110c\u1161\u110b\u1174 \u110b\u1175\u11b0\u110b\u1173\u11b7 \u110f\u1165\u1109\u1165 \u1103\u1171\u110b\u1166 \u110b\u1175\u11bb\u1102\u1173\u11ab \u1111\u116d\u1109\u1175 \u1100\u1161\u1102\u1173\u11bc\u1112\u1161\u11ab \u1109\u116e\u1109\u1175\u11ab \u1106\u1166\u1109\u1175\u110c\u1175 \u1109\u116e."
     },
     {
@@ -5852,7 +5852,7 @@
       "_origin": "ast",
       "id": "app_services_chat_rationale_68",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "\u110b\u1167\u1105\u1165 \u1103\u1162\u1112\u116a\u1107\u1161\u11bc\u110b\u1174 \u1106\u1175\u110b\u1175\u11b0\u110b\u1173\u11b7 \u1109\u116e\u1105\u1173\u11af \u110b\u1175\u11b0\u110b\u1173\u11b7 \u110f\u1165\u1109\u1165\u110b\u116a \u1112\u1161\u11ab \u1107\u1165\u11ab\u110b\u1174 \u110c\u1175\u11b8\u1100\u1168 \u110f\u116f\u1105\u1175\u1105\u1169 \u1100\u1168\u1109\u1161\u11ab\u1112\u1161\u11ab\u1103\u1161."
     },
     {
@@ -5863,7 +5863,7 @@
       "_origin": "ast",
       "id": "app_services_chat_rationale_157",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "\u110e\u1175\u11ab\u1100\u116e=active, \u1107\u1175\u110e\u1175\u11ab\u1100\u116e=request. \u110e\u1161\u1103\u1161\u11ab\u00b7\u1109\u116e\u1109\u1175\u11ab \u1100\u1165\u1107\u116e\u00b7\u1106\u1175\u1109\u1165\u11bc\u1102\u1167\u11ab \u1107\u1169\u1112\u1169\u1102\u1173\u11ab \u1109\u1161\u110b\u1172 \u1107\u1175\u1102\u1169\u110e\u116e\u11af\u1105\u1169 \u1100\u1165\u1107\u116e."
     },
     {
@@ -5874,7 +5874,7 @@
       "_origin": "ast",
       "id": "app_services_chat_rationale_222",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "safe-05 \u1102\u116e\u110c\u1165\u11a8: flagged and created_at > max(now-\u1100\u1175\u1100\u1161\u11ab, \u1106\u1161\u110c\u1175\u1106\u1161\u11a8 released_at)."
     },
     {
@@ -5885,7 +5885,7 @@
       "_origin": "ast",
       "id": "app_services_chat_rationale_253",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "safe-01 \u1103\u1169\u11bc\u1100\u1175 \u1111\u1161\u110b\u1175\u1111\u1173\u1105\u1161\u110b\u1175\u11ab. \u2192 (\u1106\u1166\u1109\u1175\u110c\u1175, \u110b\u1175\u1107\u1165\u11ab \u110c\u1165\u11ab\u1109\u1169\u11bc\u110b\u1173\u1105\u1169 \u110c\u1166\u1112\u1161\u11ab\u110b\u1175 \u1109\u1162\u1105\u1169 \u1107\u1161\u11af\u1103\u1169\u11bc\u1112\u1162\u11bb\u1102\u1173\u11ab\u110c\u1175)."
     },
     {
@@ -5896,7 +5896,7 @@
       "_origin": "ast",
       "id": "app_services_chat_rationale_310",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "\u00a718.3: \u1106\u1169\u1103\u1166\u11af \u1107\u1169\u11a8\u1100\u116e \u1112\u116e \u1106\u1175\u1107\u116e\u11ab\u1109\u1165\u11a8(unanalyzed)\u00b7\u1107\u1169\u1105\u1172(pending) \u1110\u1166\u11a8\u1109\u1173\u1110\u1173 \u110c\u1162\u1107\u116e\u11ab\u1109\u1165\u11a8. \u110c\u1162\u1107\u116e\u11ab\u1109\u1165\u11a8\u110b\u1166\u1109\u1165 \u110c\u116e\u110b\u1174 \u1111\u1161\u11ab\u110c\u1165\u11bc \u1109\u1175 \u1109\u1169\u1100\u1173\u11b8..."
     },
     {
@@ -5907,7 +5907,7 @@
       "_origin": "ast",
       "id": "app_services_chat_rationale_368",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "\u1109\u116e\u1109\u1175\u11ab\u110c\u1161\u110b\u1174 \u110c\u1166\u1112\u1161\u11ab \u1112\u1162\u110c\u1166 \u2014 released_at \u1100\u1175\u1105\u1169\u11a8\u110b\u1175 \u1100\u1169\u11ae \u1102\u116e\u110c\u1165\u11a8 \u110f\u1161\u110b\u116e\u11ab\u1110\u1165 \u1105\u1175\u1109\u1166\u11ba (safe-05-7)."
     },
     {
@@ -5939,7 +5939,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "runtimeerror",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "runtimeerror"
     },
@@ -6236,8 +6236,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_events",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 137,
+      "community_name": "test_calls.py",
       "norm_label": "events.py"
     },
     {
@@ -6247,8 +6247,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "app_services_events_user_channel",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 137,
+      "community_name": "test_calls.py",
       "norm_label": "user_channel()"
     },
     {
@@ -6258,8 +6258,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_services_events_publish_to_user",
-      "community": 135,
-      "community_name": "list_messages",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "publish_to_user()"
     },
     {
@@ -6269,8 +6269,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_events_rationale_1",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 137,
+      "community_name": "test_calls.py",
       "norm_label": "\u1109\u1175\u11af\u1109\u1175\u1100\u1161\u11ab \u110b\u1175\u1107\u1166\u11ab\u1110\u1173 \u2014 redis pub/sub \u1111\u1162\u11ab\u110b\u1161\u110b\u116e\u11ba (\u1103\u1161\u110c\u116e\u11bc \u110b\u116f\u110f\u1165\u110b\u1166\u1109\u1165\u1103\u1169 \u1109\u1161\u110b\u116d\u11bc\u110c\u1161\u1107\u1167\u11af \u110e\u1162\u1102\u1165\u11af\u1105\u1169 \u110c\u1165\u11ab\u1103\u1161\u11af). event \u1112\u1167\u11bc\u1109\u1175\u11a8: {\"type\":..."
     },
     {
@@ -6280,8 +6280,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_match",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "match.py"
     },
     {
@@ -6291,8 +6291,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "app_services_match_matchunavailable",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "matchunavailable"
     },
     {
@@ -6302,8 +6302,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_match_py_exception",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "exception"
     },
     {
@@ -6313,8 +6313,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "app_services_match_matchclient",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "matchclient"
     },
     {
@@ -6324,8 +6324,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "app_services_match_matchclient_score",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": ".score()"
     },
     {
@@ -6335,8 +6335,8 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "app_services_match_get_match_client",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "get_match_client()"
     },
     {
@@ -6346,8 +6346,8 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "app_services_match_sanitize_reasons",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "sanitize_reasons()"
     },
     {
@@ -6357,8 +6357,8 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "app_services_match_candidate_pool",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "candidate_pool()"
     },
     {
@@ -6368,8 +6368,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_match_py_asyncsession",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "asyncsession"
     },
     {
@@ -6379,8 +6379,8 @@
       "source_location": "L91",
       "_origin": "ast",
       "id": "app_services_match_user_features",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "user_features()"
     },
     {
@@ -6390,8 +6390,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_match_rationale_1",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "match \u2014 \u1112\u116e\u1107\u1169 \u1111\u116e\u11af\u00b7\u110c\u1166\u110b\u116c \u110c\u1169\u1100\u1165\u11ab\u110b\u1173\u11ab \u1107\u1162\u11a8\u110b\u1166\u11ab\u1103\u1173\u1100\u1161 \u1100\u1161\u11bc\u110c\u1166\u1112\u1161\u1100\u1169, \u110c\u1165\u11b7\u1109\u116e\u00b7\u1109\u1161\u110b\u1172\u1106\u1161\u11ab \u1106\u1169\u1103\u1166\u11af \u1109\u1165\u1107\u1165\u110b\u1166 \u110b\u1171\u110b\u1175\u11b7. \u110c\u1166\u110b\u116c(match-03\u00b702-5): \u110c\u1161\u1109\u1175\u11ab / \u110b\u1175\u1106\u1175 \u110e\u1175\u11ab\u1100\u116e..."
     },
     {
@@ -6401,8 +6401,8 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "app_services_match_rationale_44",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "fastapi \u110b\u1174\u110c\u1169\u11ab\u1109\u1165\u11bc \u2014 \u1110\u1166\u1109\u1173\u1110\u1173\u110b\u1166\u1109\u1165 fake\u1105\u1169 override."
     },
     {
@@ -6412,8 +6412,8 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "app_services_match_rationale_92",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "\u1106\u1169\u1103\u1166\u11af \u110b\u1175\u11b8\u1105\u1167\u11a8 \u1110\u1173\u11a8\u1109\u1165\u11bc. \u1109\u1162\u11bc\u1102\u1167\u11ab\u110b\u116f\u11af\u110b\u1175\u11af \u110b\u116f\u11ab\u1106\u116e\u11ab \u1103\u1162\u1109\u1175\u11ab \u110b\u1167\u11ab\u1105\u1167\u11bc\u1103\u1162\u1106\u1161\u11ab (match-02-5)."
     },
     {
@@ -6423,8 +6423,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_media_probe",
-      "community": 132,
-      "community_name": "media_probe.py",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "media_probe.py"
     },
     {
@@ -6434,8 +6434,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_services_media_probe_invalidvideo",
-      "community": 132,
-      "community_name": "media_probe.py",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "invalidvideo"
     },
     {
@@ -6445,8 +6445,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_media_probe_py_exception",
-      "community": 132,
-      "community_name": "media_probe.py",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "exception"
     },
     {
@@ -6456,8 +6456,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "app_services_media_probe_probe_video_duration",
-      "community": 132,
-      "community_name": "media_probe.py",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "probe_video_duration()"
     },
     {
@@ -6467,8 +6467,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_media_probe_py_path",
-      "community": 132,
-      "community_name": "media_probe.py",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "path"
     },
     {
@@ -6478,8 +6478,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "app_services_media_probe_get_video_probe",
-      "community": 132,
-      "community_name": "media_probe.py",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "get_video_probe()"
     },
     {
@@ -6489,8 +6489,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_media_probe_rationale_1",
-      "community": 132,
-      "community_name": "media_probe.py",
+      "community": 129,
+      "community_name": "v1/media.py",
       "norm_label": "\u1109\u1165\u1107\u1165\u1100\u1161 \u110c\u1175\u11a8\u110c\u1165\u11b8 \u110b\u1167\u11bc\u1109\u1161\u11bc \u110f\u1165\u11ab\u1110\u1166\u110b\u1175\u1102\u1165\u110b\u116a \u110c\u1162\u1109\u1162\u11bc \u1109\u1175\u1100\u1161\u11ab\u110b\u1173\u11af \u1100\u1165\u11b7\u110c\u1173\u11bc\u1112\u1161\u11ab\u1103\u1161."
     },
     {
@@ -6500,8 +6500,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_nickname",
-      "community": 30,
-      "community_name": "Base",
+      "community": 33,
+      "community_name": "v1/auth.py",
       "norm_label": "nickname.py"
     },
     {
@@ -6533,8 +6533,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_nickname_rationale_1",
-      "community": 30,
-      "community_name": "Base",
+      "community": 33,
+      "community_name": "v1/auth.py",
       "norm_label": "\u1102\u1175\u11a8\u1102\u1166\u110b\u1175\u11b7 \u110c\u1165\u11bc\u110e\u1162\u11a8 (acc-01): 2~12\u110c\u1161 \u1112\u1161\u11ab\u1100\u1173\u11af\u00b7\u110b\u1167\u11bc\u1106\u116e\u11ab\u00b7\u1109\u116e\u11ba\u110c\u1161, \u1100\u1173\u11b7\u110e\u1175\u11a8\u110b\u1165\u00b7\u110c\u116e\u11bc\u1107\u1169\u11a8 \u1107\u116e\u11af\u1100\u1161."
     },
     {
@@ -6555,8 +6555,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_notify",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 30,
+      "community_name": "notify",
       "norm_label": "notify.py"
     },
     {
@@ -6566,8 +6566,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "app_services_notify_enabled",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 30,
+      "community_name": "notify",
       "norm_label": "_enabled()"
     },
     {
@@ -6577,8 +6577,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_notify_py_asyncsession",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 30,
+      "community_name": "notify",
       "norm_label": "asyncsession"
     },
     {
@@ -6588,8 +6588,8 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "app_services_notify_notify",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 30,
+      "community_name": "notify",
       "norm_label": "notify()"
     },
     {
@@ -6599,8 +6599,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_notify_rationale_1",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 30,
+      "community_name": "notify",
       "norm_label": "\u00a716 \u110b\u1161\u11af\u1105\u1175\u11b7 \u1109\u1162\u11bc\u1109\u1165\u11bc \u2014 db \u110c\u1165\u110c\u1161\u11bc + ws \u1111\u116e\u1109\u1175 \u1107\u1167\u11bc\u1112\u1162\u11bc. \u1111\u116d\u1112\u1167\u11ab(\u1109\u1175\u1100\u1161\u11a8\u00b7\u110b\u1173\u11b7\u1109\u1165\u11bc\u00b7\u110c\u1175\u11ab\u1103\u1169\u11bc)\u110b\u1173\u11ab fe\u1100\u1161 \u1106\u1169\u1103\u1173\u1107\u1167\u11af \u110e\u1165\u1105\u1175."
     },
     {
@@ -6610,8 +6610,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_oauth",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 33,
+      "community_name": "v1/auth.py",
       "norm_label": "oauth.py"
     },
     {
@@ -6885,8 +6885,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_oauth_rationale_1",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 33,
+      "community_name": "v1/auth.py",
       "norm_label": "\u1109\u1169\u1109\u1167\u11af oauth \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u110e\u116e\u1109\u1161\u11bc\u1112\u116a (acc-01). - dev: oauth_mock=true \u2192 \u1106\u1169\u1103\u1173\u11ab \u110c\u1166\u1100\u1169\u11bc\u110c\u1161 \u110b\u1175\u1105\u1173\u11b7\u110b\u1175 mockprovider\u1105\u1169 \u1103\u1169\u11bc\u110c\u1161\u11a8..."
     },
     {
@@ -6929,8 +6929,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_presence",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "presence.py"
     },
     {
@@ -6940,8 +6940,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "app_services_presence_presence_key",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "presence_key()"
     },
     {
@@ -6951,8 +6951,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_presence_py_uuid",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "uuid"
     },
     {
@@ -6962,8 +6962,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "app_services_presence_mark_online",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "mark_online()"
     },
     {
@@ -6973,8 +6973,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "app_services_presence_refresh_presence",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "refresh_presence()"
     },
     {
@@ -6984,8 +6984,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "app_services_presence_mark_offline",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "mark_offline()"
     },
     {
@@ -6995,8 +6995,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "app_services_presence_online_statuses",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "online_statuses()"
     },
     {
@@ -7006,8 +7006,8 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "app_services_presence_heartbeat",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "heartbeat()"
     },
     {
@@ -7017,8 +7017,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_presence_rationale_1",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "redis ttl \u1100\u1175\u1107\u1161\u11ab \u1109\u1161\u110b\u116d\u11bc\u110c\u1161 \u110b\u1169\u11ab\u1105\u1161\u110b\u1175\u11ab \u1109\u1161\u11bc\u1110\u1162. \u110b\u1167\u11ab\u1100\u1167\u11af \u1109\u116e\u1105\u1173\u11af \u110c\u1165\u110c\u1161\u11bc\u1112\u1162 \u110b\u1167\u1105\u1165 \u1110\u1162\u11b8\u110b\u1173\u11af \u110c\u1175\u110b\u116f\u11ab\u1112\u1161\u1100\u1169, heartbeat\u1100\u1161 \u1101\u1173\u11ad\u1100\u1175\u1106\u1167\u11ab ttl\u1105\u1169 \u110c\u1161\u1103\u1169\u11bc \u110c\u1165\u11bc\u1105\u1175\u1112\u1161\u11ab\u1103\u1161."
     },
     {
@@ -7116,8 +7116,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "app_services_quota_try_consume",
-      "community": 10,
-      "community_name": "quota.py",
+      "community": 6,
+      "community_name": "try_consume",
       "norm_label": "try_consume()"
     },
     {
@@ -7127,8 +7127,8 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "app_services_quota_refund",
-      "community": 10,
-      "community_name": "quota.py",
+      "community": 6,
+      "community_name": "try_consume",
       "norm_label": "refund()"
     },
     {
@@ -7259,8 +7259,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "app_services_quota_rationale_39",
-      "community": 10,
-      "community_name": "quota.py",
+      "community": 6,
+      "community_name": "try_consume",
       "norm_label": "\u110f\u1161\u110b\u116e\u11ab\u1110\u1165 1 \u110c\u1173\u11bc\u1100\u1161. \u1112\u1161\u11ab\u1103\u1169 \u110e\u1169\u1100\u116a\u1106\u1167\u11ab \u1105\u1169\u11af\u1107\u1162\u11a8 \u1112\u116e false."
     },
     {
@@ -7270,8 +7270,8 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "app_services_quota_rationale_50",
-      "community": 10,
-      "community_name": "quota.py",
+      "community": 6,
+      "community_name": "try_consume",
       "norm_label": "caption-01: \u110c\u1161\u1106\u1161\u11a8 \u1109\u1162\u11bc\u1109\u1165\u11bc \u1109\u1175\u11af\u1111\u1162(\u110c\u1162\u1109\u1175\u1103\u1169 \u1109\u1169\u110c\u1175\u11ab) \u1109\u1175 \u110b\u1175\u11af\u110b\u1175\u11af \u1112\u116c\u11ba\u1109\u116e \u110e\u1161\u1100\u1161\u11b7 \u1107\u1169\u11a8\u110b\u116f\u11ab."
     },
     {
@@ -7358,8 +7358,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "app_services_relations_are_friends",
-      "community": 64,
-      "community_name": "send_media",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "are_friends()"
     },
     {
@@ -7369,8 +7369,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_relations_py_asyncsession",
-      "community": 64,
-      "community_name": "send_media",
+      "community": 5,
+      "community_name": "friends.py",
       "norm_label": "asyncsession"
     },
     {
@@ -7391,8 +7391,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "app_services_relations_is_blocked_either",
-      "community": 64,
-      "community_name": "send_media",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "is_blocked_either()"
     },
     {
@@ -7424,8 +7424,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "app_services_relations_rationale_24",
-      "community": 64,
-      "community_name": "send_media",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "\u110b\u1165\u1102\u1173 \u1107\u1161\u11bc\u1112\u1163\u11bc\u110b\u1175\u1103\u1173\u11ab \u110e\u1161\u1103\u1161\u11ab\u110b\u1175\u1106\u1167\u11ab true \u2014 \u1106\u1169\u1103\u1173\u11ab \u110c\u1165\u11b8\u110c\u1165\u11b7 \u1109\u1161\u11bc\u1112\u1169 \u110c\u1166\u1100\u1165 (block-01)."
     },
     {
@@ -7447,7 +7447,7 @@
       "_origin": "ast",
       "id": "app_services_safety",
       "community": 13,
-      "community_name": "SafetyUnavailable",
+      "community_name": "test_safe.py",
       "norm_label": "safety.py"
     },
     {
@@ -7458,7 +7458,7 @@
       "_origin": "ast",
       "id": "app_services_safety_safetyunavailable",
       "community": 13,
-      "community_name": "SafetyUnavailable",
+      "community_name": "test_safe.py",
       "norm_label": "safetyunavailable"
     },
     {
@@ -7469,7 +7469,7 @@
       "_origin": "ast",
       "id": "app_services_safety_py_exception",
       "community": 13,
-      "community_name": "SafetyUnavailable",
+      "community_name": "test_safe.py",
       "norm_label": "exception"
     },
     {
@@ -7480,7 +7480,7 @@
       "_origin": "ast",
       "id": "app_services_safety_safetyclient",
       "community": 42,
-      "community_name": "services/chat.py",
+      "community_name": "v1/chat.py",
       "norm_label": "safetyclient"
     },
     {
@@ -7490,8 +7490,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "app_services_safety_safetyclient_analyze",
-      "community": 13,
-      "community_name": "SafetyUnavailable",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": ".analyze()"
     },
     {
@@ -7502,7 +7502,7 @@
       "_origin": "ast",
       "id": "app_services_safety_get_safety_client",
       "community": 13,
-      "community_name": "SafetyUnavailable",
+      "community_name": "test_safe.py",
       "norm_label": "get_safety_client()"
     },
     {
@@ -7513,7 +7513,7 @@
       "_origin": "ast",
       "id": "app_services_safety_rationale_1",
       "community": 13,
-      "community_name": "SafetyUnavailable",
+      "community_name": "test_safe.py",
       "norm_label": "safe-01 \u2014 \u110c\u1161\u110e\u1166 \u110b\u1161\u11ab\u110c\u1165\u11ab \u1106\u1169\u1103\u1166\u11af http \u110f\u1173\u11af\u1105\u1161\u110b\u1175\u110b\u1165\u11ab\u1110\u1173 (\u1107\u1167\u11af\u1103\u1169 \u1106\u1169\u1103\u1166\u11af \u1109\u1165\u1107\u1165 \u1100\u1167\u11bc\u1100\u1168, ai \u1110\u1175\u11b7 \u1103\u1161\u11b7\u1103\u1161\u11bc). \u1110\u1166\u11a8\u1109\u1173\u1110\u1173 \u110b\u1171\u1112\u1165\u11b7 \u1111\u1161\u11ab\u110c\u1165\u11bc\u110b\u1166\u1102\u1173\u11ab \u110b\u116c\u1107\u116e ai\u1105\u1173\u11af \u1109\u1161\u110b\u116d\u11bc\u1112\u1161\u110c\u1175..."
     },
     {
@@ -7524,7 +7524,7 @@
       "_origin": "ast",
       "id": "app_services_safety_rationale_13",
       "community": 13,
-      "community_name": "SafetyUnavailable",
+      "community_name": "test_safe.py",
       "norm_label": "\u1106\u1169\u1103\u1166\u11af \u1109\u1165\u1107\u1165 \u110c\u1161\u11bc\u110b\u1162\u00b7\u110c\u1175\u110b\u1167\u11ab \u2014 \u110e\u1175\u11ab\u1100\u116e \u1110\u1166\u11a8\u1109\u1173\u1110\u1173\u1102\u1173\u11ab unanalyzed \u110c\u1165\u11ab\u1103\u1161\u11af, \u1107\u1175\u110e\u1175\u11ab\u1100\u116e\u1102\u1173\u11ab pending \u1107\u1169\u1105\u1172."
     },
     {
@@ -7534,8 +7534,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "app_services_safety_rationale_18",
-      "community": 13,
-      "community_name": "SafetyUnavailable",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "\u2192 'safe' | 'flagged'. \u1106\u1175\u1109\u1165\u11bc\u1102\u1167\u11ab \u1109\u116e\u1109\u1175\u11ab\u110c\u1161\u1102\u1173\u11ab \u1106\u1175\u11ab\u1100\u1161\u11b7(\u1102\u1161\u11bd\u110b\u1173\u11ab) \u110b\u1175\u11b7\u1100\u1168\u1100\u1161\u11b9 (\u00a74.5)."
     },
     {
@@ -7546,7 +7546,7 @@
       "_origin": "ast",
       "id": "app_services_safety_rationale_35",
       "community": 13,
-      "community_name": "SafetyUnavailable",
+      "community_name": "test_safe.py",
       "norm_label": "fastapi \u110b\u1174\u110c\u1169\u11ab\u1109\u1165\u11bc \u2014 \u1110\u1166\u1109\u1173\u1110\u1173\u110b\u1166\u1109\u1165 fake\u1105\u1169 override."
     },
     {
@@ -7556,8 +7556,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_scheduler",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "scheduler.py"
     },
     {
@@ -7567,8 +7567,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "app_services_scheduler_cleanup_stale_drafts",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "cleanup_stale_drafts()"
     },
     {
@@ -7578,8 +7578,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "app_services_scheduler_reanalyze_job",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "_reanalyze_job()"
     },
     {
@@ -7589,8 +7589,8 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "app_services_scheduler_recover_processing_captions",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "recover_processing_captions()"
     },
     {
@@ -7600,8 +7600,8 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "app_services_scheduler_start_scheduler",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "start_scheduler()"
     },
     {
@@ -7611,8 +7611,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "asyncioscheduler",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "asyncioscheduler"
     },
     {
@@ -7623,7 +7623,7 @@
       "_origin": "ast",
       "id": "app_services_scheduler_stop_scheduler",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "stop_scheduler()"
     },
     {
@@ -7633,8 +7633,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_scheduler_rationale_1",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "apscheduler \u110f\u1173\u1105\u1169\u11ab \u2014 \u1103\u1173\u1105\u1162\u1111\u1173\u1110\u1173 \u110e\u1165\u11bc\u1109\u1169\u00b7\u110c\u1161\u1106\u1161\u11a8 \u110c\u1161\u11a8\u110b\u1165\u11b8 \u1107\u1169\u11a8\u1100\u116e\u00b7safe \u110c\u1162\u1107\u116e\u11ab\u1109\u1165\u11a8."
     },
     {
@@ -7644,8 +7644,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "app_services_scheduler_rationale_21",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "caption-01: \u110b\u1165\u11b8\u1105\u1169\u1103\u1173 \u1112\u116e 24\u1109\u1175\u1100\u1161\u11ab \u1106\u1175\u1100\u1166\u1109\u1175 \u1102\u1162\u1107\u116e \u1103\u1173\u1105\u1162\u1111\u1173\u1110\u1173\u1105\u1173\u11af \u110b\u1167\u11bc\u1109\u1161\u11bc\u00b7\u110c\u1161\u1106\u1161\u11a8\u1100\u116a \u1112\u1161\u11b7\u1101\u1166 \u1109\u1161\u11a8\u110c\u1166. \u110b\u1175\u1106\u1175 \u1109\u1165\u11bc\u1100\u1169\u11bc\u1112\u1161\u11ab \u110c\u1161\u1106\u1161\u11a8 \u1109\u1162\u11bc\u1109\u1165\u11bc\u110b\u1174 \u110b\u1175\u11af\u110b\u1175\u11af \u1112\u116c\u11ba\u1109\u116e \u110e\u1161\u1100\u1161\u11b7\u110b\u1173\u11ab \u1107\u1169\u11a8\u110b\u116f\u11ab\u1112\u1161\u110c\u1175..."
     },
     {
@@ -7655,8 +7655,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "app_services_scheduler_rationale_56",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "\u00a718.3: \u1106\u1169\u1103\u1166\u11af \u1107\u1169\u11a8\u1100\u116e \u1100\u1161\u11b7\u110c\u1175\u110b\u116d\u11bc \u110c\u116e\u1100\u1175 \u110c\u1162\u1107\u116e\u11ab\u1109\u1165\u11a8 (unanalyzed\u00b7pending \u1110\u1166\u11a8\u1109\u1173\u1110\u1173)."
     },
     {
@@ -7666,8 +7666,8 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "app_services_scheduler_rationale_70",
-      "community": 117,
-      "community_name": "scheduler.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "\u110c\u1162\u1109\u1175\u110c\u1161\u11a8 \u1103\u1173\u11bc\u110b\u1173\u1105\u1169 \u110b\u1172\u1109\u1175\u11af\u1103\u116c\u11ab processing \u110c\u1161\u1106\u1161\u11a8 \u110c\u1161\u11a8\u110b\u1165\u11b8\u110b\u1173\u11af redis \u110c\u1161\u11b7\u1100\u1173\u11b7 \u110b\u1161\u1105\u1162 \u110c\u1162\u1109\u1175\u11af\u1112\u1162\u11bc\u1112\u1161\u11ab\u1103\u1161."
     },
     {
@@ -7798,8 +7798,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_vision",
-      "community": 118,
-      "community_name": "vision.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "vision.py"
     },
     {
@@ -7809,8 +7809,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "app_services_vision_get_client",
-      "community": 118,
-      "community_name": "vision.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "_get_client()"
     },
     {
@@ -7820,8 +7820,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_services_vision_py_asyncopenai",
-      "community": 118,
-      "community_name": "vision.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "asyncopenai"
     },
     {
@@ -7831,8 +7831,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "app_services_vision_generate_description",
-      "community": 118,
-      "community_name": "vision.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "generate_description()"
     },
     {
@@ -7842,8 +7842,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_vision_rationale_1",
-      "community": 118,
-      "community_name": "vision.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "gpt-4o vision \u110b\u1175\u1106\u1175\u110c\u1175 \u1112\u1162\u1109\u1165\u11af \u1109\u1165\u1107\u1175\u1109\u1173 (f02_s04 \u1109\u1175\u1100\u1161\u11a8\u110c\u1161\u11bc\u110b\u1162 \u1106\u1169\u1103\u1173). \u110b\u1166\u11ab\u1103\u1173\u1111\u1169\u110b\u1175\u11ab\u1110\u1173\u1102\u1173\u11ab..."
     },
     {
@@ -7853,8 +7853,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "app_services_vision_rationale_32",
-      "community": 118,
-      "community_name": "vision.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "\u110b\u1175\u1106\u1175\u110c\u1175 \u1107\u1161\u110b\u1175\u1110\u1173 \u2192 \u1112\u1161\u11ab\u1100\u116e\u11a8\u110b\u1165 \u1112\u1162\u1109\u1165\u11af \u1110\u1166\u11a8\u1109\u1173\u1110\u1173. (\u1109\u1175\u11af\u110c\u1166 gpt-4o \u1112\u1169\u110e\u116e\u11af)"
     },
     {
@@ -7864,8 +7864,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_withdrawal",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "withdrawal.py"
     },
     {
@@ -7908,8 +7908,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_withdrawal_rationale_1",
-      "community": 30,
-      "community_name": "Base",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "\u00a715 \u1112\u116c\u110b\u116f\u11ab \u1110\u1161\u11af\u1110\u116c. - \u1100\u1168\u110c\u1165\u11bc\u00b7\u1111\u1173\u1105\u1169\u1111\u1175\u11af \u110c\u1173\u11a8\u1109\u1175 \u1109\u1161\u11a8\u110c\u1166 (users hard delete) - \u1100\u1166\u1109\u1175\u1106\u116e\u11af\u00b7\u1103\u1162\u11ba\u1100\u1173\u11af: \u1109\u1161\u110b\u116d\u11bc\u110c\u1161\u1100\u1161 \u110b\u1175\u11a8\u1106\u1167\u11bc\u1112\u116a/\u1109\u1161\u11a8\u110c\u1166 \u1109\u1165\u11ab\u1110\u1162\u11a8 - \u110e\u1162\u1110\u1175\u11bc..."
     },
     {
@@ -8109,8 +8109,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_conftest_py_fixture",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 7,
+      "community_name": "db",
       "norm_label": "fixture"
     },
     {
@@ -8120,8 +8120,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "tests_conftest_force_oauth_mock",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 7,
+      "community_name": "db",
       "norm_label": "_force_oauth_mock()"
     },
     {
@@ -8142,8 +8142,8 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "tests_conftest_test_database_url",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "_test_database_url()"
     },
     {
@@ -8153,8 +8153,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "tests_conftest_conn",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "_conn()"
     },
     {
@@ -8164,8 +8164,8 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "tests_conftest_session_factory",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 7,
+      "community_name": "db",
       "norm_label": "_session_factory()"
     },
     {
@@ -8175,8 +8175,8 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "tests_conftest_session",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 7,
+      "community_name": "db",
       "norm_label": "_session()"
     },
     {
@@ -8186,8 +8186,8 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "tests_conftest_db",
-      "community": 3,
-      "community_name": "ai_media.py",
+      "community": 7,
+      "community_name": "db",
       "norm_label": "db()"
     },
     {
@@ -8197,8 +8197,8 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "tests_conftest_borrowedsession",
-      "community": 19,
-      "community_name": "_BorrowedSession",
+      "community": 108,
+      "community_name": "conftest.py",
       "norm_label": "_borrowedsession"
     },
     {
@@ -8208,8 +8208,8 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "tests_conftest_borrowedsession_init",
-      "community": 19,
-      "community_name": "_BorrowedSession",
+      "community": 108,
+      "community_name": "conftest.py",
       "norm_label": ".__init__()"
     },
     {
@@ -8219,8 +8219,8 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "tests_conftest_borrowedsession_aenter",
-      "community": 19,
-      "community_name": "_BorrowedSession",
+      "community": 108,
+      "community_name": "conftest.py",
       "norm_label": ".__aenter__()"
     },
     {
@@ -8230,8 +8230,8 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "tests_conftest_borrowedsession_aexit",
-      "community": 19,
-      "community_name": "_BorrowedSession",
+      "community": 108,
+      "community_name": "conftest.py",
       "norm_label": ".__aexit__()"
     },
     {
@@ -8274,7 +8274,7 @@
       "source_location": "L133",
       "_origin": "ast",
       "id": "tests_conftest_register",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "register()"
     },
@@ -8297,7 +8297,7 @@
       "_origin": "ast",
       "id": "tests_conftest_auth_header",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "auth_header()"
     },
     {
@@ -8318,8 +8318,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "tests_conftest_rationale_27",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 7,
+      "community_name": "db",
       "norm_label": ".env\u110b\u1174 \u1109\u1175\u11af\u110f\u1175\u00b7oauth_mock=false\u1102\u1173\u11ab \u1107\u1162\u1111\u1169\u110b\u116d\u11bc \u2014 \u1110\u1166\u1109\u1173\u1110\u1173\u1102\u1173\u11ab \u1112\u1161\u11bc\u1109\u1161\u11bc mock \u110c\u1166\u1100\u1169\u11bc\u110c\u1161\u1105\u1169 \u1100\u1167\u11af\u110c\u1165\u11bc\u1105\u1169\u11ab\u110c\u1165\u11a8\u110b\u1173\u1105\u1169 \u1109\u1175\u11af\u1112\u1162\u11bc\u1112\u1161\u11ab\u1103\u1161. \u1100\u1162\u1107\u1167\u11af..."
     },
     {
@@ -8329,8 +8329,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "tests_conftest_rationale_42",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "\u1110\u1166\u1109\u1173\u1110\u1173 \u110c\u1165\u11ab\u110b\u116d\u11bc db\u1106\u1161\u11ab \u1112\u1165\u110b\u116d\u11bc\u1112\u1161\u11ab\u1103\u1161. \u1106\u1167\u11bc\u1109\u1175\u1100\u1161\u11b9\u110b\u1175 \u110b\u1165\u11b9\u110b\u1173\u1106\u1167\u11ab \u1112\u1167\u11ab\u110c\u1162 db\u1106\u1167\u11bc\u110b\u1166 `_test`\u1105\u1173\u11af \u1107\u116e\u11c0\u110b\u1175\u11ab\u1103\u1161."
     },
     {
@@ -8340,8 +8340,8 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "tests_conftest_rationale_80",
-      "community": 3,
-      "community_name": "ai_media.py",
+      "community": 7,
+      "community_name": "db",
       "norm_label": "\u1110\u1166\u1109\u1173\u1110\u1173\u110b\u116a api \u110b\u116d\u110e\u1165\u11bc\u110b\u1175 \u1100\u1161\u11c0\u110b\u1173\u11ab \u1109\u1166\u1109\u1167\u11ab\u110b\u1173\u11af \u1109\u1161\u110b\u116d\u11bc\u1112\u1162 \u110c\u116e\u11bc\u110e\u1165\u11b8 savepoint \u1100\u1161\u11ab \u1100\u1161\u11ab\u1109\u1165\u11b8\u110b\u1173\u11af \u1106\u1161\u11a8\u1102\u1173\u11ab\u1103\u1161."
     },
     {
@@ -8351,8 +8351,8 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "tests_conftest_rationale_85",
-      "community": 19,
-      "community_name": "_BorrowedSession",
+      "community": 108,
+      "community_name": "conftest.py",
       "norm_label": "\u1107\u1162\u11a8\u1100\u1173\u1105\u1161\u110b\u116e\u11ab\u1103\u1173 \u110c\u1161\u11b8\u110b\u1175 \u1110\u1166\u1109\u1173\u1110\u1173 \u1100\u1169\u11bc\u110b\u1172 \u1109\u1166\u1109\u1167\u11ab\u110b\u1173\u11af \u1103\u1161\u11ae\u110c\u1175 \u110b\u1161\u11ad\u1103\u1169\u1105\u1169\u11a8 \u1112\u1161\u1102\u1173\u11ab async context manager."
     },
     {
@@ -8373,7 +8373,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "tests_conftest_rationale_141",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "mock oauth \u1100\u1161\u110b\u1175\u11b8 \u1112\u1166\u11af\u1111\u1165 \u2192 {access_token, user_id, ...}."
     },
@@ -8384,8 +8384,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_age",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "test_age.py"
     },
     {
@@ -8395,8 +8395,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "tests_test_age_test_full_age_boundaries",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "test_full_age_boundaries()"
     },
     {
@@ -8406,8 +8406,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "tests_test_age_test_is_minor_range",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "test_is_minor_range()"
     },
     {
@@ -8417,8 +8417,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "tests_test_age_test_age_band_boundaries",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "test_age_band_boundaries()"
     },
     {
@@ -8428,8 +8428,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "tests_test_age_test_normalize_pair_orders_by_uuid",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "test_normalize_pair_orders_by_uuid()"
     },
     {
@@ -8439,8 +8439,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_age_rationale_1",
-      "community": 0,
-      "community_name": "users.py",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "\u1106\u1161\u11ab \u1102\u1161\u110b\u1175\u00b7\u110b\u1167\u11ab\u1105\u1167\u11bc\u1103\u1162\u00b7\u110a\u1161\u11bc \u110c\u1165\u11bc\u1100\u1172\u1112\u116a \u110b\u1172\u1110\u1175\u11af (\u00a74.5, match-02-5)."
     },
     {
@@ -8692,8 +8692,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "tests_test_chat_fakesafety",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "fakesafety"
     },
     {
@@ -8703,8 +8703,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "tests_test_chat_fakesafety_init",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": ".__init__()"
     },
     {
@@ -8714,8 +8714,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "tests_test_chat_fakesafety_analyze",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": ".analyze()"
     },
     {
@@ -8725,8 +8725,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_test_chat_py_fixture",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "fixture"
     },
     {
@@ -8736,8 +8736,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "tests_test_chat_safety",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "safety()"
     },
     {
@@ -8912,8 +8912,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "tests_test_chat_rationale_17",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "\u1103\u1169\u11ab' \u1111\u1169\u1112\u1161\u11b7 \u2192 flagged. fail=true \u2192 safetyunavailable (\u00a718.3)."
     },
     {
@@ -8923,8 +8923,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_comm",
-      "community": 11,
-      "community_name": "test_comm.py",
+      "community": 54,
+      "community_name": "test_chat.py",
       "norm_label": "test_comm.py"
     },
     {
@@ -9033,8 +9033,8 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "tests_test_comm_test_simplify_and_complete",
-      "community": 11,
-      "community_name": "test_comm.py",
+      "community": 9,
+      "community_name": "register",
       "norm_label": "test_simplify_and_complete()"
     },
     {
@@ -9077,8 +9077,8 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "tests_test_comm_test_post_comments_use_post_and_latest_10_comments",
-      "community": 11,
-      "community_name": "test_comm.py",
+      "community": 9,
+      "community_name": "register",
       "norm_label": "test_post_comments_use_post_and_latest_10_comments()"
     },
     {
@@ -9088,8 +9088,8 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "tests_test_comm_test_post_comments_hide_blocked_post",
-      "community": 11,
-      "community_name": "test_comm.py",
+      "community": 18,
+      "community_name": "Block",
       "norm_label": "test_post_comments_hide_blocked_post()"
     },
     {
@@ -9099,8 +9099,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_comm_rationale_1",
-      "community": 11,
-      "community_name": "test_comm.py",
+      "community": 54,
+      "community_name": "test_chat.py",
       "norm_label": "comm-01~05 \u2014 \u1109\u1171\u110b\u116e\u11ab \u1106\u116e\u11ab\u110c\u1161\u11bc\u00b7\u1106\u116e\u11ab\u110c\u1161\u11bc \u110b\u116a\u11ab\u1109\u1165\u11bc\u00b7\u1103\u1162\u11ba\u1100\u1173\u11af\u00b7\u1103\u1161\u11b8\u110c\u1161\u11bc \u110e\u116e\u110e\u1165\u11ab\u00b7\u1103\u1162\u1112\u116a \u1112\u1175\u11ab\u1110\u1173."
     },
     {
@@ -9187,8 +9187,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_config",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "test_config.py"
     },
     {
@@ -9198,8 +9198,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "tests_test_config_test_v2_1_settings_defaults",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "test_v2_1_settings_defaults()"
     },
     {
@@ -9209,8 +9209,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "tests_test_config_test_settings_ignores_compose_only_env_vars",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "test_settings_ignores_compose_only_env_vars()"
     },
     {
@@ -9220,8 +9220,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "tests_test_config_test_tests_always_use_test_database",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "test_tests_always_use_test_database()"
     },
     {
@@ -9231,8 +9231,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_config_rationale_1",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "v2.1 \u1106\u1167\u11bc\u1109\u1166 \u1100\u1169\u110c\u1165\u11bc\u1100\u1161\u11b9\u110b\u1175 settings\u110b\u1166 \u1107\u1161\u11ab\u110b\u1167\u11bc\u1103\u116c\u110b\u1165 \u110b\u1175\u11bb\u1102\u1173\u11ab\u110c\u1175 \u1100\u1165\u11b7\u110c\u1173\u11bc."
     },
     {
@@ -9242,8 +9242,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "tests_test_config_rationale_29",
-      "community": 108,
-      "community_name": "conftest.py",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "docker compose env_file\u110b\u1173\u11ab postgres_password/redis_password\u1103\u1169 \u110f\u1165\u11ab\u1110\u1166\u110b\u1175\u1102\u1165 \u1111\u1173\u1105\u1169\u1109\u1166\u1109\u1173\u110b\u1166 \u1102\u1169\u110e\u116e\u11af\u1112\u1161\u11ab\u1103\u1161. \u110b\u1175..."
     },
     {
@@ -9364,7 +9364,7 @@
       "_origin": "ast",
       "id": "tests_test_health",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": "test_health.py"
     },
     {
@@ -9375,7 +9375,7 @@
       "_origin": "ast",
       "id": "tests_test_health_connection",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": "_connection"
     },
     {
@@ -9386,7 +9386,7 @@
       "_origin": "ast",
       "id": "tests_test_health_connection_init",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": ".__init__()"
     },
     {
@@ -9397,7 +9397,7 @@
       "_origin": "ast",
       "id": "tests_test_health_py_exception",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": "exception"
     },
     {
@@ -9408,7 +9408,7 @@
       "_origin": "ast",
       "id": "tests_test_health_connection_aenter",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": ".__aenter__()"
     },
     {
@@ -9419,7 +9419,7 @@
       "_origin": "ast",
       "id": "tests_test_health_connection_aexit",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": ".__aexit__()"
     },
     {
@@ -9430,7 +9430,7 @@
       "_origin": "ast",
       "id": "tests_test_health_connection_execute",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": ".execute()"
     },
     {
@@ -9441,7 +9441,7 @@
       "_origin": "ast",
       "id": "tests_test_health_engine",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": "_engine"
     },
     {
@@ -9452,7 +9452,7 @@
       "_origin": "ast",
       "id": "tests_test_health_engine_init",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": ".__init__()"
     },
     {
@@ -9463,7 +9463,7 @@
       "_origin": "ast",
       "id": "tests_test_health_engine_connect",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": ".connect()"
     },
     {
@@ -9473,8 +9473,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "tests_test_health_redis",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": "_redis"
     },
     {
@@ -9485,7 +9485,7 @@
       "_origin": "ast",
       "id": "tests_test_health_redis_init",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": ".__init__()"
     },
     {
@@ -9495,8 +9495,8 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "tests_test_health_redis_ping",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": ".ping()"
     },
     {
@@ -9506,8 +9506,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "tests_test_health_redis_aclose",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 42,
+      "community_name": "v1/chat.py",
       "norm_label": ".aclose()"
     },
     {
@@ -9518,7 +9518,7 @@
       "_origin": "ast",
       "id": "tests_test_health_test_health_ok",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": "test_health_ok()"
     },
     {
@@ -9529,7 +9529,7 @@
       "_origin": "ast",
       "id": "tests_test_health_test_health_degraded_is_503_and_hides_exception",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": "test_health_degraded_is_503_and_hides_exception()"
     },
     {
@@ -9540,7 +9540,7 @@
       "_origin": "ast",
       "id": "tests_test_health_rationale_1",
       "community": 55,
-      "community_name": "_Redis",
+      "community_name": "test_health.py",
       "norm_label": "\u1112\u1166\u11af\u1109\u1173\u110e\u1166\u110f\u1173\u1102\u1173\u11ab \u1102\u1162\u1107\u116e \u110b\u1169\u1105\u1172\u1105\u1173\u11af \u1102\u1169\u110e\u116e\u11af\u1112\u1161\u110c\u1175 \u110b\u1161\u11ad\u1100\u1169 \u110c\u1161\u11bc\u110b\u1162 \u1109\u1175 http 503\u110b\u1173\u11af \u1107\u1161\u11ab\u1112\u116a\u11ab\u1112\u1161\u11ab\u1103\u1161."
     },
     {
@@ -9551,7 +9551,7 @@
       "_origin": "ast",
       "id": "tests_test_match",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": "test_match.py"
     },
     {
@@ -9562,7 +9562,7 @@
       "_origin": "ast",
       "id": "tests_test_match_fakematch",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": "fakematch"
     },
     {
@@ -9573,7 +9573,7 @@
       "_origin": "ast",
       "id": "tests_test_match_fakematch_init",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": ".__init__()"
     },
     {
@@ -9584,7 +9584,7 @@
       "_origin": "ast",
       "id": "tests_test_match_fakematch_score",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": ".score()"
     },
     {
@@ -9595,7 +9595,7 @@
       "_origin": "ast",
       "id": "tests_test_match_py_fixture",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": "fixture"
     },
     {
@@ -9606,7 +9606,7 @@
       "_origin": "ast",
       "id": "tests_test_match_match",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": "match()"
     },
     {
@@ -9617,7 +9617,7 @@
       "_origin": "ast",
       "id": "tests_test_match_test_exclusion_rules_enforced_by_backend",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": "test_exclusion_rules_enforced_by_backend()"
     },
     {
@@ -9628,7 +9628,7 @@
       "_origin": "ast",
       "id": "tests_test_match_test_reasons_never_expose_mode",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": "test_reasons_never_expose_mode()"
     },
     {
@@ -9639,7 +9639,7 @@
       "_origin": "ast",
       "id": "tests_test_match_test_empty_pool_message",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": "test_empty_pool_message()"
     },
     {
@@ -9650,7 +9650,7 @@
       "_origin": "ast",
       "id": "tests_test_match_test_default_mode_uses_neutral_model_value",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": "test_default_mode_uses_neutral_model_value()"
     },
     {
@@ -9661,7 +9661,7 @@
       "_origin": "ast",
       "id": "tests_test_match_rationale_1",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": "match \u2014 \u1112\u116e\u1107\u1169 \u110c\u1166\u110b\u116c \u1100\u1172\u110e\u1175\u11a8\u110b\u1173\u11ab \u1107\u1162\u11a8\u110b\u1166\u11ab\u1103\u1173 \u1100\u1161\u11bc\u110c\u1166, \u110c\u1165\u11b7\u1109\u116e\u00b7\u1109\u1161\u110b\u1172\u1102\u1173\u11ab \u1106\u1169\u1103\u1166\u11af \u1109\u1165\u1107\u1165 (mock/fake)."
     },
     {
@@ -9672,7 +9672,7 @@
       "_origin": "ast",
       "id": "tests_test_match_rationale_87",
       "community": 18,
-      "community_name": "test_match.py",
+      "community_name": "Block",
       "norm_label": "\u1103\u1169\u1106\u1166\u110b\u1175\u11ab default\u1102\u1173\u11ab match \u1109\u1165\u1107\u1165\u1100\u1161 \u1112\u1165\u110b\u116d\u11bc\u1112\u1161\u1102\u1173\u11ab \u110c\u116e\u11bc\u1105\u1175\u11b8\u1100\u1161\u11b9\u110b\u1173\u1105\u1169 \u110c\u1175\u11a8\u1105\u1167\u11af\u1112\u116a\u1112\u1161\u11ab\u1103\u1161."
     },
     {
@@ -9682,7 +9682,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_media",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_media.py"
     },
@@ -9759,7 +9759,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "tests_test_media_upload_images",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "_upload_images()"
     },
@@ -9770,7 +9770,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "tests_test_media_wait_media_status",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "_wait_media_status()"
     },
@@ -9781,7 +9781,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "tests_test_media_test_image_upload_limit_3",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_image_upload_limit_3()"
     },
@@ -9792,7 +9792,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "tests_test_media_test_invalid_image_batch_leaves_no_orphan_file",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_invalid_image_batch_leaves_no_orphan_file()"
     },
@@ -9803,7 +9803,7 @@
       "source_location": "L100",
       "_origin": "ast",
       "id": "tests_test_media_test_photo_post_gets_description_on_publish",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_photo_post_gets_description_on_publish()"
     },
@@ -9814,7 +9814,7 @@
       "source_location": "L119",
       "_origin": "ast",
       "id": "tests_test_media_test_same_image_hash_uses_cache",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_same_image_hash_uses_cache()"
     },
@@ -9825,7 +9825,7 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "tests_test_media_test_vision_quota_exceeded_publishes_without_description",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_vision_quota_exceeded_publishes_without_description()"
     },
@@ -9836,7 +9836,7 @@
       "source_location": "L160",
       "_origin": "ast",
       "id": "tests_test_media_test_video_upload_creates_draft_then_publish",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_video_upload_creates_draft_then_publish()"
     },
@@ -9848,7 +9848,7 @@
       "_origin": "ast",
       "id": "tests_test_media_test_video_content_types_keep_supported_extensions",
       "community": 129,
-      "community_name": "upload_video",
+      "community_name": "v1/media.py",
       "norm_label": "test_video_content_types_keep_supported_extensions()"
     },
     {
@@ -9869,7 +9869,7 @@
       "source_location": "L219",
       "_origin": "ast",
       "id": "tests_test_media_test_caption_failure_requires_explicit_choice_and_refunds",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_caption_failure_requires_explicit_choice_and_refunds()"
     },
@@ -9880,7 +9880,7 @@
       "source_location": "L251",
       "_origin": "ast",
       "id": "tests_test_media_test_failed_caption_can_be_retried",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_failed_caption_can_be_retried()"
     },
@@ -9891,7 +9891,7 @@
       "source_location": "L274",
       "_origin": "ast",
       "id": "tests_test_media_test_global_caption_limit_blocks_upload",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_global_caption_limit_blocks_upload()"
     },
@@ -9902,7 +9902,7 @@
       "source_location": "L288",
       "_origin": "ast",
       "id": "tests_test_media_test_video_limits",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_video_limits()"
     },
@@ -9913,7 +9913,7 @@
       "source_location": "L307",
       "_origin": "ast",
       "id": "tests_test_media_test_transcribe_voice_input",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_transcribe_voice_input()"
     },
@@ -9924,7 +9924,7 @@
       "source_location": "L319",
       "_origin": "ast",
       "id": "tests_test_media_test_cleanup_deletes_stale_drafts",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_cleanup_deletes_stale_drafts()"
     },
@@ -9935,7 +9935,7 @@
       "source_location": "L341",
       "_origin": "ast",
       "id": "tests_test_media_test_recovery_restarts_processing_caption",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "test_recovery_restarts_processing_caption()"
     },
@@ -9946,7 +9946,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_media_rationale_1",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "vision-01 \u1109\u1161\u110c\u1175\u11ab \u1109\u1165\u11af\u1106\u1167\u11bc \u00b7 caption-01 \u110b\u1167\u11bc\u1109\u1161\u11bc \u110c\u1161\u1106\u1161\u11a8 \u00b7 vis-03 \u110b\u1173\u11b7\u1109\u1165\u11bc \u110b\u1175\u11b8\u1105\u1167\u11a8 \u00b7 24h \u1103\u1173\u1105\u1162\u1111\u1173\u1110\u1173 \u110e\u1165\u11bc\u1109\u1169."
     },
@@ -9968,7 +9968,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "tests_test_media_rationale_68",
-      "community": 7,
+      "community": 9,
       "community_name": "register",
       "norm_label": "\u1109\u1162 starlette\u110b\u1166\u1109\u1165\u1102\u1173\u11ab \u110b\u1173\u11bc\u1103\u1161\u11b8 \u1107\u1169\u11ab\u1106\u116e\u11ab \u1103\u1171 background task\u1100\u1161 \u1107\u1167\u11af\u1103\u1169 \u1109\u1173\u110f\u1166\u110c\u116e\u11af\u1103\u116c\u11af \u1109\u116e \u110b\u1175\u11bb\u110b\u1165 \u110b\u116a\u11ab\u1105\u116d\u1105\u1173\u11af \u1100\u1175\u1103\u1161\u1105\u1175\u11ab\u1103\u1161."
     },
@@ -10420,7 +10420,7 @@
       "_origin": "ast",
       "id": "tests_test_posts",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_posts.py"
     },
     {
@@ -10431,7 +10431,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_post",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "_post()"
     },
     {
@@ -10442,7 +10442,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_test_text_post_publishes_immediately_and_appears_in_feed",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_text_post_publishes_immediately_and_appears_in_feed()"
     },
     {
@@ -10453,7 +10453,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_test_processing_draft_excluded_from_feed",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_processing_draft_excluded_from_feed()"
     },
     {
@@ -10464,7 +10464,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_test_blocked_users_posts_hidden_both_ways",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_blocked_users_posts_hidden_both_ways()"
     },
     {
@@ -10475,7 +10475,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_test_edit_delete_requires_author",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_edit_delete_requires_author()"
     },
     {
@@ -10486,7 +10486,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_test_like_is_idempotent",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_like_is_idempotent()"
     },
     {
@@ -10497,7 +10497,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_test_comment_crud_and_count",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_comment_crud_and_count()"
     },
     {
@@ -10508,7 +10508,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_test_feed_cursor_pagination",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_feed_cursor_pagination()"
     },
     {
@@ -10519,7 +10519,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_test_feed_filters_category_and_searches_title_or_content",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_feed_filters_category_and_searches_title_or_content()"
     },
     {
@@ -10530,7 +10530,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_test_post_contract_rejects_missing_or_blank_metadata",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_post_contract_rejects_missing_or_blank_metadata()"
     },
     {
@@ -10541,7 +10541,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_test_post_and_comment_input_limits",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_post_and_comment_input_limits()"
     },
     {
@@ -10552,7 +10552,7 @@
       "_origin": "ast",
       "id": "tests_test_posts_rationale_1",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "feed-01 \u1111\u1175\u1103\u1173 \u00b7 post-01~03 \u1100\u1166\u1109\u1175\u1106\u116e\u11af\u00b7\u1103\u1162\u11ba\u1100\u1173\u11af\u00b7\u110c\u1169\u11c2\u110b\u1161\u110b\u116d."
     },
     {
@@ -10595,8 +10595,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "tests_test_quota_test_try_consume_respects_limit",
-      "community": 10,
-      "community_name": "quota.py",
+      "community": 6,
+      "community_name": "try_consume",
       "norm_label": "test_try_consume_respects_limit()"
     },
     {
@@ -10606,8 +10606,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "tests_test_quota_test_refund_restores_slot",
-      "community": 10,
-      "community_name": "quota.py",
+      "community": 6,
+      "community_name": "try_consume",
       "norm_label": "test_refund_restores_slot()"
     },
     {
@@ -10673,7 +10673,7 @@
       "_origin": "ast",
       "id": "tests_test_redis_lifecycle",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "test_redis_lifecycle.py"
     },
     {
@@ -10684,7 +10684,7 @@
       "_origin": "ast",
       "id": "tests_test_redis_lifecycle_test_current_loop_redis_client_is_reused_and_closed",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "test_current_loop_redis_client_is_reused_and_closed()"
     },
     {
@@ -10695,7 +10695,7 @@
       "_origin": "ast",
       "id": "tests_test_redis_lifecycle_rationale_1",
       "community": 121,
-      "community_name": "main.py",
+      "community_name": "config.py",
       "norm_label": "\u110b\u1175\u1107\u1166\u11ab\u1110\u1173 \u1105\u116e\u1111\u1173\u1107\u1167\u11af redis \u110f\u1173\u11af\u1105\u1161\u110b\u1175\u110b\u1165\u11ab\u1110\u1173 \u1109\u1162\u11bc\u1109\u1165\u11bc\u00b7\u110c\u1169\u11bc\u1105\u116d \u1109\u116e\u1106\u1167\u11bc\u110c\u116e\u1100\u1175."
     },
     {
@@ -10705,8 +10705,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_safe",
-      "community": 54,
-      "community_name": "test_chat.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "test_safe.py"
     },
     {
@@ -10716,8 +10716,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_test_safe_py_fixture",
-      "community": 11,
-      "community_name": "test_comm.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "fixture"
     },
     {
@@ -10727,8 +10727,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "tests_test_safe_safety",
-      "community": 11,
-      "community_name": "test_comm.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "safety()"
     },
     {
@@ -10738,8 +10738,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "tests_test_safe_friend_room",
-      "community": 54,
-      "community_name": "test_chat.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "_friend_room()"
     },
     {
@@ -10749,8 +10749,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "tests_test_safe_test_flagged_message_blurred_until_reveal",
-      "community": 54,
-      "community_name": "test_chat.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "test_flagged_message_blurred_until_reveal()"
     },
     {
@@ -10760,8 +10760,8 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "tests_test_safe_test_degraded_mode_friend_vs_request",
-      "community": 54,
-      "community_name": "test_chat.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "test_degraded_mode_friend_vs_request()"
     },
     {
@@ -10771,8 +10771,8 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "tests_test_safe_test_safe05_restriction_cycle",
-      "community": 54,
-      "community_name": "test_chat.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "test_safe05_restriction_cycle()"
     },
     {
@@ -10782,8 +10782,8 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "tests_test_safe_test_reveal_still_counts_for_safe05",
-      "community": 54,
-      "community_name": "test_chat.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "test_reveal_still_counts_for_safe05()"
     },
     {
@@ -10793,8 +10793,8 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "tests_test_safe_test_reanalysis_applies_retroactive_blur",
-      "community": 54,
-      "community_name": "test_chat.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "test_reanalysis_applies_retroactive_blur()"
     },
     {
@@ -10804,8 +10804,8 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "tests_test_safe_test_block_overrides_restriction",
-      "community": 54,
-      "community_name": "test_chat.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "test_block_overrides_restriction()"
     },
     {
@@ -10815,8 +10815,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_safe_rationale_1",
-      "community": 54,
-      "community_name": "test_chat.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "safe-01~05 \u2014 \u1103\u1169\u11bc\u1100\u1175 \u1107\u116e\u11ab\u1109\u1165\u11a8\u00b7\u1107\u1173\u11af\u1105\u1165\u00b7\u1102\u1162\u110b\u116d\u11bc \u1107\u1169\u1100\u1175\u00b7\u1109\u1165\u11bc\u1102\u1173\u11bc\u110c\u1165\u1112\u1161 \u1106\u1169\u1103\u1173\u00b7\u1100\u116a\u11ab\u1100\u1168 \u1103\u1161\u11ab\u110b\u1171 \u110c\u1165\u11ab\u1109\u1169\u11bc \u110c\u1166\u1112\u1161\u11ab."
     },
     {
@@ -10826,8 +10826,8 @@
       "source_location": "L99",
       "_origin": "ast",
       "id": "tests_test_safe_rationale_99",
-      "community": 54,
-      "community_name": "test_chat.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "\u1109\u116e\u1109\u1175\u11ab\u110c\u1161\u1100\u1161 '\u1102\u1162\u110b\u116d\u11bc \u1107\u1169\u1100\u1175'\u1105\u1173\u11af \u1109\u1175\u11af\u1112\u1162\u11bc\u1112\u1161\u11ab \u1106\u1166\u1109\u1175\u110c\u1175\u1103\u1169 \u1102\u116e\u110c\u1165\u11a8 \u110c\u1175\u11b8\u1100\u1168\u110b\u1166 \u1111\u1169\u1112\u1161\u11b7 (safe-05-6)."
     },
     {
@@ -10837,8 +10837,8 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "tests_test_safe_rationale_111",
-      "community": 54,
-      "community_name": "test_chat.py",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "\u00a718.3: \u1107\u1169\u11a8\u1100\u116e \u1112\u116e \u110c\u1162\u1107\u116e\u11ab\u1109\u1165\u11a8 \u2014 flagged\u1106\u1167\u11ab \u1109\u1169\u1100\u1173\u11b8 \u1107\u1173\u11af\u1105\u1165 + \u1109\u116e\u1109\u1175\u11ab\u110c\u1161 \u110b\u1161\u11af\u1105\u1175\u11b7."
     },
     {
@@ -10992,7 +10992,7 @@
       "_origin": "ast",
       "id": "tests_test_users",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_users.py"
     },
     {
@@ -11003,7 +11003,7 @@
       "_origin": "ast",
       "id": "tests_test_users_test_me_includes_profile_and_derived_minor",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_me_includes_profile_and_derived_minor()"
     },
     {
@@ -11014,7 +11014,7 @@
       "_origin": "ast",
       "id": "tests_test_users_test_patch_me_rejects_contact_in_bio",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_patch_me_rejects_contact_in_bio()"
     },
     {
@@ -11025,7 +11025,7 @@
       "_origin": "ast",
       "id": "tests_test_users_test_tags_catalog_and_replace",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_tags_catalog_and_replace()"
     },
     {
@@ -11036,7 +11036,7 @@
       "_origin": "ast",
       "id": "tests_test_users_test_mode_change_records_history",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_mode_change_records_history()"
     },
     {
@@ -11047,7 +11047,7 @@
       "_origin": "ast",
       "id": "tests_test_users_test_default_mode_is_accepted_at_signup_and_mode_change",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_default_mode_is_accepted_at_signup_and_mode_change()"
     },
     {
@@ -11058,7 +11058,7 @@
       "_origin": "ast",
       "id": "tests_test_users_test_settings_update",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_settings_update()"
     },
     {
@@ -11069,7 +11069,7 @@
       "_origin": "ast",
       "id": "tests_test_users_test_public_profile_hides_mode_and_birth",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_public_profile_hides_mode_and_birth()"
     },
     {
@@ -11080,7 +11080,7 @@
       "_origin": "ast",
       "id": "tests_test_users_test_profile_activity_relationship_and_authored_posts",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_profile_activity_relationship_and_authored_posts()"
     },
     {
@@ -11091,7 +11091,7 @@
       "_origin": "ast",
       "id": "tests_test_users_rationale_1",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "acc-03 \u1111\u1173\u1105\u1169\u1111\u1175\u11af \u00b7 tag-01 \u1110\u1162\u1100\u1173 \u00b7 \u00a715 \u1109\u1165\u11af\u110c\u1165\u11bc \u00b7 \u00a75.2 \u1106\u1169\u1103\u1173 \u1107\u1167\u11ab\u1100\u1167\u11bc."
     },
     {
@@ -11101,8 +11101,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_withdrawal",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "test_withdrawal.py"
     },
     {
@@ -11112,8 +11112,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "tests_test_withdrawal_make_post",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "_make_post()"
     },
     {
@@ -11123,8 +11123,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_test_withdrawal_py_uuid",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "uuid"
     },
     {
@@ -11134,8 +11134,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "tests_test_withdrawal_make_chat",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "_make_chat()"
     },
     {
@@ -11145,8 +11145,8 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "tests_test_withdrawal_test_withdraw_anonymize_keeps_posts_and_chat",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "test_withdraw_anonymize_keeps_posts_and_chat()"
     },
     {
@@ -11156,8 +11156,8 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "tests_test_withdrawal_test_withdraw_delete_removes_posts",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "test_withdraw_delete_removes_posts()"
     },
     {
@@ -11168,7 +11168,7 @@
       "_origin": "ast",
       "id": "tests_test_withdrawal_test_withdraw_invalidates_token_and_blocks_rejoin",
       "community": 9,
-      "community_name": "auth_header",
+      "community_name": "register",
       "norm_label": "test_withdraw_invalidates_token_and_blocks_rejoin()"
     },
     {
@@ -11178,8 +11178,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_withdrawal_rationale_1",
-      "community": 5,
-      "community_name": "friends.py",
+      "community": 2,
+      "community_name": "User",
       "norm_label": "\u00a715 \u1112\u116c\u110b\u116f\u11ab \u1110\u1161\u11af\u1110\u116c \u2014 \u110b\u1175\u11a8\u1106\u1167\u11bc\u1112\u116a/\u1109\u1161\u11a8\u110c\u1166 \u1109\u1165\u11ab\u1110\u1162\u11a8, \u110e\u1162\u1110\u1175\u11bc \u1107\u1169\u110c\u1169\u11ab, 30\u110b\u1175\u11af \u110c\u1162\u1100\u1161\u110b\u1175\u11b8 \u110c\u1166\u1112\u1161\u11ab."
     },
     {
@@ -11189,8 +11189,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_ws",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 54,
+      "community_name": "test_chat.py",
       "norm_label": "test_ws.py"
     },
     {
@@ -11200,8 +11200,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "tests_test_ws_test_ws_rejects_invalid_token",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 54,
+      "community_name": "test_chat.py",
       "norm_label": "test_ws_rejects_invalid_token()"
     },
     {
@@ -11211,8 +11211,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "tests_test_ws_test_ws_relays_published_event",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 137,
+      "community_name": "test_calls.py",
       "norm_label": "test_ws_relays_published_event()"
     },
     {
@@ -11222,8 +11222,8 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "tests_test_ws_test_ws_marks_presence_online_with_ttl",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "test_ws_marks_presence_online_with_ttl()"
     },
     {
@@ -11233,8 +11233,8 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "tests_test_ws_test_presence_counter_supports_multiple_connections",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 121,
+      "community_name": "config.py",
       "norm_label": "test_presence_counter_supports_multiple_connections()"
     },
     {
@@ -11244,8 +11244,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "tests_test_ws_py_fixture",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "fixture"
     },
     {
@@ -11255,8 +11255,8 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "tests_test_ws_safety",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 13,
+      "community_name": "test_safe.py",
       "norm_label": "safety()"
     },
     {
@@ -11288,8 +11288,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tests_test_ws_rationale_1",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 54,
+      "community_name": "test_chat.py",
       "norm_label": "ws \u1111\u116e\u1109\u1175 \u2014 \u1110\u1169\u110f\u1173\u11ab \u1100\u1165\u11b7\u110c\u1173\u11bc, pub/sub \u1105\u1175\u11af\u1105\u1166\u110b\u1175, \u110e\u1162\u1110\u1175\u11bc \u110c\u1165\u11ab\u1109\u1169\u11bc \u110b\u1175\u1107\u1166\u11ab\u1110\u1173."
     },
     {
@@ -11299,8 +11299,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "tests_test_ws_rationale_31",
-      "community": 55,
-      "community_name": "_Redis",
+      "community": 137,
+      "community_name": "test_calls.py",
       "norm_label": "\u110b\u116e\u11ab\u110b\u1167\u11bc redis(db 0)\u110b\u1166 \u110c\u1175\u11a8\u110c\u1165\u11b8 publish \u2014 pub/sub\u110b\u1173\u11ab \u110c\u1161\u11ab\u110c\u1169\u11ab \u1103\u1166\u110b\u1175\u1110\u1165\u1100\u1161 \u110b\u1165\u11b9\u110b\u1165 \u110b\u1161\u11ab\u110c\u1165\u11ab."
     },
     {
@@ -13666,6 +13666,50 @@
       "id": "graphify_out_memory_query_20260814_173559_\ud53c\uadf8\ub9c8_\uae30\uc900\uc73c\ub85c_\uac8c\uc2dc\ubb3c_\uce74\ud14c\uace0\ub9ac_\ud3ec\ud568\ud574\uc11c_\ub204\ub77d\ub41c_\ubc31\uc5d4\ub4dc_\uc601\uc5ed_\uae30\ub2a5_\uc0ac\ud56d\ub4e4_\uc810\uac80\ud574\uc918_outcome",
       "community": 25,
       "community_name": "Q: \ud53c\uadf8\ub9c8 \uae30\uc900\uc73c\ub85c \uac8c\uc2dc\ubb3c \uce74\ud14c\uace0\ub9ac \ud3ec\ud568\ud574\uc11c \ub204\ub77d\ub41c \ubc31\uc5d4\ub4dc \uc601\uc5ed \uae30\ub2a5 \uc0ac\ud56d\ub4e4 \uc810\uac80\ud574\uc918",
+      "norm_label": "outcome"
+    },
+    {
+      "label": "query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918___\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c___\ub610.md",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918___\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c___\ub610.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610",
+      "community": 11,
+      "community_name": "Q: \ub2e4 \uad6c\ud604\ud574\uc918 & \uc804\uccb4\uc801\uc73c\ub85c \ub9ac\ud329\ud1a0\ub9c1\ub3c4 \ud544\uc694\ud560\uac70\uac19\uc544 \ub354 \uae54\ub054\ud558\uace0 \uccb4\uacc4\uc801\uc774\uace0 \uc9c1\uad00\uc801\uc774\uac8c & \ub610\ud55c \uc804\uccb4\uc801\uc73c\ub85c \uacb0\ud568 \ud0d0\uc0c9+\ubcf4\uac15\uc774 \ud544\uc694\ud574\ubcf4\uc774\ub139 & \uc9c0\uae08\uae4c\uc9c0 \ud55c\uac83\ub4e4 \ucee4\ubc0b\ub4e4 \ube0c\ub79c\uce58 \ub530\ub85c \uc601\uc5ed\uc5d0 \ub9de\uac8c \ubd84\ub958\ud574\uc11c \uc791\uc5c5\ud574\uc918",
+      "norm_label": "query_20260814_182342_\u1103\u1161_\u1100\u116e\u1112\u1167\u11ab\u1112\u1162\u110c\u116f___\u110c\u1165\u11ab\u110e\u1166\u110c\u1165\u11a8\u110b\u1173\u1105\u1169_\u1105\u1175\u1111\u1162\u11a8\u1110\u1169\u1105\u1175\u11bc\u1103\u1169_\u1111\u1175\u11af\u110b\u116d\u1112\u1161\u11af\u1100\u1165\u1100\u1161\u11c0\u110b\u1161_\u1103\u1165_\u1101\u1161\u11af\u1101\u1173\u11b7\u1112\u1161\u1100\u1169_\u110e\u1166\u1100\u1168\u110c\u1165\u11a8\u110b\u1175\u1100\u1169_\u110c\u1175\u11a8\u1100\u116a\u11ab\u110c\u1165\u11a8\u110b\u1175\u1100\u1166___\u1104\u1169.md"
+    },
+    {
+      "label": "Q: \ub2e4 \uad6c\ud604\ud574\uc918 & \uc804\uccb4\uc801\uc73c\ub85c \ub9ac\ud329\ud1a0\ub9c1\ub3c4 \ud544\uc694\ud560\uac70\uac19\uc544 \ub354 \uae54\ub054\ud558\uace0 \uccb4\uacc4\uc801\uc774\uace0 \uc9c1\uad00\uc801\uc774\uac8c & \ub610\ud55c \uc804\uccb4\uc801\uc73c\ub85c \uacb0\ud568 \ud0d0\uc0c9+\ubcf4\uac15\uc774 \ud544\uc694\ud574\ubcf4\uc774\ub139 & \uc9c0\uae08\uae4c\uc9c0 \ud55c\uac83\ub4e4 \ucee4\ubc0b\ub4e4 \ube0c\ub79c\uce58 \ub530\ub85c \uc601\uc5ed\uc5d0 \ub9de\uac8c \ubd84\ub958\ud574\uc11c \uc791\uc5c5\ud574\uc918",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918___\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c___\ub610.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610_q_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610\ud55c_\uc804\uccb4\uc801\uc73c\ub85c_\uacb0\ud568_\ud0d0\uc0c9_\ubcf4\uac15\uc774_\ud544\uc694\ud574\ubcf4\uc774\ub139_\uc9c0\uae08\uae4c\uc9c0_\ud55c\uac83\ub4e4_\ucee4\ubc0b\ub4e4_\ube0c\ub79c\uce58_\ub530\ub85c_\uc601\uc5ed\uc5d0_\ub9de\uac8c_\ubd84\ub958\ud574\uc11c_\uc791\uc5c5\ud574\uc918",
+      "community": 11,
+      "community_name": "Q: \ub2e4 \uad6c\ud604\ud574\uc918 & \uc804\uccb4\uc801\uc73c\ub85c \ub9ac\ud329\ud1a0\ub9c1\ub3c4 \ud544\uc694\ud560\uac70\uac19\uc544 \ub354 \uae54\ub054\ud558\uace0 \uccb4\uacc4\uc801\uc774\uace0 \uc9c1\uad00\uc801\uc774\uac8c & \ub610\ud55c \uc804\uccb4\uc801\uc73c\ub85c \uacb0\ud568 \ud0d0\uc0c9+\ubcf4\uac15\uc774 \ud544\uc694\ud574\ubcf4\uc774\ub139 & \uc9c0\uae08\uae4c\uc9c0 \ud55c\uac83\ub4e4 \ucee4\ubc0b\ub4e4 \ube0c\ub79c\uce58 \ub530\ub85c \uc601\uc5ed\uc5d0 \ub9de\uac8c \ubd84\ub958\ud574\uc11c \uc791\uc5c5\ud574\uc918",
+      "norm_label": "q: \u1103\u1161 \u1100\u116e\u1112\u1167\u11ab\u1112\u1162\u110c\u116f & \u110c\u1165\u11ab\u110e\u1166\u110c\u1165\u11a8\u110b\u1173\u1105\u1169 \u1105\u1175\u1111\u1162\u11a8\u1110\u1169\u1105\u1175\u11bc\u1103\u1169 \u1111\u1175\u11af\u110b\u116d\u1112\u1161\u11af\u1100\u1165\u1100\u1161\u11c0\u110b\u1161 \u1103\u1165 \u1101\u1161\u11af\u1101\u1173\u11b7\u1112\u1161\u1100\u1169 \u110e\u1166\u1100\u1168\u110c\u1165\u11a8\u110b\u1175\u1100\u1169 \u110c\u1175\u11a8\u1100\u116a\u11ab\u110c\u1165\u11a8\u110b\u1175\u1100\u1166 & \u1104\u1169\u1112\u1161\u11ab \u110c\u1165\u11ab\u110e\u1166\u110c\u1165\u11a8\u110b\u1173\u1105\u1169 \u1100\u1167\u11af\u1112\u1161\u11b7 \u1110\u1161\u11b7\u1109\u1162\u11a8+\u1107\u1169\u1100\u1161\u11bc\u110b\u1175 \u1111\u1175\u11af\u110b\u116d\u1112\u1162\u1107\u1169\u110b\u1175\u1102\u1166\u11bc & \u110c\u1175\u1100\u1173\u11b7\u1101\u1161\u110c\u1175 \u1112\u1161\u11ab\u1100\u1165\u11ba\u1103\u1173\u11af \u110f\u1165\u1106\u1175\u11ba\u1103\u1173\u11af \u1107\u1173\u1105\u1162\u11ab\u110e\u1175 \u1104\u1161\u1105\u1169 \u110b\u1167\u11bc\u110b\u1167\u11a8\u110b\u1166 \u1106\u1161\u11bd\u1100\u1166 \u1107\u116e\u11ab\u1105\u1172\u1112\u1162\u1109\u1165 \u110c\u1161\u11a8\u110b\u1165\u11b8\u1112\u1162\u110c\u116f"
+    },
+    {
+      "label": "Answer",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918___\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c___\ub610.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610_answer",
+      "community": 11,
+      "community_name": "Q: \ub2e4 \uad6c\ud604\ud574\uc918 & \uc804\uccb4\uc801\uc73c\ub85c \ub9ac\ud329\ud1a0\ub9c1\ub3c4 \ud544\uc694\ud560\uac70\uac19\uc544 \ub354 \uae54\ub054\ud558\uace0 \uccb4\uacc4\uc801\uc774\uace0 \uc9c1\uad00\uc801\uc774\uac8c & \ub610\ud55c \uc804\uccb4\uc801\uc73c\ub85c \uacb0\ud568 \ud0d0\uc0c9+\ubcf4\uac15\uc774 \ud544\uc694\ud574\ubcf4\uc774\ub139 & \uc9c0\uae08\uae4c\uc9c0 \ud55c\uac83\ub4e4 \ucee4\ubc0b\ub4e4 \ube0c\ub79c\uce58 \ub530\ub85c \uc601\uc5ed\uc5d0 \ub9de\uac8c \ubd84\ub958\ud574\uc11c \uc791\uc5c5\ud574\uc918",
+      "norm_label": "answer"
+    },
+    {
+      "label": "Outcome",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918___\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c___\ub610.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610_outcome",
+      "community": 11,
+      "community_name": "Q: \ub2e4 \uad6c\ud604\ud574\uc918 & \uc804\uccb4\uc801\uc73c\ub85c \ub9ac\ud329\ud1a0\ub9c1\ub3c4 \ud544\uc694\ud560\uac70\uac19\uc544 \ub354 \uae54\ub054\ud558\uace0 \uccb4\uacc4\uc801\uc774\uace0 \uc9c1\uad00\uc801\uc774\uac8c & \ub610\ud55c \uc804\uccb4\uc801\uc73c\ub85c \uacb0\ud568 \ud0d0\uc0c9+\ubcf4\uac15\uc774 \ud544\uc694\ud574\ubcf4\uc774\ub139 & \uc9c0\uae08\uae4c\uc9c0 \ud55c\uac83\ub4e4 \ucee4\ubc0b\ub4e4 \ube0c\ub79c\uce58 \ub530\ub85c \uc601\uc5ed\uc5d0 \ub9de\uac8c \ubd84\ub958\ud574\uc11c \uc791\uc5c5\ud574\uc918",
       "norm_label": "outcome"
     },
     {
@@ -53180,6 +53224,39 @@
       "_origin": "ast",
       "source": "graphify_out_memory_query_20260814_173559_\ud53c\uadf8\ub9c8_\uae30\uc900\uc73c\ub85c_\uac8c\uc2dc\ubb3c_\uce74\ud14c\uace0\ub9ac_\ud3ec\ud568\ud574\uc11c_\ub204\ub77d\ub41c_\ubc31\uc5d4\ub4dc_\uc601\uc5ed_\uae30\ub2a5_\uc0ac\ud56d\ub4e4_\uc810\uac80\ud574\uc918_q_\ud53c\uadf8\ub9c8_\uae30\uc900\uc73c\ub85c_\uac8c\uc2dc\ubb3c_\uce74\ud14c\uace0\ub9ac_\ud3ec\ud568\ud574\uc11c_\ub204\ub77d\ub41c_\ubc31\uc5d4\ub4dc_\uc601\uc5ed_\uae30\ub2a5_\uc0ac\ud56d\ub4e4_\uc810\uac80\ud574\uc918",
       "target": "graphify_out_memory_query_20260814_173559_\ud53c\uadf8\ub9c8_\uae30\uc900\uc73c\ub85c_\uac8c\uc2dc\ubb3c_\uce74\ud14c\uace0\ub9ac_\ud3ec\ud568\ud574\uc11c_\ub204\ub77d\ub41c_\ubc31\uc5d4\ub4dc_\uc601\uc5ed_\uae30\ub2a5_\uc0ac\ud56d\ub4e4_\uc810\uac80\ud574\uc918_outcome",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918___\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c___\ub610.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610",
+      "target": "graphify_out_memory_query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610_q_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610\ud55c_\uc804\uccb4\uc801\uc73c\ub85c_\uacb0\ud568_\ud0d0\uc0c9_\ubcf4\uac15\uc774_\ud544\uc694\ud574\ubcf4\uc774\ub139_\uc9c0\uae08\uae4c\uc9c0_\ud55c\uac83\ub4e4_\ucee4\ubc0b\ub4e4_\ube0c\ub79c\uce58_\ub530\ub85c_\uc601\uc5ed\uc5d0_\ub9de\uac8c_\ubd84\ub958\ud574\uc11c_\uc791\uc5c5\ud574\uc918",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918___\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c___\ub610.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610_q_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610\ud55c_\uc804\uccb4\uc801\uc73c\ub85c_\uacb0\ud568_\ud0d0\uc0c9_\ubcf4\uac15\uc774_\ud544\uc694\ud574\ubcf4\uc774\ub139_\uc9c0\uae08\uae4c\uc9c0_\ud55c\uac83\ub4e4_\ucee4\ubc0b\ub4e4_\ube0c\ub79c\uce58_\ub530\ub85c_\uc601\uc5ed\uc5d0_\ub9de\uac8c_\ubd84\ub958\ud574\uc11c_\uc791\uc5c5\ud574\uc918",
+      "target": "graphify_out_memory_query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610_answer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918___\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c___\ub610.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610_q_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610\ud55c_\uc804\uccb4\uc801\uc73c\ub85c_\uacb0\ud568_\ud0d0\uc0c9_\ubcf4\uac15\uc774_\ud544\uc694\ud574\ubcf4\uc774\ub139_\uc9c0\uae08\uae4c\uc9c0_\ud55c\uac83\ub4e4_\ucee4\ubc0b\ub4e4_\ube0c\ub79c\uce58_\ub530\ub85c_\uc601\uc5ed\uc5d0_\ub9de\uac8c_\ubd84\ub958\ud574\uc11c_\uc791\uc5c5\ud574\uc918",
+      "target": "graphify_out_memory_query_20260814_182342_\ub2e4_\uad6c\ud604\ud574\uc918_\uc804\uccb4\uc801\uc73c\ub85c_\ub9ac\ud329\ud1a0\ub9c1\ub3c4_\ud544\uc694\ud560\uac70\uac19\uc544_\ub354_\uae54\ub054\ud558\uace0_\uccb4\uacc4\uc801\uc774\uace0_\uc9c1\uad00\uc801\uc774\uac8c_\ub610_outcome",
       "confidence_score": 1.0
     },
     {

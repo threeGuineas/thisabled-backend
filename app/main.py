@@ -23,7 +23,7 @@ from app.core.config import settings
 from app.openapi import install_openapi
 
 # Swagger 사이드바 그룹 설명 — 프론트가 어떤 묶음을 봐야 하는지 한눈에.
-# SSOT: docs/ThisAbled_기능명세서_v2_2.md / 요약: docs/api.md
+# SSOT: docs/ThisAbled_기능명세서_v2_3.md / 요약: docs/api.md
 tags_metadata = [
     {"name": "health", "description": "서버·DB·Redis 헬스체크. 배포/모니터링용."},
     {
@@ -78,7 +78,7 @@ tags_metadata = [
 
 description = """
 **ThisAbled** — 장애 유형별 적응형 UI 소셜 플랫폼 백엔드 API입니다.
-이 문서는 기능명세서 v2.2를 기준으로 프론트엔드가 별도 추측 없이 구현할 수 있도록 작성했습니다.
+이 문서는 기능명세서 v2.3을 기준으로 프론트엔드가 별도 추측 없이 구현할 수 있도록 작성했습니다.
 
 ## 프론트엔드 빠른 시작
 

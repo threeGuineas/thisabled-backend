@@ -1,4 +1,4 @@
-"""v2.2 도메인 enum. DB에는 String으로 저장한다 (PG enum 마이그레이션 부담 회피)."""
+"""v2.3 도메인 enum. DB에는 String으로 저장한다 (PG enum 마이그레이션 부담 회피)."""
 
 from enum import StrEnum
 

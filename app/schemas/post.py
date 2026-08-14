@@ -1,7 +1,13 @@
 import uuid
 from datetime import datetime
+from typing import Annotated
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StringConstraints, model_validator
+
+from app.core.enums import PostCategory
+
+PostTitle = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100)]
+PostContent = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1)]
 
 
 class AuthorOut(BaseModel):
@@ -26,6 +32,8 @@ class MediaOut(BaseModel):
 class PostOut(BaseModel):
     id: uuid.UUID
     author: AuthorOut
+    title: str | None
+    category: PostCategory | None
     content: str
     status: str
     media: list[MediaOut]
@@ -42,12 +50,22 @@ class FeedOut(BaseModel):
 
 
 class PostCreateIn(BaseModel):
-    content: str = Field(min_length=1)
-    media_ids: list[uuid.UUID] = []
+    title: PostTitle
+    category: PostCategory
+    content: PostContent
+    media_ids: list[uuid.UUID] = Field(default_factory=list)
 
 
 class PostPatchIn(BaseModel):
-    content: str = Field(min_length=1)
+    title: PostTitle | None = None
+    category: PostCategory | None = None
+    content: PostContent | None = None
+
+    @model_validator(mode="after")
+    def require_change(self):
+        if self.title is None and self.category is None and self.content is None:
+            raise ValueError("수정할 필드를 하나 이상 보내야 합니다")
+        return self
 
 
 class LikeOut(BaseModel):

@@ -86,7 +86,11 @@ async def test_photo_post_gets_description_on_publish(client, db, fake_ai):
     h = auth_header(u["access_token"])
     up = await _upload_images(client, h, 1)
     media_id = up.json()["items"][0]["media_id"]
-    resp = await client.post("/api/v1/posts", json={"content": "사진 글", "media_ids": [media_id]}, headers=h)
+    resp = await client.post(
+        "/api/v1/posts",
+        json={"title": "사진 글", "category": "daily", "content": "사진 글", "media_ids": [media_id]},
+        headers=h,
+    )
     assert resp.status_code == 201
     assert fake_ai["describe"].calls == 1
 
@@ -105,7 +109,11 @@ async def test_same_image_hash_uses_cache(client, db, fake_ai):
             files=[("files", ("same.png", PNG, "image/png"))], headers=h,
         )
         mid = up.json()["items"][0]["media_id"]
-        r = await client.post("/api/v1/posts", json={"content": "글", "media_ids": [mid]}, headers=h)
+        r = await client.post(
+            "/api/v1/posts",
+            json={"title": "글", "category": "daily", "content": "글", "media_ids": [mid]},
+            headers=h,
+        )
         assert r.status_code == 201
         await _wait_media_status(db, mid, "done")
     assert fake_ai["describe"].calls == 1  # 두 번째는 ai_result_cache 적중
@@ -120,7 +128,11 @@ async def test_vision_quota_exceeded_publishes_without_description(client, db, t
 
     up = await _upload_images(client, h, 1, name_prefix="quota")
     mid = up.json()["items"][0]["media_id"]
-    resp = await client.post("/api/v1/posts", json={"content": "한도 글", "media_ids": [mid]}, headers=h)
+    resp = await client.post(
+        "/api/v1/posts",
+        json={"title": "한도 글", "category": "daily", "content": "한도 글", "media_ids": [mid]},
+        headers=h,
+    )
     assert resp.status_code == 201  # 설명 없이 게시 정상 (VISION-01 예외)
 
     media = await _wait_media_status(db, mid, "failed")
@@ -145,7 +157,11 @@ async def test_video_upload_creates_draft_then_publish(client, db, fake_ai):
     status = await client.get(f"/api/v1/posts/{post_id}/caption-status", headers=h)
     assert status.json()["caption_status"] == "done"  # fake caller 즉시 완료
 
-    pub = await client.post(f"/api/v1/posts/{post_id}/publish", json={}, headers=h)
+    pub = await client.post(
+        f"/api/v1/posts/{post_id}/publish",
+        json={"title": "영상 글", "category": "hobby", "content": "영상 본문"},
+        headers=h,
+    )
     assert pub.status_code == 200, pub.text
     assert pub.json()["status"] == "published"
     assert pub.json()["media"][0]["caption"] == [{"start": 0.0, "end": 2.0, "text": "안녕하세요"}]
@@ -202,10 +218,15 @@ async def test_caption_failure_requires_explicit_choice_and_refunds(client, db, 
     from app.services.quota import caption_key
     assert int(await test_redis.get(caption_key(u["user_id"])[0]) or 0) == 0
 
-    no_choice = await client.post(f"/api/v1/posts/{post_id}/publish", json={}, headers=h)
+    publish_body = {"title": "자막 실패", "category": "info", "content": "영상 본문"}
+    no_choice = await client.post(
+        f"/api/v1/posts/{post_id}/publish", json=publish_body, headers=h
+    )
     assert no_choice.status_code == 400
     ok = await client.post(
-        f"/api/v1/posts/{post_id}/publish", json={"allow_no_caption": True}, headers=h
+        f"/api/v1/posts/{post_id}/publish",
+        json={**publish_body, "allow_no_caption": True},
+        headers=h,
     )
     assert ok.status_code == 200
     assert ok.json()["media"][0]["caption_status"] == "failed"  # '자막 없음' 라벨 근거

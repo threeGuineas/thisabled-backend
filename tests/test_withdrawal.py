@@ -10,7 +10,10 @@ from tests.conftest import auth_header, callback_params, register
 
 
 async def _make_post(db, author_id) -> uuid.UUID:
-    post = Post(id=uuid.uuid4(), author_id=author_id, content="탈퇴 테스트 글", status="published")
+    post = Post(
+        id=uuid.uuid4(), author_id=author_id, title="탈퇴 테스트 글", category="daily",
+        content="탈퇴 테스트 글", status="published",
+    )
     db.add(post)
     await db.commit()
     return post.id

@@ -19,6 +19,16 @@ class PostStatus(StrEnum):
     published = "published"
 
 
+class PostCategory(StrEnum):
+    """POST-01 — Figma의 게시물 단일 카테고리 5종."""
+
+    daily = "daily"
+    info = "info"
+    hobby = "hobby"
+    concern = "concern"
+    meetup = "meetup"
+
+
 class MediaType(StrEnum):
     image = "image"
     video = "video"

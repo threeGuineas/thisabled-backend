@@ -10,7 +10,7 @@ from sqlalchemy import delete, func, or_, select, union
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from app.core.deps import get_current_user
-from app.core.enums import AiStatus, MediaType, PostStatus
+from app.core.enums import AiStatus, MediaType, PostCategory, PostStatus
 from app.db.redis import get_redis
 from app.db.session import get_db, get_session_factory
 from app.models import Block, Comment, Post, PostLike, PostMedia, User
@@ -42,6 +42,12 @@ router = APIRouter(tags=["posts"])
 MAX_IMAGES = 3  # POST-01
 
 WITHDRAWN_NICKNAME = "탈퇴한 사용자"  # §15
+
+
+def _contains_pattern(value: str) -> str:
+    """LIKE 메타문자를 일반 문자로 취급하는 부분 일치 패턴."""
+    escaped = value.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+    return f"%{escaped}%"
 
 
 def _blocked_ids_subq(me_id: uuid.UUID):
@@ -120,6 +126,8 @@ async def _serialize_posts(db: AsyncSession, me_id: uuid.UUID, posts: list[Post]
         PostOut(
             id=p.id,
             author=_author_out(authors.get(p.author_id)),
+            title=p.title,
+            category=p.category,
             content=p.content,
             status=p.status,
             media=media_by_post.get(p.id, []),
@@ -164,6 +172,8 @@ async def create_post(
     post = Post(
         id=uuid.uuid4(),
         author_id=user.id,
+        title=body.title.strip(),
+        category=body.category.value,
         content=body.content,
         status=PostStatus.published.value,
         published_at=datetime.now(timezone.utc),
@@ -191,11 +201,13 @@ async def create_post(
 async def feed(
     cursor: str | None = None,
     limit: int = Query(default=20, ge=1, le=50),
+    category: PostCategory | None = None,
+    search_text: str | None = Query(default=None, alias="q", max_length=100),
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
     blocked = _blocked_ids_subq(user.id)
-    q = (
+    stmt = (
         select(Post)
         .where(
             Post.status == PostStatus.published.value,
@@ -204,19 +216,30 @@ async def feed(
         .order_by(Post.published_at.desc(), Post.id.desc())
         .limit(limit + 1)
     )
+    if category is not None:
+        stmt = stmt.where(Post.category == category.value)
+    search = search_text.strip() if search_text else None
+    if search:
+        pattern = _contains_pattern(search)
+        stmt = stmt.where(
+            or_(
+                Post.title.ilike(pattern, escape="\\"),
+                Post.content.ilike(pattern, escape="\\"),
+            )
+        )
     if cursor:
         try:
             ts_raw, id_raw = unquote(cursor).split("|", 1)
             cur_ts, cur_id = datetime.fromisoformat(ts_raw), uuid.UUID(id_raw)
         except ValueError:
             raise HTTPException(status_code=400, detail="잘못된 커서입니다")
-        q = q.where(
+        stmt = stmt.where(
             or_(
                 Post.published_at < cur_ts,
                 (Post.published_at == cur_ts) & (Post.id < cur_id),
             )
         )
-    posts = (await db.execute(q)).scalars().all()
+    posts = (await db.execute(stmt)).scalars().all()
     next_cursor = None
     if len(posts) > limit:
         posts = posts[:limit]
@@ -362,6 +385,9 @@ async def publish_post(
                 detail="자막 생성에 실패했습니다. 다시 시도하거나 '자막 없이 게시'를 선택해 주세요",
             )
 
+    post.title = body.title.strip()
+    post.category = body.category.value
+    post.content = body.content
     post.status = PostStatus.published.value
     post.published_at = datetime.now(timezone.utc)
     await db.commit()
@@ -379,7 +405,12 @@ async def edit_post(
     post = await _get_visible_post(db, user, post_id)
     if post.author_id != user.id:
         raise HTTPException(status_code=403, detail="작성자만 수정할 수 있습니다")
-    post.content = body.content
+    if body.title is not None:
+        post.title = body.title.strip()
+    if body.category is not None:
+        post.category = body.category.value
+    if body.content is not None:
+        post.content = body.content
     await db.commit()
     return (await _serialize_posts(db, user.id, [post]))[0]
 

@@ -106,7 +106,9 @@ async def test_post_comments_use_post_and_latest_10_comments(client, comm, db):
     hd = auth_header(developmental["access_token"])
     post = (
         await client.post(
-            "/api/v1/posts", json={"content": "빵집에 다녀왔어요"}, headers=ha
+            "/api/v1/posts",
+            json={"title": "빵집 방문", "category": "daily", "content": "빵집에 다녀왔어요"},
+            headers=ha,
         )
     ).json()
     base_time = datetime(2026, 1, 1, tzinfo=timezone.utc)
@@ -139,7 +141,11 @@ async def test_post_comments_hide_blocked_post(client, comm, db):
     ha = auth_header(author["access_token"])
     hv = auth_header(viewer["access_token"])
     post = (
-        await client.post("/api/v1/posts", json={"content": "숨길 글"}, headers=ha)
+        await client.post(
+            "/api/v1/posts",
+            json={"title": "숨길 글", "category": "daily", "content": "숨길 글"},
+            headers=ha,
+        )
     ).json()
     db.add(
         Block(

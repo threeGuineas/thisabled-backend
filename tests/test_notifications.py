@@ -15,7 +15,13 @@ async def test_comment_and_like_notify_author_not_self(client):
     a = await register(client, "알림작성자")
     b = await register(client, "알림댓글러")
     ha, hb = auth_header(a["access_token"]), auth_header(b["access_token"])
-    post = (await client.post("/api/v1/posts", json={"content": "알림 글"}, headers=ha)).json()
+    post = (
+        await client.post(
+            "/api/v1/posts",
+            json={"title": "알림 글", "category": "daily", "content": "알림 글"},
+            headers=ha,
+        )
+    ).json()
 
     # 본인 행동은 알림 없음
     await client.post(f"/api/v1/posts/{post['id']}/like", headers=ha)

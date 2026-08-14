@@ -167,15 +167,17 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ),
     ("post", "/api/v1/posts"): _guide(
         "텍스트·사진 게시물 작성",
-        "텍스트만 작성하거나 `/media/images`에서 받은 최대 3개의 `media_id`를 연결합니다. 성공 즉시 공개됩니다. "
+        "제목, 단일 카테고리, 본문을 보내고 필요하면 `/media/images`에서 받은 최대 3개의 `media_id`를 연결합니다. "
+        "카테고리는 `daily`, `info`, `hobby`, `concern`, `meetup` 중 하나이며 성공 즉시 공개됩니다. "
         "영상은 이 API가 아니라 `/media/videos`로 드래프트를 만든 뒤 publish 흐름을 사용하세요.",
         "201과 공개된 게시물 전체를 반환합니다.",
-        request={"content": "오늘 공원에서 산책했어요.", "media_ids": [UUID_A]},
+        request={"title": "오늘의 공원 산책", "category": "daily", "content": "오늘 공원에서 산책했어요.", "media_ids": [UUID_A]},
         errors={400: "영상 media_id 사용 또는 사진 3장 초과.", 403: "다른 사용자의 미디어이거나 이미 사용된 미디어.", 404: "없는 media_id 포함."},
     ),
     ("get", "/api/v1/feed"): _guide(
         "홈 피드 조회",
         "최신 공개 게시물을 커서 기반으로 조회합니다. 차단 관계 게시물은 양방향으로 제외됩니다. "
+        "`category`로 한 종류만 필터링하고 `q`로 제목과 본문을 부분 검색할 수 있습니다. 두 값을 생략하면 전체입니다. "
         "다음 페이지는 응답의 `next_cursor`를 그대로 전달하고, null이면 더 불러오지 마세요. `limit`은 1~50입니다.",
         "200과 `items`, `next_cursor`를 반환합니다.",
         errors={400: "cursor가 서버에서 발급한 형식이 아닙니다."},
@@ -188,11 +190,11 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
         errors={404: "게시물이 없거나 현재 사용자에게 보이지 않습니다."},
     ),
     ("patch", "/api/v1/posts/{post_id}"): _guide(
-        "게시물 본문 수정",
-        "작성자만 본문을 수정할 수 있습니다. 미디어 구성은 이 API에서 바꾸지 않습니다. "
+        "게시물 내용 수정",
+        "작성자만 제목·카테고리·본문을 수정할 수 있으며 변경할 필드만 보냅니다. 미디어 구성은 이 API에서 바꾸지 않습니다. "
         "성공 응답으로 상세 화면과 피드 캐시의 해당 게시물을 갱신하세요.",
         "200과 수정된 게시물 전체를 반환합니다.",
-        request={"content": "수정한 게시물 내용입니다."},
+        request={"title": "수정한 제목", "category": "info", "content": "수정한 게시물 내용입니다."},
         errors={403: "작성자가 아닙니다.", 404: "게시물이 없거나 차단 관계입니다."},
     ),
     ("delete", "/api/v1/posts/{post_id}"): _guide(
@@ -223,10 +225,11 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ),
     ("post", "/api/v1/posts/{post_id}/publish"): _guide(
         "영상 드래프트 게시",
-        "자막 생성이 끝난 영상 드래프트를 공개합니다. `processing`이면 게시 버튼을 잠시 비활성화하세요. "
+        "제목·단일 카테고리·본문을 최종 요청에 포함해 자막 생성이 끝난 영상 드래프트를 공개합니다. "
+        "`processing`이면 게시 버튼을 잠시 비활성화하세요. "
         "자막 실패 시에만 사용자 확인 후 `allow_no_caption=true`로 다시 호출할 수 있습니다.",
         "200과 공개된 게시물 전체를 반환합니다.",
-        request={"allow_no_caption": False},
+        request={"title": "공원 산책 영상", "category": "daily", "content": "오늘 산책 영상입니다.", "allow_no_caption": False},
         errors={400: "이미 공개되었거나 자막 실패 후 명시적 동의가 없습니다.", 404: "본인 드래프트가 아닙니다.", 409: "자막 생성 중입니다."},
     ),
     ("post", "/api/v1/posts/{post_id}/like"): _guide(
@@ -520,6 +523,8 @@ PARAMETER_DESCRIPTIONS = {
     "sender_id": "내가 해제할 전송 제한의 상대 발신자 UUID.",
     "cursor": "이전 응답의 `next_cursor`를 수정 없이 전달합니다. 첫 페이지에서는 생략합니다.",
     "limit": "한 번에 받을 항목 수. 엔드포인트별 최소·최대값은 입력란 제약을 따릅니다.",
+    "category": "게시물 단일 카테고리 코드: `daily`, `info`, `hobby`, `concern`, `meetup`.",
+    "q": "제목과 본문에서 찾을 부분 검색어. 앞뒤 공백은 무시하며 최대 100자입니다.",
     "box": "친구 요청함 방향: `received`(받음, 기본값) 또는 `sent`(보냄).",
 }
 

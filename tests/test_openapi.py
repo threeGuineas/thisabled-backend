@@ -96,8 +96,24 @@ def test_parameters_explain_opaque_ids_and_cursors():
     parameters = {parameter["name"]: parameter for parameter in feed["parameters"]}
     assert "next_cursor" in parameters["cursor"]["description"]
     assert parameters["limit"]["description"]
+    assert "daily" in parameters["category"]["description"]
+    assert "제목" in parameters["q"]["description"]
 
     detail = schema["paths"]["/api/v1/posts/{post_id}"]["get"]
     post_id = next(parameter for parameter in detail["parameters"] if parameter["name"] == "post_id")
     assert post_id["description"]
     assert post_id["example"]
+
+
+def test_post_contract_documents_title_category_and_video_publish_metadata():
+    schema = _schema()
+    create_example = schema["paths"]["/api/v1/posts"]["post"]["requestBody"]["content"][
+        "application/json"
+    ]["example"]
+    assert create_example["title"]
+    assert create_example["category"] == "daily"
+
+    publish_example = schema["paths"]["/api/v1/posts/{post_id}/publish"]["post"][
+        "requestBody"
+    ]["content"]["application/json"]["example"]
+    assert {"title", "category", "content", "allow_no_caption"} <= publish_example.keys()

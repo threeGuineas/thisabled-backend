@@ -223,8 +223,10 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ("get", "/api/v1/posts/{post_id}/caption-status"): _guide(
         "영상 자막 상태 조회",
         "영상 드래프트 작성자만 폴링합니다. `processing` 동안 간격을 두고 재조회하고, `done`이면 publish 가능, "
-        "`failed`이면 사용자에게 재시도 또는 자막 없이 게시 선택을 보여주세요.",
-        "200과 `caption_status`를 반환합니다.",
+        "`failed`이면 `failure_message`를 그대로 표시하세요. `retryable=true`일 때만 재시도를 우선 제공하고, "
+        "그 외에는 자막 없이 게시 선택을 안내합니다.",
+        "200과 `caption_status`, `failure_code`, `failure_message`, `retryable`을 반환합니다. 처리 중·완료 상태에서는 "
+        "실패 필드가 null이고 retryable은 false입니다.",
         errors={404: "본인 게시물이 아니거나 영상이 없습니다."},
     ),
     ("post", "/api/v1/posts/{post_id}/caption/retry"): _guide(
@@ -474,8 +476,10 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
         "active 상태의 친구 채팅에서만 multipart `file`을 전송합니다. 영상은 `duration_seconds`도 필요하며 자막 한도를 "
         "차감합니다. 서버가 MIME·실제 컨테이너·비디오 트랙·길이를 검증하고, STT에는 M4A 음성만 전송합니다. "
         "자막 완료·실패 시 송수신자 모두에게 `media.caption_done` "
-        "또는 `media.caption_failed` 알림을 보냅니다. 미성년자–성인 간 채팅에서는 텍스트만 허용됩니다.",
-        "201과 미디어 메시지를 반환하며 상대에게 WebSocket 이벤트를 발행합니다. 초기 caption_status는 processing입니다.",
+        "또는 `media.caption_failed` 알림을 보냅니다. 실패한 메시지는 `caption_failure_message`와 "
+        "`caption_retryable`을 함께 제공합니다. 미성년자–성인 간 채팅에서는 텍스트만 허용됩니다.",
+        "201과 미디어 메시지를 반환하며 상대에게 WebSocket 이벤트를 발행합니다. 초기 caption_status는 processing이고 "
+        "실패 정보는 이후 메시지 조회에서 확인합니다.",
         errors={
             400: "지원하지 않거나 손상된 형식, MIME·콘테이너 불일치, 비디오 트랙 없음, 길이 값 오류 또는 실제 3분 초과.",
             403: "친구·방 상태·차단·연령·전송 제한 정책 위반.",

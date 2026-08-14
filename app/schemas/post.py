@@ -33,6 +33,9 @@ class MediaOut(BaseModel):
     description_status: str
     caption: list | None = None
     caption_status: str
+    caption_failure_code: str | None = None
+    caption_failure_message: str | None = None
+    caption_retryable: bool = False
 
 
 class PostOut(BaseModel):

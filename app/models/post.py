@@ -69,6 +69,7 @@ class PostMedia(Base):
     caption_status: Mapped[str] = mapped_column(
         String(20), nullable=False, server_default=text("'none'")
     )
+    caption_failure_code: Mapped[str | None] = mapped_column(String(50), nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )

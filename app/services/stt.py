@@ -6,11 +6,14 @@
 
 import asyncio
 import tempfile
+from collections.abc import Mapping
 from pathlib import Path
+from typing import Any
 
 from openai import AsyncOpenAI
 
 from app.core.config import settings
+from app.services.caption_errors import CaptionTranscriptionError
 
 _client: AsyncOpenAI | None = None
 
@@ -19,7 +22,9 @@ def _get_client() -> AsyncOpenAI:
     global _client
     if _client is None:
         if not settings.OPENAI_API_KEY:
-            raise RuntimeError("OPENAI_API_KEY 가 설정되지 않았습니다 (.env 확인)")
+            raise CaptionTranscriptionError(
+                "CAPTION_CONFIGURATION_ERROR", auto_retryable=False
+            )
         _client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
     return _client
 
@@ -38,33 +43,72 @@ async def _extract_audio_to_m4a(media_path: Path) -> Path:
     """최대 200MB 영상을 STT 상한 안의 단일 채널 M4A 음성으로 정규화한다."""
     with tempfile.NamedTemporaryFile(suffix=".m4a", delete=False) as temp:
         output_path = Path(temp.name)
-    process = await asyncio.create_subprocess_exec(
-        "ffmpeg",
-        "-y",
-        "-v",
-        "error",
-        "-i",
-        str(media_path),
-        "-map",
-        "0:a:0",
-        "-vn",
-        "-ac",
-        "1",
-        "-ar",
-        "16000",
-        "-c:a",
-        "aac",
-        "-b:a",
-        "64k",
-        str(output_path),
-        stdout=asyncio.subprocess.DEVNULL,
-        stderr=asyncio.subprocess.PIPE,
-    )
-    _stdout, stderr = await process.communicate()
+    try:
+        process = await asyncio.create_subprocess_exec(
+            "ffmpeg",
+            "-y",
+            "-v",
+            "error",
+            "-i",
+            str(media_path),
+            "-map",
+            "0:a:0",
+            "-vn",
+            "-ac",
+            "1",
+            "-ar",
+            "16000",
+            "-c:a",
+            "aac",
+            "-b:a",
+            "64k",
+            str(output_path),
+            stdout=asyncio.subprocess.DEVNULL,
+            stderr=asyncio.subprocess.PIPE,
+        )
+    except OSError as exc:
+        output_path.unlink(missing_ok=True)
+        raise CaptionTranscriptionError(
+            "CAPTION_PROCESSOR_UNAVAILABLE", auto_retryable=False
+        ) from exc
+    _stdout, _stderr = await process.communicate()
     if process.returncode != 0:
         output_path.unlink(missing_ok=True)
-        raise RuntimeError(f"영상 오디오 추출 실패: {stderr.decode(errors='replace')[:200]}")
+        raise CaptionTranscriptionError(
+            "CAPTION_AUDIO_EXTRACTION_FAILED", auto_retryable=False
+        )
     return output_path
+
+
+def _segment_value(segment: Any, field: str) -> Any:
+    if isinstance(segment, Mapping):
+        return segment.get(field)
+    return getattr(segment, field, None)
+
+
+def _normalize_segments(segments: list[Any] | None) -> list[dict]:
+    """OpenAI SDK 버전별 dict/Pydantic 세그먼트를 공통 JSON 형태로 바꾼다."""
+    normalized: list[dict] = []
+    for segment in segments or []:
+        start = _segment_value(segment, "start")
+        end = _segment_value(segment, "end")
+        text = _segment_value(segment, "text")
+        if not isinstance(start, (int, float)) or not isinstance(end, (int, float)):
+            raise CaptionTranscriptionError(
+                "CAPTION_RESPONSE_INVALID",
+                auto_retryable=False,
+                external_call_made=True,
+            )
+        if not isinstance(text, str):
+            raise CaptionTranscriptionError(
+                "CAPTION_RESPONSE_INVALID",
+                auto_retryable=False,
+                external_call_made=True,
+            )
+        normalized.append(
+            {"start": float(start), "end": float(end), "text": text.strip()}
+        )
+    return normalized
 
 
 async def transcribe_segments(media_path: Path, content_type: str) -> list[dict]:
@@ -82,7 +126,9 @@ async def transcribe_segments(media_path: Path, content_type: str) -> list[dict]
             )
     finally:
         converted_path.unlink(missing_ok=True)
-    return [
-        {"start": seg.start, "end": seg.end, "text": seg.text.strip()}
-        for seg in (resp.segments or [])
-    ]
+    raw_segments = (
+        resp.get("segments")
+        if isinstance(resp, Mapping)
+        else getattr(resp, "segments", None)
+    )
+    return _normalize_segments(raw_segments)

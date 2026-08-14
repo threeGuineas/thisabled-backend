@@ -74,6 +74,7 @@ class ChatMessage(Base):
     caption_status: Mapped[str] = mapped_column(
         String(20), nullable=False, server_default=text("'none'")
     )
+    caption_failure_code: Mapped[str | None] = mapped_column(String(50), nullable=True)
     # SAFE: pending(비친구 보류)|safe|flagged|unanalyzed(§18.3 성능저하)
     safety_status: Mapped[str] = mapped_column(String(20), nullable=False, index=True)
     # SAFE-03 '내용 보기' 실행 시각. 실행해도 SAFE-05 집계에는 포함(§SAFE-05-6)

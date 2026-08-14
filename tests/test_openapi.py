@@ -106,6 +106,18 @@ def test_frontend_critical_contracts_are_explicit():
     assert "503" in retry_caption["responses"]
     assert "processing" in retry_caption["description"]
 
+    caption_state = schema["components"]["schemas"]["CaptionStatusOut"]["properties"]
+    assert {"failure_code", "failure_message", "retryable"} <= caption_state.keys()
+    media_state = schema["components"]["schemas"]["MediaOut"]["properties"]
+    message_state = schema["components"]["schemas"]["MessageOut"]["properties"]
+    caption_fields = {
+        "caption_failure_code",
+        "caption_failure_message",
+        "caption_retryable",
+    }
+    assert caption_fields <= media_state.keys()
+    assert caption_fields <= message_state.keys()
+
     video_upload = schema["paths"]["/api/v1/media/videos"]["post"]
     assert "실제" in video_upload["description"]
     assert "STT_DAILY_BUDGET_EXCEEDED" in video_upload["responses"]["503"]["description"]

@@ -47,10 +47,12 @@
 | --- | --- |
 | `POST /media/images` | multipart ≤3장 → `[{media_id, url}]` |
 | `POST /media/videos` | MP4·WebM·QuickTime 1개 ≤200MB·≤3분. 서버가 MIME·실제 컨테이너·비디오 트랙·길이 검증 → processing 드래프트+자막 시작 → `{post_id, media_id, caption_status}` |
-| `GET /posts/{id}/caption-status` | 드래프트 자막 상태 폴링 |
+| `GET /posts/{id}/caption-status` | 드래프트 자막 상태 폴링 → `{caption_status,failure_code,failure_message,retryable}`. 실패 필드는 `failed`일 때만 값이 있으며 프론트는 `retryable=true`일 때 재시도 동작을 제공 |
 | `POST /media/transcribe` | VIS-03 음성 입력 — 오디오 → `{text}` (자동 게시 없음) |
 
 한도: vision 20/일·5/분(이미지 1장=1회, 게시물·채팅 합산), caption 사용자 5/일·서비스 전체 기본 100 STT 호출/일(내부 재시도 포함). 동일 해시 캐싱. STT에는 25MB 상한을 지키도록 음성만 M4A로 추출해 전송한다. 드래프트 24h 미게시 자동 삭제. 서비스 전체 상한은 503과 `detail.code=STT_DAILY_BUDGET_EXCEEDED`를 반환한다. 서버 재시작으로 유실된 processing 자막은 1분 내 복구한다.
+
+자막 실패 코드는 `CAPTION_SOURCE_MISSING`, `CAPTION_PROCESSOR_UNAVAILABLE`, `CAPTION_AUDIO_EXTRACTION_FAILED`, `CAPTION_CONFIGURATION_ERROR`, `CAPTION_RESPONSE_INVALID`, `CAPTION_TRANSCRIPTION_FAILED`, `CAPTION_GENERATION_FAILED` 중 하나다. 서버 내부 예외 원문은 노출하지 않으며 `failure_message`는 사용자에게 바로 표시할 수 있는 평문이다. 공개 게시물 미디어와 채팅 메시지는 동일 정보를 `caption_failure_code`, `caption_failure_message`, `caption_retryable` 필드로 제공한다.
 
 ## friends / blocks (FRIEND-01/02 · BLOCK-01)
 

@@ -15,7 +15,7 @@
 | --- | --- | --- |
 | 1 | 게시물 제목·카테고리를 필수 메타데이터로 정의하고 카테고리 필터와 제목·본문 검색 계약을 추가 | FEED-01, POST-01 |
 | 2 | 발달 모드 게시물 댓글 추천을 COMM 범위에 포함하고, 코칭 응답을 프론트가 그대로 표시 가능한 평문 목록 계약으로 확정 | COMM-03, COMM-05, 17장, 20장 |
-| 3 | 영상 MIME·컨테이너·길이 서버 검증, ffmpeg 음성 추출, STT 전체 한도, 명시적 재시도와 재시작 복구를 자막 처리 계약에 추가 | POST-01, CAPTION-01 |
+| 3 | 영상 MIME·컨테이너·길이 서버 검증, ffmpeg 음성 추출, STT 전체 한도, 명시적 재시도·재시작 복구·안정적인 실패 코드 응답을 자막 처리 계약에 추가 | POST-01, CAPTION-01 |
 | 4 | 프로필 활동 통계·관계 상태·작성 게시물 조회를 추가하고 차단 관계의 비노출 원칙을 확정 | 6.2, BLOCK-01 |
 | 5 | 채팅 목록의 마지막 메시지·안 읽은 수·검색·온라인 상태 투영 규칙을 추가 | CHAT-03, CHAT-04 |
 | 6 | 친구·게시물·채팅·AI 처리 결과 알림의 그룹별 수신 설정과 안전 알림 강제 전달 원칙을 추가 | 15장, 16장 |
@@ -415,6 +415,24 @@
 | 자막 없이 게시 선택 | 게시물에 `자막 없음` 라벨을 표시한다 (청각장애인 모드에서 특히 명확히 안내) |
 | 길이·크기 초과 | 업로드를 거부하고 제한을 안내한다 |
 | 자막 생성 실패로 재시도가 소진된 경우 | 해당 업로드의 일일 횟수 차감을 복원한다 |
+
+**상태·실패 응답 계약**
+
+- 게시물 드래프트의 자막 상태 응답은 항상 `caption_status`, `failure_code`, `failure_message`, `retryable`을 포함한다.
+- `caption_status`가 `processing` 또는 `done`이면 실패 필드는 `null`, `retryable=false`이다.
+- `caption_status=failed`이면 프론트엔드는 고정 문구 대신 `failure_message`를 표시하고, `retryable=true`일 때만 `다시 시도` 동작을 우선 제공한다.
+- 공개 게시물과 채팅 메시지의 미디어 응답에도 같은 의미의 `caption_failure_code`, `caption_failure_message`, `caption_retryable`을 포함한다.
+
+| 실패 코드 | 의미 | 사용자 재시도 |
+| --- | --- | --- |
+| `CAPTION_SOURCE_MISSING` | 저장된 원본 영상 유실 | 불가 |
+| `CAPTION_PROCESSOR_UNAVAILABLE` | ffmpeg 등 서버 처리기 일시 사용 불가 | 가능 |
+| `CAPTION_AUDIO_EXTRACTION_FAILED` | 음성 트랙 부재·손상 등으로 음성 추출 실패 | 불가 |
+| `CAPTION_CONFIGURATION_ERROR` | STT 서버 설정 오류 | 불가 |
+| `CAPTION_RESPONSE_INVALID` | STT 응답 형식 처리 실패 | 불가 |
+| `CAPTION_TRANSCRIPTION_FAILED` | 외부 STT 호출이 재시도 후 실패 | 가능 |
+| `CAPTION_GENERATION_FAILED` | 과거 데이터 또는 분류할 수 없는 자막 실패 | 가능 |
+
 - 자막 생성이 게시를 대신 실행하지 않는다. 공개 여부의 최종 결정은 항상 사용자의 `게시` 실행이다.
 - `다시 시도`는 실패한 비공개 영상 드래프트에서만 가능하며, 사용자·서비스 전체 일일 한도를 새로 예약한다.
 - 서버는 업로드된 영상의 MIME·실제 컨테이너·비디오 트랙·길이를 직접 검증한다. MP4·WebM·QuickTime 원본은 재생용 형식으로 보존하고, STT 호출 시 음성 트랙만 25MB 이하 M4A로 추출한다.

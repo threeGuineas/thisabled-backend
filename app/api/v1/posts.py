@@ -18,6 +18,7 @@ from app.models import Block, Comment, Post, PostLike, PostMedia, User
 from app.schemas.media import CaptionStatusOut, PublishIn
 from app.services import ai_media
 from app.services import notify as noti
+from app.services.caption_errors import caption_failure_state
 from app.services.quota import (
     CAPTION_GLOBAL_LIMIT,
     CAPTION_USER_LIMIT,
@@ -154,11 +155,17 @@ async def _serialize_posts(db: AsyncSession, me_id: uuid.UUID, posts: list[Post]
     }
     media_by_post: dict[uuid.UUID, list[MediaOut]] = {}
     for m in media_rows:
+        failure_code, failure_message, retryable = caption_failure_state(
+            m.caption_status, m.caption_failure_code
+        )
         media_by_post.setdefault(m.post_id, []).append(
             MediaOut(
                 id=m.id, media_type=m.media_type, url=m.url, sort_order=m.sort_order,
                 description=m.description, description_status=m.description_status,
                 caption=m.caption, caption_status=m.caption_status,
+                caption_failure_code=failure_code,
+                caption_failure_message=failure_message,
+                caption_retryable=retryable,
             )
         )
     return [
@@ -325,7 +332,15 @@ async def caption_status(
     ).scalar_one_or_none()
     if video is None:
         raise HTTPException(status_code=404, detail="영상이 없는 게시물입니다")
-    return CaptionStatusOut(caption_status=video.caption_status)
+    failure_code, failure_message, retryable = caption_failure_state(
+        video.caption_status, video.caption_failure_code
+    )
+    return CaptionStatusOut(
+        caption_status=video.caption_status,
+        failure_code=failure_code,
+        failure_message=failure_message,
+        retryable=retryable,
+    )
 
 
 @router.post(
@@ -380,6 +395,7 @@ async def retry_caption(
     await reset_caption_refund_markers(redis, "post", video.id)
     video.caption = None
     video.caption_status = AiStatus.processing.value
+    video.caption_failure_code = None
     await db.commit()
     background.add_task(
         ai_media.caption_post_media_job,

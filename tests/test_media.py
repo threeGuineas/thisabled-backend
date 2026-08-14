@@ -13,6 +13,7 @@ from app.models import Post, PostMedia
 from app.core.config import settings
 from app.core.storage import _ext_from_content_type
 from app.services import ai_media, media_probe, stt
+from app.services.caption_errors import CaptionTranscriptionError
 from app.services.quota import caption_global_key, vision_keys
 from app.services.scheduler import cleanup_stale_drafts, recover_processing_captions
 from tests.conftest import auth_header, register
@@ -195,7 +196,9 @@ async def test_stt_receives_extension_and_content_type(tmp_path, monkeypatch):
     class Transcriptions:
         async def create(self, **kwargs):
             captured.update(kwargs)
-            return SimpleNamespace(segments=[])
+            return SimpleNamespace(
+                segments=[{"start": 0, "end": 1.25, "text": "  실제 응답  "}]
+            )
 
     fake_client = SimpleNamespace(audio=SimpleNamespace(transcriptions=Transcriptions()))
     monkeypatch.setattr(stt, "_get_client", lambda: fake_client)
@@ -209,7 +212,9 @@ async def test_stt_receives_extension_and_content_type(tmp_path, monkeypatch):
 
     monkeypatch.setattr(stt, "_extract_audio_to_m4a", extract)
 
-    assert await stt.transcribe_segments(media_path, "video/mp4") == []
+    assert await stt.transcribe_segments(media_path, "video/mp4") == [
+        {"start": 0.0, "end": 1.25, "text": "실제 응답"}
+    ]
     filename, _file, content_type = captured["file"]
     assert filename == "extracted.m4a"
     assert content_type == "audio/mp4"
@@ -228,7 +233,13 @@ async def test_caption_failure_requires_explicit_choice_and_refunds(client, db, 
     )
     post_id = up.json()["post_id"]
     status = await client.get(f"/api/v1/posts/{post_id}/caption-status", headers=h)
-    assert status.json()["caption_status"] == "failed"
+    assert status.json() == {
+        "caption_status": "failed",
+        "failure_code": "CAPTION_TRANSCRIPTION_FAILED",
+        "failure_message": "자막 생성에 실패했습니다. 잠시 후 다시 시도해 주세요.",
+        "retryable": True,
+    }
+    assert fake_ai["caption"].calls == 3
 
     # 재시도 소진 → 일일 횟수 복원 (CAPTION-01): 카운터가 0으로 복귀
     from app.services.quota import caption_key
@@ -246,6 +257,35 @@ async def test_caption_failure_requires_explicit_choice_and_refunds(client, db, 
     )
     assert ok.status_code == 200
     assert ok.json()["media"][0]["caption_status"] == "failed"  # '자막 없음' 라벨 근거
+    assert ok.json()["media"][0]["caption_failure_code"] == "CAPTION_TRANSCRIPTION_FAILED"
+
+
+async def test_non_retryable_caption_error_is_not_recalled(client, fake_ai):
+    fake_ai["caption"].error = CaptionTranscriptionError(
+        "CAPTION_RESPONSE_INVALID",
+        auto_retryable=False,
+        external_call_made=True,
+    )
+    user = await register(client, "자막응답오류")
+    headers = auth_header(user["access_token"])
+    uploaded = await client.post(
+        "/api/v1/media/videos",
+        files={"file": ("v.mp4", b"invalidresponse", "video/mp4")},
+        data={"duration_seconds": "60"},
+        headers=headers,
+    )
+
+    status = await client.get(
+        f"/api/v1/posts/{uploaded.json()['post_id']}/caption-status",
+        headers=headers,
+    )
+    assert status.json() == {
+        "caption_status": "failed",
+        "failure_code": "CAPTION_RESPONSE_INVALID",
+        "failure_message": "자막 응답을 처리하지 못했습니다. 관리자에게 문의해 주세요.",
+        "retryable": False,
+    }
+    assert fake_ai["caption"].calls == 1
 
 
 async def test_failed_caption_can_be_retried(client, db, test_redis, fake_ai):
@@ -269,6 +309,10 @@ async def test_failed_caption_can_be_retried(client, db, test_redis, fake_ai):
     assert (
         await client.get(f"/api/v1/posts/{post_id}/caption-status", headers=h)
     ).json()["caption_status"] == "done"
+    media = await db.scalar(
+        select(PostMedia).where(PostMedia.post_id == uuid.UUID(post_id))
+    )
+    assert media.caption_failure_code is None
 
 
 async def test_global_caption_limit_blocks_upload(client, test_redis, fake_ai):

@@ -42,6 +42,7 @@ from app.schemas.chat import (
 from app.schemas.post import AuthorOut
 from app.services import ai_media, media_probe
 from app.services import notify as noti
+from app.services.caption_errors import caption_failure_state
 from app.services.events import publish_to_user
 from app.services.presence import online_statuses
 from app.services import call_signaling
@@ -129,12 +130,19 @@ def _message_out(
         if m.safety_status == SafetyStatus.flagged.value and m.revealed_at is None:
             blurred = True
             content = None
+    failure_code, failure_message, retryable = caption_failure_state(
+        m.caption_status, m.caption_failure_code
+    )
     return MessageOut(
         id=m.id, room_id=m.room_id, sender=_author(sender), mine=mine,
         type=m.type, content=content, blurred=blurred, safety_status=safety,
         media_url=m.media_url, description=m.description,
         description_status=m.description_status, caption=m.caption,
-        caption_status=m.caption_status, created_at=m.created_at,
+        caption_status=m.caption_status,
+        caption_failure_code=failure_code,
+        caption_failure_message=failure_message,
+        caption_retryable=retryable,
+        created_at=m.created_at,
         is_read=mine and m.id == counterpart_read_message_id,
     )
 

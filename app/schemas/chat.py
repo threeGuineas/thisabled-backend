@@ -69,6 +69,9 @@ class MessageOut(BaseModel):
     description_status: str = "none"
     caption: list | None = None
     caption_status: str = "none"
+    caption_failure_code: str | None = None
+    caption_failure_message: str | None = None
+    caption_retryable: bool = False
     created_at: datetime
     is_read: bool = False
 

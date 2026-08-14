@@ -23,10 +23,16 @@ class VideoUploadOut(BaseModel):
     post_id: uuid.UUID
     media_id: uuid.UUID
     caption_status: str
+    failure_code: str | None = None
+    failure_message: str | None = None
+    retryable: bool = False
 
 
 class CaptionStatusOut(BaseModel):
     caption_status: str
+    failure_code: str | None = None
+    failure_message: str | None = None
+    retryable: bool = False
 
 
 class TranscribeOut(BaseModel):

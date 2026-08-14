@@ -1,5 +1,9 @@
 """v2.1 명세 고정값이 Settings에 반영되어 있는지 검증."""
 
+import os
+import subprocess
+import sys
+
 from sqlalchemy.engine import make_url
 
 from app.core.config import Settings, settings
@@ -35,3 +39,21 @@ def test_settings_ignores_compose_only_env_vars(monkeypatch):
 
 def test_tests_always_use_test_database():
     assert make_url(_test_database_url()).database.endswith("_test")
+
+
+def test_app_import_does_not_require_existing_upload_directory(tmp_path):
+    """CI처럼 Docker 볼륨이 없는 환경에서도 테스트 수집 전 app import가 성공해야 한다."""
+    missing_upload_dir = tmp_path / "not-created"
+    env = os.environ.copy()
+    env["UPLOAD_DIR"] = str(missing_upload_dir)
+
+    result = subprocess.run(
+        [sys.executable, "-c", "import app.main"],
+        env=env,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert not missing_upload_dir.exists()

@@ -177,7 +177,13 @@ async def add_security_headers(request: Request, call_next):
         )
     return response
 
-app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
+# 실제 서버 시작 시 lifespan이 디렉터리를 만들고, 업로드 저장 함수도 생성 책임을 가진다.
+# import 단계에서는 CI·관리 명령처럼 Docker 볼륨이 없는 환경도 허용한다.
+app.mount(
+    "/uploads",
+    StaticFiles(directory=settings.UPLOAD_DIR, check_dir=False),
+    name="uploads",
+)
 
 app.include_router(health.router, prefix="/api/v1", tags=["health"])
 app.include_router(auth.router, prefix="/api/v1")

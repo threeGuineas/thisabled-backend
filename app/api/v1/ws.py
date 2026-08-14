@@ -1,4 +1,4 @@
-"""WS /api/v1/ws?token=<access> — 새 메시지·알림 실시간 푸시.
+"""WS /api/v1/ws?token=<access> — 새 메시지·알림·통화 시그널 실시간 푸시.
 
 인증은 JWT 검증만으로 처리(DB 미조회)해 연결 비용을 최소화한다.
 구독 채널: user:{user_id} (app/services/events.py).
@@ -10,11 +10,12 @@ import uuid
 
 import redis.asyncio as aioredis
 from fastapi import APIRouter, Depends, Query, WebSocket, WebSocketDisconnect
-from jose import JWTError
+from jwt.exceptions import PyJWTError as JWTError
 
 from app.core.security import decode_token
 from app.db.redis import get_redis
 from app.services.events import user_channel
+from app.services.presence import heartbeat, mark_offline, mark_online
 
 router = APIRouter(tags=["ws"])
 
@@ -43,8 +44,10 @@ async def ws_endpoint(
 
     pubsub = redis.pubsub()
     await pubsub.subscribe(user_channel(user_id))
+    await mark_online(redis, user_id)
     await websocket.accept()
     relay = asyncio.create_task(_relay(pubsub, websocket))
+    presence_heartbeat = asyncio.create_task(heartbeat(redis, user_id))
     try:
         while True:
             # 클라이언트 수신 루프 — 연결 종료 감지용 (보내는 내용은 무시)
@@ -53,7 +56,12 @@ async def ws_endpoint(
         pass
     finally:
         relay.cancel()
+        presence_heartbeat.cancel()
         with contextlib.suppress(asyncio.CancelledError):
             await relay
+        with contextlib.suppress(asyncio.CancelledError):
+            await presence_heartbeat
+        with contextlib.suppress(Exception):
+            await mark_offline(redis, user_id)
         await pubsub.unsubscribe(user_channel(user_id))
         await pubsub.aclose()

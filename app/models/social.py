@@ -27,6 +27,15 @@ class FriendRequest(Base):
     responded_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
 
+Index(
+    "uq_friend_requests_pending_pair",
+    func.least(FriendRequest.sender_id, FriendRequest.receiver_id),
+    func.greatest(FriendRequest.sender_id, FriendRequest.receiver_id),
+    unique=True,
+    postgresql_where=FriendRequest.status == "pending",
+)
+
+
 class Friendship(Base):
     """양방향 친구 관계 (FRIEND-02). 정규화 쌍: user_a < user_b."""
 

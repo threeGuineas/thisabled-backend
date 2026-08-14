@@ -23,6 +23,7 @@ from app.schemas.user import (
     WithdrawIn,
 )
 from app.services.nickname import validate_nickname
+from app.services.profile import activity_stats, relationship
 from app.services.relations import is_blocked_either
 from app.services.withdrawal import withdraw
 
@@ -57,7 +58,7 @@ async def _user_tags(db: AsyncSession, user_id: uuid.UUID) -> list[TagOut]:
     return [TagOut(code=t.code, category=t.category, label=t.label) for t in rows]
 
 
-def _me_out(user: User, tags: list[TagOut]) -> MeOut:
+async def _me_out(db: AsyncSession, user: User) -> MeOut:
     return MeOut(
         id=user.id,
         nickname=user.nickname,
@@ -67,7 +68,9 @@ def _me_out(user: User, tags: list[TagOut]) -> MeOut:
         is_minor=is_minor(user.birth_date),
         stranger_requests_allowed=user.stranger_requests_allowed,
         mode_settings=user.mode_settings,
-        tags=tags,
+        notification_settings=user.notification_settings,
+        tags=await _user_tags(db, user.id),
+        stats=await activity_stats(db, user.id),
     )
 
 
@@ -79,7 +82,7 @@ async def tag_catalog(db: AsyncSession = Depends(get_db)):
 
 @router.get("/users/me", response_model=MeOut)
 async def me(user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db)):
-    return _me_out(user, await _user_tags(db, user.id))
+    return await _me_out(db, user)
 
 
 @router.patch("/users/me", response_model=MeOut)
@@ -97,7 +100,7 @@ async def patch_me(
     if body.profile_image_url is not None:
         user.profile_image_url = body.profile_image_url
     await db.commit()
-    return _me_out(user, await _user_tags(db, user.id))
+    return await _me_out(db, user)
 
 
 @router.put("/users/me/tags", response_model=MeOut)
@@ -120,7 +123,7 @@ async def put_tags(
     for tag in tags:
         db.add(UserInterestTag(user_id=user.id, tag_id=tag.id))
     await db.commit()
-    return _me_out(user, await _user_tags(db, user.id))
+    return await _me_out(db, user)
 
 
 @router.patch("/users/me/settings", response_model=MeOut)
@@ -133,8 +136,12 @@ async def patch_settings(
         user.stranger_requests_allowed = body.stranger_requests_allowed
     if body.mode_settings is not None:
         user.mode_settings = body.mode_settings
+    if body.notification_settings is not None:
+        current = dict(user.notification_settings or {})
+        current.update(body.notification_settings.model_dump(exclude_none=True))
+        user.notification_settings = current
     await db.commit()
-    return _me_out(user, await _user_tags(db, user.id))
+    return await _me_out(db, user)
 
 
 @router.put("/users/me/mode", response_model=MeOut)
@@ -154,7 +161,7 @@ async def put_mode(
         )
         user.ui_mode = body.ui_mode.value
         await db.commit()
-    return _me_out(user, await _user_tags(db, user.id))
+    return await _me_out(db, user)
 
 
 @router.delete("/users/me", status_code=204)
@@ -183,4 +190,6 @@ async def public_profile(
         bio=target.bio,
         profile_image_url=target.profile_image_url,
         tags=await _user_tags(db, target.id),
+        stats=await activity_stats(db, target.id),
+        relationship=await relationship(db, viewer.id, target.id),
     )

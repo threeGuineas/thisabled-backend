@@ -3,6 +3,7 @@
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -16,7 +17,11 @@ from app.services.relations import block_user
 router = APIRouter(prefix="/blocks", tags=["blocks"])
 
 
-@router.post("", status_code=201)
+class BlockedOut(BaseModel):
+    blocked: bool
+
+
+@router.post("", response_model=BlockedOut, status_code=201)
 async def create_block(
     body: BlockIn,
     user: User = Depends(get_current_user),
@@ -31,7 +36,7 @@ async def create_block(
     if exists is None:
         await block_user(db, user.id, body.user_id)
         await db.commit()
-    return {"blocked": True}
+    return BlockedOut(blocked=True)
 
 
 @router.delete("/{user_id}", status_code=204)

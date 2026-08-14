@@ -1,4 +1,4 @@
-"""v2.2 도메인 enum. DB에는 String으로 저장한다 (PG enum 마이그레이션 부담 회피)."""
+"""v2.3 도메인 enum. DB에는 String으로 저장한다 (PG enum 마이그레이션 부담 회피)."""
 
 from enum import StrEnum
 
@@ -17,6 +17,16 @@ class PostStatus(StrEnum):
 
     processing = "processing"
     published = "published"
+
+
+class PostCategory(StrEnum):
+    """POST-01 — Figma의 게시물 단일 카테고리 5종."""
+
+    daily = "daily"
+    info = "info"
+    hobby = "hobby"
+    concern = "concern"
+    meetup = "meetup"
 
 
 class MediaType(StrEnum):
@@ -62,6 +72,20 @@ class MessageType(StrEnum):
     text = "text"
     image = "image"
     video = "video"
+
+
+class CallKind(StrEnum):
+    audio = "audio"
+    video = "video"
+
+
+class CallSignalType(StrEnum):
+    offer = "offer"
+    accept = "accept"
+    answer = "answer"
+    ice = "ice"
+    decline = "decline"
+    end = "end"
 
 
 class Provider(StrEnum):

@@ -1,11 +1,11 @@
-// ThisAbled — ERD v3 (기능명세서 v2.2 정합)
+// ThisAbled — ERD v3 (기능명세서 v2.3 정합)
 // dbdiagram.io 에서 https://dbdiagram.io/d 에 붙여넣기하면 시각화됩니다.
 // 정본 마이그레이션: alembic/versions/84e58e0eefae_schema_v3_baseline.py
 
 Project ThisAbled {
   database_type: 'PostgreSQL'
   Note: '''
-    장애 유형별 적응형 UI 소셜 플랫폼 — 명세 v2.2 (docs/ThisAbled_기능명세서_v2_2.md)
+    장애 유형별 적응형 UI 소셜 플랫폼 — 명세 v2.3 (docs/ThisAbled_기능명세서_v2_3.md)
     - PK·FK 전부 UUID (forbidden_nicknames.id serial 예외)
     - enum은 DB에 varchar로 저장 (app/core/enums.py 가 정본)
     - 신고(reports)는 MVP 제외 (§3.2)
@@ -132,6 +132,7 @@ Table post_media {
   description_status varchar(20) [not null, default: 'none', note: 'none|processing|done|failed']
   caption            jsonb       [null, note: 'CAPTION-01 자막 세그먼트 [{start,end,text}]']
   caption_status     varchar(20) [not null, default: 'none', note: 'failed=자막 없음 라벨 (HEAR-02)']
+  caption_failure_code varchar(50) [null, note: '프론트 표시용 안정적인 CAPTION 실패 코드']
   created_at         timestamptz [not null, default: `now()`]
 }
 
@@ -204,6 +205,7 @@ Table chat_messages {
   description_status varchar(20)   [not null, default: 'none']
   caption            jsonb         [null, note: '채팅 영상 자막 — 비동기 부착 (CAPTION-01)']
   caption_status     varchar(20)   [not null, default: 'none']
+  caption_failure_code varchar(50) [null, note: '프론트 표시용 안정적인 CAPTION 실패 코드']
   safety_status      safety_status [not null, note: '텍스트만 분석. 발신자에게 판정 비노출 (SAFE-03)']
   revealed_at        timestamptz   [null, note: '내용 보기 실행 시각. 실행해도 SAFE-05 집계 포함']
   available_at       timestamptz   [null, note: '수신자에게 표시 가능해진 시각. pending은 재분석 완료 시 설정']

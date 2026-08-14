@@ -2,6 +2,11 @@ import uuid
 
 from pydantic import BaseModel
 
+from app.schemas.common import StrictRequest
+
+from app.core.enums import PostCategory
+from app.schemas.post import PostContent, PostTitle
+
 
 class UploadedMediaOut(BaseModel):
     media_id: uuid.UUID
@@ -18,17 +23,26 @@ class VideoUploadOut(BaseModel):
     post_id: uuid.UUID
     media_id: uuid.UUID
     caption_status: str
+    failure_code: str | None = None
+    failure_message: str | None = None
+    retryable: bool = False
 
 
 class CaptionStatusOut(BaseModel):
     caption_status: str
+    failure_code: str | None = None
+    failure_message: str | None = None
+    retryable: bool = False
 
 
 class TranscribeOut(BaseModel):
     text: str
 
 
-class PublishIn(BaseModel):
+class PublishIn(StrictRequest):
     """자막 실패(재시도 소진) 시 '자막 없이 게시' 명시 선택 (CAPTION-01 예외)."""
 
+    title: PostTitle
+    category: PostCategory
+    content: PostContent
     allow_no_caption: bool = False

@@ -4,13 +4,14 @@ from datetime import date
 from pydantic import BaseModel, Field
 
 from app.core.enums import UiMode
+from app.schemas.common import StrictRequest
 
 
 class AuthorizeOut(BaseModel):
     authorize_url: str
 
 
-class Agreements(BaseModel):
+class Agreements(StrictRequest):
     """가입 필수 동의 3종 (ACC-01, §17 외부 AI 데이터 처리 안내 포함)."""
 
     terms: bool
@@ -18,7 +19,7 @@ class Agreements(BaseModel):
     ai_notice: bool
 
 
-class SignupIn(BaseModel):
+class SignupIn(StrictRequest):
     signup_token: str
     nickname: str = Field(min_length=2, max_length=12)
     birth_date: date

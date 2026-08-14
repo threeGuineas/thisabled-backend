@@ -27,7 +27,8 @@ def test_users_v3_columns():
     assert "recovery_code_hash" not in cols
     assert "trust_score" not in cols
     assert {"birth_date", "ui_mode", "bio", "profile_image_url",
-            "stranger_requests_allowed", "mode_settings", "risk_score"} <= cols
+            "stranger_requests_allowed", "mode_settings", "notification_settings",
+            "risk_score"} <= cols
 
 
 def test_anonymizable_fks_nullable():
@@ -35,3 +36,12 @@ def test_anonymizable_fks_nullable():
     assert m.Post.__table__.c.author_id.nullable
     assert m.Comment.__table__.c.author_id.nullable
     assert m.ChatMessage.__table__.c.sender_id.nullable
+
+
+def test_posts_have_figma_metadata_columns():
+    cols = m.Post.__table__.c
+    assert cols.title.type.length == 100
+    assert cols.category.type.length == 20
+    # 자막 처리 중 내부 드래프트는 공개 전까지 메타데이터가 비어 있을 수 있다.
+    assert cols.title.nullable
+    assert cols.category.nullable

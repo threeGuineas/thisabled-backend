@@ -7,16 +7,25 @@ from urllib.parse import quote, unquote
 import redis.asyncio as aioredis
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
 from sqlalchemy import delete, func, or_, select, union
+from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from app.core.deps import get_current_user
-from app.core.enums import AiStatus, MediaType, PostStatus
+from app.core.enums import AiStatus, MediaType, PostCategory, PostStatus
 from app.db.redis import get_redis
 from app.db.session import get_db, get_session_factory
 from app.models import Block, Comment, Post, PostLike, PostMedia, User
 from app.schemas.media import CaptionStatusOut, PublishIn
 from app.services import ai_media
 from app.services import notify as noti
+from app.services.caption_errors import caption_failure_state
+from app.services.quota import (
+    CAPTION_GLOBAL_LIMIT,
+    CAPTION_USER_LIMIT,
+    caption_key,
+    consume_caption,
+    reset_caption_refund_markers,
+)
 from app.schemas.post import (
     AuthorOut,
     CommentIn,
@@ -35,6 +44,50 @@ router = APIRouter(tags=["posts"])
 MAX_IMAGES = 3  # POST-01
 
 WITHDRAWN_NICKNAME = "탈퇴한 사용자"  # §15
+
+
+def _contains_pattern(value: str) -> str:
+    """LIKE 메타문자를 일반 문자로 취급하는 부분 일치 패턴."""
+    escaped = value.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+    return f"%{escaped}%"
+
+
+def _cursor_position(cursor: str) -> tuple[datetime, uuid.UUID]:
+    try:
+        ts_raw, id_raw = unquote(cursor).split("|", 1)
+        return datetime.fromisoformat(ts_raw), uuid.UUID(id_raw)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail="잘못된 커서입니다") from exc
+
+
+async def _post_page(
+    db: AsyncSession,
+    me_id: uuid.UUID,
+    stmt,
+    *,
+    cursor: str | None,
+    limit: int,
+) -> FeedOut:
+    """피드와 프로필 작성 글이 공유하는 안정적인 최신순 커서 페이지."""
+    if cursor:
+        cur_ts, cur_id = _cursor_position(cursor)
+        stmt = stmt.where(
+            or_(
+                Post.published_at < cur_ts,
+                (Post.published_at == cur_ts) & (Post.id < cur_id),
+            )
+        )
+    posts = (
+        await db.execute(
+            stmt.order_by(Post.published_at.desc(), Post.id.desc()).limit(limit + 1)
+        )
+    ).scalars().all()
+    next_cursor = None
+    if len(posts) > limit:
+        posts = posts[:limit]
+        last = posts[-1]
+        next_cursor = quote(f"{last.published_at.isoformat()}|{last.id}")
+    return FeedOut(items=await _serialize_posts(db, me_id, posts), next_cursor=next_cursor)
 
 
 def _blocked_ids_subq(me_id: uuid.UUID):
@@ -102,17 +155,25 @@ async def _serialize_posts(db: AsyncSession, me_id: uuid.UUID, posts: list[Post]
     }
     media_by_post: dict[uuid.UUID, list[MediaOut]] = {}
     for m in media_rows:
+        failure_code, failure_message, retryable = caption_failure_state(
+            m.caption_status, m.caption_failure_code
+        )
         media_by_post.setdefault(m.post_id, []).append(
             MediaOut(
                 id=m.id, media_type=m.media_type, url=m.url, sort_order=m.sort_order,
                 description=m.description, description_status=m.description_status,
                 caption=m.caption, caption_status=m.caption_status,
+                caption_failure_code=failure_code,
+                caption_failure_message=failure_message,
+                caption_retryable=retryable,
             )
         )
     return [
         PostOut(
             id=p.id,
             author=_author_out(authors.get(p.author_id)),
+            title=p.title,
+            category=p.category,
             content=p.content,
             status=p.status,
             media=media_by_post.get(p.id, []),
@@ -131,7 +192,7 @@ async def create_post(
     body: PostCreateIn,
     background: BackgroundTasks,
     user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_db, scope="function"),
     redis: aioredis.Redis = Depends(get_redis),
     session_factory: async_sessionmaker = Depends(get_session_factory),
     describe_caller=Depends(ai_media.get_describe_caller),
@@ -157,6 +218,8 @@ async def create_post(
     post = Post(
         id=uuid.uuid4(),
         author_id=user.id,
+        title=body.title.strip(),
+        category=body.category.value,
         content=body.content,
         status=PostStatus.published.value,
         published_at=datetime.now(timezone.utc),
@@ -184,38 +247,50 @@ async def create_post(
 async def feed(
     cursor: str | None = None,
     limit: int = Query(default=20, ge=1, le=50),
+    category: PostCategory | None = None,
+    search_text: str | None = Query(default=None, alias="q", max_length=100),
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
     blocked = _blocked_ids_subq(user.id)
-    q = (
+    stmt = (
         select(Post)
         .where(
             Post.status == PostStatus.published.value,
             or_(Post.author_id.is_(None), Post.author_id.not_in(select(blocked.c[0]))),
         )
-        .order_by(Post.published_at.desc(), Post.id.desc())
-        .limit(limit + 1)
     )
-    if cursor:
-        try:
-            ts_raw, id_raw = unquote(cursor).split("|", 1)
-            cur_ts, cur_id = datetime.fromisoformat(ts_raw), uuid.UUID(id_raw)
-        except ValueError:
-            raise HTTPException(status_code=400, detail="잘못된 커서입니다")
-        q = q.where(
+    if category is not None:
+        stmt = stmt.where(Post.category == category.value)
+    search = search_text.strip() if search_text else None
+    if search:
+        pattern = _contains_pattern(search)
+        stmt = stmt.where(
             or_(
-                Post.published_at < cur_ts,
-                (Post.published_at == cur_ts) & (Post.id < cur_id),
+                Post.title.ilike(pattern, escape="\\"),
+                Post.content.ilike(pattern, escape="\\"),
             )
         )
-    posts = (await db.execute(q)).scalars().all()
-    next_cursor = None
-    if len(posts) > limit:
-        posts = posts[:limit]
-        last = posts[-1]
-        next_cursor = quote(f"{last.published_at.isoformat()}|{last.id}")
-    return FeedOut(items=await _serialize_posts(db, user.id, posts), next_cursor=next_cursor)
+    return await _post_page(db, user.id, stmt, cursor=cursor, limit=limit)
+
+
+@router.get("/users/{user_id}/posts", response_model=FeedOut)
+async def user_posts(
+    user_id: uuid.UUID,
+    cursor: str | None = None,
+    limit: int = Query(default=20, ge=1, le=50),
+    viewer: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """프로필의 공개 작성 게시물 목록. 차단 관계는 사용자 존재 자체를 숨긴다."""
+    target = await db.get(User, user_id)
+    if target is None or await _is_blocked_author(db, viewer.id, user_id):
+        raise HTTPException(status_code=404, detail="사용자를 찾을 수 없습니다")
+    stmt = select(Post).where(
+        Post.author_id == target.id,
+        Post.status == PostStatus.published.value,
+    )
+    return await _post_page(db, viewer.id, stmt, cursor=cursor, limit=limit)
 
 
 async def _get_visible_post(db: AsyncSession, me: User, post_id: uuid.UUID) -> Post:
@@ -257,7 +332,80 @@ async def caption_status(
     ).scalar_one_or_none()
     if video is None:
         raise HTTPException(status_code=404, detail="영상이 없는 게시물입니다")
-    return CaptionStatusOut(caption_status=video.caption_status)
+    failure_code, failure_message, retryable = caption_failure_state(
+        video.caption_status, video.caption_failure_code
+    )
+    return CaptionStatusOut(
+        caption_status=video.caption_status,
+        failure_code=failure_code,
+        failure_message=failure_message,
+        retryable=retryable,
+    )
+
+
+@router.post(
+    "/posts/{post_id}/caption/retry",
+    response_model=CaptionStatusOut,
+    status_code=202,
+)
+async def retry_caption(
+    post_id: uuid.UUID,
+    background: BackgroundTasks,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
+    session_factory: async_sessionmaker = Depends(get_session_factory),
+    caption_caller=Depends(ai_media.get_caption_caller),
+):
+    """실패한 영상 드래프트의 자막을 사용자가 명시적으로 다시 생성한다."""
+    post = await db.get(Post, post_id)
+    if post is None or post.author_id != user.id:
+        raise HTTPException(status_code=404, detail="게시물을 찾을 수 없습니다")
+    if post.status == PostStatus.published.value:
+        raise HTTPException(status_code=409, detail="이미 공개된 게시물은 자막을 다시 생성할 수 없습니다")
+    video = (
+        await db.execute(
+            select(PostMedia).where(
+                PostMedia.post_id == post_id, PostMedia.media_type == MediaType.video.value
+            ).with_for_update()
+        )
+    ).scalar_one_or_none()
+    if video is None:
+        raise HTTPException(status_code=404, detail="영상이 없는 게시물입니다")
+    if video.caption_status != AiStatus.failed.value:
+        raise HTTPException(status_code=409, detail="실패한 자막만 다시 생성할 수 있습니다")
+    if not ai_media.file_path_from_url(video.url).is_file():
+        raise HTTPException(status_code=409, detail="원본 영상이 없어 자막을 다시 생성할 수 없습니다")
+
+    quota_result = await consume_caption(redis, user.id)
+    if quota_result == CAPTION_USER_LIMIT:
+        limit = caption_key(user.id)[1]
+        raise HTTPException(
+            status_code=429, detail=f"영상 업로드는 하루 {limit}회까지 가능합니다 (게시물·채팅 합산)"
+        )
+    if quota_result == CAPTION_GLOBAL_LIMIT:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "code": "STT_DAILY_BUDGET_EXCEEDED",
+                "message": "오늘의 자막 생성 한도가 소진되었습니다. 내일 다시 시도해 주세요.",
+            },
+        )
+
+    await reset_caption_refund_markers(redis, "post", video.id)
+    video.caption = None
+    video.caption_status = AiStatus.processing.value
+    video.caption_failure_code = None
+    await db.commit()
+    background.add_task(
+        ai_media.caption_post_media_job,
+        session_factory,
+        redis,
+        video.id,
+        user.id,
+        caption_caller,
+    )
+    return CaptionStatusOut(caption_status=AiStatus.processing.value)
 
 
 @router.post("/posts/{post_id}/publish", response_model=PostOut)
@@ -291,6 +439,9 @@ async def publish_post(
                 detail="자막 생성에 실패했습니다. 다시 시도하거나 '자막 없이 게시'를 선택해 주세요",
             )
 
+    post.title = body.title.strip()
+    post.category = body.category.value
+    post.content = body.content
     post.status = PostStatus.published.value
     post.published_at = datetime.now(timezone.utc)
     await db.commit()
@@ -308,7 +459,12 @@ async def edit_post(
     post = await _get_visible_post(db, user, post_id)
     if post.author_id != user.id:
         raise HTTPException(status_code=403, detail="작성자만 수정할 수 있습니다")
-    post.content = body.content
+    if body.title is not None:
+        post.title = body.title.strip()
+    if body.category is not None:
+        post.category = body.category.value
+    if body.content is not None:
+        post.content = body.content
     await db.commit()
     return (await _serialize_posts(db, user.id, [post]))[0]
 
@@ -340,10 +496,16 @@ async def like_post(
     redis: aioredis.Redis = Depends(get_redis),
 ):
     post = await _get_visible_post(db, user, post_id)
-    exists = await db.get(PostLike, (post_id, user.id))
-    if exists is None:
-        db.add(PostLike(post_id=post_id, user_id=user.id))
-        await db.commit()
+    inserted = (
+        await db.execute(
+            insert(PostLike)
+            .values(post_id=post_id, user_id=user.id)
+            .on_conflict_do_nothing(index_elements=[PostLike.post_id, PostLike.user_id])
+            .returning(PostLike.user_id)
+        )
+    ).scalar_one_or_none()
+    await db.commit()
+    if inserted is not None:
         if post.author_id is not None and post.author_id != user.id:
             await noti.notify(
                 db, redis, post.author_id, noti.POST_LIKE,

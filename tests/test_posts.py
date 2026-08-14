@@ -6,8 +6,12 @@ from app.models import Block, Post
 from tests.conftest import auth_header, register
 
 
-async def _post(client, h, content="테스트 글"):
-    resp = await client.post("/api/v1/posts", json={"content": content}, headers=h)
+async def _post(client, h, content="테스트 글", *, title=None, category="daily"):
+    resp = await client.post(
+        "/api/v1/posts",
+        json={"title": title or content, "category": category, "content": content},
+        headers=h,
+    )
     assert resp.status_code == 201, resp.text
     return resp.json()
 
@@ -17,6 +21,8 @@ async def test_text_post_publishes_immediately_and_appears_in_feed(client):
     h = auth_header(u["access_token"])
     post = await _post(client, h, "첫 글입니다")
     assert post["status"] == "published"
+    assert post["title"] == "첫 글입니다"
+    assert post["category"] == "daily"
 
     feed = await client.get("/api/v1/feed", headers=h)
     assert feed.status_code == 200
@@ -108,3 +114,81 @@ async def test_feed_cursor_pagination(client):
     contents1 = {p["content"] for p in page1.json()["items"]}
     contents2 = {p["content"] for p in page2.json()["items"]}
     assert contents1.isdisjoint(contents2)
+
+
+async def test_feed_filters_category_and_searches_title_or_content(client):
+    user = await register(client, "검색유저")
+    headers = auth_header(user["access_token"])
+    await _post(client, headers, "라일락 향기를 맡았어요", title="공원 산책", category="daily")
+    await _post(client, headers, "도서관 신간 안내", title="이번 주 책", category="info")
+    await _post(client, headers, "주말에 함께 걸어요", title="한강 걷기 모임", category="meetup")
+
+    category_feed = await client.get("/api/v1/feed?category=info", headers=headers)
+    assert [item["category"] for item in category_feed.json()["items"]] == ["info"]
+
+    title_search = await client.get("/api/v1/feed?q=한강", headers=headers)
+    assert [item["title"] for item in title_search.json()["items"]] == ["한강 걷기 모임"]
+
+    content_search = await client.get("/api/v1/feed?q=라일락", headers=headers)
+    assert [item["title"] for item in content_search.json()["items"]] == ["공원 산책"]
+
+
+async def test_post_contract_rejects_missing_or_blank_metadata(client):
+    user = await register(client, "계약검증자")
+    headers = auth_header(user["access_token"])
+    missing = await client.post("/api/v1/posts", json={"content": "본문"}, headers=headers)
+    assert missing.status_code == 422
+    blank = await client.post(
+        "/api/v1/posts",
+        json={"title": "   ", "category": "daily", "content": "본문"},
+        headers=headers,
+    )
+    assert blank.status_code == 422
+    invalid = await client.post(
+        "/api/v1/posts",
+        json={"title": "제목", "category": "unknown", "content": "본문"},
+        headers=headers,
+    )
+    assert invalid.status_code == 422
+    typo = await client.post(
+        "/api/v1/posts",
+        json={
+            "title": "제목",
+            "category": "daily",
+            "content": "본문",
+            "catgory": "info",
+        },
+        headers=headers,
+    )
+    assert typo.status_code == 422
+
+
+async def test_post_and_comment_input_limits(client):
+    user = await register(client, "입력상한유저")
+    headers = auth_header(user["access_token"])
+    too_long = await client.post(
+        "/api/v1/posts",
+        json={"title": "긴 글", "category": "daily", "content": "가" * 10001},
+        headers=headers,
+    )
+    assert too_long.status_code == 422
+    too_many_media = await client.post(
+        "/api/v1/posts",
+        json={
+            "title": "사진 수",
+            "category": "daily",
+            "content": "본문",
+            "media_ids": [str(uuid.uuid4()) for _ in range(4)],
+        },
+        headers=headers,
+    )
+    assert too_many_media.status_code == 422
+
+    post = await _post(client, headers, "댓글 상한 검사")
+    for content in ("   ", "댓" * 2001):
+        response = await client.post(
+            f"/api/v1/posts/{post['id']}/comments",
+            json={"content": content},
+            headers=headers,
+        )
+        assert response.status_code == 422

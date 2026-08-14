@@ -4,13 +4,14 @@ import uuid
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, Query
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.deps import get_current_user
 from app.db.session import get_db
 from app.models import Notification, User
+from app.schemas.common import StrictRequest
 
 router = APIRouter(prefix="/notifications", tags=["notifications"])
 
@@ -27,8 +28,12 @@ class NotificationListOut(BaseModel):
     items: list[NotificationOut]
 
 
-class ReadIn(BaseModel):
-    ids: list[uuid.UUID]
+class ReadIn(StrictRequest):
+    ids: list[uuid.UUID] = Field(max_length=100)
+
+
+class ReadOut(BaseModel):
+    read: bool
 
 
 @router.get("", response_model=NotificationListOut)
@@ -55,7 +60,7 @@ async def list_notifications(
     )
 
 
-@router.post("/read")
+@router.post("/read", response_model=ReadOut)
 async def mark_read(
     body: ReadIn,
     user: User = Depends(get_current_user),
@@ -71,4 +76,4 @@ async def mark_read(
         .values(read_at=datetime.now(timezone.utc))
     )
     await db.commit()
-    return {"read": True}
+    return ReadOut(read=True)

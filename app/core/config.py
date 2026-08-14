@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     DATABASE_URL: str
+    TEST_DATABASE_URL: str | None = None
     REDIS_URL: str
     SECRET_KEY: str
     ALGORITHM: str = "HS256"
@@ -28,7 +29,7 @@ class Settings(BaseSettings):
     STT_MODEL: str = "whisper-1"
     MAX_AUDIO_MB: int = 25  # Whisper API 업로드 상한
 
-    # ── v2.2 (docs/ThisAbled_기능명세서_v2_2.md) ──────────────────────
+    # ── v2.3 (docs/ThisAbled_기능명세서_v2_3.md) ──────────────────────
     # OAuth (ACC-01): dev는 mock 제공자, 실키 발급 후 환경변수 교체
     OAUTH_MOCK: bool = True
     KAKAO_CLIENT_ID: str | None = None
@@ -39,6 +40,7 @@ class Settings(BaseSettings):
     # 콜백 결과를 302로 돌려보낼 프론트 SPA 오리진
     FRONTEND_URL: str = "http://localhost:5173"
     SIGNUP_TOKEN_EXPIRE_MINUTES: int = 30
+    OAUTH_STATE_TTL_SECONDS: int = 10 * 60
     REJOIN_BLOCK_DAYS: int = 30  # §15 탈퇴 후 재가입 제한
 
     # SAFE — 자체 안전 모델 (별도 모델 서버 HTTP 경계)
@@ -46,6 +48,10 @@ class Settings(BaseSettings):
     SAFETY_TIMEOUT_SECONDS: float = 2.0  # 초과 시 §18.3 성능저하 모드
     SAFE_FLAG_WINDOW_DAYS: int = 3  # SAFE-05 누적 기간
     SAFE_FLAG_LIMIT: int = 3  # SAFE-05 누적 횟수
+    PRESENCE_TTL_SECONDS: int = 90  # WS heartbeat 유실 시 온라인 상태 자동 만료
+    CALL_RING_TTL_SECONDS: int = 60  # CHAT-05 응답 없는 통화 초대 자동 만료
+    CALL_ACTIVE_TTL_SECONDS: int = 4 * 60 * 60  # 비정상 종료 시에도 통화 잠금 자동 해제
+    CALL_SIGNAL_MAX_BYTES: int = 32 * 1024
 
     # MATCH — SBERT+LightGBM 모델 서버
     MATCH_MODEL_URL: str = "http://match-model:9002"
@@ -54,6 +60,9 @@ class Settings(BaseSettings):
     VISION_DAILY_LIMIT: int = 20
     VISION_MINUTE_LIMIT: int = 5
     CAPTION_DAILY_LIMIT: int = 5
+    # 월 예산 30만원 방어용 운영 기본값. 실제 단가는 배포 환경에서 조정한다.
+    CAPTION_GLOBAL_DAILY_LIMIT: int = 100
+    CAPTION_JOB_LOCK_SECONDS: int = 15 * 60
     AI_RETRY_MAX: int = 2
     MAX_VIDEO_MB: int = 200
     MAX_VIDEO_SECONDS: int = 180
@@ -61,6 +70,10 @@ class Settings(BaseSettings):
 
     # COMM-05: 버튼 실행 시 외부 LLM에 전달하는 최근 메시지 수
     COMM_CONTEXT_MESSAGES: int = 10
+    COMM_MODEL: str = "gpt-4o"
+    COMM_MAX_TOKENS: int = 300
+    COMM_TIMEOUT_SECONDS: float = 15.0
+    COMM_RETRY_MAX: int = 2
 
     @property
     def cors_origins(self) -> list[str]:

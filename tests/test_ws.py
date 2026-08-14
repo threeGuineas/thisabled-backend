@@ -12,6 +12,7 @@ from app.core.config import settings
 from app.core.security import create_access_token
 from app.main import app
 from app.services.events import user_channel
+from app.services.presence import mark_offline, mark_online, presence_key
 from tests.conftest import auth_header, register
 from tests.test_chat import make_friends, _room, _send, FakeSafety
 from app.services.safety import get_safety_client
@@ -37,6 +38,33 @@ def test_ws_relays_published_event():
         data = json.loads(ws.receive_text())
         assert data["type"] == "test.ping"
         r.close()
+
+
+def test_ws_marks_presence_online_with_ttl():
+    user_id = uuid.uuid4()
+    token = create_access_token(str(user_id))
+    key = presence_key(user_id)
+    r = sync_redis.Redis.from_url(settings.REDIS_URL)
+    r.delete(key)
+    tc = TestClient(app)
+    with tc.websocket_connect(f"/api/v1/ws?token={token}") as ws:
+        assert r.exists(key) == 1
+        assert 0 < r.ttl(key) <= settings.PRESENCE_TTL_SECONDS
+        ws.send_text("ping")
+    # TestClient의 종료 취소 타이밍과 무관하게 잔존 상태는 TTL로 자동 만료한다.
+    r.delete(key)
+    r.close()
+
+
+async def test_presence_counter_supports_multiple_connections(test_redis):
+    user_id = uuid.uuid4()
+    await mark_online(test_redis, user_id)
+    await mark_online(test_redis, user_id)
+    assert int(await test_redis.get(presence_key(user_id))) == 2
+    await mark_offline(test_redis, user_id)
+    assert int(await test_redis.get(presence_key(user_id))) == 1
+    await mark_offline(test_redis, user_id)
+    assert await test_redis.get(presence_key(user_id)) is None
 
 
 @pytest_asyncio.fixture

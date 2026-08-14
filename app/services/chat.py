@@ -62,6 +62,45 @@ async def unread_count(db: AsyncSession, room_id: uuid.UUID, user_id: uuid.UUID)
     return (await db.execute(query)).scalar_one()
 
 
+async def unread_counts(
+    db: AsyncSession, room_ids: list[uuid.UUID], user_id: uuid.UUID
+) -> dict[uuid.UUID, int]:
+    """여러 대화방의 미읽음 수를 읽음 커서와 한 번의 집계 쿼리로 계산한다."""
+    if not room_ids:
+        return {}
+    rows = (
+        await db.execute(
+            select(ChatMessage.room_id, func.count())
+            .outerjoin(
+                ChatReadState,
+                and_(
+                    ChatReadState.room_id == ChatMessage.room_id,
+                    ChatReadState.user_id == user_id,
+                ),
+            )
+            .where(
+                ChatMessage.room_id.in_(room_ids),
+                ChatMessage.sender_id.is_distinct_from(user_id),
+                ChatMessage.safety_status != SafetyStatus.pending.value,
+                ChatMessage.available_at.is_not(None),
+                or_(
+                    ChatReadState.id.is_(None),
+                    ChatReadState.last_read_available_at.is_(None),
+                    ChatReadState.last_read_message_id.is_(None),
+                    ChatMessage.available_at > ChatReadState.last_read_available_at,
+                    and_(
+                        ChatMessage.available_at == ChatReadState.last_read_available_at,
+                        ChatMessage.id > ChatReadState.last_read_message_id,
+                    ),
+                ),
+            )
+            .group_by(ChatMessage.room_id)
+        )
+    ).all()
+    counts = {room_id: count for room_id, count in rows}
+    return {room_id: counts.get(room_id, 0) for room_id in room_ids}
+
+
 async def counterpart_read_message_id(
     db: AsyncSession, room: ChatRoom, user_id: uuid.UUID
 ) -> uuid.UUID | None:
@@ -138,17 +177,28 @@ async def get_or_create_room(db: AsyncSession, me: User, other: User) -> ChatRoo
         if not other.stranger_requests_allowed:
             raise ChatPolicyError()
 
-    room = ChatRoom(
-        id=uuid.uuid4(),
-        user_a=ua,
-        user_b=ub,
-        state=RoomState.active.value if friends else RoomState.request.value,
-        requested_by=None if friends else me.id,
-        accepted_at=datetime.now(timezone.utc) if friends else None,
-    )
-    db.add(room)
+    room_id = uuid.uuid4()
+    inserted_id = (
+        await db.execute(
+            insert(ChatRoom)
+            .values(
+                id=room_id,
+                user_a=ua,
+                user_b=ub,
+                state=RoomState.active.value if friends else RoomState.request.value,
+                requested_by=None if friends else me.id,
+                accepted_at=datetime.now(timezone.utc) if friends else None,
+            )
+            .on_conflict_do_nothing(index_elements=[ChatRoom.user_a, ChatRoom.user_b])
+            .returning(ChatRoom.id)
+        )
+    ).scalar_one_or_none()
     await db.commit()
-    return room
+    if inserted_id is not None:
+        return await db.get(ChatRoom, inserted_id)
+    return (
+        await db.execute(select(ChatRoom).where(ChatRoom.user_a == ua, ChatRoom.user_b == ub))
+    ).scalar_one()
 
 
 async def has_active_restriction(

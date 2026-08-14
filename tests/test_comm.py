@@ -1,8 +1,12 @@
-"""COMM-01~05 — 쉬운 문장·문장 완성·답장 추천·대화 힌트 (버튼 실행 시에만, 최근 N=10)."""
+"""COMM-01~05 — 쉬운 문장·문장 완성·댓글·답장 추천·대화 힌트."""
+
+import uuid
+from datetime import datetime, timedelta, timezone
 
 import pytest_asyncio
 
 from app.main import app
+from app.models import Block, Comment
 from app.services.comm import get_comm_client
 from tests.conftest import auth_header, register
 from tests.test_chat import make_friends, _room, _send
@@ -12,6 +16,7 @@ from tests.test_safe import safety  # noqa: F401
 class FakeComm:
     def __init__(self):
         self.received_context: list[str] | None = None
+        self.received_post: str | None = None
 
     async def simplify(self, text):
         return "쉬운 문장입니다"
@@ -22,6 +27,11 @@ class FakeComm:
     async def suggest_replies(self, messages):
         self.received_context = messages
         return ["좋아요!", "고마워요"]
+
+    async def suggest_comments(self, post, comments):
+        self.received_post = post
+        self.received_context = comments
+        return ["반가워요!", "저도 관심 있어요"]
 
     async def hints(self, messages):
         self.received_context = messages
@@ -87,3 +97,66 @@ async def test_non_participant_rejected(client, comm, safety):  # noqa: F811
         headers=auth_header(outsider["access_token"]),
     )
     assert resp.status_code == 404
+
+
+async def test_post_comments_use_post_and_latest_10_comments(client, comm, db):
+    author = await register(client, "추천글쓴이")
+    developmental = await register(client, "발달모드댓글러", mode="developmental")
+    ha = auth_header(author["access_token"])
+    hd = auth_header(developmental["access_token"])
+    post = (
+        await client.post(
+            "/api/v1/posts",
+            json={"title": "빵집 방문", "category": "daily", "content": "빵집에 다녀왔어요"},
+            headers=ha,
+        )
+    ).json()
+    base_time = datetime(2026, 1, 1, tzinfo=timezone.utc)
+    for i in range(12):
+        response = await client.post(
+            f"/api/v1/posts/{post['id']}/comments",
+            json={"content": f"댓글 {i}"},
+            headers=ha,
+        )
+        assert response.status_code == 201
+        comment = await db.get(Comment, uuid.UUID(response.json()["id"]))
+        comment.created_at = base_time + timedelta(seconds=i)
+    await db.commit()
+
+    response = await client.post(
+        "/api/v1/comm/comments", json={"post_id": post["id"]}, headers=hd
+    )
+
+    assert response.status_code == 200
+    assert response.json()["suggestions"] == ["반가워요!", "저도 관심 있어요"]
+    assert comm.received_post == "빵집에 다녀왔어요"
+    assert len(comm.received_context) == 10
+    assert comm.received_context[0] == "댓글 2"
+    assert comm.received_context[-1] == "댓글 11"
+
+
+async def test_post_comments_hide_blocked_post(client, comm, db):
+    author = await register(client, "추천차단글쓴이")
+    viewer = await register(client, "추천차단조회자", mode="developmental")
+    ha = auth_header(author["access_token"])
+    hv = auth_header(viewer["access_token"])
+    post = (
+        await client.post(
+            "/api/v1/posts",
+            json={"title": "숨길 글", "category": "daily", "content": "숨길 글"},
+            headers=ha,
+        )
+    ).json()
+    db.add(
+        Block(
+            blocker_id=uuid.UUID(author["user_id"]),
+            blocked_id=uuid.UUID(viewer["user_id"]),
+        )
+    )
+    await db.commit()
+
+    response = await client.post(
+        "/api/v1/comm/comments", json={"post_id": post["id"]}, headers=hv
+    )
+
+    assert response.status_code == 404

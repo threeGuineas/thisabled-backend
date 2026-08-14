@@ -49,7 +49,7 @@ class MockProvider:
         # 실제 리다이렉트 없이 콜백 URL을 그대로 안내 — FE가 code를 조립해 호출
         return (
             f"{settings.OAUTH_REDIRECT_BASE}/api/v1/auth/{self.name}/callback"
-            f"?code=mock:{state}"
+            f"?code=mock:{state}&state={state}"
         )
 
     async def exchange_code(self, code: str) -> OAuthUserInfo:

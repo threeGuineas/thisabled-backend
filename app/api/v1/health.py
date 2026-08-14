@@ -1,14 +1,26 @@
-from fastapi import APIRouter
-from sqlalchemy import text
 import redis.asyncio as aioredis
+from fastapi import APIRouter
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
+from sqlalchemy import text
 
-from app.db.session import engine
 from app.core.config import settings
+from app.db.session import engine
 
 router = APIRouter()
 
 
-@router.get("/health")
+class HealthOut(BaseModel):
+    status: str
+    db: str
+    redis: str
+
+
+@router.get(
+    "/health",
+    response_model=HealthOut,
+    responses={503: {"model": HealthOut, "description": "DB 또는 Redis 연결 실패"}},
+)
 async def health():
     result = {"status": "ok", "db": "unknown", "redis": "unknown"}
 
@@ -16,17 +28,21 @@ async def health():
         async with engine.connect() as conn:
             await conn.execute(text("SELECT 1"))
         result["db"] = "ok"
-    except Exception as e:
-        result["db"] = f"error: {e}"
+    except Exception:
+        result["db"] = "error"
         result["status"] = "degraded"
 
+    redis = None
     try:
-        r = aioredis.from_url(settings.REDIS_URL)
-        await r.ping()
-        await r.aclose()
+        redis = aioredis.from_url(settings.REDIS_URL)
+        await redis.ping()
         result["redis"] = "ok"
-    except Exception as e:
-        result["redis"] = f"error: {e}"
+    except Exception:
+        result["redis"] = "error"
         result["status"] = "degraded"
+    finally:
+        if redis is not None:
+            await redis.aclose()
 
-    return result
+    status_code = 200 if result["status"] == "ok" else 503
+    return JSONResponse(status_code=status_code, content=result)

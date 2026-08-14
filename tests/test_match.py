@@ -14,9 +14,11 @@ from tests.test_chat import make_friends
 
 class FakeMatch:
     def __init__(self):
+        self.received_me: dict = {}
         self.received: list[dict] = []
 
     async def score(self, me_features: dict, candidates: list[dict]) -> list[dict]:
+        self.received_me = me_features
         self.received = candidates
         return [
             {
@@ -79,3 +81,22 @@ async def test_empty_pool_message(client, match):
     resp = await client.get("/api/v1/recommendations", headers=auth_header(me["access_token"]))
     assert resp.json()["items"] == []
     assert resp.json()["message"] == "추천 정보가 부족합니다"
+
+
+async def test_default_mode_uses_neutral_model_value(client, match):
+    """도메인 default는 MATCH 서버가 허용하는 중립값으로 직렬화한다."""
+    me = await register(client, "기본모드나", birth="1995-01-01", mode="default")
+    candidate = await register(
+        client, "기본모드친구", birth="1996-01-01", mode="default"
+    )
+
+    resp = await client.get(
+        "/api/v1/recommendations", headers=auth_header(me["access_token"])
+    )
+
+    assert resp.status_code == 200
+    assert match.received_me["ui_mode"] == ""
+    candidate_features = next(
+        item for item in match.received if item["user_id"] == candidate["user_id"]
+    )
+    assert candidate_features["ui_mode"] == ""

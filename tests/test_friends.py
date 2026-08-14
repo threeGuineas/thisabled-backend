@@ -72,6 +72,7 @@ async def test_block_removes_friendship_and_hides_everything(client):
     # 프로필 상호 숨김
     assert (await client.get(f"/api/v1/users/{b['user_id']}", headers=ha)).status_code == 404
     assert (await client.get(f"/api/v1/users/{a['user_id']}", headers=hb)).status_code == 404
+    assert (await client.get(f"/api/v1/users/{b['user_id']}/posts", headers=ha)).status_code == 404
     # 차단 상대에게 친구 요청 — 사유 비노출 통일 메시지
     retry = await _request(client, hb, a["user_id"])
     assert retry.status_code == 404

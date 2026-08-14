@@ -4,6 +4,7 @@ from datetime import datetime
 from sqlalchemy import (
     DateTime,
     ForeignKey,
+    Index,
     Integer,
     String,
     Text,
@@ -27,6 +28,9 @@ class Post(Base):
     author_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("users.id", ondelete="SET NULL"), nullable=True, index=True
     )
+    # processing 영상 드래프트는 비어 있을 수 있지만 공개 전 API에서 필수 검증한다.
+    title: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    category: Mapped[str | None] = mapped_column(String(20), nullable=True)
     content: Mapped[str] = mapped_column(Text, nullable=False, server_default=text("''"))
     status: Mapped[str] = mapped_column(String(20), nullable=False, index=True)
     published_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
@@ -65,6 +69,7 @@ class PostMedia(Base):
     caption_status: Mapped[str] = mapped_column(
         String(20), nullable=False, server_default=text("'none'")
     )
+    caption_failure_code: Mapped[str | None] = mapped_column(String(50), nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
@@ -105,3 +110,13 @@ class PostLike(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
+
+
+# 피드의 실제 정렬·필터 패턴과 마이그레이션 정본을 동일하게 유지한다.
+Index(
+    "ix_posts_feed_category_published",
+    Post.status,
+    Post.category,
+    Post.published_at.desc(),
+    Post.id.desc(),
+)

@@ -1,13 +1,29 @@
 import uuid
 from datetime import datetime
+from typing import Annotated, Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, StringConstraints, model_validator
 
+from app.core.enums import CallKind, CallSignalType
 from app.schemas.post import AuthorOut
+from app.schemas.common import StrictRequest
+
+ChatContent = Annotated[
+    str, StringConstraints(strip_whitespace=True, min_length=1, max_length=2_000)
+]
 
 
-class RoomCreateIn(BaseModel):
+class RoomCreateIn(StrictRequest):
     user_id: uuid.UUID
+
+
+class RoomMessagePreviewOut(BaseModel):
+    id: uuid.UUID
+    type: str
+    content: str | None
+    mine: bool
+    blurred: bool = False
+    created_at: datetime
 
 
 class RoomOut(BaseModel):
@@ -20,6 +36,9 @@ class RoomOut(BaseModel):
     accepted_at: datetime | None
     created_at: datetime
     unread_count: int = 0
+    last_message: RoomMessagePreviewOut | None = None
+    last_activity_at: datetime
+    counterpart_online: bool = False
 
 
 class RoomListOut(BaseModel):
@@ -27,8 +46,8 @@ class RoomListOut(BaseModel):
     unread_total: int = 0
 
 
-class MessageIn(BaseModel):
-    content: str = Field(min_length=1)
+class MessageIn(StrictRequest):
+    content: ChatContent
 
 
 class MessageOut(BaseModel):
@@ -50,6 +69,9 @@ class MessageOut(BaseModel):
     description_status: str = "none"
     caption: list | None = None
     caption_status: str = "none"
+    caption_failure_code: str | None = None
+    caption_failure_message: str | None = None
+    caption_retryable: bool = False
     created_at: datetime
     is_read: bool = False
 
@@ -62,3 +84,41 @@ class MessageListOut(BaseModel):
 class RevealOut(BaseModel):
     id: uuid.UUID
     content: str
+
+
+class CallCreateIn(StrictRequest):
+    kind: CallKind
+
+
+class CallOut(BaseModel):
+    id: uuid.UUID
+    room_id: uuid.UUID
+    caller_id: uuid.UUID
+    callee_id: uuid.UUID
+    kind: CallKind
+    status: str
+    created_at: datetime
+    expires_at: datetime
+
+
+class CallSignalIn(StrictRequest):
+    type: CallSignalType
+    data: dict[str, Any] | None = None
+
+    @model_validator(mode="after")
+    def validate_data(self):
+        data_required = self.type in {
+            CallSignalType.offer,
+            CallSignalType.answer,
+            CallSignalType.ice,
+        }
+        if data_required and not self.data:
+            raise ValueError(f"{self.type.value} 시그널에는 data가 필요합니다")
+        if not data_required and self.data is not None:
+            raise ValueError(f"{self.type.value} 시그널에는 data를 보낼 수 없습니다")
+        return self
+
+
+class CallSignalOut(BaseModel):
+    accepted: bool = True
+    status: str

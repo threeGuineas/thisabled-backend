@@ -38,6 +38,15 @@ class User(Base):
         Boolean, nullable=False, server_default=text("true")
     )
     mode_settings: Mapped[dict] = mapped_column(JSONB, nullable=False, server_default=text("'{}'"))
+    notification_settings: Mapped[dict] = mapped_column(
+        JSONB,
+        nullable=False,
+        server_default=text(
+            "jsonb_build_object("
+            "'friend_activity', true, 'post_activity', true, "
+            "'chat_activity', true, 'ai_results', true)"
+        ),
+    )
     # SAFE-04: 발신자 단위 내부 위험 점수 (사용자 비노출)
     risk_score: Mapped[float] = mapped_column(Float, nullable=False, server_default=text("0.0"))
     created_at: Mapped[datetime] = mapped_column(

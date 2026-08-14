@@ -15,7 +15,13 @@ async def test_comment_and_like_notify_author_not_self(client):
     a = await register(client, "알림작성자")
     b = await register(client, "알림댓글러")
     ha, hb = auth_header(a["access_token"]), auth_header(b["access_token"])
-    post = (await client.post("/api/v1/posts", json={"content": "알림 글"}, headers=ha)).json()
+    post = (
+        await client.post(
+            "/api/v1/posts",
+            json={"title": "알림 글", "category": "daily", "content": "알림 글"},
+            headers=ha,
+        )
+    ).json()
 
     # 본인 행동은 알림 없음
     await client.post(f"/api/v1/posts/{post['id']}/like", headers=ha)
@@ -25,6 +31,33 @@ async def test_comment_and_like_notify_author_not_self(client):
     await client.post(f"/api/v1/posts/{post['id']}/like", headers=hb)
     types = [n["type"] for n in await _notis(client, ha)]
     assert "post.comment" in types and "post.like" in types
+
+
+async def test_disabled_notification_group_is_not_stored(client):
+    a = await register(client, "알림설정작성자")
+    b = await register(client, "알림설정댓글러")
+    ha, hb = auth_header(a["access_token"]), auth_header(b["access_token"])
+    settings = await client.patch(
+        "/api/v1/users/me/settings",
+        json={"notification_settings": {"post_activity": False}},
+        headers=ha,
+    )
+    assert settings.status_code == 200
+
+    post = (
+        await client.post(
+            "/api/v1/posts",
+            json={"title": "알림 끄기", "category": "daily", "content": "알림이 없어야 해요"},
+            headers=ha,
+        )
+    ).json()
+    await client.post(
+        f"/api/v1/posts/{post['id']}/comments",
+        json={"content": "댓글"},
+        headers=hb,
+    )
+    await client.post(f"/api/v1/posts/{post['id']}/like", headers=hb)
+    assert await _notis(client, ha) == []
 
 
 async def test_friend_request_and_accept_notifications(client):
@@ -44,6 +77,11 @@ async def test_flagged_and_restriction_notify_receiver(client, safety):  # noqa:
     ha, hb = auth_header(a["access_token"]), auth_header(b["access_token"])
     await make_friends(client, ha, hb, b["user_id"])
     room = (await _room(client, ha, b["user_id"])).json()
+    await client.patch(
+        "/api/v1/users/me/settings",
+        json={"notification_settings": {"chat_activity": False}},
+        headers=hb,
+    )
 
     for i in range(3):
         await _send(client, ha, room["id"], f"돈 내놔 {i}")
@@ -65,3 +103,10 @@ async def test_mark_read(client):
     resp = await client.post("/api/v1/notifications/read", json={"ids": [notis[0]["id"]]}, headers=hb)
     assert resp.status_code == 200
     assert (await _notis(client, hb))[0]["read_at"] is not None
+
+    too_many = await client.post(
+        "/api/v1/notifications/read",
+        json={"ids": [str(__import__("uuid").uuid4()) for _ in range(101)]},
+        headers=hb,
+    )
+    assert too_many.status_code == 422

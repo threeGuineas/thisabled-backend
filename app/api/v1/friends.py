@@ -7,6 +7,7 @@ from typing import Literal
 import redis.asyncio as aioredis
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import delete, or_, select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.deps import get_current_user
@@ -36,13 +37,29 @@ def _author(u: User | None) -> AuthorOut:
     return AuthorOut(id=u.id, nickname=u.nickname, profile_image_url=u.profile_image_url)
 
 
-async def _request_out(db: AsyncSession, req: FriendRequest) -> FriendRequestOut:
-    sender = await db.get(User, req.sender_id)
-    receiver = await db.get(User, req.receiver_id)
-    return FriendRequestOut(
-        id=req.id, sender=_author(sender), receiver=_author(receiver),
-        status=req.status, created_at=req.created_at, responded_at=req.responded_at,
-    )
+async def _requests_out(
+    db: AsyncSession, requests: list[FriendRequest]
+) -> list[FriendRequestOut]:
+    user_ids = {user_id for req in requests for user_id in (req.sender_id, req.receiver_id)}
+    users = {
+        user.id: user
+        for user in (
+            (await db.execute(select(User).where(User.id.in_(user_ids)))).scalars().all()
+            if user_ids
+            else []
+        )
+    }
+    return [
+        FriendRequestOut(
+            id=req.id,
+            sender=_author(users.get(req.sender_id)),
+            receiver=_author(users.get(req.receiver_id)),
+            status=req.status,
+            created_at=req.created_at,
+            responded_at=req.responded_at,
+        )
+        for req in requests
+    ]
 
 
 @router.post("/requests", response_model=FriendRequestOut, status_code=201)
@@ -77,12 +94,16 @@ async def send_request(
 
     req = FriendRequest(id=uuid.uuid4(), sender_id=user.id, receiver_id=body.receiver_id)
     db.add(req)
-    await db.commit()
+    try:
+        await db.commit()
+    except IntegrityError:
+        await db.rollback()
+        raise HTTPException(status_code=400, detail="처리 중인 친구 요청이 있습니다")
     await noti.notify(
         db, redis, body.receiver_id, noti.FRIEND_REQUEST,
         {"request_id": str(req.id), "sender_nickname": user.nickname},
     )
-    return await _request_out(db, req)
+    return (await _requests_out(db, [req]))[0]
 
 
 @router.get("/requests", response_model=FriendRequestListOut)
@@ -103,7 +124,7 @@ async def list_requests(
             .order_by(FriendRequest.created_at.desc())
         )
     ).scalars().all()
-    return FriendRequestListOut(items=[await _request_out(db, r) for r in rows])
+    return FriendRequestListOut(items=await _requests_out(db, list(rows)))
 
 
 async def _get_pending(db: AsyncSession, req_id: uuid.UUID) -> FriendRequest:
@@ -133,7 +154,7 @@ async def accept_request(
         db, redis, req.sender_id, noti.FRIEND_ACCEPTED,
         {"request_id": str(req.id), "receiver_nickname": user.nickname},
     )
-    return await _request_out(db, req)
+    return (await _requests_out(db, [req]))[0]
 
 
 @router.post("/requests/{request_id}/decline", response_model=FriendRequestOut)
@@ -148,7 +169,7 @@ async def decline_request(
     req.status = RequestStatus.declined.value
     req.responded_at = datetime.now(timezone.utc)  # 거절 후 30일 추천 제외 (MATCH-03)
     await db.commit()
-    return await _request_out(db, req)
+    return (await _requests_out(db, [req]))[0]
 
 
 @router.post("/requests/{request_id}/cancel", response_model=FriendRequestOut)
@@ -163,7 +184,7 @@ async def cancel_request(
     req.status = RequestStatus.cancelled.value
     req.responded_at = datetime.now(timezone.utc)
     await db.commit()
-    return await _request_out(db, req)
+    return (await _requests_out(db, [req]))[0]
 
 
 @router.get("", response_model=FriendListOut)

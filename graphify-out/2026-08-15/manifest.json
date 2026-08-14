@@ -30,8 +30,8 @@
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "app/core/config.py": {
-    "mtime": 1786727474.7864313,
-    "ast_hash": "a29a442aa6f86513b7873a3d08ac40fe",
+    "mtime": 1786730190.4910057,
+    "ast_hash": "1969eea42e16645c58b727d24ef8b6e5",
     "semantic_hash": ""
   },
   "app/core/deps.py": {
@@ -55,9 +55,9 @@
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "app/db/redis.py": {
-    "mtime": 1782422561.6139007,
-    "ast_hash": "63b38ec6bbb928a7e5fdfd126af7278f",
-    "semantic_hash": "63b38ec6bbb928a7e5fdfd126af7278f"
+    "mtime": 1786730386.6494632,
+    "ast_hash": "281eceac123b4937e61a446cb7f46a94",
+    "semantic_hash": ""
   },
   "app/db/session.py": {
     "mtime": 1783316187.0009782,
@@ -190,8 +190,8 @@
     "semantic_hash": ""
   },
   "docs/api.md": {
-    "mtime": 1786730003.9250567,
-    "ast_hash": "c1f377a8d936f75156681e86d9799d41",
+    "mtime": 1786730268.5826876,
+    "ast_hash": "d40b11757deff66263d65fafb919d66b",
     "semantic_hash": ""
   },
   "app/core/age.py": {
@@ -335,13 +335,13 @@
     "semantic_hash": ""
   },
   "app/api/v1/chat.py": {
-    "mtime": 1786728009.4457529,
-    "ast_hash": "e8b274069a28b3f7ecc48c188d5c5c5b",
+    "mtime": 1786730241.5551033,
+    "ast_hash": "43962d08aa7931da53d06ef5bff6c355",
     "semantic_hash": ""
   },
   "app/schemas/chat.py": {
-    "mtime": 1785260201.0970113,
-    "ast_hash": "d2e36f4edda7b92c6c762de174da9687",
+    "mtime": 1786730190.5358775,
+    "ast_hash": "9c5cec14339ed1546d6fc753ed042c2b",
     "semantic_hash": ""
   },
   "app/services/chat.py": {
@@ -355,8 +355,8 @@
     "semantic_hash": "c1455d8d08b30d4af3f601ae42fbf924"
   },
   "tests/test_chat.py": {
-    "mtime": 1786728065.471267,
-    "ast_hash": "0bc5dac81136889d4e94429aeec05ae9",
+    "mtime": 1786730241.6045601,
+    "ast_hash": "8bd1354c3bbdda0416f00cfc998cbd40",
     "semantic_hash": ""
   },
   "tests/test_safe.py": {
@@ -365,8 +365,8 @@
     "semantic_hash": "b76f1ac1618e34e538bd512e24167fb6"
   },
   "app/api/v1/ws.py": {
-    "mtime": 1786723649.1823149,
-    "ast_hash": "5fa73bc09232a1127bd5af0b5aed3805",
+    "mtime": 1786730295.306797,
+    "ast_hash": "76cdd5de21308ef067269650f4c803f7",
     "semantic_hash": ""
   },
   "app/services/events.py": {
@@ -375,8 +375,8 @@
     "semantic_hash": "ea56e7ce71e914ca5f1353da45736bdd"
   },
   "tests/test_ws.py": {
-    "mtime": 1785260201.117316,
-    "ast_hash": "cf8e9fe9f1c4d2b76747a3a0f52238df",
+    "mtime": 1786730351.9620633,
+    "ast_hash": "34d4d4cc04e83b52a810be71bb9c7fe5",
     "semantic_hash": ""
   },
   "app/api/v1/notifications.py": {
@@ -480,8 +480,8 @@
     "semantic_hash": ""
   },
   "docs/ThisAbled_\uae30\ub2a5\uba85\uc138\uc11c_v2_2.md": {
-    "mtime": 1786730003.8761911,
-    "ast_hash": "c504cf7d97ce719c34579fe295724ead",
+    "mtime": 1786730268.4021432,
+    "ast_hash": "f13d457bf83ba478463263d945f5d9d6",
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-07-11-safe-grooming-evaluation.md": {
@@ -570,13 +570,13 @@
     "semantic_hash": ""
   },
   "app/openapi.py": {
-    "mtime": 1786730003.9743273,
-    "ast_hash": "67c77f1496ac81ffa28aa9f0a864bbad",
+    "mtime": 1786730268.7444441,
+    "ast_hash": "ab0e0768cca6583111c46bae4255b42a",
     "semantic_hash": ""
   },
   "tests/test_openapi.py": {
-    "mtime": 1786729696.905204,
-    "ast_hash": "a9b47afca4c811901718bf8eb8ffa12e",
+    "mtime": 1786730268.9435248,
+    "ast_hash": "e754f4fc38c6a7dc1a3072f7f2d7e1a4",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20260814_162300_\uce5c\uad6c_\ucd94\ucc9c_\ubd80\ubd84\ub3c4_\ub85c\ub529\uc774_\uc548\ub418\ub294_\ubb38\uc81c\uac00_\uc788\ub2e4\uace0_\ud558\ub294\ub370_\ud655\uc778_\ubd80\ud0c1\ud568.md": {
@@ -622,6 +622,11 @@
   "app/services/profile.py": {
     "mtime": 1786730016.3837516,
     "ast_hash": "0e246ff9619bbe716734c7bae2a30e1a",
+    "semantic_hash": ""
+  },
+  "app/services/presence.py": {
+    "mtime": 1786730190.4417381,
+    "ast_hash": "4e1eacf3f56026a8b25c8af4f4a0a2f5",
     "semantic_hash": ""
   }
 }

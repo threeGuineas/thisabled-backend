@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-14T17:54:57.081779+00:00",
+  "generated_at": "2026-08-14T18:01:03.237127+00:00",
   "nodes": {
     "app_api_v1_media_upload_video": {
       "code_fingerprint": "303a5f9e9400a5a2e252f924f9dc7d90adae8f50b4c85a6c290043cc4602eaff",
@@ -12,7 +12,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 0.999033073,
+      "score": 0.998935256,
       "source_file": "app/api/v1/media.py",
       "status": "tentative",
       "uses": 1
@@ -28,7 +28,7 @@
           "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
         }
       ],
-      "score": 0.440890224,
+      "score": 0.440847056,
       "source_file": "app/api/v1/notifications.py",
       "status": "tentative",
       "uses": 1
@@ -44,7 +44,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 0.999033073,
+      "score": 0.998935256,
       "source_file": "app/api/v1/posts.py",
       "status": "tentative",
       "uses": 1
@@ -65,7 +65,7 @@
           "q": "친구 추천 부분도 로딩이 안되는 문제가 있다고 하는데 확인 부탁함"
         }
       ],
-      "score": 1.997288058,
+      "score": 1.9970925,
       "source_file": "app/api/v1/recommendations.py",
       "status": "preferred",
       "uses": 2
@@ -86,7 +86,7 @@
           "q": "친구 추천 부분도 로딩이 안되는 문제가 있다고 하는데 확인 부탁함"
         }
       ],
-      "score": 1.997288058,
+      "score": 1.9970925,
       "source_file": "app/core/enums.py",
       "status": "preferred",
       "uses": 2
@@ -107,7 +107,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 1.998227986,
+      "score": 1.998032336,
       "source_file": "app/core/storage.py",
       "status": "preferred",
       "uses": 2
@@ -123,24 +123,8 @@
           "q": "ㅇㅇ 수정 ㄱㄱ 그리고 [api 문서](https://ideal-macmini.tail72b898.ts.net/docs) 자세하게, 결함 없게 구체적으로 아주 친절하게 패치해줘 프론트엔드가 곤란하지 않도록"
         }
       ],
-      "score": 0.998762236,
+      "score": 0.998664445,
       "source_file": "app/main.py",
-      "status": "tentative",
-      "uses": 1
-    },
-    "app_models_chat_chatmessage": {
-      "code_fingerprint": "80560dc1002bddb6380ba7f84c58b003130cd5a5a3cbc3d6a956506a979ad91c",
-      "label": "ChatMessage",
-      "last": "2026-07-10T07:13:46.775840+00:00",
-      "provenance": [
-        {
-          "date": "2026-07-10T07:13:46.775840+00:00",
-          "outcome": "useful",
-          "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
-        }
-      ],
-      "score": 0.440890224,
-      "source_file": "app/models/chat.py",
       "status": "tentative",
       "uses": 1
     },
@@ -155,7 +139,7 @@
           "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
         }
       ],
-      "score": 0.440890224,
+      "score": 0.440847056,
       "source_file": "app/models/misc.py",
       "status": "tentative",
       "uses": 1
@@ -181,7 +165,7 @@
           "q": "백엔드 핵심 소스코드 2개와 설명"
         }
       ],
-      "score": 2.439148404,
+      "score": 2.438909583,
       "source_file": "app/services/ai_media.py",
       "status": "preferred",
       "uses": 3
@@ -202,7 +186,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 1.998227986,
+      "score": 1.998032336,
       "source_file": "app/services/ai_media.py",
       "status": "preferred",
       "uses": 2
@@ -218,7 +202,7 @@
           "q": "백엔드 핵심 소스코드 2개와 설명"
         }
       ],
-      "score": 0.440920418,
+      "score": 0.440877247,
       "source_file": "app/services/ai_media.py",
       "status": "tentative",
       "uses": 1
@@ -234,7 +218,7 @@
           "q": "백엔드 핵심 소스코드 2개와 설명"
         }
       ],
-      "score": 0.440920418,
+      "score": 0.440877247,
       "source_file": "app/services/chat.py",
       "status": "tentative",
       "uses": 1
@@ -250,7 +234,7 @@
           "q": "백엔드 핵심 소스코드 2개와 설명"
         }
       ],
-      "score": 0.440920418,
+      "score": 0.440877247,
       "source_file": "app/services/chat.py",
       "status": "tentative",
       "uses": 1
@@ -266,7 +250,7 @@
           "q": "친구 추천 부분도 로딩이 안되는 문제가 있다고 하는데 확인 부탁함"
         }
       ],
-      "score": 0.998525822,
+      "score": 0.998428055,
       "source_file": "app/services/match.py",
       "status": "tentative",
       "uses": 1
@@ -282,7 +266,7 @@
           "q": "친구 추천 부분도 로딩이 안되는 문제가 있다고 하는데 확인 부탁함"
         }
       ],
-      "score": 0.998525822,
+      "score": 0.998428055,
       "source_file": "app/services/match.py",
       "status": "tentative",
       "uses": 1
@@ -303,7 +287,7 @@
           "q": "친구 추천 부분도 로딩이 안되는 문제가 있다고 하는데 확인 부탁함"
         }
       ],
-      "score": 1.997288058,
+      "score": 1.9970925,
       "source_file": "app/services/match.py",
       "status": "preferred",
       "uses": 2
@@ -319,7 +303,7 @@
           "q": "ㅇㅋ 결함들 해결 방안 추천해줘"
         }
       ],
-      "score": 0.999194912,
+      "score": 0.999097079,
       "source_file": "app/services/notify.py",
       "status": "tentative",
       "uses": 1
@@ -340,7 +324,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 1.998227986,
+      "score": 1.998032336,
       "source_file": "app/services/quota.py",
       "status": "preferred",
       "uses": 2
@@ -361,7 +345,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 1.998227986,
+      "score": 1.998032336,
       "source_file": "app/services/scheduler.py",
       "status": "preferred",
       "uses": 2
@@ -382,7 +366,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 1.998227986,
+      "score": 1.998032336,
       "source_file": "app/services/stt.py",
       "status": "preferred",
       "uses": 2
@@ -398,7 +382,7 @@
           "q": "ㅇㅇ 수정 ㄱㄱ 그리고 [api 문서](https://ideal-macmini.tail72b898.ts.net/docs) 자세하게, 결함 없게 구체적으로 아주 친절하게 패치해줘 프론트엔드가 곤란하지 않도록"
         }
       ],
-      "score": 0.998762236,
+      "score": 0.998664445,
       "source_file": "",
       "status": "tentative",
       "uses": 1

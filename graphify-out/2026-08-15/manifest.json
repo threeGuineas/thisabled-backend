@@ -30,8 +30,8 @@
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "app/core/config.py": {
-    "mtime": 1786730190.4910057,
-    "ast_hash": "1969eea42e16645c58b727d24ef8b6e5",
+    "mtime": 1786730851.227953,
+    "ast_hash": "7889c7c38cec1d569b3c99a431dd8c4b",
     "semantic_hash": ""
   },
   "app/core/deps.py": {
@@ -65,8 +65,8 @@
     "semantic_hash": "2ea2262338274dcc19cb39ab2f8fee7c"
   },
   "app/main.py": {
-    "mtime": 1786727734.6303167,
-    "ast_hash": "d53543cf20a9d219f9b3938889dea8cd",
+    "mtime": 1786731022.091909,
+    "ast_hash": "87a961608b5bf427b5fb22cc4822b445",
     "semantic_hash": ""
   },
   "app/models/__init__.py": {
@@ -165,8 +165,8 @@
     "semantic_hash": "1acec9b38ebaf00c12c79478f487c25e"
   },
   "app/core/enums.py": {
-    "mtime": 1786729560.0541048,
-    "ast_hash": "1ff2aa0506388a8d0af61f0e784183cb",
+    "mtime": 1786730851.3296964,
+    "ast_hash": "65b4b230a474801f7b1a500e81ae2804",
     "semantic_hash": ""
   },
   "app/models/chat.py": {
@@ -190,8 +190,8 @@
     "semantic_hash": ""
   },
   "docs/api.md": {
-    "mtime": 1786730622.4755535,
-    "ast_hash": "da43cc63bd13f0c9b09dedb17f1710dd",
+    "mtime": 1786730965.5744607,
+    "ast_hash": "90066e1ce9196c105442c9ae1dba8301",
     "semantic_hash": ""
   },
   "app/core/age.py": {
@@ -335,13 +335,13 @@
     "semantic_hash": ""
   },
   "app/api/v1/chat.py": {
-    "mtime": 1786730241.5551033,
-    "ast_hash": "43962d08aa7931da53d06ef5bff6c355",
+    "mtime": 1786731036.7578597,
+    "ast_hash": "1425a444c9d4b011a7f02223037ad3cc",
     "semantic_hash": ""
   },
   "app/schemas/chat.py": {
-    "mtime": 1786730190.5358775,
-    "ast_hash": "9c5cec14339ed1546d6fc753ed042c2b",
+    "mtime": 1786730885.379172,
+    "ast_hash": "1043b4cb48791931ffa5668069a0696c",
     "semantic_hash": ""
   },
   "app/services/chat.py": {
@@ -365,14 +365,14 @@
     "semantic_hash": "b76f1ac1618e34e538bd512e24167fb6"
   },
   "app/api/v1/ws.py": {
-    "mtime": 1786730295.306797,
-    "ast_hash": "76cdd5de21308ef067269650f4c803f7",
+    "mtime": 1786731022.0507631,
+    "ast_hash": "d90a06fff4917c1cc564723445da95e5",
     "semantic_hash": ""
   },
   "app/services/events.py": {
-    "mtime": 1783316187.0038118,
-    "ast_hash": "ea56e7ce71e914ca5f1353da45736bdd",
-    "semantic_hash": "ea56e7ce71e914ca5f1353da45736bdd"
+    "mtime": 1786731022.0075667,
+    "ast_hash": "9b7247bab6702d595d735059a793c282",
+    "semantic_hash": ""
   },
   "tests/test_ws.py": {
     "mtime": 1786730351.9620633,
@@ -480,8 +480,8 @@
     "semantic_hash": ""
   },
   "docs/ThisAbled_\uae30\ub2a5\uba85\uc138\uc11c_v2_2.md": {
-    "mtime": 1786730622.2626202,
-    "ast_hash": "2a28b28a61af821112109ffd29064269",
+    "mtime": 1786730965.5232682,
+    "ast_hash": "a641d100412d4d98ee710f31e8d7b3f4",
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-07-11-safe-grooming-evaluation.md": {
@@ -570,13 +570,13 @@
     "semantic_hash": ""
   },
   "app/openapi.py": {
-    "mtime": 1786730622.669967,
-    "ast_hash": "60934e018c464bb468e4b01aa40bd16a",
+    "mtime": 1786730982.7341855,
+    "ast_hash": "83f4a2c350d0db493fba218d283bb289",
     "semantic_hash": ""
   },
   "tests/test_openapi.py": {
-    "mtime": 1786730622.8363988,
-    "ast_hash": "d69d68d16604d83d1cbb8d0348894704",
+    "mtime": 1786730982.7850888,
+    "ast_hash": "27342d7412945f9ab351b5293619ae35",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20260814_162300_\uce5c\uad6c_\ucd94\ucc9c_\ubd80\ubd84\ub3c4_\ub85c\ub529\uc774_\uc548\ub418\ub294_\ubb38\uc81c\uac00_\uc788\ub2e4\uace0_\ud558\ub294\ub370_\ud655\uc778_\ubd80\ud0c1\ud568.md": {
@@ -632,6 +632,21 @@
   "alembic/versions/d3e5f7a9b1c2_notification_preferences.py": {
     "mtime": 1786730635.851222,
     "ast_hash": "5d45797aca730579d18bcce52a8da09f",
+    "semantic_hash": ""
+  },
+  "app/services/call_signaling.py": {
+    "mtime": 1786731033.471837,
+    "ast_hash": "bad0351fe0e55ba1fb56add561cad6ba",
+    "semantic_hash": ""
+  },
+  "tests/test_calls.py": {
+    "mtime": 1786731021.966749,
+    "ast_hash": "14fa54265a187e2bc22c734d5777adbb",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-15-chat-call-signaling-design.md": {
+    "mtime": 1786730851.1774068,
+    "ast_hash": "b99947b7f4d6dcf48968f6cfb3a7df9a",
     "semantic_hash": ""
   }
 }

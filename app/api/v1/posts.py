@@ -50,6 +50,44 @@ def _contains_pattern(value: str) -> str:
     return f"%{escaped}%"
 
 
+def _cursor_position(cursor: str) -> tuple[datetime, uuid.UUID]:
+    try:
+        ts_raw, id_raw = unquote(cursor).split("|", 1)
+        return datetime.fromisoformat(ts_raw), uuid.UUID(id_raw)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail="잘못된 커서입니다") from exc
+
+
+async def _post_page(
+    db: AsyncSession,
+    me_id: uuid.UUID,
+    stmt,
+    *,
+    cursor: str | None,
+    limit: int,
+) -> FeedOut:
+    """피드와 프로필 작성 글이 공유하는 안정적인 최신순 커서 페이지."""
+    if cursor:
+        cur_ts, cur_id = _cursor_position(cursor)
+        stmt = stmt.where(
+            or_(
+                Post.published_at < cur_ts,
+                (Post.published_at == cur_ts) & (Post.id < cur_id),
+            )
+        )
+    posts = (
+        await db.execute(
+            stmt.order_by(Post.published_at.desc(), Post.id.desc()).limit(limit + 1)
+        )
+    ).scalars().all()
+    next_cursor = None
+    if len(posts) > limit:
+        posts = posts[:limit]
+        last = posts[-1]
+        next_cursor = quote(f"{last.published_at.isoformat()}|{last.id}")
+    return FeedOut(items=await _serialize_posts(db, me_id, posts), next_cursor=next_cursor)
+
+
 def _blocked_ids_subq(me_id: uuid.UUID):
     """나와 어느 방향이든 차단 관계인 사용자 id (BLOCK-01)."""
     return union(
@@ -213,8 +251,6 @@ async def feed(
             Post.status == PostStatus.published.value,
             or_(Post.author_id.is_(None), Post.author_id.not_in(select(blocked.c[0]))),
         )
-        .order_by(Post.published_at.desc(), Post.id.desc())
-        .limit(limit + 1)
     )
     if category is not None:
         stmt = stmt.where(Post.category == category.value)
@@ -227,25 +263,26 @@ async def feed(
                 Post.content.ilike(pattern, escape="\\"),
             )
         )
-    if cursor:
-        try:
-            ts_raw, id_raw = unquote(cursor).split("|", 1)
-            cur_ts, cur_id = datetime.fromisoformat(ts_raw), uuid.UUID(id_raw)
-        except ValueError:
-            raise HTTPException(status_code=400, detail="잘못된 커서입니다")
-        stmt = stmt.where(
-            or_(
-                Post.published_at < cur_ts,
-                (Post.published_at == cur_ts) & (Post.id < cur_id),
-            )
-        )
-    posts = (await db.execute(stmt)).scalars().all()
-    next_cursor = None
-    if len(posts) > limit:
-        posts = posts[:limit]
-        last = posts[-1]
-        next_cursor = quote(f"{last.published_at.isoformat()}|{last.id}")
-    return FeedOut(items=await _serialize_posts(db, user.id, posts), next_cursor=next_cursor)
+    return await _post_page(db, user.id, stmt, cursor=cursor, limit=limit)
+
+
+@router.get("/users/{user_id}/posts", response_model=FeedOut)
+async def user_posts(
+    user_id: uuid.UUID,
+    cursor: str | None = None,
+    limit: int = Query(default=20, ge=1, le=50),
+    viewer: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """프로필의 공개 작성 게시물 목록. 차단 관계는 사용자 존재 자체를 숨긴다."""
+    target = await db.get(User, user_id)
+    if target is None or await _is_blocked_author(db, viewer.id, user_id):
+        raise HTTPException(status_code=404, detail="사용자를 찾을 수 없습니다")
+    stmt = select(Post).where(
+        Post.author_id == target.id,
+        Post.status == PostStatus.published.value,
+    )
+    return await _post_page(db, viewer.id, stmt, cursor=cursor, limit=limit)
 
 
 async def _get_visible_post(db: AsyncSession, me: User, post_id: uuid.UUID) -> Post:

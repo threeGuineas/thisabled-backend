@@ -19,13 +19,14 @@
 
 | 메서드·경로 | 동작 |
 | --- | --- |
-| `GET /users/me` | 내 프로필+태그+설정+파생 `is_minor` |
+| `GET /users/me` | 내 프로필+태그+설정+파생 `is_minor`+활동 `stats` |
 | `PATCH /users/me` | nickname/bio/profile_image_url. bio 연락처 패턴(전화·이메일·카톡ID) 400 (MATCH-02-7) |
 | `GET /tags` | TAG-01 카탈로그 (인증 불요) |
 | `PUT /users/me/tags` | `{tag_codes:[...]}` 전체 교체, 최대 10개 |
 | `PATCH /users/me/settings` | `{stranger_requests_allowed?, mode_settings?}` |
 | `PUT /users/me/mode` | `{ui_mode}` — user_mode_history 기록 |
-| `GET /users/{id}` | 타인 프로필(닉네임·bio·태그·이미지). ui_mode·생년월일 비노출(ACC-03). 차단 관계 404 |
+| `GET /users/{id}` | 타인 프로필+활동 `stats`+친구 `relationship`. ui_mode·생년월일 비노출. 차단 관계 404 |
+| `GET /users/{id}/posts?cursor=&limit=` | 사용자의 공개 작성 게시물 최신순 목록. 차단 관계 404 |
 | `DELETE /users/me` | 탈퇴 — `{posts_action:"anonymize"\|"delete"}`. 채팅 익명화, unlink, 30일 재가입 제한(§15) |
 
 ## posts / feed (FEED-01 · POST-01~03)

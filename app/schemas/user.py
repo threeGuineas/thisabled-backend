@@ -16,6 +16,17 @@ class TagCatalogOut(BaseModel):
     tags: list[TagOut]
 
 
+class ProfileStatsOut(BaseModel):
+    post_count: int
+    comment_count: int
+    received_like_count: int
+
+
+class ProfileRelationshipOut(BaseModel):
+    status: Literal["self", "none", "request_sent", "request_received", "friends"]
+    request_id: uuid.UUID | None = None
+
+
 class MeOut(BaseModel):
     """본인 조회 — ui_mode·is_minor 등 민감 파생값 포함 (타인 조회와 분리)."""
 
@@ -28,6 +39,7 @@ class MeOut(BaseModel):
     stranger_requests_allowed: bool
     mode_settings: dict
     tags: list[TagOut]
+    stats: ProfileStatsOut
 
 
 class PublicProfileOut(BaseModel):
@@ -38,6 +50,8 @@ class PublicProfileOut(BaseModel):
     bio: str | None
     profile_image_url: str | None
     tags: list[TagOut]
+    stats: ProfileStatsOut
+    relationship: ProfileRelationshipOut
 
 
 class ProfilePatchIn(BaseModel):

@@ -15,6 +15,11 @@ async def test_me_includes_profile_and_derived_minor(client):
     assert me["is_minor"] is True
     assert me["ui_mode"] == "visual"
     assert me["tags"] == []
+    assert me["stats"] == {
+        "post_count": 0,
+        "comment_count": 0,
+        "received_like_count": 0,
+    }
 
 
 async def test_patch_me_rejects_contact_in_bio(client):
@@ -92,3 +97,50 @@ async def test_public_profile_hides_mode_and_birth(client):
     assert "ui_mode" not in body
     assert "birth_date" not in body
     assert "is_minor" not in body
+    assert body["relationship"] == {"status": "none", "request_id": None}
+
+
+async def test_profile_activity_relationship_and_authored_posts(client):
+    author = await register(client, "활동작성자")
+    viewer = await register(client, "활동조회자")
+    ha = auth_header(author["access_token"])
+    hv = auth_header(viewer["access_token"])
+    post = (
+        await client.post(
+            "/api/v1/posts",
+            json={"title": "작성한 게시물", "category": "daily", "content": "프로필에서 보여요"},
+            headers=ha,
+        )
+    ).json()
+    await client.post(
+        f"/api/v1/posts/{post['id']}/comments", json={"content": "작성자의 댓글"}, headers=ha
+    )
+    await client.post(f"/api/v1/posts/{post['id']}/like", headers=hv)
+
+    profile = await client.get(f"/api/v1/users/{author['user_id']}", headers=hv)
+    assert profile.json()["stats"] == {
+        "post_count": 1,
+        "comment_count": 1,
+        "received_like_count": 1,
+    }
+    posts = await client.get(f"/api/v1/users/{author['user_id']}/posts", headers=hv)
+    assert [item["title"] for item in posts.json()["items"]] == ["작성한 게시물"]
+
+    request = await client.post(
+        "/api/v1/friends/requests",
+        json={"receiver_id": author["user_id"]},
+        headers=hv,
+    )
+    sent = await client.get(f"/api/v1/users/{author['user_id']}", headers=hv)
+    assert sent.json()["relationship"] == {
+        "status": "request_sent",
+        "request_id": request.json()["id"],
+    }
+    received = await client.get(f"/api/v1/users/{viewer['user_id']}", headers=ha)
+    assert received.json()["relationship"]["status"] == "request_received"
+
+    await client.post(
+        f"/api/v1/friends/requests/{request.json()['id']}/accept", headers=ha
+    )
+    friends = await client.get(f"/api/v1/users/{author['user_id']}", headers=hv)
+    assert friends.json()["relationship"] == {"status": "friends", "request_id": None}

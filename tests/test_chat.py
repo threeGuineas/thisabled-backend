@@ -1,10 +1,13 @@
 """CHAT-01 친구 채팅 · CHAT-02 비친구 요청 · 미디어 제한 (§4.5)."""
 
+import uuid
+
 import pytest_asyncio
 
 from app.main import app
 from app.services import ai_media, media_probe
 from app.services.safety import SafetyUnavailable, get_safety_client
+from app.services.presence import mark_online
 from tests.conftest import auth_header, register
 
 PNG = b"\x89PNG\r\n\x1a\n" + b"1" * 32
@@ -72,6 +75,41 @@ async def test_friend_chat_roundtrip(client, safety):
     rooms_b = await client.get("/api/v1/chat/rooms", headers=hb)
     assert len(rooms_b.json()["items"]) == 1
     assert rooms_b.json()["items"][0]["counterpart"]["nickname"] == "채팅갑"
+    assert rooms_b.json()["items"][0]["last_message"]["content"] == "안녕!"
+
+
+async def test_room_list_projects_latest_activity_search_presence_and_safe_preview(
+    client, test_redis, safety
+):
+    me = await register(client, "목록조회자")
+    older = await register(client, "채팅검색비")
+    latest = await register(client, "채팅검색씨")
+    hm = auth_header(me["access_token"])
+    hb = auth_header(older["access_token"])
+    hc = auth_header(latest["access_token"])
+    await make_friends(client, hm, hb, older["user_id"])
+    await make_friends(client, hm, hc, latest["user_id"])
+    room_b = (await _room(client, hm, older["user_id"])).json()
+    room_c = (await _room(client, hm, latest["user_id"])).json()
+
+    await _send(client, hm, room_b["id"], "먼저 보낸 메시지")
+    await _send(client, hm, room_c["id"], "가장 최근 메시지")
+    await mark_online(test_redis, uuid.UUID(latest["user_id"]))
+
+    rooms = (await client.get("/api/v1/chat/rooms", headers=hm)).json()["items"]
+    assert [item["id"] for item in rooms] == [room_c["id"], room_b["id"]]
+    assert rooms[0]["last_message"]["content"] == "가장 최근 메시지"
+    assert rooms[0]["last_activity_at"]
+    assert rooms[0]["counterpart_online"] is True
+
+    search = (await client.get("/api/v1/chat/rooms?q=검색씨", headers=hm)).json()
+    assert [item["id"] for item in search["items"]] == [room_c["id"]]
+
+    await _send(client, hb, room_b["id"], "돈 보내 주세요")
+    safe_rooms = (await client.get("/api/v1/chat/rooms", headers=hm)).json()["items"]
+    hidden = next(item for item in safe_rooms if item["id"] == room_b["id"])
+    assert hidden["last_message"]["blurred"] is True
+    assert hidden["last_message"]["content"] is None
 
 
 async def test_stranger_request_flow(client, safety):

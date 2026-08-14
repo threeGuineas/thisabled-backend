@@ -117,3 +117,14 @@ def test_post_contract_documents_title_category_and_video_publish_metadata():
         "requestBody"
     ]["content"]["application/json"]["example"]
     assert {"title", "category", "content", "allow_no_caption"} <= publish_example.keys()
+
+
+def test_chat_room_list_documents_projection_and_search():
+    schema = _schema()
+    operation = schema["paths"]["/api/v1/chat/rooms"]["get"]
+    assert "last_message" in operation["description"]
+    assert "counterpart_online" in operation["description"]
+    parameters = {parameter["name"]: parameter for parameter in operation["parameters"]}
+    assert "닉네임" in parameters["q"]["description"]
+    room_schema = schema["components"]["schemas"]["RoomOut"]["properties"]
+    assert {"last_message", "last_activity_at", "counterpart_online"} <= room_schema.keys()

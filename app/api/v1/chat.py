@@ -31,12 +31,14 @@ from app.schemas.chat import (
     RevealOut,
     RoomCreateIn,
     RoomListOut,
+    RoomMessagePreviewOut,
     RoomOut,
 )
 from app.schemas.post import AuthorOut
 from app.services import ai_media, media_probe
 from app.services import notify as noti
 from app.services.events import publish_to_user
+from app.services.presence import online_statuses
 from app.services.chat import (
     ChatPolicyError,
     SendRestricted,
@@ -109,9 +111,65 @@ def _message_out(
     )
 
 
-async def _room_out(db: AsyncSession, me: User, room: ChatRoom) -> RoomOut:
+def _message_preview(message: ChatMessage, me_id: uuid.UUID) -> RoomMessagePreviewOut:
+    mine = message.sender_id == me_id
+    blurred = (
+        not mine
+        and message.safety_status == SafetyStatus.flagged.value
+        and message.revealed_at is None
+    )
+    return RoomMessagePreviewOut(
+        id=message.id,
+        type=message.type,
+        content=None if blurred else message.content,
+        mine=mine,
+        blurred=blurred,
+        created_at=message.created_at,
+    )
+
+
+async def _latest_messages(
+    db: AsyncSession, room_ids: list[uuid.UUID]
+) -> dict[uuid.UUID, ChatMessage]:
+    if not room_ids:
+        return {}
+    ranked = (
+        select(
+            ChatMessage.id.label("message_id"),
+            func.row_number()
+            .over(
+                partition_by=ChatMessage.room_id,
+                order_by=(ChatMessage.available_at.desc(), ChatMessage.id.desc()),
+            )
+            .label("position"),
+        )
+        .where(
+            ChatMessage.room_id.in_(room_ids),
+            ChatMessage.safety_status != SafetyStatus.pending.value,
+            ChatMessage.available_at.is_not(None),
+        )
+        .subquery()
+    )
+    rows = (
+        await db.execute(
+            select(ChatMessage)
+            .join(ranked, ranked.c.message_id == ChatMessage.id)
+            .where(ranked.c.position == 1)
+        )
+    ).scalars().all()
+    return {message.room_id: message for message in rows}
+
+
+async def _room_out(
+    db: AsyncSession,
+    me: User,
+    room: ChatRoom,
+    *,
+    other: User | None,
+    latest: ChatMessage | None,
+    online: bool,
+) -> RoomOut:
     other_id = counterpart_id(room, me.id)
-    other = await db.get(User, other_id) if other_id else None
     restricted = (
         await has_active_restriction(db, other_id, me.id) if other_id is not None else False
     )
@@ -120,7 +178,41 @@ async def _room_out(db: AsyncSession, me: User, room: ChatRoom) -> RoomOut:
         requested_by=room.requested_by, restricted_sender=restricted,
         accepted_at=room.accepted_at, created_at=room.created_at,
         unread_count=await unread_count(db, room.id, me.id),
+        last_message=_message_preview(latest, me.id) if latest is not None else None,
+        last_activity_at=(latest.available_at or latest.created_at) if latest else room.created_at,
+        counterpart_online=online,
     )
+
+
+async def _rooms_out(
+    db: AsyncSession,
+    redis: aioredis.Redis,
+    me: User,
+    rooms: list[ChatRoom],
+) -> list[RoomOut]:
+    other_ids = [other_id for room in rooms if (other_id := counterpart_id(room, me.id))]
+    users = {
+        user.id: user
+        for user in (
+            (await db.execute(select(User).where(User.id.in_(other_ids)))).scalars().all()
+            if other_ids
+            else []
+        )
+    }
+    latest_by_room = await _latest_messages(db, [room.id for room in rooms])
+    online_by_user = await online_statuses(redis, list(users))
+    items = [
+        await _room_out(
+            db,
+            me,
+            room,
+            other=users.get(counterpart_id(room, me.id)),
+            latest=latest_by_room.get(room.id),
+            online=online_by_user.get(counterpart_id(room, me.id), False),
+        )
+        for room in rooms
+    ]
+    return sorted(items, key=lambda item: (item.last_activity_at, str(item.id)), reverse=True)
 
 
 @router.post("/rooms", response_model=RoomOut)
@@ -128,6 +220,7 @@ async def create_room(
     body: RoomCreateIn,
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
 ):
     if body.user_id == user.id:
         raise HTTPException(status_code=400, detail="자기 자신과는 채팅할 수 없습니다")
@@ -138,13 +231,15 @@ async def create_room(
         room = await get_or_create_room(db, user, other)
     except ChatPolicyError:
         raise HTTPException(status_code=404, detail=UNAVAILABLE)
-    return await _room_out(db, user, room)
+    return (await _rooms_out(db, redis, user, [room]))[0]
 
 
 @router.get("/rooms", response_model=RoomListOut)
 async def list_rooms(
+    search_text: str | None = Query(default=None, alias="q", max_length=50),
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
 ):
     rooms = (
         await db.execute(
@@ -153,17 +248,21 @@ async def list_rooms(
                 or_(ChatRoom.user_a == user.id, ChatRoom.user_b == user.id),
                 ChatRoom.state == RoomState.active.value,
             )
-            .order_by(ChatRoom.created_at.desc())
         )
     ).scalars().all()
-    items = [await _room_out(db, user, r) for r in rooms]
-    return RoomListOut(items=items, unread_total=sum(item.unread_count for item in items))
+    items = await _rooms_out(db, redis, user, rooms)
+    unread_total = sum(item.unread_count for item in items)
+    search = search_text.strip().casefold() if search_text else None
+    if search:
+        items = [item for item in items if search in item.counterpart.nickname.casefold()]
+    return RoomListOut(items=items, unread_total=unread_total)
 
 
 @router.get("/requests", response_model=RoomListOut)
 async def list_requests(
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
 ):
     """요청함 (CHAT-02) — 분석 완료된 메시지가 있는 요청만 표시 (SAFE-01 동기 원칙)."""
     rooms = (
@@ -177,7 +276,7 @@ async def list_requests(
             .order_by(ChatRoom.created_at.desc())
         )
     ).scalars().all()
-    visible: list[RoomOut] = []
+    visible_rooms: list[ChatRoom] = []
     for room in rooms:
         analyzed = (
             await db.execute(
@@ -188,7 +287,8 @@ async def list_requests(
             )
         ).scalar_one()
         if analyzed > 0:
-            visible.append(await _room_out(db, user, room))
+            visible_rooms.append(room)
+    visible = await _rooms_out(db, redis, user, visible_rooms)
     return RoomListOut(
         items=visible,
         unread_total=sum(item.unread_count for item in visible),
@@ -343,6 +443,7 @@ async def accept_request(
     room_id: uuid.UUID,
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
 ):
     room = await _get_my_room(db, user, room_id)
     if room.state != RoomState.request.value or room.requested_by == user.id:
@@ -350,7 +451,7 @@ async def accept_request(
     room.state = RoomState.active.value
     room.accepted_at = datetime.now(timezone.utc)
     await db.commit()
-    return await _room_out(db, user, room)
+    return (await _rooms_out(db, redis, user, [room]))[0]
 
 
 @router.post("/restrictions/{sender_id}/release", response_model=RestrictionReleaseOut)

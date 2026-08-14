@@ -10,6 +10,15 @@ class RoomCreateIn(BaseModel):
     user_id: uuid.UUID
 
 
+class RoomMessagePreviewOut(BaseModel):
+    id: uuid.UUID
+    type: str
+    content: str | None
+    mine: bool
+    blurred: bool = False
+    created_at: datetime
+
+
 class RoomOut(BaseModel):
     id: uuid.UUID
     state: str
@@ -20,6 +29,9 @@ class RoomOut(BaseModel):
     accepted_at: datetime | None
     created_at: datetime
     unread_count: int = 0
+    last_message: RoomMessagePreviewOut | None = None
+    last_activity_at: datetime
+    counterpart_online: bool = False
 
 
 class RoomListOut(BaseModel):

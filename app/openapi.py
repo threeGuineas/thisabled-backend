@@ -368,8 +368,9 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ),
     ("get", "/api/v1/chat/rooms"): _guide(
         "활성 채팅방 목록 조회",
-        "수락된 active 채팅방을 반환합니다. 각 방의 `unread_count`, 전역 `unread_total`, 상대 발신 제한 상태를 "
-        "서버 값으로 표시하세요.",
+        "수락된 active 채팅방을 표시 가능한 마지막 메시지 시각의 최신순으로 반환합니다. `q`는 상대 닉네임 "
+        "부분 검색이며, 각 방의 `last_message`, `last_activity_at`, `counterpart_online`, `unread_count`와 전역 "
+        "`unread_total`을 서버 값으로 표시하세요. 주의 메시지 미리보기는 `content=null`, `blurred=true`입니다.",
         "200과 채팅방 목록 및 전체 미읽음 수를 반환합니다.",
     ),
     ("post", "/api/v1/chat/rooms"): _guide(
@@ -532,7 +533,7 @@ PARAMETER_DESCRIPTIONS = {
     "cursor": "이전 응답의 `next_cursor`를 수정 없이 전달합니다. 첫 페이지에서는 생략합니다.",
     "limit": "한 번에 받을 항목 수. 엔드포인트별 최소·최대값은 입력란 제약을 따릅니다.",
     "category": "게시물 단일 카테고리 코드: `daily`, `info`, `hobby`, `concern`, `meetup`.",
-    "q": "제목과 본문에서 찾을 부분 검색어. 앞뒤 공백은 무시하며 최대 100자입니다.",
+    "q": "화면 검색어. 피드는 제목·본문, 채팅방 목록은 상대 닉네임에서 부분 검색하며 앞뒤 공백은 무시합니다.",
     "box": "친구 요청함 방향: `received`(받음, 기본값) 또는 `sent`(보냄).",
 }
 

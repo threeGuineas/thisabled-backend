@@ -65,7 +65,7 @@
 
 | 메서드·경로 | 동작 |
 | --- | --- |
-| `GET /chat/rooms` / `GET /chat/requests` | active 방 / 요청함(request 방). 각 방의 `unread_count`, 응답 전체의 `unread_total` 포함 |
+| `GET /chat/rooms?q=` / `GET /chat/requests` | active 방 / 요청함. 최근 표시 가능 메시지순, `last_message`, `last_activity_at`, `counterpart_online`, `unread_count`, `unread_total` 포함. q=상대 닉네임 검색 |
 | `POST /chat/rooms` | `{user_id}` — 친구=active, 비친구=request(수신자 허용 설정·미성년 보호 검증, 사유 비노출 404) |
 | `POST /chat/rooms/{id}/messages` | 텍스트 전송 — SAFE 동기 분석 후 저장·전달. 발신자 응답에 판정 없음. request 방은 수락 전 1건 제한. SAFE-05 제한 중 403 `메시지를 보낼 수 없습니다` |
 | `POST /chat/rooms/{id}/media` | 사진·영상 — 친구 방만, 미성년-성인 403(§4.5). 즉시 전달 후 설명·자막 비동기 부착. 완료·실패 시 송수신자 모두 알림 |
@@ -76,6 +76,7 @@
 
 실시간 `chat.read` 이벤트는 `{room_id, message_id}`만 포함하며 채팅 원문은 전송하지 않는다.
 SAFE `pending` 메시지가 재분석 완료되어 표시 가능해지면 `chat.message` 이벤트를 다시 보내며, 이 시각부터 미읽음으로 계산한다.
+WS 연결 중에는 Redis TTL 기반 온라인 상태가 유지되며 정상 종료 또는 TTL 만료 시 오프라인이 된다.
 
 SAFE 장애 시(§18.3): 친구 텍스트=`unanalyzed`로 전달, 비친구=`pending` 보류. 복구 후 재분석·소급 블러.
 

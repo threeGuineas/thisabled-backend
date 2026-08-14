@@ -48,6 +48,9 @@ class Settings(BaseSettings):
     SAFE_FLAG_WINDOW_DAYS: int = 3  # SAFE-05 누적 기간
     SAFE_FLAG_LIMIT: int = 3  # SAFE-05 누적 횟수
     PRESENCE_TTL_SECONDS: int = 90  # WS heartbeat 유실 시 온라인 상태 자동 만료
+    CALL_RING_TTL_SECONDS: int = 60  # CHAT-05 응답 없는 통화 초대 자동 만료
+    CALL_ACTIVE_TTL_SECONDS: int = 4 * 60 * 60  # 비정상 종료 시에도 통화 잠금 자동 해제
+    CALL_SIGNAL_MAX_BYTES: int = 32 * 1024
 
     # MATCH — SBERT+LightGBM 모델 서버
     MATCH_MODEL_URL: str = "http://match-model:9002"

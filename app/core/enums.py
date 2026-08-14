@@ -74,6 +74,20 @@ class MessageType(StrEnum):
     video = "video"
 
 
+class CallKind(StrEnum):
+    audio = "audio"
+    video = "video"
+
+
+class CallSignalType(StrEnum):
+    offer = "offer"
+    accept = "accept"
+    answer = "answer"
+    ice = "ice"
+    decline = "decline"
+    end = "end"
+
+
 class Provider(StrEnum):
     kakao = "kakao"
     google = "google"

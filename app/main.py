@@ -124,6 +124,8 @@ description = """
 - 이벤트는 모두 `{ "type": "...", "payload": { ... } }` 형식입니다.
   - `chat.message`: `{room_id, message_id}` — 원문은 없으며 해당 방 REST 목록을 다시 조회합니다.
   - `chat.read`: `{room_id, message_id}` — 상대가 이 message_id까지 읽었습니다.
+  - `call.invited`: `{id, room_id, caller_id, callee_id, kind, status, created_at, expires_at}`.
+  - `call.signal`: `{call_id, room_id, from_user_id, signal, data}` — WebRTC 연결 상태를 갱신합니다.
   - `notification`: `{type, ...도메인별 payload}` — 알림 목록을 다시 조회해 정본과 맞춥니다.
 - 재연결은 지수 백오프를 사용하고, 같은 `message_id` 이벤트가 재수신돼도 중복 삽입하지 마세요.
 """
@@ -142,7 +144,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="ThisAbled API",
-    version="0.3.0",
+    version="0.4.0",
     description=description,
     openapi_tags=tags_metadata,
     lifespan=lifespan,

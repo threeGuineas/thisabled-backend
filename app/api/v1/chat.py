@@ -1,5 +1,6 @@
-"""CHAT-01/02/03 — 1:1 채팅 · 요청함 · SAFE-03 블러 · SAFE-05 제한 해제."""
+"""CHAT-01~05 — 1:1 채팅 · 요청함 · 읽음 · WebRTC 시그널링."""
 
+import json
 import uuid
 from urllib.parse import quote, unquote
 from datetime import datetime, timezone
@@ -28,6 +29,10 @@ from app.schemas.chat import (
     MessageIn,
     MessageListOut,
     MessageOut,
+    CallCreateIn,
+    CallOut,
+    CallSignalIn,
+    CallSignalOut,
     RevealOut,
     RoomCreateIn,
     RoomListOut,
@@ -39,6 +44,7 @@ from app.services import ai_media, media_probe
 from app.services import notify as noti
 from app.services.events import publish_to_user
 from app.services.presence import online_statuses
+from app.services import call_signaling
 from app.services.chat import (
     ChatPolicyError,
     SendRestricted,
@@ -83,6 +89,28 @@ async def _get_my_room(db: AsyncSession, me: User, room_id: uuid.UUID) -> ChatRo
     if room is None or me.id not in (room.user_a, room.user_b):
         raise HTTPException(status_code=404, detail="채팅방을 찾을 수 없습니다")
     return room
+
+
+async def _validate_call_room(
+    db: AsyncSession, me: User, room: ChatRoom
+) -> tuple[uuid.UUID, User]:
+    other_id = counterpart_id(room, me.id)
+    if other_id is None or room.state != RoomState.active.value:
+        raise HTTPException(status_code=403, detail="통화할 수 없는 채팅방입니다")
+    if not await are_friends(db, me.id, other_id):
+        raise HTTPException(status_code=403, detail="통화는 친구와의 채팅에서만 가능합니다")
+    if await is_blocked_either(db, me.id, other_id):
+        raise HTTPException(status_code=403, detail=RESTRICTED)
+    if await has_active_restriction(db, me.id, other_id) or await has_active_restriction(
+        db, other_id, me.id
+    ):
+        raise HTTPException(status_code=403, detail=RESTRICTED)
+    other = await db.get(User, other_id)
+    if other is None:
+        raise HTTPException(status_code=403, detail="통화할 수 없는 채팅방입니다")
+    if is_minor(me.birth_date) != is_minor(other.birth_date):
+        raise HTTPException(status_code=403, detail="이 채팅에서는 통화할 수 없습니다")
+    return other_id, other
 
 
 def _message_out(
@@ -465,6 +493,101 @@ async def release_send_restriction(
     if not released:
         raise HTTPException(status_code=404, detail="해제할 전송 제한이 없습니다")
     return RestrictionReleaseOut(released=True)
+
+
+@router.post("/rooms/{room_id}/calls", response_model=CallOut, status_code=201)
+async def start_call(
+    room_id: uuid.UUID,
+    body: CallCreateIn,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
+):
+    """CHAT-05: 온라인 친구에게 음성·영상 WebRTC 통화 초대를 보낸다."""
+    room = await _get_my_room(db, user, room_id)
+    other_id, _ = await _validate_call_room(db, user, room)
+    online = await online_statuses(redis, [other_id])
+    if not online.get(other_id, False):
+        raise HTTPException(status_code=409, detail="상대가 현재 온라인이 아닙니다")
+    try:
+        call = await call_signaling.create_call(
+            redis,
+            room_id=room.id,
+            caller_id=user.id,
+            callee_id=other_id,
+            kind=body.kind,
+        )
+    except call_signaling.CallBusy:
+        raise HTTPException(status_code=409, detail="이미 진행 중인 통화가 있습니다")
+    try:
+        await publish_to_user(
+            redis,
+            other_id,
+            {"type": "call.invited", "payload": call_signaling.public_call(call)},
+        )
+    except Exception:
+        await call_signaling.close_call(redis, call)
+        raise
+    return call_signaling.public_call(call)
+
+
+@router.get("/calls/{call_id}", response_model=CallOut)
+async def get_call(
+    call_id: uuid.UUID,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
+):
+    try:
+        call = await call_signaling.get_call(redis, call_id, user.id)
+    except call_signaling.CallNotFound:
+        raise HTTPException(status_code=404, detail="통화를 찾을 수 없습니다")
+    room = await _get_my_room(db, user, uuid.UUID(call["room_id"]))
+    await _validate_call_room(db, user, room)
+    return call_signaling.public_call(call)
+
+
+@router.post("/calls/{call_id}/signals", response_model=CallSignalOut, status_code=202)
+async def send_call_signal(
+    call_id: uuid.UUID,
+    body: CallSignalIn,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
+):
+    encoded = json.dumps(body.data, ensure_ascii=False, separators=(",", ":")).encode()
+    if len(encoded) > settings.CALL_SIGNAL_MAX_BYTES:
+        raise HTTPException(status_code=413, detail="통화 시그널이 너무 큽니다")
+    try:
+        call = await call_signaling.get_call(redis, call_id, user.id)
+    except call_signaling.CallNotFound:
+        raise HTTPException(status_code=404, detail="통화를 찾을 수 없습니다")
+    room = await _get_my_room(db, user, uuid.UUID(call["room_id"]))
+    await _validate_call_room(db, user, room)
+    try:
+        call_signaling.validate_signal(call, user.id, body.type)
+    except call_signaling.InvalidCallSignal:
+        raise HTTPException(status_code=409, detail="현재 상태에서 보낼 수 없는 통화 시그널입니다")
+    try:
+        call, _terminal = await call_signaling.update_call_for_signal(redis, call, body.type)
+    except call_signaling.CallNotFound:
+        raise HTTPException(status_code=404, detail="통화를 찾을 수 없습니다")
+    other_id = call_signaling.counterpart(call, user.id)
+    await publish_to_user(
+        redis,
+        other_id,
+        {
+            "type": "call.signal",
+            "payload": {
+                "call_id": call["id"],
+                "room_id": call["room_id"],
+                "from_user_id": str(user.id),
+                "signal": body.type.value,
+                "data": body.data,
+            },
+        },
+    )
+    return CallSignalOut(status=call["status"])
 
 
 @router.post("/rooms/{room_id}/media", response_model=MessageOut, status_code=201)

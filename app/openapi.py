@@ -428,6 +428,44 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
         "200과 `{\"released\": true}`를 반환합니다.",
         errors={404: "해제할 활성 제한이 없습니다."},
     ),
+    ("post", "/api/v1/chat/rooms/{room_id}/calls"): _guide(
+        "음성·영상 통화 초대",
+        "active 상태의 친구 채팅방에서 온라인 상대에게 WebRTC 통화를 요청합니다. `kind`는 `audio` 또는 "
+        "`video`입니다. 서버는 미디어를 중계·저장하지 않고 60초 Redis 세션을 만든 뒤 상대 WebSocket에 "
+        "`call.invited`를 보냅니다. 미성년–성인, 차단, 어느 방향이든 SAFE 전송 제한 상태에서는 통화할 수 없습니다.",
+        "201과 `ringing` 상태의 통화 세션을 반환합니다. `id`를 후속 조회와 시그널 요청에 사용하세요.",
+        request={"kind": "video"},
+        errors={
+            403: "친구·방 상태·차단·연령·전송 제한 정책 위반.",
+            404: "참여 중인 채팅방이 아닙니다.",
+            409: "상대가 오프라인이거나 둘 중 한 명이 이미 통화 중입니다.",
+        },
+    ),
+    ("get", "/api/v1/chat/calls/{call_id}"): _guide(
+        "통화 세션 상태 조회",
+        "통화 참여자가 재연결 후 현재 `ringing` 또는 `active` 상태와 만료 시각을 조회합니다. 통화 ID가 "
+        "만료되었거나 요청 사용자가 참여자가 아니면 동일한 404를 반환하여 참여 관계를 노출하지 않습니다.",
+        "200과 통화 종류, 방·참여자 UUID, 현재 상태, 생성·만료 시각을 반환합니다.",
+        errors={
+            403: "조회 시점에 친구·차단·연령·전송 제한 정책을 더 이상 만족하지 않습니다.",
+            404: "통화가 없거나 만료되었거나 현재 사용자가 참여자가 아닙니다.",
+        },
+    ),
+    ("post", "/api/v1/chat/calls/{call_id}/signals"): _guide(
+        "WebRTC 통화 시그널 전달",
+        "`offer`는 발신자, `accept`·`answer`·`decline`은 수신자가 보냅니다. `ice`와 `end`는 양쪽 모두 "
+        "보낼 수 있습니다. offer·answer·ice에는 `data` 객체가 필수이고 나머지는 보내지 않습니다. 서버는 최대 "
+        "32KiB JSON을 상대 WebSocket의 `call.signal`로 전달하며 영구 저장하지 않습니다. `decline`·`end` 후에는 "
+        "세션이 즉시 삭제되므로 성공 응답을 받은 뒤 로컬 WebRTC 자원도 정리하세요.",
+        "202와 수락 여부 및 변경된 통화 상태를 반환합니다.",
+        request={"type": "ice", "data": {"candidate": "candidate:...", "sdpMid": "0"}},
+        errors={
+            403: "통화 정책을 더 이상 만족하지 않습니다.",
+            404: "통화가 없거나 만료되었거나 현재 사용자가 참여자가 아닙니다.",
+            409: "역할 또는 현재 통화 상태에서 허용되지 않는 시그널입니다.",
+            413: "직렬화한 시그널 JSON이 32KiB를 초과합니다.",
+        },
+    ),
     ("post", "/api/v1/chat/rooms/{room_id}/media"): _guide(
         "채팅 사진·영상 전송",
         "active 상태의 친구 채팅에서만 multipart `file`을 전송합니다. 영상은 `duration_seconds`도 필요하며 자막 한도를 "
@@ -536,6 +574,7 @@ PARAMETER_DESCRIPTIONS = {
     "request_id": "친구 요청의 UUID.",
     "room_id": "현재 사용자가 참여 중인 채팅방 UUID.",
     "message_id": "채팅 메시지 UUID.",
+    "call_id": "Redis에 임시 보관된 음성·영상 통화 세션 UUID.",
     "sender_id": "내가 해제할 전송 제한의 상대 발신자 UUID.",
     "cursor": "이전 응답의 `next_cursor`를 수정 없이 전달합니다. 첫 페이지에서는 생략합니다.",
     "limit": "한 번에 받을 항목 수. 엔드포인트별 최소·최대값은 입력란 제약을 따릅니다.",

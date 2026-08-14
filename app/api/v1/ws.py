@@ -1,4 +1,4 @@
-"""WS /api/v1/ws?token=<access> — 새 메시지·알림 실시간 푸시.
+"""WS /api/v1/ws?token=<access> — 새 메시지·알림·통화 시그널 실시간 푸시.
 
 인증은 JWT 검증만으로 처리(DB 미조회)해 연결 비용을 최소화한다.
 구독 채널: user:{user_id} (app/services/events.py).

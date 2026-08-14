@@ -1,8 +1,10 @@
 import uuid
 from datetime import datetime
+from typing import Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from app.core.enums import CallKind, CallSignalType
 from app.schemas.post import AuthorOut
 
 
@@ -74,3 +76,45 @@ class MessageListOut(BaseModel):
 class RevealOut(BaseModel):
     id: uuid.UUID
     content: str
+
+
+class CallCreateIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    kind: CallKind
+
+
+class CallOut(BaseModel):
+    id: uuid.UUID
+    room_id: uuid.UUID
+    caller_id: uuid.UUID
+    callee_id: uuid.UUID
+    kind: CallKind
+    status: str
+    created_at: datetime
+    expires_at: datetime
+
+
+class CallSignalIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    type: CallSignalType
+    data: dict[str, Any] | None = None
+
+    @model_validator(mode="after")
+    def validate_data(self):
+        data_required = self.type in {
+            CallSignalType.offer,
+            CallSignalType.answer,
+            CallSignalType.ice,
+        }
+        if data_required and not self.data:
+            raise ValueError(f"{self.type.value} 시그널에는 data가 필요합니다")
+        if not data_required and self.data is not None:
+            raise ValueError(f"{self.type.value} 시그널에는 data를 보낼 수 없습니다")
+        return self
+
+
+class CallSignalOut(BaseModel):
+    accepted: bool = True
+    status: str

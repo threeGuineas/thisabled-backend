@@ -61,7 +61,7 @@
 | `GET /friends` / `GET /friends/requests?box=` / `DELETE /friends/{user_id}` | 목록·해제 |
 | `POST /blocks` / `DELETE /blocks/{user_id}` / `GET /blocks` | 차단=친구 해제+상호 접점 제거 |
 
-## chat (CHAT-01~03 · SAFE-01~05)
+## chat (CHAT-01~05 · SAFE-01~05)
 
 | 메서드·경로 | 동작 |
 | --- | --- |
@@ -73,10 +73,15 @@
 | `POST /chat/messages/{id}/reveal` | 내용 보기(수신자만) → 원문 반환 |
 | `POST /chat/requests/{room_id}/accept` | 요청 수락 → active |
 | `POST /chat/restrictions/{sender_id}/release` | 수신자의 전송 제한 해제(카운터 리셋) |
+| `POST /chat/rooms/{id}/calls` | `{kind:"audio"|"video"}`. 온라인 친구·같은 연령 보호 그룹·차단/제한 없음일 때 201 통화 초대 |
+| `GET /chat/calls/{call_id}` | 참여자의 통화 상태 재조회. 만료·비참여자는 404 |
+| `POST /chat/calls/{call_id}/signals` | `{type:"offer"|"accept"|"answer"|"ice"|"decline"|"end",data?}` → 202. SDP/ICE JSON은 32KiB 이하 |
 
 실시간 `chat.read` 이벤트는 `{room_id, message_id}`만 포함하며 채팅 원문은 전송하지 않는다.
 SAFE `pending` 메시지가 재분석 완료되어 표시 가능해지면 `chat.message` 이벤트를 다시 보내며, 이 시각부터 미읽음으로 계산한다.
 WS 연결 중에는 Redis TTL 기반 온라인 상태가 유지되며 정상 종료 또는 TTL 만료 시 오프라인이 된다.
+
+통화 초대는 `call.invited`, 후속 WebRTC 시그널은 `call.signal` 이벤트로 상대에게 전달된다. 음성·영상 스트림과 시그널은 DB에 영구 저장하지 않는다. 초대 60초·활성 통화 4시간 TTL이며 종료·거절하면 즉시 삭제된다.
 
 SAFE 장애 시(§18.3): 친구 텍스트=`unanalyzed`로 전달, 비친구=`pending` 보류. 복구 후 재분석·소급 블러.
 

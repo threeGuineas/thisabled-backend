@@ -55,7 +55,7 @@ def test_protected_operations_document_unauthorized_response():
 def test_frontend_critical_contracts_are_explicit():
     schema = _schema()
     info = schema["info"]
-    assert info["version"] == "0.3.0"
+    assert info["version"] == "0.4.0"
     assert "finally에서 로딩 상태를 해제" in info["description"]
     assert "WebSocket (OpenAPI 비지원 영역)" in info["description"]
     assert "422" in info["description"] and "배열" in info["description"]
@@ -145,3 +145,22 @@ def test_notification_preferences_are_explicit_and_strict():
         "chat_activity",
         "ai_results",
     } <= patch_schema["properties"].keys()
+
+
+def test_call_signaling_contract_is_frontend_ready():
+    schema = _schema()
+    start = schema["paths"]["/api/v1/chat/rooms/{room_id}/calls"]["post"]
+    assert start["responses"]["201"]
+    assert "call.invited" in start["description"]
+    assert {"403", "404", "409"} <= start["responses"].keys()
+
+    signal = schema["paths"]["/api/v1/chat/calls/{call_id}/signals"]["post"]
+    assert signal["responses"]["202"]
+    assert "call.signal" in signal["description"]
+    assert "32KiB" in signal["description"]
+    assert {"403", "404", "409", "413", "422"} <= signal["responses"].keys()
+
+    create_schema = schema["components"]["schemas"]["CallCreateIn"]
+    signal_schema = schema["components"]["schemas"]["CallSignalIn"]
+    assert create_schema["additionalProperties"] is False
+    assert signal_schema["additionalProperties"] is False

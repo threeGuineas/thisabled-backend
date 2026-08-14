@@ -63,13 +63,15 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ("get", "/api/v1/auth/{provider}/authorize"): _guide(
         "소셜 로그인 URL 발급",
         "`provider`는 `kakao`, `google`, 개발 환경의 `mock` 중 하나입니다. 반환된 URL로 브라우저를 "
-        "이동시키고, 로그인 완료 후 callback이 프론트 주소로 다시 리다이렉트합니다.",
+        "이동시키고, 로그인 완료 후 callback이 프론트 주소로 다시 리다이렉트합니다. URL에는 서버가 10분 동안 "
+        "한 번만 허용하는 OAuth `state`가 포함되므로 프론트에서 수정하거나 떼어내지 마세요.",
         "200 응답의 `authorize_url`을 브라우저 전체 이동에 사용합니다.",
         errors={404: "지원하지 않는 provider입니다."},
     ),
     ("get", "/api/v1/auth/{provider}/callback"): _guide(
         "소셜 로그인 콜백 처리",
         "OAuth 제공자가 호출하는 브라우저용 엔드포인트입니다. 프론트가 직접 JSON을 요청하지 않습니다. "
+        "실제 제공자에서는 authorize 응답에 포함된 `state`가 필수이며 재사용할 수 없습니다. "
         "기가입자는 `is_new_user=false&access_token=...`, 신규는 `is_new_user=true&signup_token=...`, "
         "실패는 `error={provider}_failed` 쿼리를 붙여 `FRONTEND_URL`로 이동합니다.",
         "302로 프론트 SPA에 이동합니다. 기가입자 응답에는 refresh_token 쿠키도 설정됩니다.",
@@ -182,7 +184,8 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ("post", "/api/v1/posts"): _guide(
         "텍스트·사진 게시물 작성",
         "제목, 단일 카테고리, 본문을 보내고 필요하면 `/media/images`에서 받은 최대 3개의 `media_id`를 연결합니다. "
-        "카테고리는 `daily`, `info`, `hobby`, `concern`, `meetup` 중 하나이며 성공 즉시 공개됩니다. "
+        "제목은 1~100자, 본문은 공백 제거 후 1~10,000자입니다. 카테고리는 `daily`, `info`, `hobby`, "
+        "`concern`, `meetup` 중 하나이며 성공 즉시 공개됩니다. "
         "영상은 이 API가 아니라 `/media/videos`로 드래프트를 만든 뒤 publish 흐름을 사용하세요.",
         "201과 공개된 게시물 전체를 반환합니다.",
         request={"title": "오늘의 공원 산책", "category": "daily", "content": "오늘 공원에서 산책했어요.", "media_ids": [UUID_A]},
@@ -267,14 +270,14 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ("post", "/api/v1/posts/{post_id}/comments"): _guide(
         "댓글 작성",
         "사용자가 최종 확인한 텍스트를 게시합니다. AI 댓글 추천 결과는 자동 게시되지 않으므로 선택한 문장을 이 API에 "
-        "명시적으로 전달해야 합니다.",
+        "명시적으로 전달해야 합니다. 내용은 공백 제거 후 1~2,000자입니다.",
         "201과 작성된 댓글을 반환합니다.",
         request={"content": "산책하기 좋은 날씨네요!"},
         errors={404: "게시물이 없거나 차단 관계입니다."},
     ),
     ("patch", "/api/v1/comments/{comment_id}"): _guide(
         "댓글 수정",
-        "댓글 작성자만 내용을 수정할 수 있습니다. 성공 응답의 `updated_at`과 내용을 댓글 목록에 반영하세요.",
+        "댓글 작성자만 공백 제거 후 1~2,000자 내용을 수정할 수 있습니다. 성공 응답의 `updated_at`과 내용을 댓글 목록에 반영하세요.",
         "200과 수정된 댓글을 반환합니다.",
         request={"content": "수정한 댓글입니다."},
         errors={403: "댓글 작성자가 아닙니다.", 404: "댓글이 없습니다."},
@@ -394,7 +397,7 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ),
     ("post", "/api/v1/chat/rooms/{room_id}/messages"): _guide(
         "텍스트 메시지 전송",
-        "텍스트는 SAFE 모델 판정 후 저장·전달됩니다. 응답은 발신자 관점이라 원문은 유지되지만 판정 값은 노출하지 "
+        "공백 제거 후 1~2,000자 텍스트는 SAFE 모델 판정 후 저장·전달됩니다. 응답은 발신자 관점이라 원문은 유지되지만 판정 값은 노출하지 "
         "않습니다. 403이면 입력을 보존하고 사용자에게 전송 제한 안내를 표시하세요.",
         "201과 저장된 메시지를 반환하며 상대에게 WebSocket 이벤트를 발행합니다.",
         request={"content": "안녕하세요. 오늘 어떻게 지냈어요?"},
@@ -491,7 +494,7 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ("post", "/api/v1/notifications/read"): _guide(
         "알림 읽음 처리",
         "현재 사용자의 알림 UUID 목록을 한 번에 읽음 처리합니다. 다른 사용자의 ID나 이미 읽은 ID는 무시되어 "
-        "재시도해도 안전합니다.",
+        "재시도해도 안전합니다. 한 요청에는 최대 100개 ID를 보낼 수 있습니다.",
         "200과 `{\"read\": true}`를 반환합니다.",
         request={"ids": [UUID_A, UUID_B]},
     ),
@@ -567,6 +570,7 @@ PARAMETER_DESCRIPTIONS = {
     "provider": "소셜 로그인 제공자: `kakao`, `google`, 개발 환경에서는 `mock`.",
     "code": "OAuth 제공자가 발급한 일회용 authorization code. 프론트가 임의 생성하지 않습니다.",
     "error": "사용자가 동의를 거부했거나 OAuth 제공자가 전달한 오류 코드.",
+    "state": "authorize 단계에서 서버가 발급하고 OAuth 제공자가 그대로 돌려주는 10분·1회용 CSRF 방지 값.",
     "refresh_token": "httpOnly 쿠키. JavaScript에서 읽지 말고 credentials 포함 요청으로 자동 전송합니다.",
     "user_id": "대상 사용자의 UUID.",
     "post_id": "대상 게시물 또는 영상 드래프트의 UUID.",

@@ -103,3 +103,10 @@ async def test_mark_read(client):
     resp = await client.post("/api/v1/notifications/read", json={"ids": [notis[0]["id"]]}, headers=hb)
     assert resp.status_code == 200
     assert (await _notis(client, hb))[0]["read_at"] is not None
+
+    too_many = await client.post(
+        "/api/v1/notifications/read",
+        json={"ids": [str(__import__("uuid").uuid4()) for _ in range(101)]},
+        headers=hb,
+    )
+    assert too_many.status_code == 422

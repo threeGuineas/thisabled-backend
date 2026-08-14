@@ -274,3 +274,17 @@ async def test_message_made_available_after_read_cursor_is_unread(client, db, sa
 
     inbox = (await client.get("/api/v1/chat/rooms", headers=hb)).json()
     assert inbox["unread_total"] == 1
+
+
+async def test_chat_text_is_trimmed_and_limited(client, safety):
+    a = await register(client, "메시지상한갑")
+    b = await register(client, "메시지상한을")
+    ha, hb = auth_header(a["access_token"]), auth_header(b["access_token"])
+    await make_friends(client, ha, hb, b["user_id"])
+    room_id = (await _room(client, ha, b["user_id"])).json()["id"]
+    for content in ("   ", "메" * 2001):
+        response = await _send(client, ha, room_id, content)
+        assert response.status_code == 422
+    sent = await _send(client, ha, room_id, "  안녕하세요  ")
+    assert sent.status_code == 201
+    assert sent.json()["content"] == "안녕하세요"

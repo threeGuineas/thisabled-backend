@@ -44,6 +44,26 @@ def test_json_request_bodies_have_copyable_examples():
                 assert "example" in json_body, f"missing request example: {method} {path}"
 
 
+def test_json_request_models_reject_unknown_fields():
+    schema = _schema()
+    for path, path_item in schema["paths"].items():
+        for method, operation in path_item.items():
+            if method not in HTTP_METHODS:
+                continue
+            json_body = operation.get("requestBody", {}).get("content", {}).get(
+                "application/json"
+            )
+            if json_body is None:
+                continue
+            reference = json_body["schema"].get("$ref")
+            assert reference, f"inline request schema: {method} {path}"
+            name = reference.rsplit("/", 1)[-1]
+            request_schema = schema["components"]["schemas"][name]
+            assert request_schema.get("additionalProperties") is False, (
+                f"unknown fields are silently accepted: {method} {path}"
+            )
+
+
 def test_protected_operations_document_unauthorized_response():
     schema = _schema()
     for path, path_item in schema["paths"].items():

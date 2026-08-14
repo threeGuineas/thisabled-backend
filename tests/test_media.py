@@ -10,6 +10,7 @@ from sqlalchemy import select, update
 
 from app.main import app
 from app.models import Post, PostMedia
+from app.core.config import settings
 from app.core.storage import _ext_from_content_type
 from app.services import ai_media, media_probe, stt
 from app.services.quota import caption_global_key, vision_keys
@@ -79,6 +80,21 @@ async def test_image_upload_limit_3(client, fake_ai):
     h = auth_header(u["access_token"])
     assert (await _upload_images(client, h, 3)).status_code == 201
     assert (await _upload_images(client, h, 4)).status_code == 400
+
+
+async def test_invalid_image_batch_leaves_no_orphan_file(client, monkeypatch, tmp_path):
+    monkeypatch.setattr(settings, "UPLOAD_DIR", str(tmp_path))
+    user = await register(client, "사진원자성")
+    response = await client.post(
+        "/api/v1/media/images",
+        files=[
+            ("files", ("valid.png", PNG, "image/png")),
+            ("files", ("invalid.txt", b"not image", "text/plain")),
+        ],
+        headers=auth_header(user["access_token"]),
+    )
+    assert response.status_code == 400
+    assert list(tmp_path.iterdir()) == []
 
 
 async def test_photo_post_gets_description_on_publish(client, db, fake_ai):

@@ -4,7 +4,7 @@
 실키 스모크 테스트는 docs/oauth-setup.md 절차로 별도 수행.
 """
 
-from urllib.parse import parse_qs, quote
+from urllib.parse import parse_qs, quote, urlsplit
 
 import httpx
 import pytest
@@ -62,6 +62,11 @@ def _google_transport(valid_code: str = "google-auth-code"):
     return httpx.MockTransport(handler)
 
 
+async def _oauth_state(client, provider: str) -> str:
+    response = await client.get(f"/api/v1/auth/{provider}/authorize")
+    return parse_qs(urlsplit(response.json()["authorize_url"]).query)["state"][0]
+
+
 async def test_kakao_authorize_url_is_encoded(client, real_oauth):
     resp = await client.get("/api/v1/auth/kakao/authorize")
     assert resp.status_code == 200
@@ -85,7 +90,8 @@ async def test_kakao_callback_signup_then_login(client, real_oauth):
     real_oauth.setattr(oauth_mod, "_transport", _kakao_transport())
 
     # 1) 최초 콜백 → 신규 사용자, signup_token을 담아 프론트로 302
-    cb = await client.get("/api/v1/auth/kakao/callback?code=kakao-auth-code")
+    state = await _oauth_state(client, "kakao")
+    cb = await client.get(f"/api/v1/auth/kakao/callback?code=kakao-auth-code&state={state}")
     params = callback_params(cb)
     assert params["is_new_user"] == "true"
 
@@ -106,7 +112,8 @@ async def test_kakao_callback_signup_then_login(client, real_oauth):
     assert me.json()["nickname"] == "카카오유저"
 
     # 3) 같은 카카오 계정 재콜백 → 즉시 로그인 리다이렉트
-    again = await client.get("/api/v1/auth/kakao/callback?code=kakao-auth-code")
+    state = await _oauth_state(client, "kakao")
+    again = await client.get(f"/api/v1/auth/kakao/callback?code=kakao-auth-code&state={state}")
     params = callback_params(again)
     assert params["is_new_user"] == "false"
     assert params["access_token"]
@@ -115,14 +122,16 @@ async def test_kakao_callback_signup_then_login(client, real_oauth):
 
 async def test_google_callback_uses_oidc_sub(client, real_oauth):
     real_oauth.setattr(oauth_mod, "_transport", _google_transport())
-    cb = await client.get("/api/v1/auth/google/callback?code=google-auth-code")
+    state = await _oauth_state(client, "google")
+    cb = await client.get(f"/api/v1/auth/google/callback?code=google-auth-code&state={state}")
     assert callback_params(cb)["is_new_user"] == "true"
 
 
 async def test_invalid_code_redirects_with_error(client, real_oauth):
     """제공자가 거부한 code(만료·재사용)도 프론트로 error 리다이렉트."""
     real_oauth.setattr(oauth_mod, "_transport", _kakao_transport())
-    cb = await client.get("/api/v1/auth/kakao/callback?code=expired-code")
+    state = await _oauth_state(client, "kakao")
+    cb = await client.get(f"/api/v1/auth/kakao/callback?code=expired-code&state={state}")
     assert callback_params(cb)["error"] == "kakao_failed"
 
 
@@ -133,11 +142,25 @@ async def test_provider_network_error_redirects_with_error(client, real_oauth):
         raise httpx.ConnectError("connection refused")
 
     real_oauth.setattr(oauth_mod, "_transport", httpx.MockTransport(down))
-    cb = await client.get("/api/v1/auth/kakao/callback?code=whatever")
+    state = await _oauth_state(client, "kakao")
+    cb = await client.get(f"/api/v1/auth/kakao/callback?code=whatever&state={state}")
     assert callback_params(cb)["error"] == "kakao_failed"
 
 
 async def test_user_denial_redirects_with_error(client, real_oauth):
     """사용자가 제공자 동의 화면에서 거부하면 code 없이 error만 돌아온다."""
-    cb = await client.get("/api/v1/auth/kakao/callback?error=access_denied")
+    state = await _oauth_state(client, "kakao")
+    cb = await client.get(f"/api/v1/auth/kakao/callback?error=access_denied&state={state}")
     assert callback_params(cb)["error"] == "kakao_failed"
+
+
+async def test_callback_requires_fresh_oauth_state(client, real_oauth):
+    real_oauth.setattr(oauth_mod, "_transport", _kakao_transport())
+    missing = await client.get("/api/v1/auth/kakao/callback?code=kakao-auth-code")
+    assert callback_params(missing)["error"] == "kakao_failed"
+
+    state = await _oauth_state(client, "kakao")
+    first = await client.get(f"/api/v1/auth/kakao/callback?code=kakao-auth-code&state={state}")
+    assert callback_params(first)["is_new_user"] == "true"
+    replay = await client.get(f"/api/v1/auth/kakao/callback?code=kakao-auth-code&state={state}")
+    assert callback_params(replay)["error"] == "kakao_failed"

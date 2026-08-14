@@ -48,6 +48,9 @@ async def test_health_ok(client, monkeypatch):
 
     assert response.status_code == 200
     assert response.json() == {"status": "ok", "db": "ok", "redis": "ok"}
+    assert response.headers["x-content-type-options"] == "nosniff"
+    assert response.headers["x-frame-options"] == "DENY"
+    assert response.headers["referrer-policy"] == "no-referrer"
     assert redis.closed is True
 
 

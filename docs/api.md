@@ -10,7 +10,7 @@
 | 메서드·경로 | 인증 | 동작 |
 | --- | --- | --- |
 | `GET /auth/{provider}/authorize` | — | 제공자 인가 URL 반환. provider: `kakao`\|`google`\|`mock`(dev) |
-| `GET /auth/{provider}/callback?code=` | — | 기가입자: access_token + refresh 쿠키, `is_new_user:false` / 신규: `signup_token`(30분), `is_new_user:true` |
+| `GET /auth/{provider}/callback?code=&state=` | — | authorize에서 발급한 1회용 state 검증. 기가입자: access_token + refresh 쿠키, `is_new_user:false` / 신규: `signup_token`(30분), `is_new_user:true` |
 | `POST /auth/signup` | signup_token | `{signup_token, nickname, birth_date, ui_mode, agreements:{terms,privacy,ai_notice}}` → 201. 검증: 약관 3종 필수(400) → 만14세(400) → 30일 재가입 제한(403) → 닉네임 2~12자·금칙어(400)·중복(409). 미성년이면 `stranger_requests_allowed=false`로 시작 |
 | `POST /auth/refresh` | refresh 쿠키 | access_token 재발급 |
 | `POST /auth/logout` | ✓ | refresh 쿠키 폐기 |
@@ -34,12 +34,12 @@
 | 메서드·경로 | 동작 |
 | --- | --- |
 | `GET /feed?cursor=&limit=&category=&q=` | published만·차단 상호 제외·최신순 커서. category=`daily\|info\|hobby\|concern\|meetup`, q=제목·본문 부분 검색 |
-| `POST /posts` | 텍스트·사진 게시물 `{title, category, content, media_ids?}` → 즉시 published. 제목 1~100자, 카테고리 필수, 사진 최대 3장 |
+| `POST /posts` | 텍스트·사진 게시물 `{title, category, content, media_ids?}` → 즉시 published. 제목 1~100자, 본문 1~10,000자, 카테고리 필수, 사진 최대 3장 |
 | `GET /posts/{id}` / `PATCH` / `DELETE` | 상세·수정·삭제(작성자만) |
 | `POST /posts/{id}/publish` | 영상 드래프트 게시. `{title,category,content,allow_no_caption?}`. 자막 done→공개, failed면 `allow_no_caption:true` 필요 |
 | `POST /posts/{id}/caption/retry` | 자막 `failed`인 비공개 영상 드래프트만 재시도 → 202 `{caption_status:"processing"}`. 다시 일일 한도 예약 |
 | `POST /posts/{id}/like` / `DELETE .../like` | 멱등 좋아요 |
-| `GET /posts/{id}/comments` / `POST` / `PATCH /comments/{id}` / `DELETE` | 댓글 CRUD |
+| `GET /posts/{id}/comments` / `POST` / `PATCH /comments/{id}` / `DELETE` | 댓글 CRUD. 공백 제거 후 1~2,000자 |
 
 ## media (VISION-01 · CAPTION-01 · VIS-03)
 
@@ -67,7 +67,7 @@
 | --- | --- |
 | `GET /chat/rooms?q=` / `GET /chat/requests` | active 방 / 요청함. 최근 표시 가능 메시지순, `last_message`, `last_activity_at`, `counterpart_online`, `unread_count`, `unread_total` 포함. q=상대 닉네임 검색 |
 | `POST /chat/rooms` | `{user_id}` — 친구=active, 비친구=request(수신자 허용 설정·미성년 보호 검증, 사유 비노출 404) |
-| `POST /chat/rooms/{id}/messages` | 텍스트 전송 — SAFE 동기 분석 후 저장·전달. 발신자 응답에 판정 없음. request 방은 수락 전 1건 제한. SAFE-05 제한 중 403 `메시지를 보낼 수 없습니다` |
+| `POST /chat/rooms/{id}/messages` | 1~2,000자 텍스트 전송 — SAFE 동기 분석 후 저장·전달. 발신자 응답에 판정 없음. request 방은 수락 전 1건 제한. SAFE-05 제한 중 403 `메시지를 보낼 수 없습니다` |
 | `POST /chat/rooms/{id}/media` | 사진·영상 — 친구 방만, 미성년-성인 403(§4.5). 즉시 전달 후 설명·자막 비동기 부착. 완료·실패 시 송수신자 모두 알림 |
 | `GET /chat/rooms/{id}/messages?cursor=` | 수신자 관점: flagged & 미열람 → `content:null, blurred:true`. 최신 페이지 조회는 표시 가능한 수신 메시지를 읽음 처리하며, 발신자 메시지 중 상대의 마지막 읽음 메시지만 `is_read:true` |
 | `POST /chat/messages/{id}/reveal` | 내용 보기(수신자만) → 원문 반환 |

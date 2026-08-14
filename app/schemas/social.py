@@ -4,9 +4,10 @@ from datetime import datetime
 from pydantic import BaseModel
 
 from app.schemas.post import AuthorOut
+from app.schemas.common import StrictRequest
 
 
-class FriendRequestIn(BaseModel):
+class FriendRequestIn(StrictRequest):
     receiver_id: uuid.UUID
 
 
@@ -27,7 +28,7 @@ class FriendListOut(BaseModel):
     items: list[AuthorOut]
 
 
-class BlockIn(BaseModel):
+class BlockIn(StrictRequest):
     user_id: uuid.UUID
 
 

@@ -150,3 +150,45 @@ async def test_post_contract_rejects_missing_or_blank_metadata(client):
         headers=headers,
     )
     assert invalid.status_code == 422
+    typo = await client.post(
+        "/api/v1/posts",
+        json={
+            "title": "제목",
+            "category": "daily",
+            "content": "본문",
+            "catgory": "info",
+        },
+        headers=headers,
+    )
+    assert typo.status_code == 422
+
+
+async def test_post_and_comment_input_limits(client):
+    user = await register(client, "입력상한유저")
+    headers = auth_header(user["access_token"])
+    too_long = await client.post(
+        "/api/v1/posts",
+        json={"title": "긴 글", "category": "daily", "content": "가" * 10001},
+        headers=headers,
+    )
+    assert too_long.status_code == 422
+    too_many_media = await client.post(
+        "/api/v1/posts",
+        json={
+            "title": "사진 수",
+            "category": "daily",
+            "content": "본문",
+            "media_ids": [str(uuid.uuid4()) for _ in range(4)],
+        },
+        headers=headers,
+    )
+    assert too_many_media.status_code == 422
+
+    post = await _post(client, headers, "댓글 상한 검사")
+    for content in ("   ", "댓" * 2001):
+        response = await client.post(
+            f"/api/v1/posts/{post['id']}/comments",
+            json={"content": content},
+            headers=headers,
+        )
+        assert response.status_code == 422

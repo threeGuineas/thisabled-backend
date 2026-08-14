@@ -25,3 +25,11 @@ def get_redis_client() -> aioredis.Redis:
 async def get_redis() -> aioredis.Redis:
     """FastAPI 의존성. 테스트에서 override 가능하도록 분리."""
     return get_redis_client()
+
+
+async def close_redis_client() -> None:
+    """현재 워커 이벤트 루프의 연결 풀을 애플리케이션 종료 시 정리한다."""
+    loop = asyncio.get_running_loop()
+    client = _clients.pop(loop, None)
+    if client is not None:
+        await client.aclose()

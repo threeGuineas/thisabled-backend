@@ -40,6 +40,7 @@ class Settings(BaseSettings):
     # 콜백 결과를 302로 돌려보낼 프론트 SPA 오리진
     FRONTEND_URL: str = "http://localhost:5173"
     SIGNUP_TOKEN_EXPIRE_MINUTES: int = 30
+    OAUTH_STATE_TTL_SECONDS: int = 10 * 60
     REJOIN_BLOCK_DAYS: int = 30  # §15 탈퇴 후 재가입 제한
 
     # SAFE — 자체 안전 모델 (별도 모델 서버 HTTP 경계)

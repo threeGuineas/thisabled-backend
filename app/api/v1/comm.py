@@ -12,13 +12,14 @@ from app.core.deps import get_current_user
 from app.core.enums import MessageType, PostStatus, SafetyStatus
 from app.db.session import get_db
 from app.models import ChatMessage, ChatRoom, Comment, Post, User
+from app.schemas.common import StrictRequest
 from app.services.comm import CommUnavailable, get_comm_client
 from app.services.relations import is_blocked_either
 
 router = APIRouter(prefix="/comm", tags=["comm"])
 
 
-class TextIn(BaseModel):
+class TextIn(StrictRequest):
     text: str = Field(min_length=1, max_length=2000)
 
 
@@ -31,11 +32,11 @@ class SuggestionsOut(BaseModel):
     suggestions: list[str]
 
 
-class RoomIn(BaseModel):
+class RoomIn(StrictRequest):
     room_id: uuid.UUID
 
 
-class PostIn(BaseModel):
+class PostIn(StrictRequest):
     post_id: uuid.UUID
 
 

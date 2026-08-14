@@ -12,6 +12,7 @@ from datetime import datetime, timedelta, timezone
 from urllib.parse import urlencode
 
 import httpx
+import redis.asyncio as aioredis
 from fastapi import APIRouter, Cookie, Depends, HTTPException, Response
 from fastapi.responses import RedirectResponse
 from jwt.exceptions import PyJWTError as JWTError
@@ -27,6 +28,7 @@ from app.core.security import (
     decode_signup_token,
     decode_token,
 )
+from app.db.redis import get_redis
 from app.db.session import get_db
 from app.models import SocialIdentity, User, WithdrawnSocial
 from app.schemas.auth import AccessTokenOut, AuthorizeOut, SignupIn, TokenOut
@@ -36,6 +38,10 @@ from app.services.oauth import get_provider
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 _REFRESH_COOKIE = "refresh_token"
+
+
+def _oauth_state_key(provider: str, state: str) -> str:
+    return f"oauth:state:{provider}:{state}"
 
 
 def _set_refresh_cookie(response: Response, user_id: uuid.UUID) -> None:
@@ -52,9 +58,15 @@ def _set_refresh_cookie(response: Response, user_id: uuid.UUID) -> None:
 
 
 @router.get("/{provider}/authorize", response_model=AuthorizeOut)
-async def authorize(provider: str):
+async def authorize(provider: str, redis: aioredis.Redis = Depends(get_redis)):
     p = get_provider(provider)
-    return AuthorizeOut(authorize_url=p.authorize_url(state=secrets.token_urlsafe(16)))
+    state = secrets.token_urlsafe(32)
+    await redis.set(
+        _oauth_state_key(provider, state),
+        "1",
+        ex=settings.OAUTH_STATE_TTL_SECONDS,
+    )
+    return AuthorizeOut(authorize_url=p.authorize_url(state=state))
 
 
 def _frontend_redirect(**params: str) -> RedirectResponse:
@@ -69,9 +81,19 @@ async def callback(
     provider: str,
     code: str | None = None,
     error: str | None = None,
+    state: str | None = None,
     db: AsyncSession = Depends(get_db),
+    redis: aioredis.Redis = Depends(get_redis),
 ):
     p = get_provider(provider)
+    # 개발용 mock 직접 콜백을 제외하면 authorize에서 발급한 state를 한 번만 허용한다.
+    if not settings.OAUTH_MOCK:
+        valid_state = (
+            state is not None
+            and await redis.getdel(_oauth_state_key(provider, state)) is not None
+        )
+        if not valid_state:
+            return _frontend_redirect(error=f"{provider}_failed")
     if error is not None or code is None:
         # 사용자가 동의 화면에서 거부했거나 제공자가 error로 돌려보낸 경우
         return _frontend_redirect(error=f"{provider}_failed")

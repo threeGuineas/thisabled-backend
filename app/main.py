@@ -1,7 +1,7 @@
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
@@ -33,7 +33,7 @@ tags_metadata = [
             "(기가입자 `?is_new_user=false&access_token=…`, 신규 `?is_new_user=true&signup_token=…`(30분), "
             "오류·거부 `?error={provider}_failed`). "
             "**access_token**(24h)은 쿼리/body, **refresh_token**(30d)은 httpOnly 쿠키. "
-            "dev는 mock 제공자(code=`mock:<uid>`), 실키는 환경변수 교체."
+            "실제 제공자는 10분·1회용 state를 검증합니다. dev는 mock 제공자(code=`mock:<uid>`), 실키는 환경변수 교체."
         ),
     },
     {
@@ -59,12 +59,12 @@ tags_metadata = [
     {
         "name": "chat",
         "description": (
-            "1:1 채팅 (CHAT-01~03) + AI 안심 채팅 (SAFE-01~05). 텍스트는 동기 분석 후 전달, "
+            "1:1 채팅 (CHAT-01~05) + AI 안심 채팅 (SAFE-01~05). 텍스트는 동기 분석 후 전달, "
             "주의는 수신자 블러+내용 보기. 3일 3회 누적 시 관계 단위 전송 제한(수신자 해제=리셋). "
             "사진·동영상은 분석 없이 즉시 전달, 미성년-성인 채팅은 텍스트만(§4.5)."
         ),
     },
-    {"name": "ws", "description": "WS /api/v1/ws?token=<access> — 새 메시지·알림 실시간 푸시 (Redis pub/sub)."},
+    {"name": "ws", "description": "WS /api/v1/ws?token=<access> — 새 메시지·알림·통화 시그널 실시간 푸시 (Redis pub/sub)."},
     {"name": "notifications", "description": "§16 알림 목록·읽음. 생성 시 WS 푸시 병행."},
     {
         "name": "recommendations",
@@ -136,10 +136,14 @@ async def lifespan(app: FastAPI):
     Path(settings.UPLOAD_DIR).mkdir(parents=True, exist_ok=True)
     # 24h 드래프트 청소 등 인프로세스 크론 (테스트는 lifespan 미실행이라 영향 없음)
     from app.services.scheduler import start_scheduler, stop_scheduler
+    from app.db.redis import close_redis_client
 
     start_scheduler()
-    yield
-    stop_scheduler()
+    try:
+        yield
+    finally:
+        stop_scheduler()
+        await close_redis_client()
 
 
 app = FastAPI(
@@ -159,6 +163,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def add_security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("X-Frame-Options", "DENY")
+    response.headers.setdefault("Referrer-Policy", "no-referrer")
+    if settings.COOKIE_SECURE:
+        response.headers.setdefault(
+            "Strict-Transport-Security", "max-age=31536000; includeSubDomains"
+        )
+    return response
 
 app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
 

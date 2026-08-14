@@ -5,9 +5,15 @@ from typing import Annotated
 from pydantic import BaseModel, Field, StringConstraints, model_validator
 
 from app.core.enums import PostCategory
+from app.schemas.common import StrictRequest
 
 PostTitle = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100)]
-PostContent = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1)]
+PostContent = Annotated[
+    str, StringConstraints(strip_whitespace=True, min_length=1, max_length=10_000)
+]
+CommentContent = Annotated[
+    str, StringConstraints(strip_whitespace=True, min_length=1, max_length=2_000)
+]
 
 
 class AuthorOut(BaseModel):
@@ -49,14 +55,14 @@ class FeedOut(BaseModel):
     next_cursor: str | None = None
 
 
-class PostCreateIn(BaseModel):
+class PostCreateIn(StrictRequest):
     title: PostTitle
     category: PostCategory
     content: PostContent
-    media_ids: list[uuid.UUID] = Field(default_factory=list)
+    media_ids: list[uuid.UUID] = Field(default_factory=list, max_length=3)
 
 
-class PostPatchIn(BaseModel):
+class PostPatchIn(StrictRequest):
     title: PostTitle | None = None
     category: PostCategory | None = None
     content: PostContent | None = None
@@ -87,5 +93,5 @@ class CommentListOut(BaseModel):
     items: list[CommentOut]
 
 
-class CommentIn(BaseModel):
-    content: str = Field(min_length=1)
+class CommentIn(StrictRequest):
+    content: CommentContent

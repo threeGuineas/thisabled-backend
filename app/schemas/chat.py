@@ -1,14 +1,19 @@
 import uuid
 from datetime import datetime
-from typing import Any
+from typing import Annotated, Any
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, StringConstraints, model_validator
 
 from app.core.enums import CallKind, CallSignalType
 from app.schemas.post import AuthorOut
+from app.schemas.common import StrictRequest
+
+ChatContent = Annotated[
+    str, StringConstraints(strip_whitespace=True, min_length=1, max_length=2_000)
+]
 
 
-class RoomCreateIn(BaseModel):
+class RoomCreateIn(StrictRequest):
     user_id: uuid.UUID
 
 
@@ -41,8 +46,8 @@ class RoomListOut(BaseModel):
     unread_total: int = 0
 
 
-class MessageIn(BaseModel):
-    content: str = Field(min_length=1)
+class MessageIn(StrictRequest):
+    content: ChatContent
 
 
 class MessageOut(BaseModel):
@@ -78,9 +83,7 @@ class RevealOut(BaseModel):
     content: str
 
 
-class CallCreateIn(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
+class CallCreateIn(StrictRequest):
     kind: CallKind
 
 
@@ -95,9 +98,7 @@ class CallOut(BaseModel):
     expires_at: datetime
 
 
-class CallSignalIn(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
+class CallSignalIn(StrictRequest):
     type: CallSignalType
     data: dict[str, Any] | None = None
 

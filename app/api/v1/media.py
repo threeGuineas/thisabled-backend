@@ -45,24 +45,36 @@ async def upload_images(
     """사진 업로드 (post 미연결) — POST /posts 의 media_ids로 연결한다."""
     if len(files) > MAX_IMAGES:
         raise HTTPException(status_code=400, detail=f"사진은 최대 {MAX_IMAGES}장까지 업로드할 수 있습니다")
-    items: list[UploadedMediaOut] = []
+    prepared: list[tuple[bytes, str]] = []
     for f in files:
         if f.content_type not in ALLOWED_CONTENT_TYPES:
             raise HTTPException(status_code=400, detail="지원하지 않는 이미지 형식입니다")
         data = await f.read()
         if len(data) > settings.MAX_UPLOAD_MB * 1024 * 1024:
             raise HTTPException(status_code=413, detail=f"이미지는 {settings.MAX_UPLOAD_MB}MB 이하만 가능합니다")
-        url = await save_upload(data, f.content_type)
-        media = PostMedia(
-            id=uuid.uuid4(),
-            uploader_id=user.id,
-            media_type=MediaType.image.value,
-            url=url,
-            media_hash=ai_media.media_hash_of(data),
-        )
-        db.add(media)
-        items.append(UploadedMediaOut(media_id=media.id, url=url))
-    await db.commit()
+        prepared.append((data, f.content_type))
+
+    items: list[UploadedMediaOut] = []
+    saved_urls: list[str] = []
+    try:
+        for data, content_type in prepared:
+            url = await save_upload(data, content_type)
+            saved_urls.append(url)
+            media = PostMedia(
+                id=uuid.uuid4(),
+                uploader_id=user.id,
+                media_type=MediaType.image.value,
+                url=url,
+                media_hash=ai_media.media_hash_of(data),
+            )
+            db.add(media)
+            items.append(UploadedMediaOut(media_id=media.id, url=url))
+        await db.commit()
+    except Exception:
+        await db.rollback()
+        for url in saved_urls:
+            delete_upload(url)
+        raise
     return ImageUploadOut(items=items)
 
 

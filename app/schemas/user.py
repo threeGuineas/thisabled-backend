@@ -1,9 +1,10 @@
 import uuid
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 from app.core.enums import UiMode
+from app.schemas.common import StrictRequest
 
 
 class TagOut(BaseModel):
@@ -34,9 +35,7 @@ class NotificationSettingsOut(BaseModel):
     ai_results: bool = True
 
 
-class NotificationSettingsPatch(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
+class NotificationSettingsPatch(StrictRequest):
     friend_activity: bool | None = None
     post_activity: bool | None = None
     chat_activity: bool | None = None
@@ -71,27 +70,27 @@ class PublicProfileOut(BaseModel):
     relationship: ProfileRelationshipOut
 
 
-class ProfilePatchIn(BaseModel):
+class ProfilePatchIn(StrictRequest):
     nickname: str | None = Field(default=None, min_length=2, max_length=12)
     bio: str | None = Field(default=None, max_length=300)
-    profile_image_url: str | None = None
+    profile_image_url: str | None = Field(default=None, max_length=2048)
 
 
-class TagsPutIn(BaseModel):
+class TagsPutIn(StrictRequest):
     tag_codes: list[str]
 
 
-class SettingsPatchIn(BaseModel):
+class SettingsPatchIn(StrictRequest):
     stranger_requests_allowed: bool | None = None
     mode_settings: dict | None = None
     notification_settings: NotificationSettingsPatch | None = None
 
 
-class ModePutIn(BaseModel):
+class ModePutIn(StrictRequest):
     ui_mode: UiMode
 
 
-class WithdrawIn(BaseModel):
+class WithdrawIn(StrictRequest):
     """§15: 게시물·댓글을 '탈퇴한 사용자'로 남길지 함께 지울지 탈퇴 화면에서 선택."""
 
     posts_action: Literal["anonymize", "delete"] = "anonymize"

@@ -32,6 +32,12 @@ def _force_oauth_mock():
     settings.OAUTH_MOCK = original
 
 
+@pytest.fixture(autouse=True)
+def _isolate_upload_directory(tmp_path, monkeypatch):
+    """미디어 테스트가 Docker 전용 기본 경로(`/app/uploads`)에 쓰지 않도록 격리한다."""
+    monkeypatch.setattr(settings, "UPLOAD_DIR", str(tmp_path / "uploads"))
+
+
 def _test_redis_url() -> str:
     # 운영 db(0) 대신 테스트용 db(1) 사용
     base = settings.REDIS_URL.rsplit("/", 1)[0]

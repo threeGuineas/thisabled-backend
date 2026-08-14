@@ -10,7 +10,7 @@ import uuid
 
 import redis.asyncio as aioredis
 from fastapi import APIRouter, Depends, Query, WebSocket, WebSocketDisconnect
-from jose import JWTError
+from jwt.exceptions import PyJWTError as JWTError
 
 from app.core.security import decode_token
 from app.db.redis import get_redis

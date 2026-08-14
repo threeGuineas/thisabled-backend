@@ -1,14 +1,27 @@
 FROM python:3.11-slim
 
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.11.26 /uv /uvx /bin/
 
 WORKDIR /app
+ENV PATH="/app/.venv/bin:$PATH" \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy
 
-COPY pyproject.toml .
-RUN uv pip install --system .
-# 테스트 의존성 (dev 그룹). 개발 이미지 기준 — 운영 분리 시 build arg 로 분기 예정
-RUN uv pip install --system pytest==8.2.0 pytest-asyncio==0.23.6
+ARG INSTALL_DEV=true
+COPY pyproject.toml uv.lock ./
+RUN if [ "$INSTALL_DEV" = "true" ]; then \
+        uv sync --frozen --all-groups --no-install-project; \
+    else \
+        uv sync --frozen --no-dev --no-install-project; \
+    fi
 
-COPY . .
+RUN groupadd --system --gid 10001 app \
+    && useradd --system --uid 10001 --gid app --home-dir /app app
+COPY --chown=app:app . .
+RUN mkdir -p /app/uploads && chown app:app /app/uploads
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+USER app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

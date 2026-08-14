@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     DATABASE_URL: str
+    TEST_DATABASE_URL: str | None = None
     REDIS_URL: str
     SECRET_KEY: str
     ALGORITHM: str = "HS256"
@@ -61,6 +62,10 @@ class Settings(BaseSettings):
 
     # COMM-05: 버튼 실행 시 외부 LLM에 전달하는 최근 메시지 수
     COMM_CONTEXT_MESSAGES: int = 10
+    COMM_MODEL: str = "gpt-4o"
+    COMM_MAX_TOKENS: int = 300
+    COMM_TIMEOUT_SECONDS: float = 15.0
+    COMM_RETRY_MAX: int = 2
 
     @property
     def cors_origins(self) -> list[str]:

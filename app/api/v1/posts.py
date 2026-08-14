@@ -131,7 +131,7 @@ async def create_post(
     body: PostCreateIn,
     background: BackgroundTasks,
     user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_db, scope="function"),
     redis: aioredis.Redis = Depends(get_redis),
     session_factory: async_sessionmaker = Depends(get_session_factory),
     describe_caller=Depends(ai_media.get_describe_caller),

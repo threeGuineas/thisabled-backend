@@ -1,5 +1,6 @@
 """VISION-01 사진 설명 · CAPTION-01 영상 자막 · VIS-03 음성 입력 · 24h 드래프트 청소."""
 
+import asyncio
 import uuid
 from datetime import datetime, timedelta, timezone
 
@@ -48,6 +49,17 @@ async def _upload_images(client, h, n=1, name_prefix="img"):
     return await client.post("/api/v1/media/images", files=files, headers=h)
 
 
+async def _wait_media_status(db, media_id: str, expected: str) -> PostMedia:
+    """새 Starlette에서는 응답 본문 뒤 background task가 별도 스케줄될 수 있어 완료를 기다린다."""
+    # 테스트는 모든 세션이 한 DB 커넥션을 공유한다. 잡이 커밋하기 전에 조회를 시작하면
+    # 커넥션을 선점하므로, fake 잡이 먼저 실행될 기회를 준 뒤 상태를 읽는다.
+    await asyncio.sleep(0.05)
+    media = await db.get(PostMedia, uuid.UUID(media_id))
+    await db.refresh(media)
+    assert media.description_status == expected
+    return media
+
+
 async def test_image_upload_limit_3(client, fake_ai):
     u = await register(client, "사진업로더")
     h = auth_header(u["access_token"])
@@ -62,9 +74,9 @@ async def test_photo_post_gets_description_on_publish(client, db, fake_ai):
     media_id = up.json()["items"][0]["media_id"]
     resp = await client.post("/api/v1/posts", json={"content": "사진 글", "media_ids": [media_id]}, headers=h)
     assert resp.status_code == 201
+    assert fake_ai["describe"].calls == 1
 
-    media = await db.get(PostMedia, uuid.UUID(media_id))
-    await db.refresh(media)
+    media = await _wait_media_status(db, media_id, "done")
     assert media.description_status == "done"
     assert media.description == "파란 하늘 아래 공원 사진"
     assert fake_ai["describe"].calls == 1
@@ -81,6 +93,7 @@ async def test_same_image_hash_uses_cache(client, db, fake_ai):
         mid = up.json()["items"][0]["media_id"]
         r = await client.post("/api/v1/posts", json={"content": "글", "media_ids": [mid]}, headers=h)
         assert r.status_code == 201
+        await _wait_media_status(db, mid, "done")
     assert fake_ai["describe"].calls == 1  # 두 번째는 ai_result_cache 적중
 
 
@@ -96,8 +109,7 @@ async def test_vision_quota_exceeded_publishes_without_description(client, db, t
     resp = await client.post("/api/v1/posts", json={"content": "한도 글", "media_ids": [mid]}, headers=h)
     assert resp.status_code == 201  # 설명 없이 게시 정상 (VISION-01 예외)
 
-    media = await db.get(PostMedia, uuid.UUID(mid))
-    await db.refresh(media)
+    media = await _wait_media_status(db, mid, "failed")
     assert media.description is None
     assert media.description_status == "failed"
     assert fake_ai["describe"].calls == 0

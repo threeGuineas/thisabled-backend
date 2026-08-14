@@ -1,6 +1,9 @@
 """v2.1 명세 고정값이 Settings에 반영되어 있는지 검증."""
 
+from sqlalchemy.engine import make_url
+
 from app.core.config import Settings, settings
+from tests.conftest import _test_database_url
 
 
 def test_v2_1_settings_defaults():
@@ -28,3 +31,7 @@ def test_settings_ignores_compose_only_env_vars(monkeypatch):
     monkeypatch.setenv("POSTGRES_PASSWORD", "irrelevant-to-app")
     monkeypatch.setenv("REDIS_PASSWORD", "irrelevant-to-app")
     Settings(DATABASE_URL=settings.DATABASE_URL, REDIS_URL=settings.REDIS_URL, SECRET_KEY=settings.SECRET_KEY)
+
+
+def test_tests_always_use_test_database():
+    assert make_url(_test_database_url()).database.endswith("_test")

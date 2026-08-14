@@ -12,6 +12,7 @@ import pytest
 import pytest_asyncio
 import redis.asyncio as aioredis
 from httpx import ASGITransport, AsyncClient
+from sqlalchemy.engine import make_url
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 import app.models  # noqa: F401 — ORM 모델 등록
@@ -37,9 +38,20 @@ def _test_redis_url() -> str:
     return f"{base}/1"
 
 
+def _test_database_url() -> str:
+    """테스트 전용 DB만 허용한다. 명시값이 없으면 현재 DB명에 `_test`를 붙인다."""
+    source = make_url(settings.TEST_DATABASE_URL or settings.DATABASE_URL)
+    if settings.TEST_DATABASE_URL is None and source.database:
+        database = source.database if source.database.endswith("_test") else f"{source.database}_test"
+        source = source.set(database=database)
+    if not source.database or not source.database.endswith("_test"):
+        raise RuntimeError("테스트 DB 이름은 반드시 _test로 끝나야 합니다")
+    return source.render_as_string(hide_password=False)
+
+
 @pytest_asyncio.fixture
 async def _conn():
-    engine = create_async_engine(settings.DATABASE_URL)
+    engine = create_async_engine(_test_database_url())
     connection = await engine.connect()
     trans = await connection.begin()
     yield connection
@@ -58,10 +70,28 @@ async def _session_factory(_conn):
 
 
 @pytest_asyncio.fixture
-async def db(_session_factory):
-    """테스트가 직접 DB를 만질 때 사용 — client와 같은 커넥션을 공유한다."""
+async def _session(_session_factory):
     async with _session_factory() as session:
         yield session
+
+
+@pytest_asyncio.fixture
+async def db(_session):
+    """테스트와 API 요청이 같은 세션을 사용해 중첩 savepoint 간 간섭을 막는다."""
+    yield _session
+
+
+class _BorrowedSession:
+    """백그라운드 잡이 테스트 공유 세션을 닫지 않도록 하는 async context manager."""
+
+    def __init__(self, session):
+        self.session = session
+
+    async def __aenter__(self):
+        return self.session
+
+    async def __aexit__(self, *_args):
+        return None
 
 
 @pytest_asyncio.fixture
@@ -73,17 +103,18 @@ async def test_redis():
 
 
 @pytest_asyncio.fixture
-async def client(_session_factory, test_redis):
+async def client(_session, test_redis):
     async def override_get_db():
-        async with _session_factory() as session:
-            yield session
+        yield _session
 
     async def override_get_redis():
         return test_redis
 
     app.dependency_overrides[get_db] = override_get_db
     app.dependency_overrides[get_redis] = override_get_redis
-    app.dependency_overrides[get_session_factory] = lambda: _session_factory
+    app.dependency_overrides[get_session_factory] = lambda: (
+        lambda: _BorrowedSession(_session)
+    )
     # https: COOKIE_SECURE=true 환경에서도 Secure 쿠키(refresh)가 전송되도록
     async with AsyncClient(transport=ASGITransport(app=app), base_url="https://test") as c:
         yield c

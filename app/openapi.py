@@ -140,9 +140,15 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ("patch", "/api/v1/users/me/settings"): _guide(
         "내 설정 수정",
         "보낸 설정만 변경합니다. `mode_settings`는 선택한 접근성 UI의 세부 설정을 저장하는 JSON 객체입니다. "
-        "미성년자의 초기 비친구 요청 차단도 사용자가 여기서 변경할 수 있습니다.",
+        "미성년자의 초기 비친구 요청 차단도 사용자가 여기서 변경할 수 있습니다. `notification_settings`는 "
+        "`friend_activity`, `post_activity`, `chat_activity`, `ai_results` 네 그룹을 부분 수정합니다. 알 수 없는 "
+        "그룹 키는 422이며, `chat.flagged`와 `chat.restricted` 안전 알림은 설정과 무관하게 항상 전달됩니다.",
         "200과 변경 후 전체 내 프로필을 반환합니다.",
-        request={"stranger_requests_allowed": False, "mode_settings": {"font_scale": 1.2, "simple_labels": True}},
+        request={
+            "stranger_requests_allowed": False,
+            "mode_settings": {"font_scale": 1.2, "simple_labels": True},
+            "notification_settings": {"post_activity": False, "ai_results": True},
+        },
     ),
     ("put", "/api/v1/users/me/mode"): _guide(
         "UI 모드 변경",
@@ -440,7 +446,8 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ("get", "/api/v1/notifications"): _guide(
         "알림 목록 조회",
         "최신순으로 최대 `limit`개를 조회합니다. `read_at=null`이면 읽지 않은 알림입니다. payload 구조는 `type`에 "
-        "따라 달라지므로 알 수 없는 타입도 안전하게 무시하거나 기본 알림으로 표시하세요.",
+        "따라 달라지므로 알 수 없는 타입도 안전하게 무시하거나 기본 알림으로 표시하세요. 사용자가 설정에서 끈 "
+        "그룹의 일반 알림은 저장·푸시되지 않습니다. 주의 메시지와 전송 제한은 끌 수 없는 안전 알림입니다.",
         "200과 알림 `items`를 반환합니다.",
     ),
     ("post", "/api/v1/notifications/read"): _guide(

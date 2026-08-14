@@ -20,6 +20,12 @@ async def test_me_includes_profile_and_derived_minor(client):
         "comment_count": 0,
         "received_like_count": 0,
     }
+    assert me["notification_settings"] == {
+        "friend_activity": True,
+        "post_activity": True,
+        "chat_activity": True,
+        "ai_results": True,
+    }
 
 
 async def test_patch_me_rejects_contact_in_bio(client):
@@ -77,12 +83,29 @@ async def test_settings_update(client):
     h = auth_header(body["access_token"])
     resp = await client.patch(
         "/api/v1/users/me/settings",
-        json={"stranger_requests_allowed": False, "mode_settings": {"font_scale": 1.5}},
+        json={
+            "stranger_requests_allowed": False,
+            "mode_settings": {"font_scale": 1.5},
+            "notification_settings": {"post_activity": False},
+        },
         headers=h,
     )
     assert resp.status_code == 200
     assert resp.json()["stranger_requests_allowed"] is False
     assert resp.json()["mode_settings"] == {"font_scale": 1.5}
+    assert resp.json()["notification_settings"] == {
+        "friend_activity": True,
+        "post_activity": False,
+        "chat_activity": True,
+        "ai_results": True,
+    }
+
+    invalid = await client.patch(
+        "/api/v1/users/me/settings",
+        json={"notification_settings": {"unknown_group": False}},
+        headers=h,
+    )
+    assert invalid.status_code == 422
 
 
 async def test_public_profile_hides_mode_and_birth(client):

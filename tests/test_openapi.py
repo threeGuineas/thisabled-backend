@@ -128,3 +128,20 @@ def test_chat_room_list_documents_projection_and_search():
     assert "닉네임" in parameters["q"]["description"]
     room_schema = schema["components"]["schemas"]["RoomOut"]["properties"]
     assert {"last_message", "last_activity_at", "counterpart_online"} <= room_schema.keys()
+
+
+def test_notification_preferences_are_explicit_and_strict():
+    schema = _schema()
+    settings = schema["paths"]["/api/v1/users/me/settings"]["patch"]
+    example = settings["requestBody"]["content"]["application/json"]["example"]
+    assert example["notification_settings"]["post_activity"] is False
+    assert "안전 알림" in settings["description"]
+
+    patch_schema = schema["components"]["schemas"]["NotificationSettingsPatch"]
+    assert patch_schema["additionalProperties"] is False
+    assert {
+        "friend_activity",
+        "post_activity",
+        "chat_activity",
+        "ai_results",
+    } <= patch_schema["properties"].keys()

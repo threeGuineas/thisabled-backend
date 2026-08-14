@@ -68,6 +68,7 @@ async def _me_out(db: AsyncSession, user: User) -> MeOut:
         is_minor=is_minor(user.birth_date),
         stranger_requests_allowed=user.stranger_requests_allowed,
         mode_settings=user.mode_settings,
+        notification_settings=user.notification_settings,
         tags=await _user_tags(db, user.id),
         stats=await activity_stats(db, user.id),
     )
@@ -135,6 +136,10 @@ async def patch_settings(
         user.stranger_requests_allowed = body.stranger_requests_allowed
     if body.mode_settings is not None:
         user.mode_settings = body.mode_settings
+    if body.notification_settings is not None:
+        current = dict(user.notification_settings or {})
+        current.update(body.notification_settings.model_dump(exclude_none=True))
+        user.notification_settings = current
     await db.commit()
     return await _me_out(db, user)
 

@@ -23,7 +23,7 @@
 | `PATCH /users/me` | nickname/bio/profile_image_url. bio 연락처 패턴(전화·이메일·카톡ID) 400 (MATCH-02-7) |
 | `GET /tags` | TAG-01 카탈로그 (인증 불요) |
 | `PUT /users/me/tags` | `{tag_codes:[...]}` 전체 교체, 최대 10개 |
-| `PATCH /users/me/settings` | `{stranger_requests_allowed?, mode_settings?}` |
+| `PATCH /users/me/settings` | 부분 수정. `{stranger_requests_allowed?, mode_settings?, notification_settings?:{friend_activity?,post_activity?,chat_activity?,ai_results?}}`. 알 수 없는 알림 키는 422 |
 | `PUT /users/me/mode` | `{ui_mode}` — user_mode_history 기록 |
 | `GET /users/{id}` | 타인 프로필+활동 `stats`+친구 `relationship`. ui_mode·생년월일 비노출. 차단 관계 404 |
 | `GET /users/{id}/posts?cursor=&limit=` | 사용자의 공개 작성 게시물 최신순 목록. 차단 관계 404 |
@@ -100,3 +100,5 @@ SAFE 장애 시(§18.3): 친구 텍스트=`unanalyzed`로 전달, 비친구=`pen
 | --- | --- |
 | `GET /notifications?cursor=` / `POST /notifications/read` | 목록·읽음 |
 | `WS /api/v1/ws?token=` | 실시간 푸시 `{type, payload}` — chat.message, notification 등 |
+
+알림 그룹을 끄면 해당 일반 알림은 DB와 WebSocket 모두 생성하지 않는다. `chat.flagged`, `chat.restricted`는 안전 필수 알림이라 끌 수 없다.

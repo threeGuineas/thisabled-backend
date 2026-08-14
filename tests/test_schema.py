@@ -27,7 +27,8 @@ def test_users_v3_columns():
     assert "recovery_code_hash" not in cols
     assert "trust_score" not in cols
     assert {"birth_date", "ui_mode", "bio", "profile_image_url",
-            "stranger_requests_allowed", "mode_settings", "risk_score"} <= cols
+            "stranger_requests_allowed", "mode_settings", "notification_settings",
+            "risk_score"} <= cols
 
 
 def test_anonymizable_fks_nullable():

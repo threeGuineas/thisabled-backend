@@ -1,7 +1,7 @@
 import uuid
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from app.core.enums import UiMode
 
@@ -27,6 +27,22 @@ class ProfileRelationshipOut(BaseModel):
     request_id: uuid.UUID | None = None
 
 
+class NotificationSettingsOut(BaseModel):
+    friend_activity: bool = True
+    post_activity: bool = True
+    chat_activity: bool = True
+    ai_results: bool = True
+
+
+class NotificationSettingsPatch(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    friend_activity: bool | None = None
+    post_activity: bool | None = None
+    chat_activity: bool | None = None
+    ai_results: bool | None = None
+
+
 class MeOut(BaseModel):
     """본인 조회 — ui_mode·is_minor 등 민감 파생값 포함 (타인 조회와 분리)."""
 
@@ -38,6 +54,7 @@ class MeOut(BaseModel):
     is_minor: bool
     stranger_requests_allowed: bool
     mode_settings: dict
+    notification_settings: NotificationSettingsOut
     tags: list[TagOut]
     stats: ProfileStatsOut
 
@@ -67,6 +84,7 @@ class TagsPutIn(BaseModel):
 class SettingsPatchIn(BaseModel):
     stranger_requests_allowed: bool | None = None
     mode_settings: dict | None = None
+    notification_settings: NotificationSettingsPatch | None = None
 
 
 class ModePutIn(BaseModel):

@@ -13,7 +13,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.age import age_band, is_minor
 from app.core.config import settings
-from app.core.enums import RequestStatus
+from app.core.enums import RequestStatus, UiMode
 from app.models import Block, FriendRequest, Friendship, InterestTag, User, UserInterestTag
 
 DECLINE_EXCLUDE_DAYS = 30  # MATCH-03
@@ -102,5 +102,9 @@ async def user_features(db: AsyncSession, user: User) -> dict:
         "bio": user.bio or "",
         "tags": list(tag_codes),
         "age_band": age_band(user.birth_date),
-        "ui_mode": user.ui_mode,  # 서버 내부 특성 — 사유·응답에 노출 금지 (MATCH-04)
+        # match-input-v2의 빈 문자열은 "모드 특성 없음"을 뜻한다. 도메인의
+        # default 모드를 그대로 보내면 모델 입력 정책에서 INVALID_UI_MODE가
+        # 발생하므로 HTTP 경계에서 중립값으로 변환한다. 외부 응답에는 이 값이
+        # 노출되지 않는다(MATCH-04).
+        "ui_mode": "" if user.ui_mode == UiMode.default.value else user.ui_mode,
     }

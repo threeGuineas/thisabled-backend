@@ -7,6 +7,7 @@ from urllib.parse import quote, unquote
 import redis.asyncio as aioredis
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
 from sqlalchemy import delete, func, or_, select, union
+from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from app.core.deps import get_current_user
@@ -479,10 +480,16 @@ async def like_post(
     redis: aioredis.Redis = Depends(get_redis),
 ):
     post = await _get_visible_post(db, user, post_id)
-    exists = await db.get(PostLike, (post_id, user.id))
-    if exists is None:
-        db.add(PostLike(post_id=post_id, user_id=user.id))
-        await db.commit()
+    inserted = (
+        await db.execute(
+            insert(PostLike)
+            .values(post_id=post_id, user_id=user.id)
+            .on_conflict_do_nothing(index_elements=[PostLike.post_id, PostLike.user_id])
+            .returning(PostLike.user_id)
+        )
+    ).scalar_one_or_none()
+    await db.commit()
+    if inserted is not None:
         if post.author_id is not None and post.author_id != user.id:
             await noti.notify(
                 db, redis, post.author_id, noti.POST_LIKE,

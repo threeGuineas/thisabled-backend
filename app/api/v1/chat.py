@@ -24,7 +24,7 @@ from app.core.storage import (
 )
 from app.db.redis import get_redis
 from app.db.session import get_db, get_session_factory
-from app.models import ChatMessage, ChatRoom, User
+from app.models import ChatMessage, ChatRoom, SendRestriction, User
 from app.schemas.chat import (
     MessageIn,
     MessageListOut,
@@ -55,7 +55,7 @@ from app.services.chat import (
     has_active_restriction,
     release_restriction,
     send_text,
-    unread_count,
+    unread_counts,
 )
 from app.services.quota import (
     CAPTION_GLOBAL_LIMIT,
@@ -188,24 +188,21 @@ async def _latest_messages(
     return {message.room_id: message for message in rows}
 
 
-async def _room_out(
-    db: AsyncSession,
+def _room_out(
     me: User,
     room: ChatRoom,
     *,
     other: User | None,
     latest: ChatMessage | None,
     online: bool,
+    unread: int,
+    restricted: bool,
 ) -> RoomOut:
-    other_id = counterpart_id(room, me.id)
-    restricted = (
-        await has_active_restriction(db, other_id, me.id) if other_id is not None else False
-    )
     return RoomOut(
         id=room.id, state=room.state, counterpart=_author(other),
         requested_by=room.requested_by, restricted_sender=restricted,
         accepted_at=room.accepted_at, created_at=room.created_at,
-        unread_count=await unread_count(db, room.id, me.id),
+        unread_count=unread,
         last_message=_message_preview(latest, me.id) if latest is not None else None,
         last_activity_at=(latest.available_at or latest.created_at) if latest else room.created_at,
         counterpart_online=online,
@@ -229,14 +226,29 @@ async def _rooms_out(
     }
     latest_by_room = await _latest_messages(db, [room.id for room in rooms])
     online_by_user = await online_statuses(redis, list(users))
+    unread_by_room = await unread_counts(db, [room.id for room in rooms], me.id)
+    restricted_senders = set(
+        (
+            await db.execute(
+                select(SendRestriction.sender_id).where(
+                    SendRestriction.receiver_id == me.id,
+                    SendRestriction.sender_id.in_(other_ids),
+                    SendRestriction.active.is_(True),
+                )
+            )
+        ).scalars().all()
+        if other_ids
+        else []
+    )
     items = [
-        await _room_out(
-            db,
+        _room_out(
             me,
             room,
             other=users.get(counterpart_id(room, me.id)),
             latest=latest_by_room.get(room.id),
             online=online_by_user.get(counterpart_id(room, me.id), False),
+            unread=unread_by_room.get(room.id, 0),
+            restricted=counterpart_id(room, me.id) in restricted_senders,
         )
         for room in rooms
     ]
@@ -304,18 +316,22 @@ async def list_requests(
             .order_by(ChatRoom.created_at.desc())
         )
     ).scalars().all()
-    visible_rooms: list[ChatRoom] = []
-    for room in rooms:
-        analyzed = (
+    room_ids = [room.id for room in rooms]
+    visible_ids = set(
+        (
             await db.execute(
-                select(func.count()).select_from(ChatMessage).where(
-                    ChatMessage.room_id == room.id,
+                select(ChatMessage.room_id)
+                .where(
+                    ChatMessage.room_id.in_(room_ids),
                     ChatMessage.safety_status != SafetyStatus.pending.value,
                 )
+                .distinct()
             )
-        ).scalar_one()
-        if analyzed > 0:
-            visible_rooms.append(room)
+        ).scalars().all()
+        if room_ids
+        else []
+    )
+    visible_rooms = [room for room in rooms if room.id in visible_ids]
     visible = await _rooms_out(db, redis, user, visible_rooms)
     return RoomListOut(
         items=visible,

@@ -31,6 +31,10 @@ class ReadIn(BaseModel):
     ids: list[uuid.UUID]
 
 
+class ReadOut(BaseModel):
+    read: bool
+
+
 @router.get("", response_model=NotificationListOut)
 async def list_notifications(
     limit: int = Query(default=50, ge=1, le=100),
@@ -55,7 +59,7 @@ async def list_notifications(
     )
 
 
-@router.post("/read")
+@router.post("/read", response_model=ReadOut)
 async def mark_read(
     body: ReadIn,
     user: User = Depends(get_current_user),
@@ -71,4 +75,4 @@ async def mark_read(
         .values(read_at=datetime.now(timezone.utc))
     )
     await db.commit()
-    return {"read": True}
+    return ReadOut(read=True)

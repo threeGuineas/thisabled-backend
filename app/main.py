@@ -20,6 +20,7 @@ from app.api.v1 import (
     ws,
 )
 from app.core.config import settings
+from app.openapi import install_openapi
 
 # Swagger 사이드바 그룹 설명 — 프론트가 어떤 묶음을 봐야 하는지 한눈에.
 # SSOT: docs/ThisAbled_기능명세서_v2_2.md / 요약: docs/api.md
@@ -76,20 +77,53 @@ tags_metadata = [
 ]
 
 description = """
-**ThisAbled** — 장애 유형별 적응형 UI 소셜 플랫폼 백엔드 API (기능명세서 v2.2 정합).
+**ThisAbled** — 장애 유형별 적응형 UI 소셜 플랫폼 백엔드 API입니다.
+이 문서는 기능명세서 v2.2를 기준으로 프론트엔드가 별도 추측 없이 구현할 수 있도록 작성했습니다.
 
-### 인증 흐름
-1. `GET /api/v1/auth/{provider}/authorize` → 제공자 로그인 → `GET /api/v1/auth/{provider}/callback` → `FRONTEND_URL`로 302
-2. 기가입자: `?access_token=…` 쿼리로 즉시 발급 / 신규: `?signup_token=…`으로 `POST /api/v1/auth/signup`
-3. 보호된 엔드포인트는 `Authorization: Bearer <access_token>` 헤더 필수.
-4. access 만료(24h) 시 `POST /api/v1/auth/refresh` (httpOnly 쿠키 자동 전송).
+## 프론트엔드 빠른 시작
 
-### 공통 규칙
-- 모든 경로 prefix: `/api/v1`
-- 에러 응답 형식: `{ "detail": "<사람이 읽는 메시지>" }`
-- 인증 누락·실패: `401` / 권한 없음: `403` / 검증 실패: `422`
-- 차단·연령 정책 거부는 사유 비노출 `404`, SAFE-05 제한은 `403 "메시지를 보낼 수 없습니다"`
-- 시간은 UTC ISO-8601, ID는 모두 UUID.
+1. `GET /api/v1/auth/{provider}/authorize`의 URL로 브라우저를 이동합니다.
+2. callback은 JSON이 아니라 `FRONTEND_URL`로 302 이동합니다.
+   - 기존 회원: `?is_new_user=false&access_token=...`
+   - 신규 회원: `?is_new_user=true&signup_token=...` → `POST /api/v1/auth/signup`
+   - 로그인 실패·거부: `?error={provider}_failed`
+3. 보호된 API에는 `Authorization: Bearer <access_token>`을 보냅니다.
+4. access token 만료로 401을 받으면 `POST /api/v1/auth/refresh`를 **한 번만** 호출한 뒤 원 요청을 재시도합니다.
+   refresh/logout 요청은 httpOnly 쿠키를 사용하므로 브라우저 fetch의 `credentials: "include"`가 필요합니다.
+5. 앱 시작 시 `GET /users/me`로 모드·프로필·설정을 서버 정본과 동기화합니다.
+
+## 응답과 오류 처리
+
+- 모든 REST 경로 prefix는 `/api/v1`, ID는 UUID, 날짜·시간은 UTC ISO-8601입니다.
+- 일반 정책 오류는 `{ "detail": "사람이 읽는 메시지" }`입니다.
+- FastAPI 형식 검증 422는 `{ "detail": [{ "loc": [...], "msg": "...", "type": "..." }] }` 배열입니다.
+- 401은 토큰 재발급 대상으로 처리하고, 403은 권한·정책 거부, 404는 실제 없음뿐 아니라 차단·보호 정책상
+  존재를 숨긴 경우도 포함합니다. 404 사유를 화면에서 추정하거나 구분하지 마세요.
+- 모든 비동기 요청은 성공·오류·빈 배열 여부와 관계없이 finally에서 로딩 상태를 해제하세요.
+- `204 No Content`는 JSON 파싱을 시도하지 않습니다.
+
+## 목록과 미디어
+
+- 피드·채팅 메시지는 서버가 발급한 불투명 `next_cursor`를 그대로 다음 요청에 전달합니다. null이면 마지막입니다.
+- 사진 업로드 결과의 `media_id`는 `/posts`에 연결해야 공개됩니다.
+- 영상 업로드는 `processing` 드래프트를 만들 뿐 자동 공개하지 않습니다. 자막 상태가 끝난 뒤 publish가 필요합니다.
+- `/uploads/...` 상대 URL은 현재 API origin을 기준으로 절대 URL로 변환하세요.
+
+## AI 기능의 화면 처리
+
+- 추천 API는 후보 부족·MATCH 장애도 HTTP 200으로 반환합니다. `items=[]`이면 반드시 `message`를 표시하고 로딩을 끝냅니다.
+- 소통 코치의 문장·후보는 JSON 코드블록이 아닌 평문입니다. 사용자가 선택하기 전 자동 입력·게시·전송하지 않습니다.
+- AI 미디어 상태는 `none | processing | done | failed`입니다. failed를 무한 폴링하지 마세요.
+
+## WebSocket (OpenAPI 비지원 영역)
+
+- 연결: `wss://<현재 API 호스트>/api/v1/ws?token=<access_token>` (로컬은 `ws://localhost:8000`)
+- 인증 실패 종료 코드: `4401`. access token을 재발급한 뒤 새 연결을 만드세요.
+- 이벤트는 모두 `{ "type": "...", "payload": { ... } }` 형식입니다.
+  - `chat.message`: `{room_id, message_id}` — 원문은 없으며 해당 방 REST 목록을 다시 조회합니다.
+  - `chat.read`: `{room_id, message_id}` — 상대가 이 message_id까지 읽었습니다.
+  - `notification`: `{type, ...도메인별 payload}` — 알림 목록을 다시 조회해 정본과 맞춥니다.
+- 재연결은 지수 백오프를 사용하고, 같은 `message_id` 이벤트가 재수신돼도 중복 삽입하지 마세요.
 """
 
 
@@ -106,7 +140,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="ThisAbled API",
-    version="0.2.0",
+    version="0.3.0",
     description=description,
     openapi_tags=tags_metadata,
     lifespan=lifespan,
@@ -136,3 +170,6 @@ app.include_router(ws.router, prefix="/api/v1")
 app.include_router(notifications.router, prefix="/api/v1")
 app.include_router(recommendations.router, prefix="/api/v1")
 app.include_router(comm.router, prefix="/api/v1")
+
+# 모든 라우터가 등록된 뒤 메서드+경로별 상세 설명·예시·오류 계약을 주입한다.
+install_openapi(app)

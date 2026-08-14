@@ -1,6 +1,7 @@
 import redis.asyncio as aioredis
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 from sqlalchemy import text
 
 from app.core.config import settings
@@ -9,7 +10,17 @@ from app.db.session import engine
 router = APIRouter()
 
 
-@router.get("/health")
+class HealthOut(BaseModel):
+    status: str
+    db: str
+    redis: str
+
+
+@router.get(
+    "/health",
+    response_model=HealthOut,
+    responses={503: {"model": HealthOut, "description": "DB 또는 Redis 연결 실패"}},
+)
 async def health():
     result = {"status": "ok", "db": "unknown", "redis": "unknown"}
 

@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 
 import redis.asyncio as aioredis
 from fastapi import APIRouter, BackgroundTasks, Depends, File, Form, HTTPException, Query, UploadFile
+from pydantic import BaseModel
 from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
@@ -52,6 +53,10 @@ UNAVAILABLE = "요청을 보낼 수 없는 상대입니다"  # CHAT-02 사유 �
 RESTRICTED = "메시지를 보낼 수 없습니다"  # SAFE-05-4 사유 비노출
 
 ALLOWED_VIDEO_TYPES = {"video/mp4", "video/webm", "video/quicktime"}
+
+
+class RestrictionReleaseOut(BaseModel):
+    released: bool
 
 
 def _author(u: User | None) -> AuthorOut:
@@ -337,7 +342,7 @@ async def accept_request(
     return await _room_out(db, user, room)
 
 
-@router.post("/restrictions/{sender_id}/release")
+@router.post("/restrictions/{sender_id}/release", response_model=RestrictionReleaseOut)
 async def release_send_restriction(
     sender_id: uuid.UUID,
     user: User = Depends(get_current_user),
@@ -347,7 +352,7 @@ async def release_send_restriction(
     released = await release_restriction(db, sender_id, user)
     if not released:
         raise HTTPException(status_code=404, detail="해제할 전송 제한이 없습니다")
-    return {"released": True}
+    return RestrictionReleaseOut(released=True)
 
 
 @router.post("/rooms/{room_id}/media", response_model=MessageOut, status_code=201)

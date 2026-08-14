@@ -5,12 +5,12 @@
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1335 nodes · 3373 edges · 135 communities (90 shown, 45 thin omitted)
-- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 293 edges (avg confidence: 0.6)
+- 1337 nodes · 3369 edges · 145 communities (96 shown, 49 thin omitted)
+- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 292 edges (avg confidence: 0.6)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `91b22392`
+- Built from commit: `83276e5f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -21,9 +21,9 @@
 - ai_media.py
 - ai_result_cache 테이블(미디어 해시 캐싱)
 - friends.py
-- upload_video
+- send_media
 - main.py
-- test_safe.py
+- SafetyUnavailable
 - register
 - quota.py
 - Q: 다 구현해줘 & 전체적으로 리팩토링도 필요할거같아 더 깔끔하고 체계적이고 직관적이게 & 또한 전체적으로 결함 탐색+보강이 필요해보이넹 & 지금까지 한것들 커밋들 브랜치 따로 영역에 맞게 분류해서 작업해줘
@@ -32,20 +32,25 @@
 - safe_grooming_eval.py
 - 채팅 읽음 상태 설계
 - ThisAbled API 명세 요약 (v2.3)
-- v1/media.py
-- storage.py
-- test_withdrawal.py
+- Base
+- services/chat.py
+- reanalyze_unanalyzed
 - ThisAbled — Backend
-- test_auth.py
+- conftest.py
+- test_oauth_real.py
 - services/comm.py
 - Q: 친구 추천 부분도 로딩이 안되는 문제가 있다고 하는데 확인 부탁함
 - Q: 피그마 기준으로 게시물 카테고리 포함해서 누락된 백엔드 영역 기능 사항들 점검해줘
 - Global Constraints
 - SAFE 그루밍 평가 설계
 - MATCH-02 추천 입력
+- _Redis
+- notifications.py
 - ThisAbled 기능 명세서 v2.3
+- test_auth.py
 - oauth.py
-- redis.py
+- v1/media.py
+- is_blocked_either
 - media_probe.py
 - test_openapi.py
 - SAFE 이진 v6 배포 검증
@@ -66,6 +71,8 @@
 - test_chat.py
 - stt.py
 - SAFE 그루밍 평가 결과
+- _BorrowedSession
+- models/chat.py
 - Funnel 고정 URL
 - Tailscale Funnel 임시 배포 가이드
 - CORS 오리진 명시 설정
@@ -82,6 +89,7 @@
 - user_interest_tags 테이블
 - user_mode_history 테이블
 - tools/__init__.py
+- real_oauth
 - Q: ㅇㅇ 수정 ㄱㄱ 그리고 [api 문서](https://ideal-macmini.tail72b898.ts.net/docs) 자세하게, 결함 없게 구체적으로 아주 친절하게 패치해줘 프론트엔드가 곤란하지 않도록
 - Q: 영상 자막 부분 기능 감사해줘
 - thisabled-backend
@@ -106,7 +114,7 @@
 - safety-model HTTP 경계(자체 안전 모델, mock)
 - send_restrictions 테이블(SAFE-05)
 - signup_token(단기 가입 토큰, 30분)
-- conftest.py
+- test_config.py
 - Google OAuth Setup
 - Kakao OAuth Setup
 - OAuth Mock Provider (dev)
@@ -124,6 +132,7 @@
 - test_friends.py
 - Q: 기능명세에 채팅 기능에 읽음/안읽음 표시 있나?
 - Q: 백엔드 핵심 소스코드 2개와 설명
+- AsyncClient
 - generate_caption
 - CHAT-05 음성·영상 통화 시그널링 설계
 - 13. 청각장애인 모드
@@ -134,6 +143,7 @@
 - 5. 공통 화면 구조
 - 9. 친구·차단
 - test_schema.py
+- fixture
 - env.py
 - Q: 아니 생각해보니까 이전 버전 기능명세도 2.2 버전인데 왜 수정했는데 v2.2로 그대로 가는거임? v2.3으로 업데이트 안함?
 - Q: Run uv run pytest -q
@@ -151,6 +161,8 @@
 10. `UiMode` - 26 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `reanalyze_unanalyzed()` --indirect_call--> `db()`  [INFERRED]
+  app/services/chat.py → tests/conftest.py
 - `test_withdraw_anonymize_keeps_posts_and_chat()` --indirect_call--> `ChatMessage`  [INFERRED]
   tests/test_withdrawal.py → app/models/chat.py
 - `test_cleanup_deletes_stale_drafts()` --indirect_call--> `Post`  [INFERRED]
@@ -159,17 +171,15 @@
   tests/test_withdrawal.py → app/models/post.py
 - `test_withdraw_delete_removes_posts()` --indirect_call--> `Post`  [INFERRED]
   tests/test_withdrawal.py → app/models/post.py
-- `test_exclusion_rules_enforced_by_backend()` --indirect_call--> `FriendRequest`  [INFERRED]
-  tests/test_match.py → app/models/social.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (135 total, 45 thin omitted)
+## Communities (145 total, 49 thin omitted)
 
 ### Community 0 - "users.py"
-Cohesion: 0.10
-Nodes (48): me(), _me_out(), patch_me(), patch_settings(), public_profile(), put_mode(), put_tags(), AsyncSession (+40 more)
+Cohesion: 0.06
+Nodes (76): AsyncSession, BaseModel, get, RecommendationListOut, RecommendationOut, recommendations(), me(), _me_out() (+68 more)
 
 ### Community 1 - "call_signaling.py"
 Cohesion: 0.27
@@ -184,24 +194,24 @@ Cohesion: 0.12
 Nodes (29): content_type_from_path(), STT multipart에 파일 확장자와 일치하는 실제 MIME을 제공한다., _acquire_caption_lock(), caption_chat_message_job(), caption_post_media_job(), describe_chat_message_job(), describe_post_media_job(), file_path_from_url() (+21 more)
 
 ### Community 5 - "friends.py"
-Cohesion: 0.07
-Nodes (60): accept_request(), _author(), cancel_request(), decline_request(), _get_pending(), list_friends(), list_requests(), AsyncSession (+52 more)
+Cohesion: 0.12
+Nodes (38): accept_request(), _author(), cancel_request(), decline_request(), _get_pending(), list_friends(), list_requests(), AsyncSession (+30 more)
 
-### Community 6 - "upload_video"
-Cohesion: 0.20
-Nodes (11): async_sessionmaker, AsyncSession, BackgroundTasks, UploadFile, VIS-03 음성 입력 — 결과는 입력란 삽입용. 자동 게시하지 않는다 (§20-4)., 사진 업로드 (post 미연결) — POST /posts 의 media_ids로 연결한다., 영상 첨부 = processing 내부 드래프트 생성 + 자막 생성 즉시 시작 (POST-01·CAPTION-01). FE 길이는 빠른 거부용…, transcribe_voice() (+3 more)
+### Community 6 - "send_media"
+Cohesion: 0.10
+Nodes (27): async_sessionmaker, BackgroundTasks, UploadFile, CHAT-01: 사진·동영상은 친구 방에서만, 미성년-성인 쌍은 제한 (§4.5). 안전 분석 없이 즉시 전달(SAFE-02)하고…, send_media(), async_sessionmaker, AsyncSession, BackgroundTasks (+19 more)
 
 ### Community 7 - "main.py"
-Cohesion: 0.16
-Nodes (14): health(), HealthOut, BaseModel, get, close_redis_client(), 현재 워커 이벤트 루프의 연결 풀을 애플리케이션 종료 시 정리한다., add_security_headers(), lifespan() (+6 more)
+Cohesion: 0.25
+Nodes (10): close_redis_client(), 현재 워커 이벤트 루프의 연결 풀을 애플리케이션 종료 시 정리한다., add_security_headers(), lifespan(), FastAPI, start_scheduler(), stop_scheduler(), AsyncIOScheduler (+2 more)
 
-### Community 8 - "test_safe.py"
-Cohesion: 0.10
-Nodes (22): Exception, 모델 서버 장애·지연 — 친구 텍스트는 unanalyzed 전달, 비친구는 pending 보류., → 'safe' | 'flagged'. 미성년 수신자는 민감(낮은) 임계값 (§4.5)., SafetyUnavailable, FakeSafety, fixture, 돈' 포함 → flagged. fail=True → SafetyUnavailable (§18.3)., safety() (+14 more)
+### Community 8 - "SafetyUnavailable"
+Cohesion: 0.14
+Nodes (12): Exception, 모델 서버 장애·지연 — 친구 텍스트는 unanalyzed 전달, 비친구는 pending 보류., → 'safe' | 'flagged'. 미성년 수신자는 민감(낮은) 임계값 (§4.5)., SafetyUnavailable, FakeSafety, fixture, 돈' 포함 → flagged. fail=True → SafetyUnavailable (§18.3)., safety() (+4 more)
 
 ### Community 9 - "register"
-Cohesion: 0.12
-Nodes (40): 모드 변경 이력 (§5.2, 베타테스트 분석용)., UserModeHistory, auth_header(), mock OAuth 가입 헬퍼 → {access_token, user_id, ...}., register(), test_post_comments_hide_blocked_post(), test_post_comments_use_post_and_latest_10_comments(), test_simplify_and_complete() (+32 more)
+Cohesion: 0.11
+Nodes (42): 모드 변경 이력 (§5.2, 베타테스트 분석용)., UserModeHistory, auth_header(), mock OAuth 가입 헬퍼 → {access_token, user_id, ...}., register(), test_post_comments_hide_blocked_post(), test_post_comments_use_post_and_latest_10_comments(), test_simplify_and_complete() (+34 more)
 
 ### Community 10 - "quota.py"
 Cohesion: 0.12
@@ -216,8 +226,8 @@ Cohesion: 0.13
 Nodes (35): _coach(), complete(), hints(), HintsOut, _post_context(), PostIn, AsyncSession, BaseModel (+27 more)
 
 ### Community 13 - "v1/auth.py"
-Cohesion: 0.11
-Nodes (35): authorize(), callback(), _frontend_redirect(), logout(), _oauth_state_key(), AsyncSession, get, UUID (+27 more)
+Cohesion: 0.13
+Nodes (32): authorize(), callback(), _frontend_redirect(), logout(), _oauth_state_key(), AsyncSession, get, UUID (+24 more)
 
 ### Community 14 - "safe_grooming_eval.py"
 Cohesion: 0.24
@@ -231,25 +241,29 @@ Nodes (8): API와 실시간 이벤트, 대안과 결정, 데이터 모델, 목�
 Cohesion: 0.18
 Nodes (10): auth (ACC-01/02), chat (CHAT-01~05 · SAFE-01~05), comm (COMM-01~05), friends / blocks (FRIEND-01/02 · BLOCK-01), media (VISION-01 · CAPTION-01 · VIS-03), notifications (§16) / ws, posts / feed (FEED-01 · POST-01~03), recommendations (MATCH) (+2 more)
 
-### Community 17 - "v1/media.py"
-Cohesion: 0.12
-Nodes (26): 미디어 업로드 — 사진(≤3장) · 영상(드래프트+자막 시작) · VIS-03 음성 입력., list_notifications(), mark_read(), NotificationListOut, NotificationOut, AsyncSession, BaseModel, get (+18 more)
+### Community 17 - "Base"
+Cohesion: 0.17
+Nodes (15): Base, AiResultCache, 동일 미디어 해시 캐싱 (VISION-01·CAPTION-01 중복 호출 방지, 비용 방어)., ForbiddenNickname, 운영자 관리 금칙어 사전 (ACC-01 닉네임 정책)., 소셜 계정 연결 (ACC-01). 사용자 1명이 복수 제공자 연결 가능., §15: 탈퇴 후 30일 재가입 제한 판정용. users 행은 hard delete하고 여기에만 흔적., SocialIdentity (+7 more)
 
-### Community 18 - "storage.py"
-Cohesion: 0.33
-Nodes (7): _ext_from_content_type(), Protocol, 업로드를 메모리에 통째로 올리지 않고 저장하며 크기와 SHA-256을 계산한다., save_upload_stream(), SavedUpload, UploadReader, test_video_content_types_keep_supported_extensions()
+### Community 18 - "services/chat.py"
+Cohesion: 0.15
+Nodes (28): §CHAT-02 — request=요청함, active=일반 채팅., RoomState, ChatReadState, SAFE-05 관계 단위 자동 전송 제한. 누적 카운터는 별도 컬럼 없이 chat_messages에서 `flagged AND…, SendRestriction, advance_read_cursor(), ChatPolicyError, counterpart_id() (+20 more)
 
-### Community 19 - "test_withdrawal.py"
-Cohesion: 0.62
-Nodes (6): _make_chat(), _make_post(), UUID, §15 회원 탈퇴 — 익명화/삭제 선택, 채팅 보존, 30일 재가입 제한., test_withdraw_anonymize_keeps_posts_and_chat(), test_withdraw_delete_removes_posts()
+### Community 19 - "reanalyze_unanalyzed"
+Cohesion: 0.18
+Nodes (12): BaseModel, RestrictionReleaseOut, Exception, UploadTooLarge, §18.3: 모델 복구 후 미분석(unanalyzed)·보류(pending) 텍스트 재분석. 재분석에서 주의 판정 시 소급…, reanalyze_unanalyzed(), get_safety_client(), SAFE-01 — 자체 안전 모델 HTTP 클라이언트 (별도 모델 서버 경계, AI 팀 담당). 텍스트 위험 판정에는 외부 AI를 사용하지… (+4 more)
 
 ### Community 20 - "ThisAbled — Backend"
 Cohesion: 0.15
 Nodes (12): DB 스키마 (v3), graphify, Ralph 루프 (선택), ThisAbled — Backend, 기술 스택, 데드라인, 링크, 명령어 (+4 more)
 
-### Community 22 - "test_auth.py"
-Cohesion: 0.10
-Nodes (31): callback_params(), 콜백 302 리다이렉트(Location=FRONTEND_URL?…)의 쿼리 파라미터 → 단일값 dict., ACC-01/02 — 소셜 OAuth 전용 인증 (mock 제공자)., _signup_token(), test_callback_new_user_redirects_with_signup_token(), test_existing_user_callback_logs_in(), test_invalid_mock_code_redirects_with_error(), test_refresh_rotates_access_token() (+23 more)
+### Community 21 - "conftest.py"
+Cohesion: 0.24
+Nodes (12): AsyncClient, fixture, client(), _force_oauth_mock(), _isolate_upload_directory(), 테스트 공용 픽스처. 각 테스트는 단일 커넥션 위의 외부 트랜잭션에서 실행되고 끝나면 롤백된다. 앱 코드가 `await db.commit()`…, .env의 실키·OAUTH_MOCK=false는 배포용 — 테스트는 항상 mock 제공자로 결정론적으로 실행한다. 개별…, 미디어 테스트가 Docker 전용 기본 경로(`/app/uploads`)에 쓰지 않도록 격리한다. (+4 more)
+
+### Community 22 - "test_oauth_real.py"
+Cohesion: 0.18
+Nodes (17): callback_params(), 콜백 302 리다이렉트(Location=FRONTEND_URL?…)의 쿼리 파라미터 → 단일값 dict., test_existing_user_callback_logs_in(), test_invalid_mock_code_redirects_with_error(), _google_transport(), _kakao_transport(), _oauth_state(), 실 제공자(카카오·구글) OAuth 경로 — 외부 API를 MockTransport로 대체해 검증. 실키 없이 코드 경로(파라미터 인코딩·토큰… (+9 more)
 
 ### Community 23 - "services/comm.py"
 Cohesion: 0.07
@@ -275,17 +289,33 @@ Nodes (6): SAFE 그루밍 평가 설계, 목적, 범위, 비범위, 성공 기�
 Cohesion: 0.15
 Nodes (13): 8. AI 사용자 매칭, MATCH-01 추천 목적, MATCH-02-1 자기소개, MATCH-02-2 관심사 태그, MATCH-02-3 사용자의 작성물, MATCH-02-4 분석 제외 데이터, MATCH-02-5 연령 정보, MATCH-02-6 좋아요 기반 관심 신호 (+5 more)
 
+### Community 29 - "_Redis"
+Cohesion: 0.27
+Nodes (8): send_message(), publish_to_user(), 실시간 이벤트 — Redis pub/sub 팬아웃 (다중 워커에서도 사용자별 채널로 전달). event 형식: {"type":…, _enabled(), notify(), AsyncSession, §16 알림 생성 — DB 저장 + WS 푸시 병행. 표현(시각·음성·진동)은 FE가 모드별 처리., _Redis
+
+### Community 30 - "notifications.py"
+Cohesion: 0.30
+Nodes (11): list_notifications(), mark_read(), NotificationListOut, NotificationOut, AsyncSession, BaseModel, get, ReadIn (+3 more)
+
 ### Community 31 - "ThisAbled 기능 명세서 v2.3"
 Cohesion: 0.20
 Nodes (9): 15. 마이페이지·설정, 16. 알림, 20. 핵심 인수 조건, 21. MVP 이후 계획, 2. 핵심 기능명, 3.1 포함, 3.2 제외 및 후속 범위, 3. MVP 범위 (+1 more)
 
-### Community 33 - "oauth.py"
-Cohesion: 0.08
-Nodes (17): get_provider(), GoogleProvider, _http(), KakaoProvider, MockProvider, OAuthProvider, OAuthUserInfo, AsyncClient (+9 more)
+### Community 32 - "test_auth.py"
+Cohesion: 0.29
+Nodes (11): ACC-01/02 — 소셜 OAuth 전용 인증 (mock 제공자)., _signup_token(), test_callback_new_user_redirects_with_signup_token(), test_refresh_rotates_access_token(), test_rejoin_blocked_within_30_days(), test_signup_duplicate_nickname(), test_signup_forbidden_nickname(), test_signup_minor_blocks_stranger_requests() (+3 more)
 
-### Community 34 - "redis.py"
-Cohesion: 0.32
-Nodes (6): get_redis(), get_redis_client(), 현재 이벤트 루프 전용 클라이언트. asyncio Redis 연결을 다른 루프에서 재사용하면 Future/transport가 깨지므로…, FastAPI 의존성. 테스트에서 override 가능하도록 분리., 이벤트 루프별 Redis 클라이언트 생성·종료 수명주기., test_current_loop_redis_client_is_reused_and_closed()
+### Community 33 - "oauth.py"
+Cohesion: 0.09
+Nodes (13): get_provider(), GoogleProvider, _http(), KakaoProvider, MockProvider, OAuthProvider, OAuthUserInfo, AsyncClient (+5 more)
+
+### Community 34 - "v1/media.py"
+Cohesion: 0.13
+Nodes (17): health(), HealthOut, BaseModel, get, 미디어 업로드 — 사진(≤3장) · 영상(드래프트+자막 시작) · VIS-03 음성 입력., get_current_user(), AsyncSession, get_redis() (+9 more)
+
+### Community 35 - "is_blocked_either"
+Cohesion: 0.40
+Nodes (6): get_or_create_room(), 친구=active, 비친구=request. 차단·수신 거부·미성년 보호는 사유 비노출로 거부., are_friends(), is_blocked_either(), AsyncSession, 어느 방향이든 차단이면 True — 모든 접점 상호 제거 (BLOCK-01).
 
 ### Community 36 - "media_probe.py"
 Cohesion: 0.38
@@ -312,8 +342,8 @@ Cohesion: 0.33
 Nodes (6): 10. 1:1 채팅, CHAT-01 친구 채팅, CHAT-02 비친구 메시지 요청, CHAT-03 채팅 상태, CHAT-04 읽음·안읽음 표시 (신설), CHAT-05 음성·영상 통화
 
 ### Community 42 - "v1/chat.py"
-Cohesion: 0.06
-Nodes (99): accept_request(), _author(), create_room(), get_call(), _get_my_room(), _latest_messages(), list_messages(), list_requests() (+91 more)
+Cohesion: 0.20
+Nodes (34): accept_request(), _author(), create_room(), get_call(), _get_my_room(), _latest_messages(), list_messages(), list_requests() (+26 more)
 
 ### Community 43 - "SAFE 최신 호환 서빙 재평가"
 Cohesion: 0.40
@@ -332,20 +362,20 @@ Cohesion: 0.33
 Nodes (6): 4.1 가입 대상, 4.2 장애인 자격 확인, 4.3 복합장애, 4.4 콘텐츠 공개, 4.5 미성년자 보호 (신설), 4. 사용자 정책
 
 ### Community 47 - "Block"
-Cohesion: 0.20
-Nodes (9): Block, 차단 (BLOCK-01). 게시물·프로필·요청·채팅·추천 접점을 상호 제거., FakeMatch, match(), fixture, MATCH — 후보 제외 규칙은 백엔드 강제, 점수·사유는 모델 서버 (mock/fake)., 도메인 default는 MATCH 서버가 허용하는 중립값으로 직렬화한다., test_default_mode_uses_neutral_model_value() (+1 more)
+Cohesion: 0.24
+Nodes (7): Block, 차단 (BLOCK-01). 게시물·프로필·요청·채팅·추천 접점을 상호 제거., FakeMatch, match(), fixture, MATCH — 후보 제외 규칙은 백엔드 강제, 점수·사유는 모델 서버 (mock/fake)., test_exclusion_rules_enforced_by_backend()
 
 ### Community 48 - "validate_nickname"
-Cohesion: 0.40
-Nodes (4): AsyncSession, 닉네임 정책 (ACC-01): 2~12자 한글·영문·숫자, 금칙어·중복 불가., 형식(400) → 금칙어(400) → 중복(409) 순 검증. 통과 시 None., validate_nickname()
+Cohesion: 0.67
+Nodes (3): AsyncSession, 형식(400) → 금칙어(400) → 중복(409) 순 검증. 통과 시 None., validate_nickname()
 
 ### Community 50 - "MATCH v2 배포 성능 평가"
 Cohesion: 0.20
 Nodes (9): 1. 기동 및 계약, 2.1 배포 번들 저장 지표, 2.2 배포 모델 독립 재평가, 2. 랭킹 품질, 3. 공정성 및 활동량 편향, 4. 실서버 지연, 5. 운영 관찰사항, 6. 최종 판정 (+1 more)
 
 ### Community 54 - "test_chat.py"
-Cohesion: 0.24
-Nodes (21): _describe_fake(), make_friends(), CHAT-01 친구 채팅 · CHAT-02 비친구 요청 · 미디어 제한 (§4.5)., _room(), _send(), test_chat_text_is_trimmed_and_limited(), test_chat_video_gets_caption_and_notifies_both_users(), test_friend_chat_roundtrip() (+13 more)
+Cohesion: 0.16
+Nodes (31): _describe_fake(), make_friends(), CHAT-01 친구 채팅 · CHAT-02 비친구 요청 · 미디어 제한 (§4.5)., _room(), _send(), test_chat_text_is_trimmed_and_limited(), test_chat_video_gets_caption_and_notifies_both_users(), test_friend_chat_roundtrip() (+23 more)
 
 ### Community 55 - "stt.py"
 Cohesion: 0.08
@@ -354,6 +384,10 @@ Nodes (23): _extract_audio_to_m4a(), _get_client(), AsyncOpenAI, Path, OpenAI Wh
 ### Community 63 - "SAFE 그루밍 평가 결과"
 Cohesion: 0.40
 Nodes (4): SAFE 그루밍 평가 결과, 기존 3a holdout, 신규 합성셋 결과, 진단
+
+### Community 83 - "real_oauth"
+Cohesion: 0.67
+Nodes (3): fixture, OAUTH_MOCK 해제 + 테스트용 가짜 키 주입., real_oauth()
 
 ### Community 84 - "Q: ㅇㅇ 수정 ㄱㄱ 그리고 [api 문서](https://ideal-macmini.tail72b898.ts.net/docs) 자세하게, 결함 없게 구체적으로 아주 친절하게 패치해줘 프론트엔드가 곤란하지 않도록"
 Cohesion: 0.40
@@ -379,9 +413,9 @@ Nodes (5): 0.0 v2.3 주요 개정 사항, 0.1 v2.2 주요 개정 사항 (이력)
 Cohesion: 0.40
 Nodes (5): 12. 시각장애인 모드, VIS-01 기본 UI, VIS-02 스크린리더, VIS-03 음성 입력, VIS-04 상태 안내
 
-### Community 108 - "conftest.py"
-Cohesion: 0.09
-Nodes (25): Settings, BaseSettings, _BorrowedSession, client(), _conn(), _force_oauth_mock(), _isolate_upload_directory(), AsyncClient (+17 more)
+### Community 108 - "test_config.py"
+Cohesion: 0.16
+Nodes (11): Settings, BaseSettings, _conn(), 테스트 전용 DB만 허용한다. 명시값이 없으면 현재 DB명에 `_test`를 붙인다., _test_database_url(), v2.1 명세 고정값이 Settings에 반영되어 있는지 검증., docker compose env_file은 POSTGRES_PASSWORD/REDIS_PASSWORD도 컨테이너 프로세스에 노출한다. 이…, CI처럼 Docker 볼륨이 없는 환경에서도 테스트 수집 전 app import가 성공해야 한다. (+3 more)
 
 ### Community 116 - "match_model.py"
 Cohesion: 0.32
@@ -404,8 +438,8 @@ Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: 자막 생성 때문에, Source Nodes
 
 ### Community 121 - "test_ws.py"
-Cohesion: 0.17
-Nodes (22): _relay(), ws_endpoint(), user_channel(), heartbeat(), mark_offline(), mark_online(), presence_key(), UUID (+14 more)
+Cohesion: 0.16
+Nodes (23): WS /api/v1/ws?token=<access> — 새 메시지·알림·통화 시그널 실시간 푸시. 인증은 JWT 검증만으로 처리(DB…, _relay(), ws_endpoint(), user_channel(), heartbeat(), mark_offline(), mark_online(), presence_key() (+15 more)
 
 ### Community 122 - "Chat Read Status Implementation Plan"
 Cohesion: 0.25
@@ -478,7 +512,7 @@ Nodes (4): Answer, Outcome, Q: Run uv run pytest -q, Source Nodes
 ## Knowledge Gaps
 - **216 isolated node(s):** `thisabled-backend`, `프로젝트`, `기술 스택`, `명령어`, `DB 스키마 (v3)` (+211 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **45 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **49 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -497,12 +531,12 @@ Nodes (4): Answer, Outcome, Q: Run uv run pytest -q, Source Nodes
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `User` connect `v1/chat.py` to `users.py`, `oauth.py`, `StrictRequest`, `friends.py`, `upload_video`, `v1/comm.py`, `v1/auth.py`, `v1/media.py`, `test_withdrawal.py`?**
-  _High betweenness centrality (0.051) - this node is a cross-community bridge._
-- **Why does `_Redis` connect `v1/chat.py` to `call_signaling.py`, `StrictRequest`, `redis.py`, `ai_media.py`, `friends.py`, `upload_video`, `generate_caption`, `quota.py`, `v1/auth.py`, `stt.py`, `test_ws.py`?**
-  _High betweenness centrality (0.036) - this node is a cross-community bridge._
-- **Why does `StrictRequest` connect `StrictRequest` to `users.py`, `friends.py`, `v1/comm.py`, `v1/auth.py`, `v1/media.py`?**
-  _High betweenness centrality (0.033) - this node is a cross-community bridge._
+- **Why does `User` connect `v1/chat.py` to `users.py`, `StrictRequest`, `v1/media.py`, `is_blocked_either`, `friends.py`, `send_media`, `v1/comm.py`, `v1/auth.py`, `Base`, `services/chat.py`, `reanalyze_unanalyzed`, `_Redis`, `notifications.py`?**
+  _High betweenness centrality (0.058) - this node is a cross-community bridge._
+- **Why does `_Redis` connect `_Redis` to `call_signaling.py`, `StrictRequest`, `v1/media.py`, `ai_media.py`, `friends.py`, `send_media`, `generate_caption`, `v1/chat.py`, `quota.py`, `v1/auth.py`, `stt.py`, `test_ws.py`?**
+  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+- **Why does `StrictRequest` connect `StrictRequest` to `users.py`, `friends.py`, `v1/comm.py`, `v1/auth.py`, `notifications.py`?**
+  _High betweenness centrality (0.035) - this node is a cross-community bridge._
 - **Are the 6 inferred relationships involving `User` (e.g. with `callback()` and `refresh()`) actually correct?**
   _`User` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 62 inferred relationships involving `StrictRequest` (e.g. with `HintsOut` and `PostIn`) actually correct?**
@@ -510,4 +544,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `thisabled-backend`, `프로젝트`, `기술 스택` to the rest of the system?**
   _216 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `users.py` be split into smaller, more focused modules?**
-  _Cohesion score 0.10196078431372549 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05730238025271819 - nodes in this community are weakly interconnected._

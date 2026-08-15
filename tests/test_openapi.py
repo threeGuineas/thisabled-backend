@@ -138,18 +138,25 @@ def test_parameters_explain_opaque_ids_and_cursors():
     assert post_id["example"]
 
 
-def test_post_contract_documents_title_category_and_video_publish_metadata():
+def test_post_contract_documents_optional_title_and_required_publish_metadata():
     schema = _schema()
+    create_schema = schema["components"]["schemas"]["PostCreateIn"]
+    assert "title" not in create_schema["required"]
+    assert {"category", "content"} <= set(create_schema["required"])
     create_example = schema["paths"]["/api/v1/posts"]["post"]["requestBody"]["content"][
         "application/json"
     ]["example"]
-    assert create_example["title"]
+    assert "title" not in create_example
     assert create_example["category"] == "daily"
 
+    publish_schema = schema["components"]["schemas"]["PublishIn"]
+    assert "title" not in publish_schema["required"]
+    assert {"category", "content"} <= set(publish_schema["required"])
     publish_example = schema["paths"]["/api/v1/posts/{post_id}/publish"]["post"][
         "requestBody"
     ]["content"]["application/json"]["example"]
-    assert {"title", "category", "content", "allow_no_caption"} <= publish_example.keys()
+    assert "title" not in publish_example
+    assert {"category", "content", "allow_no_caption"} <= publish_example.keys()
 
 
 def test_chat_room_list_documents_projection_and_search():

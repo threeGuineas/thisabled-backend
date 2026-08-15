@@ -42,7 +42,7 @@ class TranscribeOut(BaseModel):
 class PublishIn(StrictRequest):
     """자막 실패(재시도 소진) 시 '자막 없이 게시' 명시 선택 (CAPTION-01 예외)."""
 
-    title: PostTitle
+    title: PostTitle | None = None
     category: PostCategory
     content: PostContent
     allow_no_caption: bool = False

@@ -176,11 +176,12 @@ async def test_video_upload_creates_draft_then_publish(client, db, fake_ai):
 
     pub = await client.post(
         f"/api/v1/posts/{post_id}/publish",
-        json={"title": "영상 글", "category": "hobby", "content": "영상 본문"},
+        json={"category": "hobby", "content": "영상 본문"},
         headers=h,
     )
     assert pub.status_code == 200, pub.text
     assert pub.json()["status"] == "published"
+    assert pub.json()["title"] is None
     assert pub.json()["media"][0]["caption"] == [{"start": 0.0, "end": 2.0, "text": "안녕하세요"}]
 
 

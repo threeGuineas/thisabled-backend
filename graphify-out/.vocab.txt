@@ -97,6 +97,7 @@ closed
 cloudflare
 coach
 code
+codes
 collect
 columns
 comm
@@ -166,6 +167,7 @@ description
 design
 detail
 detailed
+details
 detection
 dev
 dict
@@ -199,6 +201,7 @@ enum
 enums
 env
 error
+errors
 eval
 evaluate
 evaluation
@@ -220,6 +223,7 @@ existing
 explain
 explicit
 expose
+exposes
 ext
 extension
 extensions
@@ -267,6 +271,7 @@ future
 gbm
 gen
 generate
+generation
 get
 gets
 global
@@ -472,6 +477,7 @@ published
 publishes
 pure
 put
+pydantic
 pytest
 query
 quota
@@ -486,6 +492,7 @@ reanalysis
 reanalyze
 reasons
 recall
+recalled
 receipt
 receiver
 receives
@@ -539,6 +546,7 @@ result
 retried
 retroactive
 retry
+retryable
 return
 reused
 reveal
@@ -566,10 +574,12 @@ schema
 schemas
 scope
 score
+sdk
 search
 searches
 secure
 security
+segment
 segments
 self
 send
@@ -598,6 +608,7 @@ socket
 source
 spa
 specs
+stable
 stale
 starlette
 start
@@ -650,6 +661,7 @@ too
 tools
 transcribe
 transcriber
+transcription
 transport
 trimmed
 true
@@ -850,6 +862,7 @@ write
 미읽음
 미입력
 미전송
+바꾼다
 바이트
 반영되어
 반영한다
@@ -867,6 +880,7 @@ write
 백그라운드
 백엔드
 백엔드가
+버전별
 버전인데
 범위와
 베타테스트
@@ -910,6 +924,7 @@ write
 삽입용
 상태로
 상태만
+상태에만
 상태와
 상한에
 생각해보니까
@@ -927,6 +942,7 @@ write
 성공해야
 성능저하
 세그먼트
+세그먼트를
 세션을
 소스코드
 수명의
@@ -980,6 +996,7 @@ write
 엔드포인트는
 여기에만
 여부는
+여부를
 연결을
 연결한다
 연령대
@@ -992,6 +1009,7 @@ write
 예약한다
 오디오
 오래걸려염
+오류난다는데
 오류를
 오리진
 오케스트레이션
@@ -1128,6 +1146,7 @@ write
 컨텍스트는
 코드가
 코드로
+코드와
 콘텐츠
 콜러블
 콜백에서
@@ -1158,6 +1177,7 @@ write
 파생값
 파이프라인
 파인튜닝
+판단할
 판정에는
 판정용
 패치해줘
@@ -1167,6 +1187,7 @@ write
 평문으로
 평문을
 포함해서
+표시용
 표식을
 푸시는
 푸시와
@@ -1195,11 +1216,14 @@ write
 허용한다
 헬스체크는
 형식과
+형태로
 호출은
+호출자가
 호출하므로
 화면에서
 화면용
 화면의
+확인해봐
 확장자와
 환경에서도
 활동량

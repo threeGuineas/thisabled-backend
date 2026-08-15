@@ -28,10 +28,10 @@ services:
       - ALL
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=2)"]
-      interval: 10s
+      interval: 30s
       timeout: 3s
-      retries: 5
-      start_period: 10s
+      retries: 3
+      start_period: 20s
     restart: unless-stopped
 
   db:

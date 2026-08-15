@@ -183,12 +183,12 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ),
     ("post", "/api/v1/posts"): _guide(
         "텍스트·사진 게시물 작성",
-        "제목, 단일 카테고리, 본문을 보내고 필요하면 `/media/images`에서 받은 최대 3개의 `media_id`를 연결합니다. "
-        "제목은 1~100자, 본문은 공백 제거 후 1~10,000자입니다. 카테고리는 `daily`, `info`, `hobby`, "
+        "필수인 단일 카테고리와 본문을 보내고 필요하면 선택 제목과 `/media/images`에서 받은 최대 3개의 `media_id`를 연결합니다. "
+        "제목은 생략할 수 있고, 보내는 경우 공백 제거 후 1~100자입니다. 본문은 공백 제거 후 1~10,000자입니다. 카테고리는 `daily`, `info`, `hobby`, "
         "`concern`, `meetup` 중 하나이며 성공 즉시 공개됩니다. "
         "영상은 이 API가 아니라 `/media/videos`로 드래프트를 만든 뒤 publish 흐름을 사용하세요.",
         "201과 공개된 게시물 전체를 반환합니다.",
-        request={"title": "오늘의 공원 산책", "category": "daily", "content": "오늘 공원에서 산책했어요.", "media_ids": [UUID_A]},
+        request={"category": "daily", "content": "오늘 공원에서 산책했어요.", "media_ids": [UUID_A]},
         errors={400: "영상 media_id 사용 또는 사진 3장 초과.", 403: "다른 사용자의 미디어이거나 이미 사용된 미디어.", 404: "없는 media_id 포함."},
     ),
     ("get", "/api/v1/feed"): _guide(
@@ -244,11 +244,12 @@ OPERATION_GUIDES: dict[tuple[str, str], OperationGuide] = {
     ),
     ("post", "/api/v1/posts/{post_id}/publish"): _guide(
         "영상 드래프트 게시",
-        "제목·단일 카테고리·본문을 최종 요청에 포함해 자막 생성이 끝난 영상 드래프트를 공개합니다. "
+        "필수인 단일 카테고리·본문과 선택 제목을 최종 요청에 포함해 자막 생성이 끝난 영상 드래프트를 공개합니다. "
+        "제목은 생략할 수 있고, 보내는 경우 공백 제거 후 1~100자입니다. "
         "`processing`이면 게시 버튼을 잠시 비활성화하세요. "
         "자막 실패 시에만 사용자 확인 후 `allow_no_caption=true`로 다시 호출할 수 있습니다.",
         "200과 공개된 게시물 전체를 반환합니다.",
-        request={"title": "공원 산책 영상", "category": "daily", "content": "오늘 산책 영상입니다.", "allow_no_caption": False},
+        request={"category": "daily", "content": "오늘 산책 영상입니다.", "allow_no_caption": False},
         errors={400: "이미 공개되었거나 자막 실패 후 명시적 동의가 없습니다.", 404: "본인 드래프트가 아닙니다.", 409: "자막 생성 중입니다."},
     ),
     ("post", "/api/v1/posts/{post_id}/like"): _guide(

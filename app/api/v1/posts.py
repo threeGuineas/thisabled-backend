@@ -218,7 +218,7 @@ async def create_post(
     post = Post(
         id=uuid.uuid4(),
         author_id=user.id,
-        title=body.title.strip(),
+        title=body.title.strip() if body.title is not None else None,
         category=body.category.value,
         content=body.content,
         status=PostStatus.published.value,
@@ -439,7 +439,7 @@ async def publish_post(
                 detail="자막 생성에 실패했습니다. 다시 시도하거나 '자막 없이 게시'를 선택해 주세요",
             )
 
-    post.title = body.title.strip()
+    post.title = body.title.strip() if body.title is not None else None
     post.category = body.category.value
     post.content = body.content
     post.status = PostStatus.published.value

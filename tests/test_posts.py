@@ -32,6 +32,19 @@ async def test_text_post_publishes_immediately_and_appears_in_feed(client):
     assert items[0]["like_count"] == 0 and items[0]["comment_count"] == 0
 
 
+async def test_text_post_accepts_omitted_title(client):
+    user = await register(client, "제목없는글쓴이")
+    headers = auth_header(user["access_token"])
+    response = await client.post(
+        "/api/v1/posts",
+        json={"category": "daily", "content": "제목 없이 올리는 글"},
+        headers=headers,
+    )
+
+    assert response.status_code == 201, response.text
+    assert response.json()["title"] is None
+
+
 async def test_processing_draft_excluded_from_feed(client, db):
     u = await register(client, "드래프터")
     h = auth_header(u["access_token"])
@@ -133,7 +146,7 @@ async def test_feed_filters_category_and_searches_title_or_content(client):
     assert [item["title"] for item in content_search.json()["items"]] == ["공원 산책"]
 
 
-async def test_post_contract_rejects_missing_or_blank_metadata(client):
+async def test_post_contract_requires_category_and_rejects_blank_title(client):
     user = await register(client, "계약검증자")
     headers = auth_header(user["access_token"])
     missing = await client.post("/api/v1/posts", json={"content": "본문"}, headers=headers)

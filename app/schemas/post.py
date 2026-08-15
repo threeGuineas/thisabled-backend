@@ -59,7 +59,7 @@ class FeedOut(BaseModel):
 
 
 class PostCreateIn(StrictRequest):
-    title: PostTitle
+    title: PostTitle | None = None
     category: PostCategory
     content: PostContent
     media_ids: list[uuid.UUID] = Field(default_factory=list, max_length=3)

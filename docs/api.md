@@ -34,9 +34,9 @@
 | 메서드·경로 | 동작 |
 | --- | --- |
 | `GET /feed?cursor=&limit=&category=&q=` | published만·차단 상호 제외·최신순 커서. category=`daily\|info\|hobby\|concern\|meetup`, q=제목·본문 부분 검색 |
-| `POST /posts` | 텍스트·사진 게시물 `{title, category, content, media_ids?}` → 즉시 published. 제목 1~100자, 본문 1~10,000자, 카테고리 필수, 사진 최대 3장 |
+| `POST /posts` | 텍스트·사진 게시물 `{category, content, title?, media_ids?}` → 즉시 published. 제목은 선택(전송 시 1~100자), 본문 1~10,000자, 카테고리 필수, 사진 최대 3장 |
 | `GET /posts/{id}` / `PATCH` / `DELETE` | 상세·수정·삭제(작성자만) |
-| `POST /posts/{id}/publish` | 영상 드래프트 게시. `{title,category,content,allow_no_caption?}`. 자막 done→공개, failed면 `allow_no_caption:true` 필요 |
+| `POST /posts/{id}/publish` | 영상 드래프트 게시. `{category,content,title?,allow_no_caption?}`. 제목은 선택. 자막 done→공개, failed면 `allow_no_caption:true` 필요 |
 | `POST /posts/{id}/caption/retry` | 자막 `failed`인 비공개 영상 드래프트만 재시도 → 202 `{caption_status:"processing"}`. 다시 일일 한도 예약 |
 | `POST /posts/{id}/like` / `DELETE .../like` | 멱등 좋아요 |
 | `GET /posts/{id}/comments` / `POST` / `PATCH /comments/{id}` / `DELETE` | 댓글 CRUD. 공백 제거 후 1~2,000자 |

@@ -27,6 +27,10 @@ def test_v2_1_settings_defaults():
     assert settings.OAUTH_MOCK is True
     assert settings.SAFETY_MODEL_URL.startswith("http")
     assert settings.MATCH_MODEL_URL.startswith("http")
+    assert settings.CLOUD_TASKS_ENABLED is False
+    assert settings.SCHEDULER_ENABLED is True
+    assert settings.SAFETY_MODEL_AUDIENCE is None
+    assert settings.MATCH_MODEL_AUDIENCE is None
 
 
 def test_settings_ignores_compose_only_env_vars(monkeypatch):

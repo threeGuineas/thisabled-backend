@@ -15,6 +15,7 @@ from app.core.age import age_band, is_minor
 from app.core.config import settings
 from app.core.enums import RequestStatus, UiMode
 from app.models import Block, FriendRequest, Friendship, InterestTag, User, UserInterestTag
+from app.services.cloud_identity import CloudIdentityError, service_auth_headers
 
 DECLINE_EXCLUDE_DAYS = 30  # MATCH-03
 
@@ -30,13 +31,15 @@ class MatchClient:
     async def score(self, me_features: dict, candidates: list[dict]) -> list[dict]:
         try:
             async with httpx.AsyncClient(timeout=10) as http:
+                headers = await service_auth_headers(settings.MATCH_MODEL_AUDIENCE)
                 resp = await http.post(
                     f"{settings.MATCH_MODEL_URL}/score",
                     json={"me": me_features, "candidates": candidates},
+                    headers=headers,
                 )
                 resp.raise_for_status()
                 return resp.json()["results"]
-        except httpx.HTTPError as exc:
+        except (httpx.HTTPError, CloudIdentityError) as exc:
             raise MatchUnavailable() from exc
 
 

@@ -7,6 +7,7 @@
 import httpx
 
 from app.core.config import settings
+from app.services.cloud_identity import CloudIdentityError, service_auth_headers
 
 
 class SafetyUnavailable(Exception):
@@ -18,13 +19,15 @@ class SafetyClient:
         """→ 'safe' | 'flagged'. 미성년 수신자는 민감(낮은) 임계값 (§4.5)."""
         try:
             async with httpx.AsyncClient(timeout=settings.SAFETY_TIMEOUT_SECONDS) as http:
+                headers = await service_auth_headers(settings.SAFETY_MODEL_AUDIENCE)
                 resp = await http.post(
                     f"{settings.SAFETY_MODEL_URL}/analyze",
                     json={"text": text, "receiver_is_minor": receiver_is_minor},
+                    headers=headers,
                 )
                 resp.raise_for_status()
                 verdict = resp.json().get("verdict")
-        except httpx.HTTPError as exc:
+        except (httpx.HTTPError, CloudIdentityError) as exc:
             raise SafetyUnavailable() from exc
         if verdict not in ("safe", "flagged"):
             raise SafetyUnavailable()

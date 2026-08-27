@@ -13,7 +13,7 @@ ENV PATH="/app/.venv/bin:$PATH" \
     UV_COMPILE_BYTECODE=1 \
     UV_LINK_MODE=copy
 
-ARG INSTALL_DEV=true
+ARG INSTALL_DEV=false
 COPY pyproject.toml uv.lock ./
 RUN if [ "$INSTALL_DEV" = "true" ]; then \
         uv sync --frozen --all-groups --no-install-project; \

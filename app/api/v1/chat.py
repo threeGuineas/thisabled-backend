@@ -66,6 +66,7 @@ from app.services.quota import (
 )
 from app.services.relations import are_friends, is_blocked_either
 from app.services.safety import SafetyClient, get_safety_client
+from app.services.task_queue import AiTaskKind, enqueue_ai_task
 
 router = APIRouter(prefix="/chat", tags=["chat"])
 
@@ -722,14 +723,38 @@ async def send_media(
     await db.commit()
 
     if media_type == MediaType.image.value:
-        background.add_task(
-            ai_media.describe_chat_message_job, session_factory, redis, message.id, media_hash,
-            user.id, describe_caller,
+        await enqueue_ai_task(
+            background,
+            kind=AiTaskKind.describe_chat,
+            entity_id=message.id,
+            user_id=user.id,
+            media_hash=media_hash,
+            local_callable=ai_media.describe_chat_message_job,
+            local_args=(
+                session_factory,
+                redis,
+                message.id,
+                media_hash,
+                user.id,
+                describe_caller,
+            ),
         )
     else:
-        background.add_task(
-            ai_media.caption_chat_message_job, session_factory, redis, message.id, media_hash,
-            user.id, caption_caller,
+        await enqueue_ai_task(
+            background,
+            kind=AiTaskKind.caption_chat,
+            entity_id=message.id,
+            user_id=user.id,
+            media_hash=media_hash,
+            local_callable=ai_media.caption_chat_message_job,
+            local_args=(
+                session_factory,
+                redis,
+                message.id,
+                media_hash,
+                user.id,
+                caption_caller,
+            ),
         )
     await publish_to_user(
         redis, other_id,

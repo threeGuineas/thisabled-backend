@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-15T04:53:08.971421+00:00",
+  "generated_at": "2026-08-27T19:11:36.216324+00:00",
   "nodes": {
     "app_api_v1_media_upload_video": {
-      "code_fingerprint": "e4ec6b3c8b37f1188b730025acc54eae602b07f66ca1e98367372564caadfd05",
+      "code_fingerprint": "98db7b6a1f86894bf487174ecb81a3d8059c25e4266b49b16d5703aa0fe6095c",
       "label": "upload_video()",
       "last": "2026-08-14T18:28:50.415004+00:00",
       "provenance": [
@@ -17,7 +17,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 1.978570879,
+      "score": 1.478964195,
       "source_file": "app/api/v1/media.py",
       "status": "preferred",
       "uses": 2
@@ -33,13 +33,13 @@
           "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
         }
       ],
-      "score": 0.436258554,
+      "score": 0.326099403,
       "source_file": "app/api/v1/notifications.py",
       "status": "tentative",
       "uses": 1
     },
     "app_api_v1_posts_publish_post": {
-      "code_fingerprint": "02375684b1993d71f6bc576db4241d8fde2c3a5c7849ddb31bbea5808fb228c2",
+      "code_fingerprint": "75de19ff1f441877645b03d2d8a98125b00117de112d886bc96d6c68afeb410e",
       "label": "publish_post()",
       "last": "2026-08-15T04:45:30.243910+00:00",
       "provenance": [
@@ -64,13 +64,13 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 3.9778735,
+      "score": 2.973425184,
       "source_file": "app/api/v1/posts.py",
       "status": "preferred",
       "uses": 4
     },
     "app_api_v1_posts_retry_caption": {
-      "code_fingerprint": "02375684b1993d71f6bc576db4241d8fde2c3a5c7849ddb31bbea5808fb228c2",
+      "code_fingerprint": "75de19ff1f441877645b03d2d8a98125b00117de112d886bc96d6c68afeb410e",
       "label": "retry_caption()",
       "last": "2026-08-14T18:28:50.415004+00:00",
       "provenance": [
@@ -80,7 +80,7 @@
           "q": "자막 생성 때문에\n글 게시가 엄청 오래걸려염\n---\n왜 자막이 생성이 안 될까요...\n자막 빼고, 다른 것들은 정상 작동하는거 확인했습니다!\n프론트로부터의 문의사항"
         }
       ],
-      "score": 0.990032916,
+      "score": 0.740040829,
       "source_file": "app/api/v1/posts.py",
       "status": "tentative",
       "uses": 1
@@ -107,14 +107,14 @@
           "q": "친구 추천 부분도 로딩이 안되는 문제가 있다고 하는데 확인 부탁함"
         }
       ],
-      "score": 0.985953342,
+      "score": 0.736991384,
       "source_file": "app/api/v1/recommendations.py",
       "status": "contested",
       "uses": 2,
       "verdict": "useful"
     },
     "app_core_config_settings": {
-      "code_fingerprint": "3dcac2aa836ab27f3a41c662552125824bf92cf95f25586f21d219fa59839b00",
+      "code_fingerprint": "14bcb47567a33f0d82ee57a68da9836a4b6cb07d50d2e5e7847e289ec93bda0e",
       "label": "Settings",
       "last": "2026-08-14T19:00:21.326072+00:00",
       "provenance": [
@@ -124,7 +124,7 @@
           "q": "Run uv run pytest -q\nImportError while loading conftest /home/runner/work/thisabled-backend/thisabled-backend/tests/conftest.py.\ntests/conftest.py:22: in <module>\n    from app.main import app\napp/main.py:180: in <module>\n    app.mount(\"/uploads\", StaticFiles(directory=settings.UPLOAD_DIR), name=\"uploads\")\n.venv/lib/python3.11/site-packages/starlette/staticfiles.py:56: in __init__\n    raise RuntimeError(f\"Directory {directory} does not exist\")\nE   RuntimeError: Directory /app/uploads does not exist"
         }
       ],
-      "score": 0.990533666,
+      "score": 0.740415136,
       "source_file": "app/core/config.py",
       "status": "tentative",
       "uses": 1
@@ -145,7 +145,7 @@
           "q": "친구 추천 부분도 로딩이 안되는 문제가 있다고 하는데 확인 부탁함"
         }
       ],
-      "score": 1.976306011,
+      "score": 1.477271226,
       "source_file": "app/core/enums.py",
       "status": "preferred",
       "uses": 2
@@ -161,7 +161,7 @@
           "q": "Run uv run pytest -q\nImportError while loading conftest /home/runner/work/thisabled-backend/thisabled-backend/tests/conftest.py.\ntests/conftest.py:22: in <module>\n    from app.main import app\napp/main.py:180: in <module>\n    app.mount(\"/uploads\", StaticFiles(directory=settings.UPLOAD_DIR), name=\"uploads\")\n.venv/lib/python3.11/site-packages/starlette/staticfiles.py:56: in __init__\n    raise RuntimeError(f\"Directory {directory} does not exist\")\nE   RuntimeError: Directory /app/uploads does not exist"
         }
       ],
-      "score": 0.990533666,
+      "score": 0.740415136,
       "source_file": "app/core/storage.py",
       "status": "tentative",
       "uses": 1
@@ -182,13 +182,13 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 1.977236065,
+      "score": 1.477966433,
       "source_file": "app/core/storage.py",
       "status": "preferred",
       "uses": 2
     },
     "app_main": {
-      "code_fingerprint": "dec3ceef5f03a0b7d77989c04a589602bc744af3cdd72d766aef32303316f79f",
+      "code_fingerprint": "497b8087aa23ea9e81ba4252d9fc97ac25d833fa6a21192e0c49a3aec1adf79a",
       "label": "main.py",
       "last": "2026-08-14T19:00:21.326072+00:00",
       "provenance": [
@@ -203,26 +203,10 @@
           "q": "ㅇㅇ 수정 ㄱㄱ 그리고 [api 문서](https://ideal-macmini.tail72b898.ts.net/docs) 자세하게, 결함 없게 구체적으로 아주 친절하게 패치해줘 프론트엔드가 곤란하지 않도록"
         }
       ],
-      "score": 1.978803636,
+      "score": 1.479138179,
       "source_file": "app/main.py",
       "status": "preferred",
       "uses": 2
-    },
-    "app_models_chat_chatmessage": {
-      "code_fingerprint": "0bd21e672b14830cbc2a0a90870ec2dfaee90a609858003c924c1b85791eebd8",
-      "label": "ChatMessage",
-      "last": "2026-07-10T07:13:46.775840+00:00",
-      "provenance": [
-        {
-          "date": "2026-07-10T07:13:46.775840+00:00",
-          "outcome": "useful",
-          "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
-        }
-      ],
-      "score": 0.436258554,
-      "source_file": "app/models/chat.py",
-      "status": "tentative",
-      "uses": 1
     },
     "app_models_misc_notification": {
       "code_fingerprint": "dc0eca9874447459e22e54b1ea4dc36927ba197a775a56c5e83e591b420d878a",
@@ -235,31 +219,10 @@
           "q": "기능명세에 채팅 기능에 읽음/안읽음 표시 있나?"
         }
       ],
-      "score": 0.436258554,
+      "score": 0.326099403,
       "source_file": "app/models/misc.py",
       "status": "tentative",
       "uses": 1
-    },
-    "app_schemas_media_publishin": {
-      "code_fingerprint": "6b2351f84b2ae081cfd53ad924028d106d740b54f227d93ec1a849ca09e438d1",
-      "label": "PublishIn",
-      "last": "2026-08-15T04:45:30.243910+00:00",
-      "provenance": [
-        {
-          "date": "2026-08-15T04:45:30.243910+00:00",
-          "outcome": "useful",
-          "q": "post 필드에 원래 title 필드가 요구되지 않았던거같은데 왜이렇게 된거지?"
-        },
-        {
-          "date": "2026-08-15T04:17:19.230309+00:00",
-          "outcome": "useful",
-          "q": "영상 첨부해서 게시하기 버튼 누르고 난 뒤 생기는 오류 Field required (오류 코드: 422) 이거 머임?"
-        }
-      ],
-      "score": 1.999302622,
-      "source_file": "app/schemas/media.py",
-      "status": "preferred",
-      "uses": 2
     },
     "app_schemas_media_videouploadout": {
       "code_fingerprint": "6b2351f84b2ae081cfd53ad924028d106d740b54f227d93ec1a849ca09e438d1",
@@ -272,24 +235,8 @@
           "q": "영상 첨부해서 게시하기 버튼 누르고 난 뒤 생기는 오류 Field required (오류 코드: 422) 이거 머임?"
         }
       ],
-      "score": 0.999425286,
+      "score": 0.747061543,
       "source_file": "app/schemas/media.py",
-      "status": "tentative",
-      "uses": 1
-    },
-    "app_schemas_post_postcreatein": {
-      "code_fingerprint": "71b23ff3ef1dd8006432735d8842e38d2aeb683e18adc2438c3efe4c7a687eac",
-      "label": "PostCreateIn",
-      "last": "2026-08-15T04:45:30.243910+00:00",
-      "provenance": [
-        {
-          "date": "2026-08-15T04:45:30.243910+00:00",
-          "outcome": "useful",
-          "q": "post 필드에 원래 title 필드가 요구되지 않았던거같은데 왜이렇게 된거지?"
-        }
-      ],
-      "score": 0.999877336,
-      "source_file": "app/schemas/post.py",
       "status": "tentative",
       "uses": 1
     },
@@ -314,7 +261,7 @@
           "q": "백엔드 핵심 소스코드 2개와 설명"
         }
       ],
-      "score": 2.413524496,
+      "score": 1.804088169,
       "source_file": "app/services/ai_media.py",
       "status": "preferred",
       "uses": 3
@@ -346,7 +293,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 1.976519078,
+      "score": 1.477430492,
       "source_file": "app/services/ai_media.py",
       "status": "contested",
       "uses": 3,
@@ -363,7 +310,7 @@
           "q": "백엔드 핵심 소스코드 2개와 설명"
         }
       ],
-      "score": 0.436288431,
+      "score": 0.326121735,
       "source_file": "app/services/ai_media.py",
       "status": "tentative",
       "uses": 1
@@ -379,7 +326,7 @@
           "q": "백엔드 핵심 소스코드 2개와 설명"
         }
       ],
-      "score": 0.436288431,
+      "score": 0.326121735,
       "source_file": "app/services/chat.py",
       "status": "tentative",
       "uses": 1
@@ -395,13 +342,13 @@
           "q": "백엔드 핵심 소스코드 2개와 설명"
         }
       ],
-      "score": 0.436288431,
+      "score": 0.326121735,
       "source_file": "app/services/chat.py",
       "status": "tentative",
       "uses": 1
     },
     "app_services_match_candidate_pool": {
-      "code_fingerprint": "a478597ac412ab6c87f067e75d26821b93915f7815a5da618020ef866212a24c",
+      "code_fingerprint": "18ca3748260b5f0c2f1d3eb62d42f4723dc1f2438f3b2c609ffd9d34077acea2",
       "label": "candidate_pool()",
       "last": "2026-08-14T16:23:00.376651+00:00",
       "provenance": [
@@ -411,13 +358,13 @@
           "q": "친구 추천 부분도 로딩이 안되는 문제가 있다고 하는데 확인 부탁함"
         }
       ],
-      "score": 0.988036041,
+      "score": 0.738548183,
       "source_file": "app/services/match.py",
       "status": "tentative",
       "uses": 1
     },
     "app_services_match_matchclient": {
-      "code_fingerprint": "a478597ac412ab6c87f067e75d26821b93915f7815a5da618020ef866212a24c",
+      "code_fingerprint": "18ca3748260b5f0c2f1d3eb62d42f4723dc1f2438f3b2c609ffd9d34077acea2",
       "label": "MatchClient",
       "last": "2026-08-14T16:23:00.376651+00:00",
       "provenance": [
@@ -427,13 +374,13 @@
           "q": "친구 추천 부분도 로딩이 안되는 문제가 있다고 하는데 확인 부탁함"
         }
       ],
-      "score": 0.988036041,
+      "score": 0.738548183,
       "source_file": "app/services/match.py",
       "status": "tentative",
       "uses": 1
     },
     "app_services_match_user_features": {
-      "code_fingerprint": "a478597ac412ab6c87f067e75d26821b93915f7815a5da618020ef866212a24c",
+      "code_fingerprint": "18ca3748260b5f0c2f1d3eb62d42f4723dc1f2438f3b2c609ffd9d34077acea2",
       "label": "user_features()",
       "last": "2026-08-14T16:37:45.637337+00:00",
       "provenance": [
@@ -448,7 +395,7 @@
           "q": "친구 추천 부분도 로딩이 안되는 문제가 있다고 하는데 확인 부탁함"
         }
       ],
-      "score": 1.976306011,
+      "score": 1.477271226,
       "source_file": "app/services/match.py",
       "status": "preferred",
       "uses": 2
@@ -464,7 +411,7 @@
           "q": "ㅇㅋ 결함들 해결 방안 추천해줘"
         }
       ],
-      "score": 0.988698102,
+      "score": 0.739043068,
       "source_file": "app/services/notify.py",
       "status": "tentative",
       "uses": 1
@@ -491,7 +438,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 0.986883395,
+      "score": 0.737686591,
       "source_file": "app/services/quota.py",
       "status": "contested",
       "uses": 2,
@@ -513,7 +460,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 1.977236065,
+      "score": 1.477966433,
       "source_file": "app/services/scheduler.py",
       "status": "preferred",
       "uses": 2
@@ -529,7 +476,7 @@
           "q": "자막 생성 때문에\n글 게시가 엄청 오래걸려염\n---\n왜 자막이 생성이 안 될까요...\n자막 빼고, 다른 것들은 정상 작동하는거 확인했습니다!\n프론트로부터의 문의사항"
         }
       ],
-      "score": 0.990032916,
+      "score": 0.740040829,
       "source_file": "app/services/stt.py",
       "status": "tentative",
       "uses": 1
@@ -556,7 +503,7 @@
           "q": "영상 자막 부분 기능 감사해줘"
         }
       ],
-      "score": 0.986486163,
+      "score": 0.737389663,
       "source_file": "app/services/stt.py",
       "status": "contested",
       "uses": 2,
@@ -573,7 +520,7 @@
           "q": "ㅇㅇ 수정 ㄱㄱ 그리고 [api 문서](https://ideal-macmini.tail72b898.ts.net/docs) 자세하게, 결함 없게 구체적으로 아주 친절하게 패치해줘 프론트엔드가 곤란하지 않도록"
         }
       ],
-      "score": 0.988269971,
+      "score": 0.738723044,
       "source_file": "",
       "status": "tentative",
       "uses": 1
@@ -589,7 +536,7 @@
           "q": "Run uv run pytest -q\nImportError while loading conftest /home/runner/work/thisabled-backend/thisabled-backend/tests/conftest.py.\ntests/conftest.py:22: in <module>\n    from app.main import app\napp/main.py:180: in <module>\n    app.mount(\"/uploads\", StaticFiles(directory=settings.UPLOAD_DIR), name=\"uploads\")\n.venv/lib/python3.11/site-packages/starlette/staticfiles.py:56: in __init__\n    raise RuntimeError(f\"Directory {directory} does not exist\")\nE   RuntimeError: Directory /app/uploads does not exist"
         }
       ],
-      "score": 0.990533666,
+      "score": 0.740415136,
       "source_file": "tests/conftest.py",
       "status": "tentative",
       "uses": 1

@@ -26,6 +26,7 @@ from app.services.quota import (
     consume_caption,
     reset_caption_refund_markers,
 )
+from app.services.task_queue import AiTaskKind, enqueue_ai_task
 from app.schemas.post import (
     AuthorOut,
     CommentIn,
@@ -235,8 +236,13 @@ async def create_post(
     for m in media:
         if m.media_type == MediaType.image.value:
             m.description_status = AiStatus.processing.value
-            background.add_task(
-                ai_media.describe_post_media_job, session_factory, redis, m.id, user.id, describe_caller
+            await enqueue_ai_task(
+                background,
+                kind=AiTaskKind.describe_post,
+                entity_id=m.id,
+                user_id=user.id,
+                local_callable=ai_media.describe_post_media_job,
+                local_args=(session_factory, redis, m.id, user.id, describe_caller),
             )
     if media:
         await db.commit()
@@ -397,13 +403,13 @@ async def retry_caption(
     video.caption_status = AiStatus.processing.value
     video.caption_failure_code = None
     await db.commit()
-    background.add_task(
-        ai_media.caption_post_media_job,
-        session_factory,
-        redis,
-        video.id,
-        user.id,
-        caption_caller,
+    await enqueue_ai_task(
+        background,
+        kind=AiTaskKind.caption_post,
+        entity_id=video.id,
+        user_id=user.id,
+        local_callable=ai_media.caption_post_media_job,
+        local_args=(session_factory, redis, video.id, user.id, caption_caller),
     )
     return CaptionStatusOut(caption_status=AiStatus.processing.value)
 

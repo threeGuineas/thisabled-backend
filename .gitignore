@@ -1,4 +1,11 @@
 .env
+.env.*
+!.env.example
+.gcloud/
+.secrets/
+client_secret_*.json
+service-account*.json
+*-service-account.json
 .venv/
 __pycache__/
 *.pyc

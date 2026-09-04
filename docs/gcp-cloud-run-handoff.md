@@ -1,6 +1,6 @@
 # ThisAbled Cloud Run 배포 인수인계
 
-최종 갱신: 2026-08-28
+최종 갱신: 2026-09-05
 
 ## 1. 프론트엔드 전달사항
 
@@ -26,7 +26,7 @@
 5. 401이면 refresh를 한 번만 호출하고 원 요청을 한 번 재시도한다.
 6. 앱 시작 시 `GET /api/v1/users/me`로 사용자·UI 모드를 서버 정본과 동기화한다.
 
-Google 실 OAuth는 테스트 계정으로 callback과 프론트 복귀까지 확인했다. 현재 Google OAuth 앱은 **Testing** 상태이므로 등록된 테스트 사용자만 로그인할 수 있다. 전체 공개 전 프론트에 공개 접근 가능한 개인정보처리방침 페이지를 만들고 OAuth 동의 화면에 URL을 등록해야 한다. Kakao 실 로그인은 별도 최종 점검이 필요하다.
+Google 실 OAuth는 테스트 계정으로 callback과 프론트 복귀까지 확인했다. 현재 Google OAuth 앱은 **Testing** 상태이므로 등록된 테스트 사용자만 로그인할 수 있다. 전체 공개 전 프론트에 공개 접근 가능한 개인정보처리방침 페이지를 만들고 OAuth 동의 화면에 URL을 등록해야 한다. Kakao 실 OAuth도 Cloud Run callback과 프론트 온보딩 복귀까지 확인했다.
 
 ### CORS와 프론트 배포
 
@@ -119,7 +119,7 @@ curl -fsS \
 
 - [ ] 프론트에 `/privacy` 또는 동등한 공개 개인정보처리방침 페이지 배포
 - [ ] Google OAuth 동의 화면에 개인정보처리방침 URL 등록 후 Production 게시
-- [ ] Kakao 실 로그인 신규·기존 회원 흐름 검증
+- [x] Kakao 실 로그인 callback·프론트 복귀 검증
 - [ ] 32MB 초과 영상용 GCS signed URL 직접 업로드 계약 승인·구현
 - [ ] 전역 429 rate limit 계약 합의
 - [ ] URL query token을 일회용 code/쿠키 방식으로 교체하는 인증 계약 합의

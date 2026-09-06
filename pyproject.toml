@@ -17,6 +17,7 @@ dependencies = [
     "aiofiles==23.2.1",
     "openai==1.30.5",
     "apscheduler==3.10.4",
+    "google-cloud-tasks==2.20.0",
 ]
 
 [dependency-groups]

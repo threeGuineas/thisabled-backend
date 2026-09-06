@@ -138,11 +138,13 @@ async def lifespan(app: FastAPI):
     from app.services.scheduler import start_scheduler, stop_scheduler
     from app.db.redis import close_redis_client
 
-    start_scheduler()
+    if settings.SCHEDULER_ENABLED:
+        start_scheduler()
     try:
         yield
     finally:
-        stop_scheduler()
+        if settings.SCHEDULER_ENABLED:
+            stop_scheduler()
         await close_redis_client()
 
 

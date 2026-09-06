@@ -56,6 +56,20 @@ class Settings(BaseSettings):
     # MATCH — SBERT+LightGBM 모델 서버
     MATCH_MODEL_URL: str = "http://match-model:9002"
 
+    # Cloud Run 내부 서비스 인증. audience가 설정된 모델 호출에 ID 토큰을 붙인다.
+    SAFETY_MODEL_AUDIENCE: str | None = None
+    MATCH_MODEL_AUDIENCE: str | None = None
+
+    # 운영에서는 Cloud Tasks worker로 비동기 AI 작업을 분리한다. 로컬/테스트는
+    # 기본값 false로 기존 FastAPI BackgroundTasks 실행 흐름을 유지한다.
+    CLOUD_TASKS_ENABLED: bool = False
+    GCP_PROJECT_ID: str | None = None
+    GCP_REGION: str = "asia-northeast3"
+    CLOUD_TASKS_QUEUE: str = "ai-media"
+    TASK_WORKER_URL: str | None = None
+    TASK_OIDC_SERVICE_ACCOUNT: str | None = None
+    SCHEDULER_ENABLED: bool = True
+
     # VISION-01 / CAPTION-01 호출 한도 (게시물·채팅 합산)
     VISION_DAILY_LIMIT: int = 20
     VISION_MINUTE_LIMIT: int = 5

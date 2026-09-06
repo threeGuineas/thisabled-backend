@@ -28,6 +28,7 @@ from app.services.quota import (
     caption_key,
     consume_caption,
 )
+from app.services.task_queue import AiTaskKind, enqueue_ai_task
 
 router = APIRouter(prefix="/media", tags=["media"])
 
@@ -154,8 +155,13 @@ async def upload_video(
     db.add(media)
     await db.commit()
 
-    background.add_task(
-        ai_media.caption_post_media_job, session_factory, redis, media.id, user.id, caption_caller
+    await enqueue_ai_task(
+        background,
+        kind=AiTaskKind.caption_post,
+        entity_id=media.id,
+        user_id=user.id,
+        local_callable=ai_media.caption_post_media_job,
+        local_args=(session_factory, redis, media.id, user.id, caption_caller),
     )
     return VideoUploadOut(post_id=post.id, media_id=media.id, caption_status=media.caption_status)
 

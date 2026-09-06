@@ -886,17 +886,5 @@
     "seen": 1787857896.17905,
     "ast_hash": "19d9de3c800b90eaf66022633497bf3a",
     "semantic_hash": ""
-  },
-  "infra/artifact-cleanup-policy.json": {
-    "mtime": 1787860240.7999291,
-    "seen": 1787860382.839318,
-    "ast_hash": "1b876318109752f2ac838780a51972d9",
-    "semantic_hash": ""
-  },
-  "docs/gcp-cloud-run-handoff.md": {
-    "mtime": 1788536988.9663992,
-    "seen": 1788537000.881054,
-    "ast_hash": "43a31ce52c20b3e56c15b861c197023d",
-    "semantic_hash": ""
   }
 }
